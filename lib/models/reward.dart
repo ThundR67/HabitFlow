@@ -29,7 +29,7 @@ class Reward {
   final int points;
 
   /// Amount of time this reward is acquired.
-  final int amountTaken;
+  int amountTaken;
 
   /// Converts a map to [Reward].
   static Reward fromMap(Map<String, dynamic> map) {
