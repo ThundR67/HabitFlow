@@ -25,6 +25,7 @@ dependencies:
   sembast: ^2.4.7+4
   bottom_navy_bar: ^5.4.0
   random_string: ^2.1.0
+  logger: ^0.9.1
   flutter:
     sdk: flutter
 
