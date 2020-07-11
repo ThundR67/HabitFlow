@@ -43,6 +43,7 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
+        backgroundColor: Colors.black,
         showElevation: true,
         onItemSelected: (int index) => setState(() {
           _currentIndex = index;
