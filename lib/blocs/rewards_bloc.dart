@@ -11,7 +11,6 @@ class RewardsBloc extends ChangeNotifier {
   }
 
   final RewardsDAO _dao = RewardsDAO();
-  final RewardPointsDAO _pointsDAO = RewardPointsDAO();
 
   /// All the rewards.
   List<Reward> rewards = <Reward>[];
@@ -33,11 +32,9 @@ class RewardsBloc extends ChangeNotifier {
   /// Deletes a reward from db.
   void delete(Reward reward) => _dao.delete(reward).whenComplete(_update);
 
-  /// Increases [amountTaken] of reward by one and reduces points by [points].
+  /// Increases [amountTaken] of reward by one.
   void take(Reward reward) {
     reward.amountTaken++;
-    _dao.update(reward).whenComplete(() {
-      _pointsDAO.incrementPoints(-reward.points).whenComplete(_update);
-    });
+    update(reward);
   }
 }
