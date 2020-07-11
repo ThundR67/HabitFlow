@@ -13,15 +13,15 @@ class RewardPointsDAO {
   Future<Database> get _db async => await DB.instance.database;
 
   /// Returns user's current reward points from db.
-  Future<int> rewardPoints() async {
+  Future<int> get() async {
     final int points = await _store.record(_pointsRecord).get(await _db);
     return points == null ? points : 0;
   }
 
-  /// Increments reward points.
-  Future<void> incrementPoints(int increment) async {
-    int points = await rewardPoints();
-    points += increment;
+  /// Changes reward points by [change].
+  Future<void> changeBy(int change) async {
+    int points = await get();
+    points += change;
     await _store.record(_pointsRecord).put(await _db, points);
   }
 
