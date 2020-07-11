@@ -29,7 +29,7 @@ class DB {
   /// Opens connection to DB.
   Future<void> _openDatabase() async {
     final Directory appDocumentDir = await getApplicationDocumentsDirectory();
-    final String dbPath = appDocumentDir.path + 'rewards.db';
+    final String dbPath = appDocumentDir.path + 'points.db';
     final Database database = await databaseFactoryIo.openDatabase(dbPath);
     _dbOpenCompleter.complete(database);
   }
