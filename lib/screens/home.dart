@@ -10,13 +10,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   PageController _pageController;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    _pageController = PageController(initialPage: 1);
   }
 
   @override
