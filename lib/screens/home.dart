@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
           BottomNavyBarItem(
             icon: const Icon(Icons.star),
             title: const Text('Rewards'),
-            activeColor: Colors.deepOrange,
+            activeColor: Colors.yellow,
           ),
         ],
       ),
