@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 /// A widget to show current reward points held by user.
 class RewardPoints extends StatelessWidget {
@@ -10,10 +9,10 @@ class RewardPoints extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Neumorphic(
-        child: const Center(
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Card(
+        child: Center(
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Text('hello'),
