@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  flutter_iconpicker: ^2.0.6
   path_provider: ^1.6.11
   sembast: ^2.4.7+4
   bottom_navy_bar: ^5.4.0

@@ -1,3 +1,4 @@
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:random_string/random_string.dart';
 
 /// Key to refrence id of reward in map.
@@ -12,10 +13,23 @@ const String pointsKey = 'reward_points';
 /// Key to refrence amount taken of reward in map.
 const String takenKey = 'amount_taken';
 
+/// Key to refrence acolor of reward in map.
+const String colorKey = 'color_hex';
+
+/// Key to refrence icon data of reward in map.
+const String iconKey = 'icon_data';
+
 /// A type to store information about a reward.
 class Reward {
   /// Creates a reward.
-  Reward({this.id, this.name, this.points, this.amountTaken = 0}) {
+  Reward({
+    this.id,
+    this.name,
+    this.points,
+    this.amountTaken = 0,
+    this.iconData,
+    this.colorHex,
+  }) {
     id ??= randomAlphaNumeric(12);
   }
 
@@ -31,12 +45,20 @@ class Reward {
   /// Amount of time this reward is acquired.
   int amountTaken;
 
+  /// Hex value of color of this reward.
+  final String colorHex;
+
+  /// Icon of this reward.
+  final Map<String, dynamic> iconData;
+
   /// Converts a map to [Reward].
   static Reward fromMap(Map<String, dynamic> map) {
     return Reward(
       name: map[nameKey].toString(),
       points: int.parse(map[pointsKey].toString()),
       amountTaken: int.parse(map[takenKey].toString()),
+      colorHex: map[colorKey].toString(),
+      iconData: map[iconKey] as Map<String, dynamic>,
     );
   }
 
@@ -47,6 +69,8 @@ class Reward {
       nameKey: name,
       pointsKey: points,
       takenKey: amountTaken,
+      colorKey: colorHex,
+      iconKey: iconData,
     };
   }
 }
