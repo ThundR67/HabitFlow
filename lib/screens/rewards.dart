@@ -18,8 +18,13 @@ class Rewards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: RewardPoints(_pointsBloc.points),
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          RewardPoints(_pointsBloc.points),
+        ],
+      ),
     );
   }
 }
