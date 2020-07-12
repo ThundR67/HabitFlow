@@ -15,8 +15,8 @@ void main() {
       ],
       child: const NeumorphicApp(
         themeMode: ThemeMode.dark,
-        darkTheme: NeumorphicThemeData(
-          baseColor: Color(0xff333333),
+        materialDarkTheme: NeumorphicThemeData.dark(
+          baseColor: Color(0xFF3E3E3E),
           shadowDarkColor: Colors.black87,
           shadowLightColor: Colors.grey,
           lightSource: LightSource.topLeft,
