@@ -1,8 +1,14 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:habitflow/blocs/points_bloc.dart';
+import 'package:habitflow/blocs/rewards_bloc.dart';
+import 'package:habitflow/screens/rewards.dart';
 
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
+  /// Constructs
   const Home({Key key}) : super(key: key);
 
   @override
@@ -27,6 +33,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+    RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
+
     return Scaffold(
       body: SizedBox.expand(
         child: PageView(
@@ -36,8 +45,8 @@ class _HomeState extends State<Home> {
           },
           children: <Widget>[
             Container(color: Colors.blue),
-            Container(color: Colors.red),
             Container(color: Colors.deepOrange),
+            Rewards(rewardsBloc, pointsBloc),
           ],
         ),
       ),
