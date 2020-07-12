@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/services/rewards/rewards.dart';
 import 'package:habitflow/services/reward_points/reward_points.dart';
@@ -7,7 +9,15 @@ import 'package:habitflow/services/reward_points/reward_points.dart';
 class RewardsBloc extends ChangeNotifier {
   /// Causes a update as soon as bloc is initialized.
   RewardsBloc() {
-    _update();
+    /// TODO remove
+    _dao.clear().whenComplete(() {
+      final Reward data = Reward(
+          name: 'Test',
+          points: 30,
+          colorHex: '#000000',
+          iconData: iconDataToMap(const IconData(0x88378)));
+      _dao.add(data).whenComplete(_update);
+    });
   }
 
   final RewardsDAO _dao = RewardsDAO();
