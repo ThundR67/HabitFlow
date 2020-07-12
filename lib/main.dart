@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
@@ -12,9 +13,10 @@ void main() {
         ChangeNotifierProvider<RewardsBloc>(create: (_) => RewardsBloc()),
         ChangeNotifierProvider<PointsBloc>(create: (_) => PointsBloc()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         themeMode: ThemeMode.dark,
-        home: Home(),
+        theme: ThemeData.dark(),
+        home: const Home(),
       ),
     ),
   );
