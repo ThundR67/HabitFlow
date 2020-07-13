@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/components/reward_points.dart';
+import 'package:habitflow/components/cur_reward_points.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 
@@ -22,7 +22,7 @@ class Rewards extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          RewardPoints(_pointsBloc.points),
+          CurRewardPoints(_pointsBloc.points),
         ],
       ),
     );
