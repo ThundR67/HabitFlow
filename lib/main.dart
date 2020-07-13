@@ -14,6 +14,7 @@ void main() {
         ChangeNotifierProvider<PointsBloc>(create: (_) => PointsBloc()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         theme: ThemeData.dark(),
         home: const Home(),

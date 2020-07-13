@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:habitflow/components/neu_card.dart';
+
 /// A widget to show current reward points held by user.
 class RewardPoints extends StatelessWidget {
   /// Constructs
@@ -11,7 +13,8 @@ class RewardPoints extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(8.0),
-      child: Card(
+      child: NeuCard(
+        radius: 10,
         child: Center(
           child: Padding(
             padding: EdgeInsets.all(8.0),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 /// A Neumorphic card.
 class NeuCard extends StatelessWidget {
   /// Constructs
-  const NeuCard({Key key, this.child, this.radius}) : super(key: key);
+  const NeuCard({Key key, this.child, this.radius = 8.0}) : super(key: key);
 
   /// Childrens of the card.
   final Widget child;
@@ -13,24 +14,15 @@ class NeuCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.grey[900],
-          boxShadow: const <BoxShadow>[
-            BoxShadow(
-              blurRadius: 18.0,
-              color: Color(0xff141414),
-              offset: Offset(8, 8),
-            ),
-            BoxShadow(
-              blurRadius: 18.0,
-              color: Color(0xff2e2e2e),
-              offset: Offset(-8, -8),
-            ),
-          ],
-          gradient: null,
-          borderRadius: BorderRadius.all(Radius.circular(radius))),
+    return Neumorphic(
       child: child,
+      style: NeumorphicStyle(
+        depth: 4,
+        intensity: 1,
+        color: Colors.grey[850],
+        shadowDarkColor: Colors.grey[900],
+        shadowLightColor: Colors.grey[800], //customize color here
+      ),
     );
   }
 }
