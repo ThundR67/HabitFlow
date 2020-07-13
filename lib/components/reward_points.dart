@@ -7,12 +7,16 @@ class RewardPoints extends StatelessWidget {
     this._points, {
     Key key,
     this.size = 16.0,
+    this.color = Colors.yellow,
   }) : super(key: key);
 
   final int _points;
 
   /// Size of the widget.
   final double size;
+
+  /// Color of the icon.
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,7 @@ class RewardPoints extends StatelessWidget {
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text(
           _points.toString(),
@@ -28,9 +33,13 @@ class RewardPoints extends StatelessWidget {
             fontSize: size,
           ),
         ),
-        const Icon(
+        const SizedBox(
+          width: 2,
+        ),
+        Icon(
           Icons.star,
-          color: Colors.yellow,
+          size: size,
+          color: color,
         ),
       ],
     );

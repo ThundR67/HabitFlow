@@ -14,7 +14,7 @@ class RewardsBloc extends ChangeNotifier {
       final Reward data = Reward(
           name: 'Test',
           points: 30,
-          colorHex: '#000000',
+          colorHex: '#00e676',
           iconData: iconDataToMap(const IconData(0x88378)));
       _dao.add(data).whenComplete(_update);
     });
@@ -23,7 +23,7 @@ class RewardsBloc extends ChangeNotifier {
   final RewardsDAO _dao = RewardsDAO();
 
   /// All the rewards.
-  List<Reward> rewards = <Reward>[];
+  List<Reward> rewards;
 
   /// Updates [rewards].
   void _update() {
