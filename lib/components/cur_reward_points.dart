@@ -24,7 +24,10 @@ class CurRewardPoints extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Text('Current Reward Points'),
-                RewardPoints(_points),
+                RewardPoints(
+                  _points,
+                  size: 32,
+                ),
               ],
             ),
           ),

@@ -15,7 +15,7 @@ class RewardPointsDAO {
   /// Returns user's current reward points from db.
   Future<int> get() async {
     final int points = await _store.record(_pointsRecord).get(await _db);
-    return points == null ? points : 0;
+    return points ?? 0;
   }
 
   /// Changes reward points by [change].

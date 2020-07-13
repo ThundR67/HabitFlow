@@ -16,7 +16,12 @@ class PointsBloc extends ChangeNotifier {
   int get points => _points ?? -1;
 
   /// Updates [point].
-  void _update() => _dao.get().then((int value) => _points = value);
+  void _update() {
+    _dao.get().then((int value) {
+      _points = value;
+      notifyListeners();
+    });
+  }
 
   /// Increments reward points by [value].
   void increment(int value) {
