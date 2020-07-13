@@ -17,6 +17,9 @@ class NeuCard extends StatelessWidget {
     return Neumorphic(
       child: child,
       style: NeumorphicStyle(
+        boxShape: NeumorphicBoxShape.roundRect(
+          BorderRadius.circular(radius),
+        ),
         depth: 4,
         intensity: 1,
         color: Colors.grey[850],

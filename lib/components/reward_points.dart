@@ -14,7 +14,7 @@ class RewardPoints extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.all(8.0),
       child: NeuCard(
-        radius: 10,
+        radius: 100,
         child: Center(
           child: Padding(
             padding: EdgeInsets.all(8.0),
