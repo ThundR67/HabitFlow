@@ -12,10 +12,11 @@ class RewardsBloc extends ChangeNotifier {
     /// TODO remove
     _dao.clear().whenComplete(() {
       final Reward data = Reward(
-          name: 'Test',
-          points: 30,
-          colorHex: '#00e676',
-          iconData: iconDataToMap(const IconData(0x88378)));
+        name: 'Gaming 20 mins',
+        points: 30,
+        colorHex: '#00e676',
+        iconData: iconDataToMap(Icons.gamepad),
+      );
       _dao.add(data).whenComplete(_update);
     });
   }

@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
@@ -18,40 +20,45 @@ class _Reward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NeuCard(
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Icon(
-                Icons.ac_unit,
-                color: _colorFromHex(_reward.colorHex),
-              ),
-              const SizedBox(width: 8.0),
-              Text(
-                '${_reward.name} X${_reward.amountTaken}',
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: NeuCard(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  mapToIconData(_reward.iconData),
+                  color: _colorFromHex(_reward.colorHex),
                 ),
-              ),
-              const Spacer(),
-              IconButton(
-                icon: const Icon(Icons.done),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () {},
-              ),
-              RewardPoints(
-                _reward.points,
-                size: 24.0,
-                color: _colorFromHex(_reward.colorHex),
-              ),
-            ],
+                const SizedBox(width: 8.0),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        _reward.name,
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(width: 8.0),
+                      Text(
+                        'X ${_reward.amountTaken}',
+                      ),
+                    ],
+                  ),
+                ),
+                RewardPoints(
+                  _reward.points,
+                  size: 24.0,
+                  color: _colorFromHex(_reward.colorHex),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -71,12 +78,17 @@ class RewardsList extends StatelessWidget {
     if (_rewards == null) {
       return const LinearProgressIndicator();
     }
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: <Widget>[
-          _Reward(_rewards[0]),
-        ],
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(0.0),
+        child: ListView.separated(
+          itemCount: _rewards.length,
+          separatorBuilder: (BuildContext ctxt, int index) =>
+              const SizedBox(height: 8.0),
+          itemBuilder: (BuildContext ctxt, int index) {
+            return _Reward(_rewards[index]);
+          },
+        ),
       ),
     );
   }
