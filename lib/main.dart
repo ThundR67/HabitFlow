@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/screens/home.dart';
+import 'package:habitflow/screens/created_reward.dart';
 
 void main() {
   runApp(
@@ -16,7 +17,11 @@ void main() {
       child: MaterialApp(
         themeMode: ThemeMode.dark,
         theme: ThemeData.dark(),
-        home: const Home(),
+        initialRoute: '/home',
+        routes: <String, Widget Function(BuildContext)>{
+          '/home': (BuildContext context) => const Home(),
+          '/create_reward': (BuildContext context) => const CreateReward(),
+        },
       ),
     ),
   );

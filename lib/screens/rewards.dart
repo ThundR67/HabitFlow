@@ -29,6 +29,12 @@ class Rewards extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed('/create_reward');
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
