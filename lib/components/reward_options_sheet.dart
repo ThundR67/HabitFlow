@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/models/reward.dart';
 import 'package:provider/provider.dart';
 
@@ -11,9 +12,13 @@ class RewardOptionsSheet extends StatelessWidget {
 
   final Reward _reward;
 
+  /// Takes a reward and decreases points.
+
   @override
   Widget build(BuildContext context) {
     RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
+    PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+
     return Container(
       height: 160,
       color: Colors.black,
@@ -23,8 +28,15 @@ class RewardOptionsSheet extends StatelessWidget {
         children: <Widget>[
           RaisedButton(
             onPressed: () {
+              if (_reward.points > pointsBloc.points) {
+                const SnackBar snackBar = SnackBar(
+                    content: Text("You don't have enough reward points"));
+                Scaffold.of(context).showSnackBar(snackBar);
+                Navigator.pop(context);
+                return;
+              }
               rewardsBloc.take(_reward);
-              Navigator.pop(context);
+              pointsBloc.decrement(_reward.points);
             },
             child: const Text('Take This Reward'),
           ),
