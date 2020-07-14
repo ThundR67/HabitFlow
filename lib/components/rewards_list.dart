@@ -4,6 +4,7 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
+import 'package:habitflow/components/reward_options_sheet.dart';
 import 'package:habitflow/models/reward.dart';
 
 Color _colorFromHex(String hexColor) {
@@ -18,6 +19,12 @@ class _Reward extends StatelessWidget {
 
   final Reward _reward;
 
+  /// Shows reward options sheet.
+  void _showSheet(BuildContext context, Reward reward) {
+    Scaffold.of(context).showBottomSheet<RewardOptionsSheet>(
+        (BuildContext context) => RewardOptionsSheet(reward));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,7 +33,7 @@ class _Reward extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {},
+            onTap: () => _showSheet(context, _reward),
             child: Ink(
               child: Center(
                 child: Padding(

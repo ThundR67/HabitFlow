@@ -19,13 +19,15 @@ class Rewards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          CurRewardPoints(_pointsBloc.points),
-          RewardsList(_rewardsBloc.rewards),
-        ],
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            CurRewardPoints(_pointsBloc.points),
+            RewardsList(_rewardsBloc.rewards),
+          ],
+        ),
       ),
     );
   }
