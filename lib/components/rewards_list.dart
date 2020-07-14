@@ -23,41 +23,49 @@ class _Reward extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: NeuCard(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(
-                  mapToIconData(_reward.iconData),
-                  color: _colorFromHex(_reward.colorHex),
-                ),
-                const SizedBox(width: 16.0),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            child: Ink(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        _reward.name,
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
+                      Icon(
+                        mapToIconData(_reward.iconData),
+                        color: _colorFromHex(_reward.colorHex),
+                      ),
+                      const SizedBox(width: 16.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              _reward.name,
+                              style: const TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'X ${_reward.amountTaken}',
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 8.0),
-                      Text(
-                        'X ${_reward.amountTaken}',
+                      RewardPoints(
+                        _reward.points,
+                        size: 24.0,
+                        color: _colorFromHex(_reward.colorHex),
                       ),
                     ],
                   ),
                 ),
-                RewardPoints(
-                  _reward.points,
-                  size: 24.0,
-                  color: _colorFromHex(_reward.colorHex),
-                ),
-              ],
+              ),
             ),
           ),
         ),
