@@ -26,7 +26,7 @@ class CurRewardPoints extends StatelessWidget {
                 const Text('Current Reward Points'),
                 RewardPoints(
                   _points,
-                  size: 32,
+                  size: 40,
                 ),
               ],
             ),

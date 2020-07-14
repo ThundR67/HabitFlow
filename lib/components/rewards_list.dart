@@ -25,7 +25,7 @@ class _Reward extends StatelessWidget {
       child: NeuCard(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(16.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -33,7 +33,7 @@ class _Reward extends StatelessWidget {
                   mapToIconData(_reward.iconData),
                   color: _colorFromHex(_reward.colorHex),
                 ),
-                const SizedBox(width: 8.0),
+                const SizedBox(width: 16.0),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
