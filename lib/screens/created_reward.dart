@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/models/reward.dart';
+import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
-import 'package:habitflow/components/color_picker.dart';
-import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/neu_text_field.dart';
 import 'package:habitflow/components/pickers.dart';
 
@@ -22,11 +21,12 @@ class _CreateRewardState extends State<CreateReward> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pointsController = TextEditingController();
-  Icon _icon = const Icon(Icons.accessibility);
+  IconData _icon = Icons.accessibility;
   Color _color = Colors.redAccent;
+  RewardsBloc _bloc;
 
   /// Changes [_color] and [_icon] to what user selected.
-  void _onPick(Color color, Icon icon) {
+  void _onPick(Color color, IconData icon) {
     setState(() {
       _color = color;
       _icon = icon;
@@ -34,15 +34,22 @@ class _CreateRewardState extends State<CreateReward> {
   }
 
   /// Creates the reward.
-  void _create(RewardsBloc bloc) {
+  void _create() {
     if (_formKey.currentState.validate()) {
-      bloc.add(null);
+      _bloc.add(
+        Reward(
+          name: _nameController.text,
+          points: int.parse(_pointsController.text),
+          colorHex: '#${_color.value.toRadixString(16)}',
+          iconData: iconDataToMap(_icon),
+        ),
+      );
       Navigator.pop(context);
     }
   }
 
   /// Validates reward points.
-  String _validate(String value) {
+  String _validatePoints(String value) {
     if (value.isEmpty || int.tryParse(value) == null) {
       return 'Please enter valid integer';
     } else if (int.parse(value) <= 0) {
@@ -51,8 +58,17 @@ class _CreateRewardState extends State<CreateReward> {
     return null;
   }
 
+  /// Validates reward name.
+  String _validateName(String value) {
+    if (value.isEmpty) {
+      return 'Please enter valid name';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    _bloc = Provider.of<RewardsBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create A Reward'),
@@ -78,12 +94,19 @@ class _CreateRewardState extends State<CreateReward> {
                       NeuInputTextField(
                         controller: _nameController,
                         text: 'Reward Name',
+                        validate: _validateName,
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
                         text: 'Reward Points Required',
-                        validate: _validate,
+                        validate: _validatePoints,
+                      ),
+                      const SizedBox(height: 16.0),
+                      RaisedButton(
+                        onPressed: _create,
+                        child: const Text('Done'),
+                        elevation: 4,
                       ),
                     ],
                   ),

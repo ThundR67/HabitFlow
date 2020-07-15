@@ -24,7 +24,6 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
   _ColorPickerButtonState(this._onChange, this._currentColor);
 
   Color _currentColor;
-  final Color _pickerColor = Colors.redAccent;
   final Function(Color) _onChange;
 
   void _onColorSelected(Color color) {
@@ -39,7 +38,7 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
     showDialog<AlertDialog>(
       context: context,
       child: AlertDialog(
-        title: const Text('Pick a color!'),
+        title: const Text('Pick a color'),
         content: SingleChildScrollView(
           child: MaterialPicker(
             pickerColor: _currentColor,
@@ -48,7 +47,7 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
         ),
         actions: <Widget>[
           FlatButton(
-            child: const Text('Got it'),
+            child: const Text('Done'),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],
@@ -58,7 +57,6 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
 
   @override
   Widget build(BuildContext context) {
-    print(_currentColor);
     return Container(
       child: ClipOval(
         child: Material(

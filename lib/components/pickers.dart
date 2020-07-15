@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/color_picker.dart';
@@ -16,8 +15,8 @@ class Pickers extends StatefulWidget {
   }) : super(key: key);
 
   final Color _color;
-  final Icon _icon;
-  final Function(Color, Icon) _onPick;
+  final IconData _icon;
+  final Function(Color, IconData) _onPick;
 
   @override
   _PickersState createState() => _PickersState(_color, _icon, _onPick);
@@ -27,8 +26,8 @@ class _PickersState extends State<Pickers> {
   _PickersState(this._color, this._icon, this._onPick);
 
   Color _color;
-  Icon _icon;
-  final Function(Color, Icon) _onPick;
+  IconData _icon;
+  final Function(Color, IconData) _onPick;
 
   /// Changes [_color] to one selected by user.
   void _onColorChange(Color color) {
@@ -42,9 +41,9 @@ class _PickersState extends State<Pickers> {
       context,
       iconPackMode: IconPack.material,
     );
-    _icon = Icon(icon);
+    _icon = icon;
     setState(() {});
-    _onPick(_color, _icon);
+    _onPick(_color, icon);
   }
 
   @override
@@ -72,7 +71,7 @@ class _PickersState extends State<Pickers> {
                   onPressed: _pickIcon,
                   color: _color,
                   icon: _icon != null
-                      ? Icon(_icon.icon)
+                      ? Icon(_icon)
                       : const Icon(Icons.accessibility),
                 ),
               ),

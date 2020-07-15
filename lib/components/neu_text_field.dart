@@ -28,14 +28,14 @@ class NeuInputTextField extends StatelessWidget {
           boxShape: NeumorphicBoxShape.roundRect(
             BorderRadius.circular(100.0),
           ),
-          depth: -4,
+          depth: -2,
           intensity: 1,
           color: Colors.grey[850],
           shadowDarkColorEmboss: Colors.grey[900],
           shadowLightColorEmboss: Colors.grey[800], //customize color here
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
           child: TextFormField(
             controller: controller,
             decoration: InputDecoration(
