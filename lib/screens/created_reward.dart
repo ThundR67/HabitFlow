@@ -4,6 +4,7 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
+import 'package:habitflow/components/color_picker.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/neu_text_field.dart';
 
@@ -21,11 +22,10 @@ class _CreateRewardState extends State<CreateReward> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pointsController = TextEditingController();
   Icon _icon = const Icon(Icons.accessibility);
-  Color _pickerColor = Colors.redAccent;
-  Color _currentColor = Colors.redAccent;
+  Color _color = Colors.redAccent;
 
-  /// Allows user to pick a color;
-  void _pickColor(Color color) => setState(() => _pickerColor = color);
+  /// Changes [_color] to one selected by user.
+  void _onColorChange(Color color) => setState(() => _color = color);
 
   /// Allows to pick an icon.
   Future<void> _pickIcon() async {
@@ -55,38 +55,13 @@ class _CreateRewardState extends State<CreateReward> {
     return null;
   }
 
-  /// Displays color picker.
-  void _showColorPicker(BuildContext context) {
-    showDialog<AlertDialog>(
-      context: context,
-      child: AlertDialog(
-        title: const Text('Pick a color!'),
-        content: SingleChildScrollView(
-          child: MaterialPicker(
-            pickerColor: _pickerColor,
-            onColorChanged: _pickColor,
-          ),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            child: const Text('Got it'),
-            onPressed: () {
-              setState(() => _currentColor = _pickerColor);
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create A Reward'),
         centerTitle: true,
-        backgroundColor: _currentColor,
+        backgroundColor: _color,
         elevation: 0,
       ),
       body: SafeArea(
@@ -119,7 +94,7 @@ class _CreateRewardState extends State<CreateReward> {
                                 radius: 100.0,
                                 child: IconButton(
                                   onPressed: _pickIcon,
-                                  color: _currentColor,
+                                  color: _color,
                                   icon: _icon != null
                                       ? Icon(_icon.icon)
                                       : const Icon(Icons.accessibility),
@@ -144,17 +119,9 @@ class _CreateRewardState extends State<CreateReward> {
                                 radius: 100.0,
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: ClipOval(
-                                    child: Material(
-                                      color: _currentColor, // button color
-                                      child: InkWell(
-                                        child: const SizedBox(
-                                          width: 24,
-                                          height: 24,
-                                        ),
-                                        onTap: () => _showColorPicker(context),
-                                      ),
-                                    ),
+                                  child: ColorPickerButton(
+                                    _onColorChange,
+                                    _color,
                                   ),
                                 ),
                               ),
