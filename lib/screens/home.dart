@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:habitflow/services/quotes/quotes.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/points_bloc.dart';
@@ -10,13 +11,19 @@ import 'package:habitflow/screens/today.dart';
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
   /// Constructs
-  const Home({Key key}) : super(key: key);
+  const Home(this._quoteID, {Key key}) : super(key: key);
+
+  final int _quoteID;
 
   @override
-  _HomeState createState() => _HomeState();
+  _HomeState createState() => _HomeState(_quoteID);
 }
 
 class _HomeState extends State<Home> {
+  /// Constructs.
+  _HomeState(this._quoteID);
+
+  final int _quoteID;
   int _currentIndex = 2;
   PageController _pageController;
 
@@ -46,7 +53,7 @@ class _HomeState extends State<Home> {
           },
           children: <Widget>[
             Container(color: Colors.blue),
-            Today(),
+            Today(_quoteID),
             Rewards(rewardsBloc, pointsBloc),
           ],
         ),

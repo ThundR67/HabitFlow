@@ -4,7 +4,9 @@ import 'package:habitflow/components/quote.dart';
 /// A screen to show user about todays information.
 class Today extends StatelessWidget {
   /// Constructs.
-  const Today({Key key}) : super(key: key);
+  const Today(this._quoteID, {Key key}) : super(key: key);
+
+  final int _quoteID;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class Today extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
-          Quote(),
+          Quote(_quoteID),
         ],
       ),
     );
