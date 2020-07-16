@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/services/quotes/quotes.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ void main() {
       providers: <ChangeNotifierProvider<dynamic>>[
         ChangeNotifierProvider<RewardsBloc>(create: (_) => RewardsBloc()),
         ChangeNotifierProvider<PointsBloc>(create: (_) => PointsBloc()),
+        ChangeNotifierProvider<HabitsBloc>(create: (_) => HabitsBloc())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
