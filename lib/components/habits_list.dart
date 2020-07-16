@@ -86,26 +86,14 @@ class HabitsList extends StatelessWidget {
             topRight: Radius.circular(16.0),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              const SizedBox(height: 24.0),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(0.0),
-                  child: ListView.separated(
-                    itemCount: _habits.length,
-                    separatorBuilder: (BuildContext ctxt, int index) =>
-                        const SizedBox(height: 8.0),
-                    itemBuilder: (BuildContext ctxt, int index) {
-                      return _Habit(_habits[index]);
-                    },
-                  ),
-                ),
-              ),
-            ],
+        child: Expanded(
+          child: ListView.separated(
+            itemCount: _habits.length,
+            separatorBuilder: (BuildContext ctxt, int index) =>
+                const SizedBox(height: 8.0),
+            itemBuilder: (BuildContext ctxt, int index) {
+              return _Habit(_habits[index]);
+            },
           ),
         ),
       ),
