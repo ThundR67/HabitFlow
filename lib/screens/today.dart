@@ -13,7 +13,7 @@ class Today extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
           Quote(_quoteID),
