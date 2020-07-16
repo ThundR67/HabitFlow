@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/screens/rewards.dart';
+import 'package:habitflow/screens/today.dart';
 
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
@@ -45,7 +46,7 @@ class _HomeState extends State<Home> {
           },
           children: <Widget>[
             Container(color: Colors.blue),
-            Container(color: Colors.deepOrange),
+            Today(),
             Rewards(rewardsBloc, pointsBloc),
           ],
         ),
