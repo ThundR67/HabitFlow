@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/services/quotes/quotes.dart';
 import 'package:provider/provider.dart';
 
@@ -41,8 +42,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
-    RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
+    final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+    final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
+    final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
 
     return Scaffold(
       body: SizedBox.expand(
@@ -53,7 +55,7 @@ class _HomeState extends State<Home> {
           },
           children: <Widget>[
             Container(color: Colors.blue),
-            Today(_quoteID),
+            Today(habitsBloc, _quoteID),
             Rewards(rewardsBloc, pointsBloc),
           ],
         ),
