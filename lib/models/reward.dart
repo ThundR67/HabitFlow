@@ -1,4 +1,3 @@
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:random_string/random_string.dart';
 
 /// Key to refrence id of reward in map.
