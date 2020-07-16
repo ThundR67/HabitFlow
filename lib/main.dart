@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:habitflow/services/quotes/quotes.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +18,7 @@ void main() {
         ChangeNotifierProvider<PointsBloc>(create: (_) => PointsBloc()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         theme: ThemeData.dark(),
         initialRoute: '/home',

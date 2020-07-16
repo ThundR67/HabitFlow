@@ -59,17 +59,19 @@ class InlineCalendar extends StatelessWidget {
     final List<DateTime> dates = getDates(_start, _end);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
-        height: 54,
+        height: 52,
         alignment: Alignment.center,
-        child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: dates.length,
-          itemBuilder: (BuildContext context, int index) {
-            return _SingleDate(dates[index]);
-          },
+        child: Center(
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: dates.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _SingleDate(dates[index]);
+            },
+          ),
         ),
       ),
     );
