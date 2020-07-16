@@ -18,10 +18,10 @@ const String iconKey = 'icon_data';
 /// A type to store habit information.
 class Habit {
   /// Constructs.
-  const Habit({this.id, this.name, this.points, this.colorHex, this.iconData});
+  Habit({this.id, this.name, this.points, this.colorHex, this.iconData});
 
   /// Unique id of the habit.
-  final String id;
+  String id;
 
   /// Name of the habit.
   final String name;
