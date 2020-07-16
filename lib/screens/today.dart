@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/components/inline_calendar.dart';
 import 'package:habitflow/components/quote.dart';
 
 /// A screen to show user about todays information.
@@ -15,6 +16,10 @@ class Today extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Quote(_quoteID),
+          InlineCalendar(
+            DateTime.now(),
+            DateTime.now().add(const Duration(days: 15)),
+          )
         ],
       ),
     );

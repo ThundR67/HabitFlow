@@ -14,7 +14,7 @@ class Quote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.only(top: 20.0),
       alignment: Alignment.center,
       child: Text(
         quotes[_quoteID],
