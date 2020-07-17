@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
   _HomeState(this._quoteID);
 
   final int _quoteID;
-  int _currentIndex = 2;
+  int _currentIndex = 1;
   PageController _pageController;
 
   @override
