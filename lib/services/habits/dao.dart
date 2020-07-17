@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:sembast/sembast.dart';
 import 'package:habitflow/models/habit.dart';
 
@@ -51,6 +52,18 @@ class HabitsDAO {
   /// Deletes a habit from db.
   Future<void> delete(Habit habit) async {
     await _store.delete(await _db, finder: _finder(habit.id));
+  }
+
+  /// Returns ids all active habits on [date]
+  Future<List<String>> active(DateTime day) async {
+    final List<String> output = [];
+    final List<Habit> habits = await all();
+    for (final Habit habit in habits) {
+      if (habit.activeDays.contains(day.weekday)) {
+        output.add(habit.id);
+      }
+    }
+    return output;
   }
 
   /// Clears db.

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/models/dates.dart';
 
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/services/days/days.dart';
@@ -21,6 +22,19 @@ class DaysBloc extends ChangeNotifier {
     _dao.all().then((List<Day> value) {
       days = value;
       notifyListeners();
+    });
+  }
+
+  /// Fills all the days that werent recorded.
+  /// Wont fill in if last day was more than 15 days old.
+  void _fill() {
+    final DateTime lastDate = Day.parse(days[0].date);
+    final int difference = DateTime.now().difference(lastDate).inDays;
+    if (difference > 15) {
+      return;
+    }
+    getDates(DateTime.now(), lastDate).forEach((DateTime date) { 
+      Day day = Day(date: Day.format(date),)
     });
   }
 }

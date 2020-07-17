@@ -15,10 +15,22 @@ const String colorKey = 'color_hex';
 /// Key to refrence icon data of habit in map.
 const String iconKey = 'icon_data';
 
+/// Key for [Habit.activeDays].
+const String activeDaysKey = "active_days";
+
 /// A type to store habit information.
 class Habit {
   /// Constructs.
-  Habit({this.id, this.name, this.points, this.colorHex, this.iconData});
+  Habit({
+    this.id,
+    this.name,
+    this.points,
+    this.colorHex,
+    this.iconData,
+    this.activeDays,
+  }) {
+    id ??= randomAlphaNumeric(12);
+  }
 
   /// Unique id of the habit.
   String id;
@@ -32,6 +44,9 @@ class Habit {
   /// Hex color code of the habit.
   final String colorHex;
 
+  /// Weekdays the habit is active on.
+  final List<int> activeDays;
+
   /// Icon of the habit.
   final Map<String, dynamic> iconData;
 
@@ -43,6 +58,7 @@ class Habit {
       points: int.parse(map[pointsKey].toString()),
       colorHex: map[colorKey].toString(),
       iconData: map[iconKey] as Map<String, dynamic>,
+      activeDays: map[activeDaysKey] as List<int>,
     );
   }
 
@@ -54,6 +70,7 @@ class Habit {
       pointsKey: points,
       colorKey: colorHex,
       iconKey: iconData,
+      activeDaysKey: activeDays,
     };
   }
 }
