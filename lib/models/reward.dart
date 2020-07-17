@@ -53,6 +53,7 @@ class Reward {
   /// Converts a map to [Reward].
   static Reward fromMap(Map<String, dynamic> map) {
     return Reward(
+      id: map[idKey].toString(),
       name: map[nameKey].toString(),
       points: int.parse(map[pointsKey].toString()),
       amountTaken: int.parse(map[takenKey].toString()),

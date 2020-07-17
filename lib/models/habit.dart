@@ -38,6 +38,7 @@ class Habit {
   /// Converts a map to [Habit].
   static Habit fromMap(Map<String, dynamic> map) {
     return Habit(
+      id: map[idKey].toString(),
       name: map[nameKey].toString(),
       points: int.parse(map[pointsKey].toString()),
       colorHex: map[colorKey].toString(),

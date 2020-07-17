@@ -3,6 +3,9 @@ import 'package:intl/intl.dart';
 //// Formatter to format dates.
 final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
+/// Key of [Day.id].
+const String idKey = 'id';
+
 /// Key of [Day.date].
 const String dateKey = 'date';
 
@@ -13,7 +16,7 @@ const String activeHabitsKey = 'active_habits';
 const String skipsKey = 'skips';
 
 /// Key of [Day.successes].
-const String successKey = 'successes';
+const String successesKey = 'successes';
 
 /// Key of [Day.failures].
 const String failuresKey = 'failures';
@@ -28,6 +31,9 @@ class Day {
     this.successes,
     this.failures,
   });
+
+  /// Id of the day.
+  String id;
 
   /// Date of the day.
   final DateTime date;
@@ -55,10 +61,22 @@ class Day {
     return Day(
       date: DateTime.fromMillisecondsSinceEpoch(map[dateKey] as int),
       activeHabits: map[activeHabitsKey] as List<String>,
-      successes: map[successKey] as List<String>,
+      successes: map[successesKey] as List<String>,
       skips: map[skipsKey] as List<String>,
       failures: map[failuresKey] as Map<String, String>,
     );
+  }
+
+  /// Converts [Day] into map.
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      idKey: id,
+      dateKey: date.millisecondsSinceEpoch,
+      activeHabitsKey: activeHabits,
+      successesKey: successes,
+      skipsKey: skips,
+      failuresKey: failuresKey,
+    };
   }
 
   /// Checks if this day is today.
