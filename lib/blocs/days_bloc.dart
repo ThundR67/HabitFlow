@@ -7,7 +7,8 @@ import 'package:habitflow/services/days/days.dart';
 class DaysBloc extends ChangeNotifier {
   /// Causes update as constructed.
   DaysBloc() {
-    _update();
+    /// TODO remove clear
+    _dao.clear().whenComplete(_update);
   }
 
   final DaysDAO _dao = DaysDAO();
