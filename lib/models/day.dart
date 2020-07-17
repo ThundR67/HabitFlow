@@ -35,8 +35,8 @@ class Day {
   /// Id of the day.
   String id;
 
-  /// Date of the day.
-  final DateTime date;
+  /// Date of the day formatted.
+  final String date;
 
   /// Active habits' ids on the day.
   final List<String> activeHabits;
@@ -59,7 +59,7 @@ class Day {
   /// Converts a map to [Day].
   static Day fromMap(Map<String, dynamic> map) {
     return Day(
-      date: DateTime.fromMillisecondsSinceEpoch(map[dateKey] as int),
+      date: map[dateKey].toString(),
       activeHabits: map[activeHabitsKey] as List<String>,
       successes: map[successesKey] as List<String>,
       skips: map[skipsKey] as List<String>,
@@ -71,7 +71,7 @@ class Day {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       idKey: id,
-      dateKey: date.millisecondsSinceEpoch,
+      dateKey: date,
       activeHabitsKey: activeHabits,
       successesKey: successes,
       skipsKey: skips,
@@ -79,6 +79,6 @@ class Day {
     };
   }
 
-  /// Checks if this day is today.
-  bool isToday() => format(DateTime.now()) == format(date);
+  /// Checks if this day is [date].
+  bool isDay(DateTime date) => format(date) == this.date;
 }
