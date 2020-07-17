@@ -39,8 +39,8 @@ class DaysDAO {
     }).toList();
   }
 
-  /// Returns a specific day.
-  Future<Day> getDay(DateTime date) async {
+  /// Returns a specific day of [date].
+  Future<Day> getFromDate(DateTime date) async {
     final Finder finder =
         Finder(filter: Filter.equals(dateKey, Day.format(date)));
     final RecordSnapshot<String, Map<String, dynamic>> snapshot =
