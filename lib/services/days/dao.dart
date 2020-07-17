@@ -23,7 +23,7 @@ class DaysDAO {
 
   /// Returns all days sorted by day points required.
   Future<List<Day>> all() async {
-    final Finder finder = Finder(sortOrders: <SortOrder>[SortOrder(pointsKey)]);
+    final Finder finder = Finder(sortOrders: <SortOrder>[SortOrder(dateKey)]);
 
     final List<RecordSnapshot<String, Map<String, dynamic>>> snapshots =
         await _store.find(
@@ -37,6 +37,15 @@ class DaysDAO {
       day.id = snapshot.key;
       return day;
     }).toList();
+  }
+
+  /// Returns a specific day.
+  Future<Day> getDay(DateTime date) async {
+    final Finder finder =
+        Finder(filter: Filter.equals(dateKey, Day.format(date)));
+    final RecordSnapshot<String, Map<String, dynamic>> snapshot =
+        await _store.findFirst(await _db, finder: finder);
+    return Day.fromMap(snapshot.value);
   }
 
   /// Updates a day in db.
