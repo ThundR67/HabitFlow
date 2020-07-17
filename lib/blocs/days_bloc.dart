@@ -3,6 +3,7 @@ import 'package:habitflow/models/dates.dart';
 
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/services/days/days.dart';
+import 'package:habitflow/services/habits/dao.dart';
 
 /// A bloc to manage days information.
 class DaysBloc extends ChangeNotifier {
@@ -13,6 +14,7 @@ class DaysBloc extends ChangeNotifier {
   }
 
   final DaysDAO _dao = DaysDAO();
+  final HabitsDAO _habitsDAO = HabitsDAO();
 
   /// All days stored in db.
   List<Day> days = <Day>[];
@@ -22,19 +24,33 @@ class DaysBloc extends ChangeNotifier {
     _dao.all().then((List<Day> value) {
       days = value;
       notifyListeners();
+      _fill();
     });
   }
 
   /// Fills all the days that werent recorded.
   /// Wont fill in if last day was more than 15 days old.
-  void _fill() {
+  Future<void> _fill() async {
     final DateTime lastDate = Day.parse(days[0].date);
     final int difference = DateTime.now().difference(lastDate).inDays;
     if (difference > 15) {
       return;
     }
-    getDates(DateTime.now(), lastDate).forEach((DateTime date) { 
-      Day day = Day(date: Day.format(date),)
-    });
+
+    final List<DateTime> dates = getDates(
+      DateTime.now().subtract(const Duration(days: 1)),
+      lastDate,
+    );
+    for (final DateTime date in dates) {
+      final List<String> activeHabits = await _habitsDAO.active(date);
+      final Day day = Day(
+        date: Day.format(date),
+        activeHabits: activeHabits,
+        failures: <String, String>{for (String e in activeHabits) e: ''},
+        skips: <String>[],
+        successes: <String>[],
+      );
+      _dao.add(day);
+    }
   }
 }
