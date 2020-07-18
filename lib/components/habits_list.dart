@@ -5,7 +5,9 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
+import 'package:habitflow/components/status_view.dart';
 import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/models/status.dart';
 
 Color _colorFromHex(String hexColor) {
   final String hexCode = hexColor.replaceAll('#', '');
@@ -15,9 +17,10 @@ Color _colorFromHex(String hexColor) {
 /// A widget to show a single habit.
 class _Habit extends StatelessWidget {
   /// Constructs
-  const _Habit(this._habit, {Key key}) : super(key: key);
+  const _Habit(this._habit, this._status, {Key key}) : super(key: key);
 
   final Habit _habit;
+  final Status _status;
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +51,14 @@ class _Habit extends StatelessWidget {
                           ),
                         ),
                       ),
-                      RewardPoints(
-                        _habit.points,
-                        size: 24.0,
-                        color: _colorFromHex(_habit.colorHex),
-                      ),
+                      if (_status == Status.unmarked)
+                        RewardPoints(
+                          _habit.points,
+                          size: 24.0,
+                          color: _colorFromHex(_habit.colorHex),
+                        )
+                      else
+                        const StatusView()
                     ],
                   ),
                 ),
@@ -68,9 +74,10 @@ class _Habit extends StatelessWidget {
 /// A widget to show all habits in list.
 class HabitsList extends StatelessWidget {
   /// Constructs
-  const HabitsList(this._habits, {Key key}) : super(key: key);
+  const HabitsList(this._habits, this._statuses, {Key key}) : super(key: key);
 
   final List<Habit> _habits;
+  final List<Status> _statuses;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +99,7 @@ class HabitsList extends StatelessWidget {
             separatorBuilder: (BuildContext ctxt, int index) =>
                 const SizedBox(height: 8.0),
             itemBuilder: (BuildContext ctxt, int index) {
-              return _Habit(_habits[index]);
+              return _Habit(_habits[index], _statuses[index]);
             },
           ),
         ),

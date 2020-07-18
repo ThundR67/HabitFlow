@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/models/day.dart';
+import 'package:habitflow/models/dates.dart';
+import 'package:habitflow/models/status.dart';
 import 'package:habitflow/services/habits/habits.dart';
+import 'package:habitflow/services/days/days.dart';
 
 /// A Bloc which does CRUD of habits.
 class HabitsBloc extends ChangeNotifier {
@@ -21,15 +25,30 @@ class HabitsBloc extends ChangeNotifier {
   }
 
   final HabitsDAO _dao = HabitsDAO();
+  final DaysDAO _daysDao = DaysDAO();
 
   /// All the habits.
   List<Habit> habits;
+
+  /// All the statuses of habits.
+  List<Status> statuses;
+
+  /// All the days.
+  List<Day> days;
 
   /// Updates [habits].
   void _update() {
     _dao.all().then((List<Habit> value) {
       habits = value;
+      for (final Habit habit in value) {
+        status(habit.id).then((Status value) => statuses.add(value));
+      }
       notifyListeners();
+    });
+    _daysDao.all().then((List<Day> value) {
+      days = value;
+      notifyListeners();
+      _fill();
     });
   }
 
@@ -41,4 +60,66 @@ class HabitsBloc extends ChangeNotifier {
 
   /// Deletes a habit from db.
   void delete(Habit habit) => _dao.delete(habit).whenComplete(_update);
+
+  /// Returns status of habit on [date].
+  Future<Status> status(String id, [DateTime date]) async {
+    final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
+    if (day.successes.contains(id)) {
+      return Status.done;
+    }
+    if (day.successes.contains(id)) {
+      return Status.skipped;
+    }
+    if (day.successes.contains(id)) {
+      return Status.failed;
+    }
+    return Status.unmarked;
+  }
+
+  /// Marks habit as done on [date].
+  Future<void> done(String id, [DateTime date]) async {
+    final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
+    day.successes.add(id);
+    await _daysDao.update(day);
+  }
+
+  /// Marks habit as skipped on [date].
+  Future<void> skip(String id, [DateTime date]) async {
+    final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
+    day.skips.add(id);
+    await _daysDao.update(day);
+  }
+
+  /// Marks habit as failed on [date].
+  Future<void> fail(String id, String reason, [DateTime date]) async {
+    final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
+    day.failures[id] = reason;
+    await _daysDao.update(day);
+  }
+
+  /// Fills all the days that weren't recorded.
+  /// Wont fill in if last recorded day was more than 15 days old.
+  Future<void> _fill() async {
+    final DateTime lastDate = Day.parse(days[0].date);
+    final int difference = DateTime.now().difference(lastDate).inDays;
+    if (difference > 15) {
+      return;
+    }
+
+    final List<DateTime> dates = getDates(
+      DateTime.now().subtract(const Duration(days: 1)),
+      lastDate,
+    );
+    for (final DateTime date in dates) {
+      final List<String> activeHabits = await _dao.active(date);
+      final Day day = Day(
+        date: Day.format(date),
+        activeHabits: activeHabits,
+        failures: <String, String>{for (String e in activeHabits) e: ''},
+        skips: <String>[],
+        successes: <String>[],
+      );
+      _daysDao.add(day);
+    }
+  }
 }
