@@ -28,6 +28,27 @@ class DaysBloc extends ChangeNotifier {
     });
   }
 
+  /// Marks habit as done on [date].
+  Future<void> done(String id, [DateTime date]) async {
+    final Day day = await _dao.getFromDate(date ?? DateTime.now());
+    day.successes.add(id);
+    await _dao.update(day);
+  }
+
+  /// Marks habit as skipped on [date].
+  Future<void> skip(String id, [DateTime date]) async {
+    final Day day = await _dao.getFromDate(date ?? DateTime.now());
+    day.skips.add(id);
+    await _dao.update(day);
+  }
+
+  /// Marks habit as failed on [date].
+  Future<void> fail(String id, String reason, [DateTime date]) async {
+    final Day day = await _dao.getFromDate(date ?? DateTime.now());
+    day.failures[id] = reason;
+    await _dao.update(day);
+  }
+
   /// Fills all the days that werent recorded.
   /// Wont fill in if last day was more than 15 days old.
   Future<void> _fill() async {
