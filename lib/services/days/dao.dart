@@ -46,6 +46,9 @@ class DaysDAO {
         Finder(filter: Filter.equals(dateKey, Day.format(date)));
     final RecordSnapshot<String, Map<String, dynamic>> snapshot =
         await _store.findFirst(await _db, finder: finder);
+    if (snapshot == null) {
+      return Day(date: Day.format(date));
+    }
     return Day.fromMap(snapshot.value);
   }
 

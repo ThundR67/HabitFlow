@@ -30,7 +30,12 @@ class Day {
     this.skips,
     this.successes,
     this.failures,
-  });
+  }) {
+    activeHabits ??= <String>[];
+    successes ??= <String>[];
+    skips ??= <String>[];
+    failures ??= <String, String>{};
+  }
 
   /// Id of the day.
   String id;
@@ -39,16 +44,16 @@ class Day {
   final String date;
 
   /// Active habits' ids on the day.
-  final List<String> activeHabits;
+  List<String> activeHabits = <String>[];
 
   /// Ids of habits successful on the day.
-  final List<String> successes;
+  List<String> successes = <String>[];
 
   /// Ids of skips on the day.
-  final List<String> skips;
+  List<String> skips = <String>[];
 
   /// Map of habit id and review of failures.
-  final Map<String, String> failures;
+  Map<String, String> failures = <String, String>{};
 
   /// Formates a [DateTime] into [String].
   static String format(DateTime date) => formatter.format(date);
@@ -75,7 +80,7 @@ class Day {
       activeHabitsKey: activeHabits,
       successesKey: successes,
       skipsKey: skips,
-      failuresKey: failuresKey,
+      failuresKey: failures,
     };
   }
 

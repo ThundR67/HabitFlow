@@ -31,17 +31,17 @@ class HabitsBloc extends ChangeNotifier {
   List<Habit> habits;
 
   /// All the statuses of habits.
-  List<Status> statuses;
+  List<Status> statuses = <Status>[];
 
   /// All the days.
   List<Day> days;
 
   /// Updates [habits].
-  void _update() {
-    _dao.all().then((List<Habit> value) {
+  Future<void> _update() async {
+    _dao.all().then((List<Habit> value) async {
       habits = value;
       for (final Habit habit in value) {
-        status(habit.id).then((Status value) => statuses.add(value));
+        statuses.add(await status(habit.id));
       }
       notifyListeners();
     });
@@ -67,10 +67,10 @@ class HabitsBloc extends ChangeNotifier {
     if (day.successes.contains(id)) {
       return Status.done;
     }
-    if (day.successes.contains(id)) {
+    if (day.skips.contains(id)) {
       return Status.skipped;
     }
-    if (day.successes.contains(id)) {
+    if (day.failures.containsKey(id)) {
       return Status.failed;
     }
     return Status.unmarked;
@@ -100,6 +100,9 @@ class HabitsBloc extends ChangeNotifier {
   /// Fills all the days that weren't recorded.
   /// Wont fill in if last recorded day was more than 15 days old.
   Future<void> _fill() async {
+    if (days.isEmpty) {
+      return;
+    }
     final DateTime lastDate = Day.parse(days[0].date);
     final int difference = DateTime.now().difference(lastDate).inDays;
     if (difference > 15) {

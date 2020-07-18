@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/blocs/days_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
 import 'package:habitflow/components/inline_calendar.dart';
@@ -25,7 +24,7 @@ class Today extends StatelessWidget {
             DateTime.now(),
             DateTime.now().add(const Duration(days: 15)),
           ),
-          HabitsList(_bloc.habits),
+          HabitsList(_bloc.habits, _bloc.statuses),
         ],
       ),
     );
