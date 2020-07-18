@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/models/dates.dart';
 
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/models/status.dart';
 import 'package:habitflow/services/days/days.dart';
 import 'package:habitflow/services/habits/dao.dart';
 
@@ -28,6 +29,21 @@ class DaysBloc extends ChangeNotifier {
     });
   }
 
+  /// Returns status of habit on [date].
+  Future<Status> status(String id, [DateTime date]) async {
+    final Day day = await _dao.getFromDate(date ?? DateTime.now());
+    if (day.successes.contains(id)) {
+      return Status.done;
+    }
+    if (day.successes.contains(id)) {
+      return Status.skipped;
+    }
+    if (day.successes.contains(id)) {
+      return Status.failed;
+    }
+    return Status.unmarked;
+  }
+
   /// Marks habit as done on [date].
   Future<void> done(String id, [DateTime date]) async {
     final Day day = await _dao.getFromDate(date ?? DateTime.now());
@@ -49,8 +65,8 @@ class DaysBloc extends ChangeNotifier {
     await _dao.update(day);
   }
 
-  /// Fills all the days that werent recorded.
-  /// Wont fill in if last day was more than 15 days old.
+  /// Fills all the days that weren't recorded.
+  /// Wont fill in if last recorded day was more than 15 days old.
   Future<void> _fill() async {
     final DateTime lastDate = Day.parse(days[0].date);
     final int difference = DateTime.now().difference(lastDate).inDays;
