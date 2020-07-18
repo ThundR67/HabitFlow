@@ -14,7 +14,7 @@ class DaysDAO {
 
   Future<Database> get _db async => await DB.instance.database;
 
-  Finder _finder(String id) => Finder(filter: Filter.byKey(id));
+  Finder _finder(String id) => Finder(filter: Filter.equals(idKey, id));
 
   /// Adds a day into db.
   Future<void> add(Day day) async {
@@ -47,7 +47,7 @@ class DaysDAO {
     final RecordSnapshot<String, Map<String, dynamic>> snapshot =
         await _store.findFirst(await _db, finder: finder);
     if (snapshot == null) {
-      return Day(date: Day.format(date));
+      return null;
     }
     return Day.fromMap(snapshot.value);
   }

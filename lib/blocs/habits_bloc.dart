@@ -28,25 +28,23 @@ class HabitsBloc extends ChangeNotifier {
   final DaysDAO _daysDao = DaysDAO();
 
   /// All the habits.
-  List<Habit> habits;
+  List<Habit> habits = <Habit>[];
 
   /// All the statuses of habits.
   List<Status> statuses = <Status>[];
 
   /// All the days.
-  List<Day> days;
+  List<Day> days = <Day>[];
 
   /// Updates [habits].
   Future<void> _update() async {
+    await _fillDay(DateTime.now());
     _dao.all().then((List<Habit> value) async {
       habits = value;
+      await done(habits[0].id);
       for (final Habit habit in value) {
         statuses.add(await status(habit.id));
       }
-      notifyListeners();
-    });
-    _daysDao.all().then((List<Day> value) {
-      days = value;
       notifyListeners();
       _fill();
     });
@@ -97,6 +95,23 @@ class HabitsBloc extends ChangeNotifier {
     await _daysDao.update(day);
   }
 
+  /// Fills a day if it does not exists.
+  Future<void> _fillDay(DateTime date) async {
+    if ((await _daysDao.getFromDate(date)) != null) {
+      return; // Returns if info about [date] exists.
+    }
+
+    final List<String> activeHabits = await _dao.active(date);
+    final Day day = Day(
+      date: Day.format(date),
+      activeHabits: activeHabits,
+      failures: <String, String>{for (String e in activeHabits) e: ''},
+      skips: <String>[],
+      successes: <String>[],
+    );
+    _daysDao.add(day);
+  }
+
   /// Fills all the days that weren't recorded.
   /// Wont fill in if last recorded day was more than 15 days old.
   Future<void> _fill() async {
@@ -114,15 +129,7 @@ class HabitsBloc extends ChangeNotifier {
       lastDate,
     );
     for (final DateTime date in dates) {
-      final List<String> activeHabits = await _dao.active(date);
-      final Day day = Day(
-        date: Day.format(date),
-        activeHabits: activeHabits,
-        failures: <String, String>{for (String e in activeHabits) e: ''},
-        skips: <String>[],
-        successes: <String>[],
-      );
-      _daysDao.add(day);
+      await _fillDay(date);
     }
   }
 }

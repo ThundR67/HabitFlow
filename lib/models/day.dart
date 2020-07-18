@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:random_string/random_string.dart';
 
 //// Formatter to format dates.
 final DateFormat formatter = DateFormat('yyyy-MM-dd');
@@ -25,12 +26,14 @@ const String failuresKey = 'failures';
 class Day {
   /// Constructs.
   Day({
+    this.id,
     this.date,
     this.activeHabits,
     this.skips,
     this.successes,
     this.failures,
   }) {
+    id ??= randomAlphaNumeric(12);
     activeHabits ??= <String>[];
     successes ??= <String>[];
     skips ??= <String>[];
@@ -64,11 +67,14 @@ class Day {
   /// Converts a map to [Day].
   static Day fromMap(Map<String, dynamic> map) {
     return Day(
+      id: map[idKey].toString(),
       date: map[dateKey].toString(),
-      activeHabits: map[activeHabitsKey] as List<String>,
-      successes: map[successesKey] as List<String>,
-      skips: map[skipsKey] as List<String>,
-      failures: map[failuresKey] as Map<String, String>,
+      activeHabits:
+          List<String>.from(map[activeHabitsKey] as Iterable<dynamic>),
+      successes: List<String>.from(map[successesKey] as Iterable<dynamic>),
+      skips: List<String>.from(map[skipsKey] as Iterable<dynamic>),
+      failures:
+          Map<String, String>.from(map[failuresKey] as Map<String, dynamic>),
     );
   }
 
