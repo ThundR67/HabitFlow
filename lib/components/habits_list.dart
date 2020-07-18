@@ -58,7 +58,7 @@ class _Habit extends StatelessWidget {
                           color: _colorFromHex(_habit.colorHex),
                         )
                       else
-                        const StatusView()
+                        StatusView(_status)
                     ],
                   ),
                 ),
