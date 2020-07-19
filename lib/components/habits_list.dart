@@ -98,7 +98,10 @@ class HabitsList extends StatelessWidget {
           separatorBuilder: (BuildContext ctxt, int index) =>
               const SizedBox(height: 8.0),
           itemBuilder: (BuildContext ctxt, int index) {
-            return _Habit(_habits[index], _statuses[index]);
+            if (_habits[index].activeDays.contains(DateTime.now().weekday)) {
+              return _Habit(_habits[index], _statuses[index]);
+            }
+            return null;
           },
         ),
       ),
