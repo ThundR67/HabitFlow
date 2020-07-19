@@ -43,6 +43,7 @@ class HabitsBloc extends ChangeNotifier {
     await _fillDay(DateTime.now());
     _dao.all().then((List<Habit> value) async {
       habits = value;
+      print(habits);
       statuses = <Status>[];
       for (final Habit habit in value) {
         statuses.add(await status(habit.id));

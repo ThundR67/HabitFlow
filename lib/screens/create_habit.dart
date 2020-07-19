@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:habitflow/models/reward.dart';
+import 'package:habitflow/blocs/habits_bloc.dart';
+import 'package:habitflow/components/weekdays_picker.dart';
+import 'package:habitflow/models/habit.dart';
+
 import 'package:provider/provider.dart';
 
-import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/neu_text_field.dart';
 import 'package:habitflow/components/pickers.dart';
 
 /// A screen which allows user to create a reward.
-class CreateReward extends StatefulWidget {
+class CreateHabit extends StatefulWidget {
   /// Constructs
-  const CreateReward({Key key}) : super(key: key);
+  const CreateHabit({Key key}) : super(key: key);
 
   @override
-  _CreateRewardState createState() => _CreateRewardState();
+  _CreateHabitState createState() => _CreateHabitState();
 }
 
-class _CreateRewardState extends State<CreateReward> {
+class _CreateHabitState extends State<CreateHabit> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pointsController = TextEditingController();
+  List<int> _activeDays = <int>[];
   IconData _icon = Icons.accessibility;
   Color _color = Colors.redAccent;
-  RewardsBloc _bloc;
+  HabitsBloc _bloc;
+
+  /// Updates [_activeDays].
+  void _onWeekdaysChange(List<int> days) => _activeDays = days;
 
   /// Changes [_color] and [_icon] to what user selected.
   void _onPick(Color color, IconData icon) {
@@ -37,11 +43,12 @@ class _CreateRewardState extends State<CreateReward> {
   void _create() {
     if (_formKey.currentState.validate()) {
       _bloc.add(
-        Reward(
+        Habit(
           name: _nameController.text,
           points: int.parse(_pointsController.text),
           colorHex: '#${_color.value.toRadixString(16)}',
           iconData: iconDataToMap(_icon),
+          activeDays: _activeDays,
         ),
       );
       Navigator.pop(context);
@@ -68,10 +75,10 @@ class _CreateRewardState extends State<CreateReward> {
 
   @override
   Widget build(BuildContext context) {
-    _bloc = Provider.of<RewardsBloc>(context);
+    _bloc = Provider.of<HabitsBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create A Reward'),
+        title: const Text('Create A Habit'),
         centerTitle: true,
         backgroundColor: _color,
         elevation: 0,
@@ -99,9 +106,11 @@ class _CreateRewardState extends State<CreateReward> {
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
-                        text: 'Reward Points Required',
+                        text: 'Reward Points',
                         validate: _validatePoints,
                       ),
+                      const SizedBox(height: 16.0),
+                      WeekdaysPicker(_onWeekdaysChange),
                       const SizedBox(height: 16.0),
                       RaisedButton(
                         onPressed: _create,
