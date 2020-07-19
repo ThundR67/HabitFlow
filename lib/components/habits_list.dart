@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+import 'package:habitflow/components/habits_option_sheet.dart';
 
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
@@ -22,6 +21,12 @@ class _Habit extends StatelessWidget {
   final Habit _habit;
   final Status _status;
 
+  // Shows reward options sheet.
+  void _showSheet(BuildContext context) {
+    Scaffold.of(context).showBottomSheet<HabitsOptionSheet>(
+        (BuildContext context) => HabitsOptionSheet(_habit, _status));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,6 +35,7 @@ class _Habit extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
+            onTap: () => _showSheet(context),
             child: Ink(
               child: Center(
                 child: Padding(

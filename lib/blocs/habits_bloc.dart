@@ -13,6 +13,7 @@ class HabitsBloc extends ChangeNotifier {
   /// Causes a update as soon as bloc is initialized.
   HabitsBloc() {
     /// TODO remove
+    _daysDao.clear();
     _dao.clear().whenComplete(() {
       final Habit data = Habit(
         name: 'Gaming 20 mins',
@@ -42,7 +43,7 @@ class HabitsBloc extends ChangeNotifier {
     await _fillDay(DateTime.now());
     _dao.all().then((List<Habit> value) async {
       habits = value;
-      //await done(habits[0].id);
+      statuses = <Status>[];
       for (final Habit habit in value) {
         statuses.add(await status(habit.id));
       }
@@ -81,6 +82,13 @@ class HabitsBloc extends ChangeNotifier {
     day.successes.remove(id);
     day.skips.remove(id);
     day.failures.remove(id);
+    await _daysDao.update(day);
+  }
+
+  /// Unmarks a habit as nothing on [date] and updates.
+  Future<void> undo(String id, [DateTime date]) async {
+    await unmark(id, date);
+    await _update();
   }
 
   /// Marks habit as done on [date].
@@ -89,6 +97,7 @@ class HabitsBloc extends ChangeNotifier {
     final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
     day.successes.add(id);
     await _daysDao.update(day);
+    await _update();
   }
 
   /// Marks habit as skipped on [date].
@@ -97,6 +106,7 @@ class HabitsBloc extends ChangeNotifier {
     final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
     day.skips.add(id);
     await _daysDao.update(day);
+    await _update();
   }
 
   /// Marks habit as failed on [date].
@@ -105,6 +115,7 @@ class HabitsBloc extends ChangeNotifier {
     final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
     day.failures[id] = reason;
     await _daysDao.update(day);
+    await _update();
   }
 
   /// Fills a day if it does not exists.
@@ -114,14 +125,21 @@ class HabitsBloc extends ChangeNotifier {
     }
 
     final List<String> activeHabits = await _dao.active(date);
+    Map<String, String> failures = <String, String>{
+      for (String e in activeHabits) e: ''
+    };
+    if (Day.format(date) == Day.format(DateTime.now())) {
+      failures = <String, String>{};
+    }
+
     final Day day = Day(
       date: Day.format(date),
       activeHabits: activeHabits,
-      failures: <String, String>{for (String e in activeHabits) e: ''},
+      failures: failures,
       skips: <String>[],
       successes: <String>[],
     );
-    _daysDao.add(day);
+    await _daysDao.add(day);
   }
 
   /// Fills all the days that weren't recorded.

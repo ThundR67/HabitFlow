@@ -12,12 +12,10 @@ class RewardOptionsSheet extends StatelessWidget {
 
   final Reward _reward;
 
-  /// Takes a reward and decreases points.
-
   @override
   Widget build(BuildContext context) {
-    RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
-    PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+    final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
+    final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
 
     return Container(
       height: 160,
