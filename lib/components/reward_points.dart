@@ -37,7 +37,7 @@ class RewardPoints extends StatelessWidget {
           width: 2,
         ),
         Icon(
-          Icons.star,
+          Icons.stars,
           size: size,
           color: color,
         ),

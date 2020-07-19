@@ -28,9 +28,9 @@ class StatusView extends StatelessWidget {
       case Status.done:
         return Icons.done;
       case Status.skipped:
-        return Icons.repeat;
+        return Icons.replay;
       case Status.failed:
-        return Icons.stop;
+        return Icons.cancel;
       default:
         return Icons.ac_unit;
     }
@@ -57,9 +57,12 @@ class StatusView extends StatelessWidget {
         ClipOval(
           child: Material(
             color: _color(), // button color
-            child: Icon(
-              _icon(),
-              size: 36,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                _icon(),
+                size: 24,
+              ),
             ),
           ),
         ),
