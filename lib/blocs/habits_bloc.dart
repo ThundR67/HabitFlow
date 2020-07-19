@@ -42,7 +42,7 @@ class HabitsBloc extends ChangeNotifier {
     await _fillDay(DateTime.now());
     _dao.all().then((List<Habit> value) async {
       habits = value;
-      await skip(habits[0].id);
+      //await done(habits[0].id);
       for (final Habit habit in value) {
         statuses.add(await status(habit.id));
       }
@@ -75,8 +75,17 @@ class HabitsBloc extends ChangeNotifier {
     return Status.unmarked;
   }
 
+  /// Unmarks a habit as nothing on [date].
+  Future<void> unmark(String id, [DateTime date]) async {
+    final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
+    day.successes.remove(id);
+    day.skips.remove(id);
+    day.failures.remove(id);
+  }
+
   /// Marks habit as done on [date].
   Future<void> done(String id, [DateTime date]) async {
+    await unmark(id, date);
     final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
     day.successes.add(id);
     await _daysDao.update(day);
@@ -84,6 +93,7 @@ class HabitsBloc extends ChangeNotifier {
 
   /// Marks habit as skipped on [date].
   Future<void> skip(String id, [DateTime date]) async {
+    await unmark(id, date);
     final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
     day.skips.add(id);
     await _daysDao.update(day);
@@ -91,6 +101,7 @@ class HabitsBloc extends ChangeNotifier {
 
   /// Marks habit as failed on [date].
   Future<void> fail(String id, String reason, [DateTime date]) async {
+    await unmark(id, date);
     final Day day = await _daysDao.getFromDate(date ?? DateTime.now());
     day.failures[id] = reason;
     await _daysDao.update(day);
