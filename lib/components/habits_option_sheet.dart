@@ -35,7 +35,10 @@ class HabitsOptionSheet extends StatelessWidget {
         'DONE',
         Status.done,
         Colors.greenAccent,
-        () => habitsBloc.done(_habit.id),
+        () {
+          habitsBloc.done(_habit.id);
+          pointsBloc.increment(_habit.points);
+        },
       ),
       _Button(
         'FAIL',
@@ -52,7 +55,7 @@ class HabitsOptionSheet extends StatelessWidget {
       _Button(
         'UNDO',
         Status.unmarked,
-        Colors.white,
+        Colors.amber,
         () => habitsBloc.undo(_habit.id),
       ),
     ];
