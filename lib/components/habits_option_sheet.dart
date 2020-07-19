@@ -13,7 +13,7 @@ class _Button {
   final Function onPressed;
 }
 
-/// A bottom sheet which allows user to either delete or take a reward.
+/// A bottom sheet which allows user to mark habits.
 class HabitsOptionSheet extends StatelessWidget {
   /// Constructs.
   const HabitsOptionSheet(

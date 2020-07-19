@@ -3,13 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
+import 'package:habitflow/screens/create_habit.dart';
 import 'package:habitflow/services/quotes/quotes.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/screens/home.dart';
-import 'package:habitflow/screens/created_reward.dart';
+import 'package:habitflow/screens/create_reward.dart';
 
 void main() {
   runApp(
@@ -28,6 +29,7 @@ void main() {
           '/home': (BuildContext context) =>
               Home(Random().nextInt(quotes.length)),
           '/create_reward': (BuildContext context) => const CreateReward(),
+          '/create_habit': (BuildContext context) => const CreateHabit(),
         },
       ),
     ),

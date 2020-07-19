@@ -27,6 +27,12 @@ class Today extends StatelessWidget {
           HabitsList(_bloc.habits, _bloc.statuses),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed('/create_habit');
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
