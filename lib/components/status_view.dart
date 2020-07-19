@@ -54,14 +54,22 @@ class StatusView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Icon(
-          _icon(),
-          color: _color(),
+        ClipOval(
+          child: Material(
+            color: _color(), // button color
+            child: Icon(
+              _icon(),
+              size: 36,
+            ),
+          ),
         ),
+        const SizedBox(height: 8.0),
         Text(
           _text(),
           style: TextStyle(
             color: _color(),
+            fontSize: 16.0,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],
