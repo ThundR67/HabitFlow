@@ -19,6 +19,7 @@ class HabitsBloc extends ChangeNotifier {
         points: 30,
         colorHex: '#00e676',
         iconData: iconDataToMap(Icons.gamepad),
+        activeDays: <int>[1, 2, 3, 4, 5, 6, 7],
       );
       _dao.add(data).whenComplete(_update);
     });
@@ -41,7 +42,7 @@ class HabitsBloc extends ChangeNotifier {
     await _fillDay(DateTime.now());
     _dao.all().then((List<Habit> value) async {
       habits = value;
-      await done(habits[0].id);
+      await fail(habits[0].id, '');
       for (final Habit habit in value) {
         statuses.add(await status(habit.id));
       }

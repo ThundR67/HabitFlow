@@ -58,7 +58,7 @@ class Habit {
       points: int.parse(map[pointsKey].toString()),
       colorHex: map[colorKey].toString(),
       iconData: map[iconKey] as Map<String, dynamic>,
-      activeDays: map[activeDaysKey] as List<int>,
+      activeDays: List<int>.from(map[activeDaysKey] as Iterable<dynamic>),
     );
   }
 
