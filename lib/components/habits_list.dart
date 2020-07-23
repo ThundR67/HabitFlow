@@ -24,7 +24,11 @@ class _Habit extends StatelessWidget {
   // Shows reward options sheet.
   void _showSheet(BuildContext context) {
     Scaffold.of(context).showBottomSheet<HabitsOptionSheet>(
-        (BuildContext context) => HabitsOptionSheet(_habit, _status));
+      (BuildContext context) => HabitsOptionSheet(
+        _habit,
+        _status,
+      ),
+    );
   }
 
   @override
