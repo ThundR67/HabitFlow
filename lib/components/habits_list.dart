@@ -45,15 +45,23 @@ class _Habit extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         mapToIconData(_habit.iconData),
-                        color: _colorFromHex(_habit.colorHex),
+                        color: _status == Status.unmarked
+                            ? _colorFromHex(_habit.colorHex)
+                            : Colors.grey,
                       ),
                       const SizedBox(width: 16.0),
                       Expanded(
                         child: Text(
                           _habit.name,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
+                            color: _status == Status.unmarked
+                                ? Colors.white
+                                : Colors.grey,
+                            decoration: _status == Status.unmarked
+                                ? null
+                                : TextDecoration.lineThrough,
                           ),
                         ),
                       ),
