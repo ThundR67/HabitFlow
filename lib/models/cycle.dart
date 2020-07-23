@@ -23,7 +23,12 @@ const String daysKey = 'days';
 /// A type to store cycle's information.
 class Cycle {
   /// Constructs.
-  Cycle({this.start, this.end, this.review = '', this.days}) {
+  Cycle({
+    this.start,
+    this.end,
+    this.review = '',
+    this.days,
+  }) {
     id = randomAlpha(12);
     days ??= <Day>[];
   }
