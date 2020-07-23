@@ -1,8 +1,5 @@
-import 'package:intl/intl.dart';
+import 'package:habitflow/models/dates.dart';
 import 'package:random_string/random_string.dart';
-
-//// Formatter to format dates.
-final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
 /// Key of [Day.id].
 const String idKey = 'id';
@@ -58,12 +55,6 @@ class Day {
   /// Map of habit id and review of failures.
   Map<String, String> failures = <String, String>{};
 
-  /// Formates a [DateTime] into [String].
-  static String format(DateTime date) => formatter.format(date);
-
-  /// Parses [String] into [Datetime].
-  static DateTime parse(String str) => formatter.parse(str);
-
   /// Converts a map to [Day].
   static Day fromMap(Map<String, dynamic> map) {
     return Day(
@@ -91,5 +82,5 @@ class Day {
   }
 
   /// Checks if this day is [date].
-  bool isDay(DateTime date) => format(date) == this.date;
+  bool isDay(DateTime date) => formatDate(date) == this.date;
 }

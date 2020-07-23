@@ -128,12 +128,12 @@ class HabitsBloc extends ChangeNotifier {
     Map<String, String> failures = <String, String>{
       for (String e in activeHabits) e: ''
     };
-    if (Day.format(date) == Day.format(DateTime.now())) {
+    if (format(date) == format(DateTime.now())) {
       failures = <String, String>{};
     }
 
     final Day day = Day(
-      date: Day.format(date),
+      date: format(date),
       activeHabits: activeHabits,
       failures: failures,
       skips: <String>[],
@@ -148,7 +148,7 @@ class HabitsBloc extends ChangeNotifier {
     if (days.isEmpty) {
       return;
     }
-    final DateTime lastDate = Day.parse(days[0].date);
+    final DateTime lastDate = parse(days[0].date);
     final int difference = DateTime.now().difference(lastDate).inDays;
     if (difference > 15) {
       return;

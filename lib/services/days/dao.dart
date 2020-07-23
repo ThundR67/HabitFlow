@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:habitflow/models/dates.dart';
 import 'package:sembast/sembast.dart';
 import 'package:habitflow/models/day.dart';
 
@@ -43,7 +44,7 @@ class DaysDAO {
   /// Returns a specific day of [date].
   Future<Day> getFromDate(DateTime date) async {
     final Finder finder =
-        Finder(filter: Filter.equals(dateKey, Day.format(date)));
+        Finder(filter: Filter.equals(dateKey, formatDate(date)));
     final RecordSnapshot<String, Map<String, dynamic>> snapshot =
         await _store.findFirst(await _db, finder: finder);
     if (snapshot == null) {
