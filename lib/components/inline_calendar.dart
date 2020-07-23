@@ -64,14 +64,16 @@ class InlineCalendar extends StatelessWidget {
         height: 52,
         alignment: Alignment.center,
         child: Center(
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: dates.length,
-            itemBuilder: (BuildContext context, int index) {
-              return _SingleDate(dates[index]);
-            },
-          ),
+          child: _start == _end
+              ? const CircularProgressIndicator()
+              : ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: dates.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _SingleDate(dates[index]);
+                  },
+                ),
         ),
       ),
     );

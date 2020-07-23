@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -45,6 +46,7 @@ class _HomeState extends State<Home> {
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
     final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
     final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
+    final CyclesBloc cyclesBloc = Provider.of<CyclesBloc>(context);
 
     return Scaffold(
       body: SizedBox.expand(
@@ -54,8 +56,8 @@ class _HomeState extends State<Home> {
             setState(() => _currentIndex = index);
           },
           children: <Widget>[
-            Cycles(),
-            Today(habitsBloc, _quoteID),
+            Cycles(cyclesBloc),
+            Today(habitsBloc, cyclesBloc, _quoteID),
             Rewards(rewardsBloc, pointsBloc),
           ],
         ),

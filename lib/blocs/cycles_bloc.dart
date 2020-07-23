@@ -6,9 +6,9 @@ import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/days/dao.dart';
 
 /// Bloc to manage cycles
-class Cycles extends ChangeNotifier {
+class CyclesBloc extends ChangeNotifier {
   /// Constructs.
-  Cycles() {
+  CyclesBloc() {
     _dao.clear().whenComplete(_update);
   }
 
@@ -18,14 +18,27 @@ class Cycles extends ChangeNotifier {
   /// All the cycles.
   List<Cycle> cycles = <Cycle>[];
 
+  /// Current cycle.
+  Cycle current = Cycle(start: '00-00-00', end: '00-00-00');
+
   /// Updates [cycle].
   Future<void> _update() async {
     cycles = await _dao.all();
+    if (!isRunning()) {
+      await start();
+      await _update();
+    }
+    current = cycles[0];
     notifyListeners();
   }
 
   /// Returns whether a cycle is currently running.
-  bool isRunning() => parseDate(cycles[0].end).isAfter(DateTime.now());
+  bool isRunning() {
+    if (cycles.isEmpty) {
+      return false;
+    }
+    return parseDate(cycles[0].end).isAfter(DateTime.now());
+  }
 
   /// Starts a cycle.
   Future<void> start() async {
