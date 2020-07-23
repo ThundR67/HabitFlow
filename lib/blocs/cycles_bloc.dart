@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/dates.dart';
-import 'package:habitflow/models/day.dart';
 import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/days/dao.dart';
 
