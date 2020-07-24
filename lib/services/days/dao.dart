@@ -22,8 +22,8 @@ class DaysDAO {
     await _store.add(await _db, day.toMap());
   }
 
-  /// Returns all days sorted by day points required.
-  Future<List<Day>> all() async {
+  /// Returns all days in map.
+  Future<Map<String, Day>> all() async {
     final Finder finder =
         Finder(sortOrders: <SortOrder>[SortOrder(dateKey, false)]);
 
@@ -33,12 +33,14 @@ class DaysDAO {
       finder: finder,
     );
 
-    return snapshots
-        .map((RecordSnapshot<String, Map<String, dynamic>> snapshot) {
+    final List<Day> days =
+        snapshots.map((RecordSnapshot<String, Map<String, dynamic>> snapshot) {
       final Day day = Day.fromMap(snapshot.value);
       day.id = snapshot.key;
       return day;
     }).toList();
+
+    return <String, Day>{for (Day e in days) e.date: e};
   }
 
   /// Returns a specific day of [date].

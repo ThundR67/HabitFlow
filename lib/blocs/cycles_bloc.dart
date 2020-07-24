@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/dates.dart';
+import 'package:habitflow/models/day.dart';
 import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/days/dao.dart';
 
@@ -53,15 +54,18 @@ class CyclesBloc extends ChangeNotifier {
 
   /// Ends a cycle.
   Future<void> end(String review) async {
-    final List<DateTime> dates = getDates(
-      parseDate(cycles[0].start),
-      parseDate(cycles[0].start),
-    );
     final Cycle cycle = cycles[0];
+    final List<DateTime> dates = getDates(
+      parseDate(cycle.start),
+      parseDate(cycle.start),
+    );
     cycle.review = review;
+
+    final Map<String, Day> days = await _daysDAO.all();
     for (final DateTime date in dates) {
-      cycle.days.add(await _daysDAO.getFromDate(date));
+      cycle.days.add(days[formatDate(date)]);
     }
+
     await _dao.update(cycle);
     await _update();
   }
