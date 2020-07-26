@@ -25,8 +25,8 @@ class CyclesDAO {
     await _store.update(await _db, cycle.toMap(), finder: finder);
   }
 
-  /// Returns all cycles sorted by cycle start dates.
-  Future<List<Cycle>> all() async {
+  /// Returns all cycles sorted by cycle start dates and with key id.
+  Future<Map<String, Cycle>> all() async {
     final Finder finder =
         Finder(sortOrders: <SortOrder>[SortOrder(startKey, false)]);
 
@@ -36,12 +36,14 @@ class CyclesDAO {
       finder: finder,
     );
 
-    return snapshots
-        .map((RecordSnapshot<String, Map<String, dynamic>> snapshot) {
+    final List<Cycle> cycles =
+        snapshots.map((RecordSnapshot<String, Map<String, dynamic>> snapshot) {
       final Cycle cycle = Cycle.fromMap(snapshot.value);
       cycle.id = snapshot.key;
       return cycle;
     }).toList();
+
+    return <String, Cycle>{for (Cycle e in cycles) e.id: e};
   }
 
   /// Clears db.

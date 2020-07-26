@@ -14,12 +14,13 @@ class Cycles extends StatelessWidget {
     if (_bloc.cycles.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            CycleCard(_bloc.cycles[0]),
+            CycleCard(_bloc.current, _bloc.currentSuccessRate),
           ],
         ),
       ),

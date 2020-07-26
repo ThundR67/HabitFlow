@@ -22,9 +22,10 @@ const List<String> _months = <String>[
 /// A card to show cycle data.
 class CycleCard extends StatelessWidget {
   /// Constructs
-  const CycleCard(this._cycle, {Key key}) : super(key: key);
+  const CycleCard(this._cycle, this._successRate, {Key key}) : super(key: key);
 
   final Cycle _cycle;
+  final double _successRate;
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +41,14 @@ class CycleCard extends StatelessWidget {
           children: <Widget>[
             Text(
               _months[start.month - 1],
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               '${start.day} - ${end.day}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -56,11 +57,11 @@ class CycleCard extends StatelessWidget {
               radius: 64.0,
               lineWidth: 4.0,
               progressColor: Colors.greenAccent[400],
-              percent: 0.28,
+              percent: _successRate,
               backgroundColor: Colors.transparent,
               center: Text(
-                '28.0%',
-                style: TextStyle(
+                (_successRate * 100).toStringAsFixed(1),
+                style: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
