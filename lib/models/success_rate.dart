@@ -9,6 +9,9 @@ double calculateSuccessRate(List<Day> days) {
     total += day.activeHabits.length;
     successes += day.successes.length + day.skips.length;
   }
+  if (successes > total) {
+    return 0;
+  }
   return successes / total;
 }
 
@@ -23,6 +26,9 @@ double calculateHabitSuccessRate(String id, List<Day> days) {
     if (day.successes.contains(id) || day.skips.contains(id)) {
       successes += 1;
     }
+  }
+  if (successes > total) {
+    return 0;
   }
   return successes / total;
 }
