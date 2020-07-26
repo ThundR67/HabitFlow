@@ -17,7 +17,7 @@ class Cycles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_cyclesBloc.cycles.isEmpty) {
+    if (_currentBloc.current == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
