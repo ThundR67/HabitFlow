@@ -61,7 +61,7 @@ class CycleCard extends StatelessWidget {
               percent: successRate,
               backgroundColor: Colors.transparent,
               center: Text(
-                (successRate * 100).toStringAsFixed(1),
+                (successRate * 100).toStringAsFixed(1) + '%',
                 style: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
