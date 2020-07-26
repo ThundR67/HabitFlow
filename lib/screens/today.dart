@@ -36,6 +36,7 @@ class Today extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'btn1',
         onPressed: () {
           Navigator.of(context).pushNamed('/create_habit');
         },
