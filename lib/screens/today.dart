@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
@@ -12,6 +13,7 @@ class Today extends StatelessWidget {
   const Today(
     this._bloc,
     this._cyclesBloc,
+    this._currentBloc,
     this._quoteID, {
     Key key,
   }) : super(key: key);
@@ -20,6 +22,7 @@ class Today extends StatelessWidget {
 
   final HabitsBloc _bloc;
   final CyclesBloc _cyclesBloc;
+  final CurrentCycleBloc _currentBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +32,10 @@ class Today extends StatelessWidget {
         children: <Widget>[
           Quote(_quoteID),
           InlineCalendar(
-            parseDate(_cyclesBloc.current.start),
-            parseDate(_cyclesBloc.current.end),
+            parseDate(_currentBloc.current.start),
+            parseDate(_currentBloc.current.end),
           ),
-          HabitsList(_bloc.habits, _bloc.statuses),
+          HabitsList(_bloc.habits, _currentBloc.statuses),
         ],
       ),
       floatingActionButton: FloatingActionButton(

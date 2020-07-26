@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/components/cycle.dart';
 
 /// Cycles screen
 class Cycles extends StatelessWidget {
   /// Constructs
-  const Cycles(this._bloc, {Key key}) : super(key: key);
+  const Cycles(
+    this._cyclesBloc,
+    this._currentBloc, {
+    Key key,
+  }) : super(key: key);
 
-  final CyclesBloc _bloc;
+  final CyclesBloc _cyclesBloc;
+  final CurrentCycleBloc _currentBloc;
 
   @override
   Widget build(BuildContext context) {
-    if (_bloc.cycles.isEmpty) {
+    if (_cyclesBloc.cycles.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -20,7 +26,7 @@ class Cycles extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            CycleCard(_bloc.current, _bloc.currentSuccessRate),
+            CycleCard(_currentBloc.current, _currentBloc.cycleSuccessRate),
           ],
         ),
       ),

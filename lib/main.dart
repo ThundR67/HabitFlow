@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/screens/create_habit.dart';
@@ -21,6 +22,9 @@ void main() {
         ChangeNotifierProvider<PointsBloc>(create: (_) => PointsBloc()),
         ChangeNotifierProvider<HabitsBloc>(create: (_) => HabitsBloc()),
         ChangeNotifierProvider<CyclesBloc>(create: (_) => CyclesBloc()),
+        ChangeNotifierProvider<CurrentCycleBloc>(
+          create: (_) => CurrentCycleBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
