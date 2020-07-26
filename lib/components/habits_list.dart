@@ -116,16 +116,17 @@ class HabitsList extends StatelessWidget {
     }
     return Expanded(
       child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[850],
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16.0),
-              topRight: Radius.circular(16.0),
-            ),
+        decoration: BoxDecoration(
+          color: Colors.grey[850],
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
           ),
-          child: ListView(
-            children: _habitsCards(),
-          )),
+        ),
+        child: ListView(
+          children: _habitsCards(),
+        ),
+      ),
     );
   }
 }
