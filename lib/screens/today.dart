@@ -31,10 +31,7 @@ class Today extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Quote(_quoteID),
-          InlineCalendar(
-            parseDate(_currentBloc.current.start),
-            parseDate(_currentBloc.current.end),
-          ),
+          InlineCalendar(_currentBloc.current),
           HabitsList(_bloc.habits, _currentBloc.statuses),
         ],
       ),

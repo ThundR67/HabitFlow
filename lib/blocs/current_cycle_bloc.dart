@@ -5,7 +5,6 @@ import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
-import 'package:habitflow/models/success_rate.dart';
 import 'package:habitflow/services/current_cycle/current_cycle.dart';
 import 'package:habitflow/services/habits/habits.dart';
 
