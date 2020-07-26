@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/weekdays_picker.dart';
 import 'package:habitflow/models/habit.dart';
@@ -27,6 +28,7 @@ class _CreateHabitState extends State<CreateHabit> {
   IconData _icon = Icons.accessibility;
   Color _color = Colors.redAccent;
   HabitsBloc _bloc;
+  CurrentCycleBloc _currentBloc;
 
   /// Updates [_activeDays].
   void _onWeekdaysChange(List<int> days) => _activeDays = days;
@@ -51,6 +53,7 @@ class _CreateHabitState extends State<CreateHabit> {
           activeDays: _activeDays,
         ),
       );
+      _currentBloc.update();
       Navigator.pop(context);
     }
   }
@@ -76,6 +79,7 @@ class _CreateHabitState extends State<CreateHabit> {
   @override
   Widget build(BuildContext context) {
     _bloc = Provider.of<HabitsBloc>(context);
+    _currentBloc = Provider.of<CurrentCycleBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create A Habit'),

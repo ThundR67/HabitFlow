@@ -5,6 +5,7 @@ import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/models/success_rate.dart';
 import 'package:habitflow/services/current_cycle/current_cycle.dart';
 import 'package:habitflow/services/habits/habits.dart';
 
@@ -12,7 +13,7 @@ import 'package:habitflow/services/habits/habits.dart';
 class CurrentCycleBloc extends ChangeNotifier {
   /// Constructs.
   CurrentCycleBloc() {
-    _dao.clear().whenComplete(_update);
+    _dao.clear().whenComplete(update);
   }
 
   final CurrentCycleDAO _dao = CurrentCycleDAO();
@@ -24,8 +25,13 @@ class CurrentCycleBloc extends ChangeNotifier {
   /// Statuses of all habits.
   List<Status> statuses;
 
-  /// Overall success rate of sycle.
+  /// Overall success rate of [current].
   double cycleSuccessRate = 0;
+
+  /// Updates [cycleSuccessRate].
+  void _updateSuccessRate() {
+    cycleSuccessRate = calculateSuccessRate(current.days);
+  }
 
   /// Checks if [current] contains day with [date].
   bool _contains(DateTime date) {
@@ -61,7 +67,7 @@ class CurrentCycleBloc extends ChangeNotifier {
   }
 
   /// Updates [cycle].
-  Future<void> _update() async {
+  Future<void> update() async {
     current = await _dao.get();
     if (current == null) {
       final DateTime start = DateTime.now();
@@ -75,6 +81,7 @@ class CurrentCycleBloc extends ChangeNotifier {
     for (final Habit habit in habits) {
       statuses.add(_getStatus(habit.id));
     }
+    _updateSuccessRate();
     notifyListeners();
   }
 
@@ -90,7 +97,7 @@ class CurrentCycleBloc extends ChangeNotifier {
   /// Unmarks a habit as nothing on [date] and updates.
   Future<void> undo(String id, [DateTime date]) async {
     await unmark(id, date);
-    await _update();
+    await update();
   }
 
   /// Marks habit as done on [date].
@@ -99,7 +106,7 @@ class CurrentCycleBloc extends ChangeNotifier {
     final int index = _getDayIndex(date ?? DateTime.now());
     current.days[index].successes.add(id);
     await _dao.update(current);
-    await _update();
+    await update();
   }
 
   /// Marks habit as skipped on [date].
@@ -108,7 +115,7 @@ class CurrentCycleBloc extends ChangeNotifier {
     final int index = _getDayIndex(date ?? DateTime.now());
     current.days[index].skips.add(id);
     await _dao.update(current);
-    await _update();
+    await update();
   }
 
   /// Marks habit as failed on [date].
@@ -117,7 +124,7 @@ class CurrentCycleBloc extends ChangeNotifier {
     final int index = _getDayIndex(date ?? DateTime.now());
     current.days[index].failures[id] = reason;
     await _dao.update(current);
-    await _update();
+    await update();
   }
 
   /// Fills days which weren't recorded.
@@ -133,7 +140,13 @@ class CurrentCycleBloc extends ChangeNotifier {
 
   /// Fills a day with default [Day].
   Future<void> _fillDay(DateTime date) async {
-    if (_contains(date)) {
+    final bool isToday = formatDate(date) == formatDate(DateTime.now());
+    if (_contains(date) && !isToday) {
+      return;
+    } else if (_contains(date) && isToday) {
+      current.days[_getDayIndex(DateTime.now())].activeHabits =
+          await _habitsDAO.active(DateTime.now());
+      await _dao.update(current);
       return;
     }
 
@@ -141,7 +154,7 @@ class CurrentCycleBloc extends ChangeNotifier {
     Map<String, String> failures = <String, String>{
       for (String e in active) e: ''
     };
-    if (formatDate(date) == formatDate(DateTime.now())) {
+    if (isToday) {
       // No failures if [date] is today.
       failures = <String, String>{};
     }
