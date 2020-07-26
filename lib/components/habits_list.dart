@@ -97,6 +97,18 @@ class HabitsList extends StatelessWidget {
   final List<Habit> _habits;
   final List<Status> _statuses;
 
+  /// Returns all habits.
+  List<Widget> _habitsCards() {
+    List<Widget> output = [];
+    for (int i = 0; i < _habits.length; i++) {
+      if (_habits[i].activeDays.contains(DateTime.now().weekday)) {
+        output.add(_Habit(_habits[i], _statuses[i]));
+        output.add(const SizedBox(height: 8.0));
+      }
+    }
+    return output;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_habits.isEmpty || _statuses == null) {
@@ -104,28 +116,16 @@ class HabitsList extends StatelessWidget {
     }
     return Expanded(
       child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[850],
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16.0),
-            topRight: Radius.circular(16.0),
+          decoration: BoxDecoration(
+            color: Colors.grey[850],
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(16.0),
+              topRight: Radius.circular(16.0),
+            ),
           ),
-        ),
-        child: ListView.separated(
-          itemCount: _habits.length,
-          separatorBuilder: (BuildContext ctxt, int index) =>
-              const SizedBox(height: 8.0),
-          itemBuilder: (BuildContext ctxt, int index) {
-            if (_habits[index].activeDays.contains(DateTime.now().weekday)) {
-              if (_statuses.length > index) {
-                return _Habit(_habits[index], _statuses[index]);
-              }
-              return _Habit(_habits[index], Status.unmarked);
-            }
-            return null;
-          },
-        ),
-      ),
+          child: ListView(
+            children: _habitsCards(),
+          )),
     );
   }
 }
