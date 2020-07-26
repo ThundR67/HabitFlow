@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/models/habit.dart';
@@ -18,7 +19,7 @@ class FailureReviewSheet extends StatelessWidget {
   /// Constructs.
   FailureReviewSheet(this._habit, this._bloc);
 
-  final HabitsBloc _bloc;
+  final CurrentCycleBloc _bloc;
   final Habit _habit;
   final TextEditingController _controller = TextEditingController();
 
@@ -70,7 +71,7 @@ class HabitsOptionSheet extends StatefulWidget {
 
 class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
   List<Widget> _childrens(BuildContext context) {
-    final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
+    final CurrentCycleBloc cycleBloc = Provider.of<CurrentCycleBloc>(context);
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
 
     final List<Widget> output = <Widget>[];
@@ -80,7 +81,7 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
         Status.done,
         Colors.greenAccent,
         () {
-          habitsBloc.done(widget._habit.id);
+          cycleBloc.done(widget._habit.id);
           pointsBloc.increment(widget._habit.points);
         },
       ),
@@ -92,7 +93,7 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
           Scaffold.of(context).showBottomSheet<FailureReviewSheet>(
             (BuildContext context) => FailureReviewSheet(
               widget._habit,
-              habitsBloc,
+              cycleBloc,
             ),
           );
         },
@@ -101,13 +102,13 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
         'SKIP',
         Status.skipped,
         Colors.blueAccent,
-        () => habitsBloc.skip(widget._habit.id),
+        () => cycleBloc.skip(widget._habit.id),
       ),
       _Button(
         'UNDO',
         Status.unmarked,
         Colors.amber,
-        () => habitsBloc.undo(widget._habit.id),
+        () => cycleBloc.undo(widget._habit.id),
       ),
     ];
 
