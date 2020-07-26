@@ -25,6 +25,9 @@ class CurrentCycleDAO {
   Future<Cycle> get() async {
     final RecordSnapshot<String, Map<String, dynamic>> snapshot =
         await _store.findFirst(await _db);
+    if (snapshot == null) {
+      return null;
+    }
     return Cycle.fromMap(snapshot.value);
   }
 

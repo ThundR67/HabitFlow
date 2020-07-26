@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
             setState(() => _currentIndex = index);
           },
           children: <Widget>[
-            Cycles(cyclesBloc),
+            Cycles(cyclesBloc, currentBloc),
             Today(habitsBloc, cyclesBloc, currentBloc, _quoteID),
             Rewards(rewardsBloc, pointsBloc),
           ],

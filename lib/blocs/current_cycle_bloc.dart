@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/models/status.dart';
 import 'package:habitflow/services/current_cycle/current_cycle.dart';
 import 'package:habitflow/services/habits/habits.dart';
 
@@ -17,7 +19,13 @@ class CurrentCycleBloc extends ChangeNotifier {
   final HabitsDAO _habitsDAO = HabitsDAO();
 
   /// Current cycle.
-  Cycle current = Cycle();
+  Cycle current = Cycle(start: '00-00-00', end: '00-00-00');
+
+  /// Statuses of all habits.
+  List<Status> statuses;
+
+  /// Overall success rate of sycle.
+  double cycleSuccessRate = 0;
 
   /// Checks if [current] contains day with [date].
   bool _contains(DateTime date) {
@@ -37,6 +45,37 @@ class CurrentCycleBloc extends ChangeNotifier {
       }
     }
     return null;
+  }
+
+  /// Returns status of habit with [id].
+  Status _getStatus(String id) {
+    final int index = _getDayIndex(DateTime.now());
+    if (current.days[index].successes.contains(id)) {
+      return Status.done;
+    } else if (current.days[index].skips.contains(id)) {
+      return Status.skipped;
+    } else if (current.days[index].failures.containsKey(id)) {
+      return Status.failed;
+    }
+    return Status.unmarked;
+  }
+
+  /// Updates [cycle].
+  Future<void> _update() async {
+    current = await _dao.get();
+    if (current == null) {
+      final DateTime start = DateTime.now();
+      final DateTime end = start.add(const Duration(days: 14));
+      current = Cycle(start: formatDate(start), end: formatDate(end));
+      await _dao.create(current);
+    }
+    await _fill();
+    final List<Habit> habits = await _habitsDAO.all();
+    statuses = <Status>[];
+    for (final Habit habit in habits) {
+      statuses.add(_getStatus(habit.id));
+    }
+    notifyListeners();
   }
 
   /// Unmarks a habit as nothing on [date].
@@ -79,13 +118,6 @@ class CurrentCycleBloc extends ChangeNotifier {
     current.days[index].failures[id] = reason;
     await _dao.update(current);
     await _update();
-  }
-
-  /// Updates [cycle].
-  Future<void> _update() async {
-    await _fill();
-    current = await _dao.get();
-    notifyListeners();
   }
 
   /// Fills days which weren't recorded.

@@ -50,11 +50,13 @@ class Cycle {
 
   /// Converts map to [Cycle].
   static Cycle fromMap(Map<String, dynamic> map) {
+    final List<Map<String, dynamic>> days =
+        List<Map<String, dynamic>>.from(map[daysKey] as Iterable<dynamic>);
     return Cycle(
       start: map[startKey].toString(),
       end: map[endKey].toString(),
       review: map[reviewKey].toString(),
-      days: List<Day>.from(map[daysKey] as Iterable<dynamic>),
+      days: <Day>[for (Map<String, dynamic> map in days) Day.fromMap(map)],
     );
   }
 
@@ -65,7 +67,7 @@ class Cycle {
       startKey: start,
       endKey: end,
       reviewKey: review,
-      daysKey: days,
+      daysKey: <Map<String, dynamic>>[for (Day day in days) day.toMap()],
     };
   }
 }

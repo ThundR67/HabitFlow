@@ -99,7 +99,7 @@ class HabitsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_habits.isEmpty || _statuses.isEmpty) {
+    if (_habits.isEmpty || _statuses == null) {
       return const LinearProgressIndicator();
     }
     return Expanded(
@@ -117,7 +117,10 @@ class HabitsList extends StatelessWidget {
               const SizedBox(height: 8.0),
           itemBuilder: (BuildContext ctxt, int index) {
             if (_habits[index].activeDays.contains(DateTime.now().weekday)) {
-              return _Habit(_habits[index], _statuses[index]);
+              if (_statuses.length > index) {
+                return _Habit(_habits[index], _statuses[index]);
+              }
+              return _Habit(_habits[index], Status.unmarked);
             }
             return null;
           },
