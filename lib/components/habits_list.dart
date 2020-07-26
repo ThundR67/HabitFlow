@@ -99,10 +99,14 @@ class HabitsList extends StatelessWidget {
 
   /// Returns all habits.
   List<Widget> _habitsCards() {
-    List<Widget> output = [];
+    final List<Widget> output = <Widget>[];
     for (int i = 0; i < _habits.length; i++) {
       if (_habits[i].activeDays.contains(DateTime.now().weekday)) {
-        output.add(_Habit(_habits[i], _statuses[i]));
+        Status status = Status.unmarked;
+        if (_statuses.length > i) {
+          status = _statuses[i];
+        }
+        output.add(_Habit(_habits[i], status));
         output.add(const SizedBox(height: 8.0));
       }
     }
