@@ -50,49 +50,51 @@ class _HomeState extends State<Home> {
     final CyclesBloc cyclesBloc = Provider.of<CyclesBloc>(context);
     final CurrentCycleBloc currentBloc = Provider.of<CurrentCycleBloc>(context);
 
-    return Scaffold(
-      body: SizedBox.expand(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (int index) {
-            setState(() => _currentIndex = index);
-          },
-          children: <Widget>[
-            Cycles(cyclesBloc, currentBloc),
-            Today(habitsBloc, cyclesBloc, currentBloc, _quoteID),
-            Rewards(rewardsBloc, pointsBloc),
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox.expand(
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (int index) {
+              setState(() => _currentIndex = index);
+            },
+            children: <Widget>[
+              Cycles(cyclesBloc, currentBloc),
+              Today(habitsBloc, cyclesBloc, currentBloc, _quoteID),
+              Rewards(rewardsBloc, pointsBloc),
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavyBar(
+          selectedIndex: _currentIndex,
+          backgroundColor: Colors.black,
+          showElevation: true,
+          onItemSelected: (int index) => setState(() {
+            _currentIndex = index;
+            _pageController.animateToPage(
+              index,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.ease,
+            );
+          }),
+          items: <BottomNavyBarItem>[
+            BottomNavyBarItem(
+              icon: const Icon(Icons.refresh),
+              title: const Text('Cycles'),
+              activeColor: Colors.blue,
+            ),
+            BottomNavyBarItem(
+              icon: const Icon(Icons.today),
+              title: const Text('Today'),
+              activeColor: Colors.red,
+            ),
+            BottomNavyBarItem(
+              icon: const Icon(Icons.star),
+              title: const Text('Rewards'),
+              activeColor: Colors.yellow,
+            ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _currentIndex,
-        backgroundColor: Colors.black,
-        showElevation: true,
-        onItemSelected: (int index) => setState(() {
-          _currentIndex = index;
-          _pageController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.ease,
-          );
-        }),
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            icon: const Icon(Icons.refresh),
-            title: const Text('Cycles'),
-            activeColor: Colors.blue,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(Icons.today),
-            title: const Text('Today'),
-            activeColor: Colors.red,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(Icons.star),
-            title: const Text('Rewards'),
-            activeColor: Colors.yellow,
-          ),
-        ],
       ),
     );
   }
