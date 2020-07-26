@@ -8,7 +8,7 @@ import 'db.dart';
 const String _storeName = 'current_cycle';
 
 /// A DAO to manage user's cycle points.
-class CyclesDAO {
+class CurrentCycleDAO {
   final StoreRef<String, Map<String, dynamic>> _store =
       stringMapStoreFactory.store(_storeName);
 
