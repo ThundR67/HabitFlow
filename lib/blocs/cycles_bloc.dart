@@ -15,7 +15,7 @@ class CyclesBloc extends ChangeNotifier {
   /// All the cycles.
   Map<String, Cycle> cycles = <String, Cycle>{};
 
-  /// Updates [cycle].
+  /// Updates [cycles].
   Future<void> _update() async {
     cycles = await _dao.all();
     notifyListeners();
