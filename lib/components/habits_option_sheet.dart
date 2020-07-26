@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
+import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/models/success_rate.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class _Button {
@@ -133,17 +136,79 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final CurrentCycleBloc currentBloc = Provider.of<CurrentCycleBloc>(context);
+    final double successRate = calculateHabitSuccessRate(
+      widget._habit.id,
+      currentBloc.current.days,
+    );
     return Container(
-      height: 160,
+      height: 200,
       color: Colors.black,
       alignment: Alignment.center,
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: _childrens(context),
           ),
+          const SizedBox(height: 8.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  const Text(
+                    'Completion Rate',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 8.0),
+                  CircularPercentIndicator(
+                    radius: 64.0,
+                    lineWidth: 4.0,
+                    progressColor: Colors.greenAccent[400],
+                    percent: successRate,
+                    backgroundColor: Colors.transparent,
+                    center: Text(
+                      (successRate * 100).toStringAsFixed(1) + '%',
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  const Text(
+                    'Times Completed',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  Text(
+                    calculateTimesCompleted(
+                      widget._habit.id,
+                      currentBloc.current.days,
+                    ).toString(),
+                    style: const TextStyle(
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          )
         ],
       ),
     );

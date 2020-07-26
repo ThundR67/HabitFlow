@@ -12,6 +12,32 @@ double calculateSuccessRate(List<Day> days) {
   return successes / total;
 }
 
+/// Returns success rate from [days] of habit with [id].
+double calculateHabitSuccessRate(String id, List<Day> days) {
+  int total = 0;
+  int successes = 0;
+  for (final Day day in days) {
+    if (day.activeHabits.contains(id)) {
+      total += 1;
+    }
+    if (day.successes.contains(id) || day.skips.contains(id)) {
+      successes += 1;
+    }
+  }
+  return successes / total;
+}
+
+/// Returns amount of times completed.
+int calculateTimesCompleted(String id, List<Day> days) {
+  int total = 0;
+  for (final Day day in days) {
+    if (day.successes.contains(id) || day.skips.contains(id)) {
+      total += 1;
+    }
+  }
+  return total;
+}
+
 /// Returns [Day].
 Day getDay(List<Day> days, DateTime date) {
   for (final Day day in days) {
