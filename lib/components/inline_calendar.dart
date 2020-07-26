@@ -69,33 +69,36 @@ class InlineCalendar extends StatelessWidget {
 
   final Cycle _cycle;
 
-  @override
-  Widget build(BuildContext context) {
-    /// TODO center this list view.
+  /// Return widgets for all dates.
+  List<Widget> _dates() {
+    List<Widget> output = <Widget>[];
     final List<DateTime> dates = getDates(
       parseDate(_cycle.start),
       parseDate(_cycle.end),
     );
+    for (final DateTime date in dates) {
+      output.add(_SingleDate(date, getDay(_cycle.days, date)));
+    }
+    return output;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_cycle.start == _cycle.end) {
+      return const Center(child: CircularProgressIndicator());
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
-        height: 70,
         alignment: Alignment.center,
         child: Center(
-          child: _cycle.start == _cycle.end
-              ? const CircularProgressIndicator()
-              : ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: dates.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _SingleDate(
-                      dates[index],
-                      getDay(_cycle.days, dates[index]),
-                    );
-                  },
-                ),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: _dates(),
+            ),
+          ),
         ),
       ),
     );
