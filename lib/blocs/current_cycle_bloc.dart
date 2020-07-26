@@ -25,14 +25,6 @@ class CurrentCycleBloc extends ChangeNotifier {
   /// Statuses of all habits.
   List<Status> statuses;
 
-  /// Overall success rate of [current].
-  double cycleSuccessRate = 0;
-
-  /// Updates [cycleSuccessRate].
-  void _updateSuccessRate() {
-    cycleSuccessRate = calculateSuccessRate(current.days);
-  }
-
   /// Checks if [current] contains day with [date].
   bool _contains(DateTime date) {
     for (final Day day in current.days) {
@@ -81,7 +73,6 @@ class CurrentCycleBloc extends ChangeNotifier {
     for (final Habit habit in habits) {
       statuses.add(_getStatus(habit.id));
     }
-    _updateSuccessRate();
     notifyListeners();
   }
 
