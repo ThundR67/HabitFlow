@@ -28,8 +28,10 @@ class _WeekdaysPickerState extends State<WeekdaysPicker> {
           values[index] = !values[index];
         });
         for (int i = 0; i < values.length; i++) {
-          if (values[i]) {
-            activeDays.add(i + 1); // As DateTime starts with 1 for monday.
+          if (values[i] && i == 0) {
+            activeDays.add(7);
+          } else if (values[i]) {
+            activeDays.add(i);
           }
         }
         _onChange(activeDays);

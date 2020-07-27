@@ -31,7 +31,9 @@ class _CreateHabitState extends State<CreateHabit> {
   CurrentCycleBloc _currentBloc;
 
   /// Updates [_activeDays].
-  void _onWeekdaysChange(List<int> days) => _activeDays = days;
+  void _onWeekdaysChange(List<int> days) {
+    _activeDays = days;
+  }
 
   /// Changes [_color] and [_icon] to what user selected.
   void _onPick(Color color, IconData icon) {
