@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
@@ -74,6 +75,7 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
   List<Widget> _childrens(BuildContext context) {
     final CurrentCycleBloc cycleBloc = Provider.of<CurrentCycleBloc>(context);
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+    final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
 
     final List<Widget> output = <Widget>[];
     final List<_Button> buttons = <_Button>[
@@ -135,12 +137,14 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
   @override
   Widget build(BuildContext context) {
     final CurrentCycleBloc currentBloc = Provider.of<CurrentCycleBloc>(context);
+    final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
+
     final double successRate = calculateHabitSuccessRate(
       widget._habit.id,
       currentBloc.current.days,
     );
     return Container(
-      height: 200,
+      height: 250,
       color: Colors.black,
       alignment: Alignment.center,
       padding: const EdgeInsets.all(8.0),
@@ -206,7 +210,16 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
                 ],
               ),
             ],
-          )
+          ),
+          RaisedButton(
+            color: Colors.grey,
+            child: const Text('Delete'),
+            onPressed: () {
+              habitsBloc.delete(widget._habit);
+              currentBloc.delete(widget._habit.id);
+              Navigator.of(context).pop();
+            },
+          ),
         ],
       ),
     );
