@@ -81,6 +81,7 @@ class CurrentCycleBloc extends ChangeNotifier {
       await _create();
     }
     await _fill();
+    await _failUndone();
     final List<Habit> habits = await _habitsDAO.all();
     statuses = <Status>[];
     for (final Habit habit in habits) {
@@ -137,6 +138,22 @@ class CurrentCycleBloc extends ChangeNotifier {
     current.days[index].failures[id] = reason;
     await _dao.update(current);
     await update();
+  }
+
+  /// Marks undone habits as failed.
+  Future<void> _failUndone() async {
+    for (final Day day in current.days) {
+      if (day.date == formatDate(DateTime.now())) {
+        for (final String id in day.activeHabits) {
+          if (!day.failures.containsKey(id) &&
+              !day.skips.contains(id) &&
+              !day.successes.contains(id)) {
+            day.failures[id] = 'NOT PROVIDED';
+          }
+        }
+      }
+    }
+    await _dao.update(current);
   }
 
   /// Fills days which weren't recorded.
