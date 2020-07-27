@@ -48,7 +48,7 @@ class FailuresPanel extends StatelessWidget {
                 ),
                 const Spacer(),
                 Expanded(child: Text(day.failures[id])),
-                if (_bloc != null)
+                if (parseDate(_bloc.current.end).isAfter(DateTime.now()))
                   PopupMenuButton<dynamic>(
                     elevation: 8,
                     tooltip: 'This is tooltip',

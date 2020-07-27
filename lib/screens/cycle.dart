@@ -27,11 +27,6 @@ class CycleInfo extends StatelessWidget {
       for (Habit habit in bloc.habits) habit.id: habit.name
     };
 
-    CurrentCycleBloc currentBloc;
-    if (parseDate(_cycle.end).isAfter(DateTime.now())) {
-      currentBloc = Provider.of<CurrentCycleBloc>(context);
-    }
-
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -48,7 +43,7 @@ class CycleInfo extends StatelessWidget {
             FailuresPanel(
               _cycle.days,
               idToName,
-              currentBloc,
+              Provider.of<CurrentCycleBloc>(context),
             )
           ],
         ),
