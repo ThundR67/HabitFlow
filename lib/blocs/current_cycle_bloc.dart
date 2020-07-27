@@ -143,7 +143,7 @@ class CurrentCycleBloc extends ChangeNotifier {
   /// Marks undone habits as failed.
   Future<void> _failUndone() async {
     for (final Day day in current.days) {
-      if (day.date == formatDate(DateTime.now())) {
+      if (day.date != formatDate(DateTime.now())) {
         for (final String id in day.activeHabits) {
           if (!day.failures.containsKey(id) &&
               !day.skips.contains(id) &&
