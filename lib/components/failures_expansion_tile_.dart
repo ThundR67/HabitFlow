@@ -48,23 +48,24 @@ class FailuresPanel extends StatelessWidget {
                 ),
                 const Spacer(),
                 Expanded(child: Text(day.failures[id])),
-                PopupMenuButton<dynamic>(
-                  elevation: 8,
-                  tooltip: 'This is tooltip',
-                  onSelected: (dynamic value) {
-                    print("hello");
-                    _bloc.skip(id, parseDate(day.date));
-                  },
-                  child: const Icon(Icons.more_vert),
-                  itemBuilder: (_) {
-                    return const <PopupMenuItem<int>>[
-                      PopupMenuItem<int>(
-                        child: Text('Mark as skip'),
-                        value: 0,
-                      ),
-                    ];
-                  },
-                ),
+                if (_bloc != null)
+                  PopupMenuButton<dynamic>(
+                    elevation: 8,
+                    tooltip: 'This is tooltip',
+                    onSelected: (dynamic value) {
+                      print("hello");
+                      _bloc.skip(id, parseDate(day.date));
+                    },
+                    child: const Icon(Icons.more_vert),
+                    itemBuilder: (_) {
+                      return const <PopupMenuItem<int>>[
+                        PopupMenuItem<int>(
+                          child: Text('Mark as skip'),
+                          value: 0,
+                        ),
+                      ];
+                    },
+                  ),
               ],
             ),
           ),
