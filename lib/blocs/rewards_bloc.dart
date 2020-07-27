@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/services/rewards/rewards.dart';

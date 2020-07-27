@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
-import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
 import 'package:habitflow/components/inline_calendar.dart';
 import 'package:habitflow/components/quote.dart';
-import 'package:habitflow/models/dates.dart';
 
 /// A screen to show user about todays information.
 class Today extends StatelessWidget {
   /// Constructs.
   const Today(
     this._bloc,
-    this._cyclesBloc,
     this._currentBloc,
     this._quoteID, {
     Key key,
@@ -21,7 +18,6 @@ class Today extends StatelessWidget {
   final int _quoteID;
 
   final HabitsBloc _bloc;
-  final CyclesBloc _cyclesBloc;
   final CurrentCycleBloc _currentBloc;
 
   @override

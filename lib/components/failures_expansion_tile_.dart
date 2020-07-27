@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
-import 'package:habitflow/models/habit.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 /// A expansion tile to show all failures.
 class FailuresPanel extends StatelessWidget {

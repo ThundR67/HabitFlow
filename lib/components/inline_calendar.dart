@@ -71,7 +71,7 @@ class InlineCalendar extends StatelessWidget {
 
   /// Return widgets for all dates.
   List<Widget> _dates() {
-    List<Widget> output = <Widget>[];
+    final List<Widget> output = <Widget>[];
     final List<DateTime> dates = getDates(
       parseDate(_cycle.start),
       parseDate(_cycle.end),

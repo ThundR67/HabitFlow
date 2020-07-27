@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
             },
             children: <Widget>[
               Cycles(cyclesBloc, currentBloc),
-              Today(habitsBloc, cyclesBloc, currentBloc, _quoteID),
+              Today(habitsBloc, currentBloc, _quoteID),
               Rewards(rewardsBloc, pointsBloc),
             ],
           ),

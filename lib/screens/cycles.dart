@@ -3,7 +3,6 @@ import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/components/cycle.dart';
 import 'package:habitflow/models/cycle.dart';
-import 'package:habitflow/models/success_rate.dart';
 
 /// Cycles screen
 class Cycles extends StatelessWidget {

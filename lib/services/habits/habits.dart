@@ -55,7 +55,7 @@ class HabitsDAO {
 
   /// Returns ids all active habits on [date]
   Future<List<String>> active(DateTime day) async {
-    final List<String> output = [];
+    final List<String> output = <String>[];
     final List<Habit> habits = await all();
     for (final Habit habit in habits) {
       if (habit.activeDays.contains(day.weekday)) {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
-import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
-import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/models/success_rate.dart';
