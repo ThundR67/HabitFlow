@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/models/habit.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 /// A expansion tile to show all failures.
 class FailuresPanel extends StatelessWidget {
   /// Constructs.
-  const FailuresPanel(this._days, this._idToName, {Key key}) : super(key: key);
+  const FailuresPanel(
+    this._days,
+    this._idToName,
+    this._bloc, {
+    Key key,
+  }) : super(key: key);
 
   final Map<String, String> _idToName;
   final List<Day> _days;
+  final CurrentCycleBloc _bloc;
 
   /// Returns widgets for expansion tile.
   List<Widget> _children() {
@@ -39,9 +48,22 @@ class FailuresPanel extends StatelessWidget {
                 ),
                 const Spacer(),
                 Expanded(child: Text(day.failures[id])),
-                IconButton(
-                  icon: const Icon(Icons.more_vert),
-                  onPressed: null,
+                PopupMenuButton<dynamic>(
+                  elevation: 8,
+                  tooltip: 'This is tooltip',
+                  onSelected: (dynamic value) {
+                    print("hello");
+                    _bloc.skip(id, parseDate(day.date));
+                  },
+                  child: const Icon(Icons.more_vert),
+                  itemBuilder: (_) {
+                    return const <PopupMenuItem<int>>[
+                      PopupMenuItem<int>(
+                        child: Text('Mark as skip'),
+                        value: 0,
+                      ),
+                    ];
+                  },
                 ),
               ],
             ),

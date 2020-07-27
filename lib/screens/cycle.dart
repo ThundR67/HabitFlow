@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/cycle_status.dart';
 import 'package:habitflow/components/failures_expansion_tile_.dart';
@@ -40,6 +41,7 @@ class CycleInfo extends StatelessWidget {
             FailuresPanel(
               _cycle.days,
               idToName,
+              Provider.of<CurrentCycleBloc>(context),
             )
           ],
         ),
