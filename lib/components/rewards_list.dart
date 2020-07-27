@@ -87,22 +87,24 @@ class RewardsList extends StatelessWidget {
 
   final List<Reward> _rewards;
 
+  /// Returns cards for all rewards.
+  List<Widget> _rewardCards() {
+    final List<Widget> output = <Widget>[];
+    for (final Reward reward in _rewards) {
+      output.add(_Reward(reward));
+    }
+    return output;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_rewards == null) {
       return const LinearProgressIndicator();
     }
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(0.0),
-        child: ListView.separated(
-          itemCount: _rewards.length,
-          separatorBuilder: (BuildContext ctxt, int index) =>
-              const SizedBox(height: 8.0),
-          itemBuilder: (BuildContext ctxt, int index) {
-            return _Reward(_rewards[index]);
-          },
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(0.0),
+      child: Column(
+        children: _rewardCards(),
       ),
     );
   }

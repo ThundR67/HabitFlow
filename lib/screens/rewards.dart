@@ -21,12 +21,14 @@ class Rewards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            CurRewardPoints(_pointsBloc.points),
-            RewardsList(_rewardsBloc.rewards),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              CurRewardPoints(_pointsBloc.points),
+              RewardsList(_rewardsBloc.rewards),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
