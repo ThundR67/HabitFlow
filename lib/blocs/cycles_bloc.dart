@@ -13,7 +13,7 @@ class CyclesBloc extends ChangeNotifier {
   final CyclesDAO _dao = CyclesDAO();
 
   /// All the cycles.
-  Map<String, Cycle> cycles = <String, Cycle>{};
+  Map<String, Cycle> cycles;
 
   /// Updates [cycles].
   Future<void> _update() async {

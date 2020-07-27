@@ -5,6 +5,7 @@ import 'package:habitflow/components/cycle_status.dart';
 import 'package:habitflow/components/failures_expansion_tile_.dart';
 import 'package:habitflow/components/habit_success_rates.dart';
 import 'package:habitflow/models/cycle.dart';
+import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/success_rate.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,12 @@ class CycleInfo extends StatelessWidget {
     final Map<String, String> idToName = <String, String>{
       for (Habit habit in bloc.habits) habit.id: habit.name
     };
+
+    CurrentCycleBloc currentBloc;
+    if (parseDate(_cycle.end).isAfter(DateTime.now())) {
+      currentBloc = Provider.of<CurrentCycleBloc>(context);
+    }
+
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -41,7 +48,7 @@ class CycleInfo extends StatelessWidget {
             FailuresPanel(
               _cycle.days,
               idToName,
-              Provider.of<CurrentCycleBloc>(context),
+              currentBloc,
             )
           ],
         ),
