@@ -44,6 +44,18 @@ class CurrentCycleBloc extends ChangeNotifier {
     return null;
   }
 
+  /// Deleted history of habit.
+  Future<void> delete(String id) async {
+    for (int i = 0; i < current.days.length; i++) {
+      current.days[i].failures.remove(id);
+      current.days[i].successes.remove(id);
+      current.days[i].skips.remove(id);
+      current.days[i].activeHabits.remove(id);
+    }
+    await _dao.update(current);
+    await update();
+  }
+
   /// Returns status of habit with [id].
   Status _getStatus(String id) {
     final int index = _getDayIndex(DateTime.now());
