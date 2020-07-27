@@ -3,7 +3,6 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/services/rewards/rewards.dart';
-import 'package:habitflow/services/reward_points/reward_points.dart';
 
 /// A Bloc which does CRUD of rewards.
 class RewardsBloc extends ChangeNotifier {
