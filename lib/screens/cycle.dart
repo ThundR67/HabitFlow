@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/cycle_status.dart';
+import 'package:habitflow/components/failures_expansion_tile_.dart';
 import 'package:habitflow/components/habit_success_rates.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/habit.dart';
@@ -20,6 +21,9 @@ class CycleInfo extends StatelessWidget {
     if (bloc.habits.isEmpty) {
       return const LinearProgressIndicator();
     }
+    final Map<String, String> idToName = <String, String>{
+      for (Habit habit in bloc.habits) habit.id: habit.name
+    };
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -33,6 +37,10 @@ class CycleInfo extends StatelessWidget {
                   )
                   .toList(),
             ),
+            FailuresPanel(
+              _cycle.days,
+              idToName,
+            )
           ],
         ),
       ),
