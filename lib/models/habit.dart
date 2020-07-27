@@ -16,7 +16,7 @@ const String colorKey = 'color_hex';
 const String iconKey = 'icon_data';
 
 /// Key for [Habit.activeDays].
-const String activeDaysKey = "active_days";
+const String activeDaysKey = 'active_days';
 
 /// A type to store habit information.
 class Habit {
