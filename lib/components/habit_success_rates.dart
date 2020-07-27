@@ -42,7 +42,7 @@ class HabitSuccessRates extends StatelessWidget {
                 center: Text(
                   (_successRates[i] * 100).toStringAsFixed(1) + '%',
                   style: const TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 14.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
