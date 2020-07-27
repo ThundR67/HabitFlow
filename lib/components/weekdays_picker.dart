@@ -15,7 +15,7 @@ class WeekdaysPicker extends StatefulWidget {
 class _WeekdaysPickerState extends State<WeekdaysPicker> {
   _WeekdaysPickerState(this._onChange);
 
-  final List<bool> values = List<bool>.filled(7, true);
+  final List<bool> values = List<bool>.filled(7, false);
   final Function _onChange;
 
   @override

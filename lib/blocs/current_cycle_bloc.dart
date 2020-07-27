@@ -6,6 +6,7 @@ import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/services/current_cycle/current_cycle.dart';
+import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/habits/habits.dart';
 
 /// Bloc to manage current cycle
@@ -16,6 +17,7 @@ class CurrentCycleBloc extends ChangeNotifier {
   }
 
   final CurrentCycleDAO _dao = CurrentCycleDAO();
+  final CyclesDAO _cyclesDAO = CyclesDAO();
   final HabitsDAO _habitsDAO = HabitsDAO();
 
   /// Current cycle.
@@ -73,10 +75,10 @@ class CurrentCycleBloc extends ChangeNotifier {
   Future<void> update() async {
     current = await _dao.get();
     if (current == null) {
-      final DateTime start = DateTime.now();
-      final DateTime end = start.add(const Duration(days: 14));
-      current = Cycle(start: formatDate(start), end: formatDate(end));
-      await _dao.create(current);
+      await _create();
+    } else if (parseDate(current.end).isBefore(DateTime.now())) {
+      _cyclesDAO.add(current);
+      await _create();
     }
     await _fill();
     final List<Habit> habits = await _habitsDAO.all();
@@ -85,6 +87,14 @@ class CurrentCycleBloc extends ChangeNotifier {
       statuses.add(_getStatus(habit.id));
     }
     notifyListeners();
+  }
+
+  /// Creates a cycle.
+  Future<void> _create() async {
+    final DateTime start = DateTime.now();
+    final DateTime end = start.add(const Duration(days: 14));
+    current = Cycle(start: formatDate(start), end: formatDate(end));
+    await _dao.create(current);
   }
 
   /// Unmarks a habit as nothing on [date].
