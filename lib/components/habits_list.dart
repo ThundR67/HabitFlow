@@ -115,7 +115,7 @@ class HabitsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_habits.isEmpty || _statuses == null) {
+    if (_habits == null || _statuses == null) {
       return const LinearProgressIndicator();
     }
     return Expanded(

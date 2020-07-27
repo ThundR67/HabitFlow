@@ -13,7 +13,7 @@ class HabitsBloc extends ChangeNotifier {
   final HabitsDAO _dao = HabitsDAO();
 
   /// All the habits.
-  List<Habit> habits = <Habit>[];
+  List<Habit> habits;
 
   /// Updates [habits].
   Future<void> _update() async {
