@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/habits_bloc.dart';
+import 'package:habitflow/components/cycle_status.dart';
+import 'package:habitflow/components/habit_success_rates.dart';
 import 'package:habitflow/models/cycle.dart';
+import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/models/success_rate.dart';
+import 'package:provider/provider.dart';
 
 /// Shows data about a cycle.
 class CycleInfo extends StatelessWidget {
@@ -10,8 +16,26 @@ class CycleInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Under Dev'),
+    final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
+    if (bloc.habits.isEmpty) {
+      return const LinearProgressIndicator();
+    }
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: <Widget>[
+            CycleStatus(_cycle),
+            HabitSuccessRates(
+              bloc.habits.map((Habit e) => e.name).toList(),
+              bloc.habits
+                  .map(
+                    (Habit e) => calculateHabitSuccessRate(e.id, _cycle.days),
+                  )
+                  .toList(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
