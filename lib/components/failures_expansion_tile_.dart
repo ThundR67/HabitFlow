@@ -53,7 +53,6 @@ class FailuresPanel extends StatelessWidget {
                     elevation: 8,
                     tooltip: 'This is tooltip',
                     onSelected: (dynamic value) {
-                      print("hello");
                       _bloc.skip(id, parseDate(day.date));
                     },
                     child: const Icon(Icons.more_vert),
