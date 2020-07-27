@@ -12,6 +12,9 @@ double calculateSuccessRate(List<Day> days) {
   if (successes > total) {
     return 0;
   }
+  if (total == 0) {
+    return 0;
+  }
   return successes / total;
 }
 
@@ -28,6 +31,9 @@ double calculateHabitSuccessRate(String id, List<Day> days) {
     }
   }
   if (successes > total) {
+    return 0;
+  }
+  if (total == 0) {
     return 0;
   }
   return successes / total;
