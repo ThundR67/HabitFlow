@@ -8,17 +8,7 @@ import 'package:habitflow/services/habits/habits.dart';
 class HabitsBloc extends ChangeNotifier {
   /// Causes a update as soon as bloc is initialized.
   HabitsBloc() {
-    /// TODO remove
-    _dao.clear().whenComplete(() {
-      final Habit data = Habit(
-        name: 'Gaming 20 mins',
-        points: 30,
-        colorHex: '#00e676',
-        iconData: iconDataToMap(Icons.gamepad),
-        activeDays: <int>[1, 2, 3, 4, 5, 6, 7],
-      );
-      _dao.add(data).whenComplete(_update);
-    });
+    _update();
   }
 
   final HabitsDAO _dao = HabitsDAO();

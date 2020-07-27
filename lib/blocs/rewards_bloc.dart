@@ -8,16 +8,7 @@ import 'package:habitflow/services/rewards/rewards.dart';
 class RewardsBloc extends ChangeNotifier {
   /// Causes a update as soon as bloc is initialized.
   RewardsBloc() {
-    /// TODO remove
-    _dao.clear().whenComplete(() {
-      final Reward data = Reward(
-        name: 'Gaming 20 mins',
-        points: 30,
-        colorHex: '#00e676',
-        iconData: iconDataToMap(Icons.gamepad),
-      );
-      _dao.add(data).whenComplete(_update);
-    });
+    _update();
   }
 
   final RewardsDAO _dao = RewardsDAO();

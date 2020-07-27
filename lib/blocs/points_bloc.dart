@@ -5,7 +5,7 @@ import 'package:habitflow/services/reward_points/reward_points.dart';
 class PointsBloc extends ChangeNotifier {
   /// Creates a bloc and causes an update.
   PointsBloc() {
-    _dao.clear().whenComplete(_update);
+    _update();
   }
 
   final RewardPointsDAO _dao = RewardPointsDAO();
