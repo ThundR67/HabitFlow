@@ -37,6 +37,17 @@ void main() {
           '/create_reward': (BuildContext context) => const CreateReward(),
           '/create_habit': (BuildContext context) => const CreateHabit(),
         },
+        builder: (BuildContext context, Widget child) {
+          return ScrollConfiguration(
+            behavior: const ScrollBehavior()
+              ..buildViewportChrome(
+                context,
+                null,
+                AxisDirection.down,
+              ),
+            child: child,
+          );
+        },
       ),
     ),
   );
