@@ -106,13 +106,13 @@ class _CreateHabitState extends State<CreateHabit> {
                       ),
                       NeuInputTextField(
                         controller: _nameController,
-                        text: 'Reward Name',
+                        text: 'Habit Name',
                         validate: _validateName,
                       ),
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
-                        text: 'Reward Points',
+                        text: 'Reward Points For Completion',
                         validate: _validatePoints,
                       ),
                       const SizedBox(height: 16.0),
