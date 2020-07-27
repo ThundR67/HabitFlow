@@ -22,9 +22,12 @@ class HabitSuccessRates extends StatelessWidget {
     for (int i = 0; i < _names.length; i++) {
       output.add(
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 40,
+            vertical: 8,
+          ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
                 _names[i],
