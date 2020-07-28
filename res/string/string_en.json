@@ -1,0 +1,42 @@
+{
+    "cyclesPage" : "Cycles",
+    "todaysPage" : "Today",
+    "rewardsPage" : "Rewards",
+
+    "pickColor" : "Pick A Color",
+    "pickIcon" : "Pick An Icon",
+
+    "currentPoints" : "Current Reward Points",
+
+    "markSkip" : "Mark As Skipped",
+    "markDone" : "Mark as done",
+    "markFail" : "Mark as failed",
+    "skip" : "Skip",
+    "done" : "Done",
+    "fail" : "Fail",
+
+    "failureOne" : "Failure",
+    "failureMany" : "Failures",
+    "habitOne" : "Habit",
+    "habitMany" : "Habits",
+    "rewardOne" : "Reward",
+    "rewardsMany" : "Rewards",
+    "delete" : "Delete",
+
+    "icon" : "Icon",
+    "color" : "Color",
+
+    "notEnoughPoints" : "You don't have enough reward points",
+    "take" : "Take",
+ 
+    "createHabitTitle" : "Create A Habit",
+    "validInteger" : "Please Enter Valid Number",
+    "positiveInteger" : "Please Enter Positive Number",
+    "validName" : "Please Enter Valid Name",
+    "habitName" : "Habit Name",
+    "rewardPoints" : "Reward Points",
+    "submit" : "Done",
+
+    "createRewardTitle" : "Create A Reward",
+    "rewardName" : "Reward Name"
+}
