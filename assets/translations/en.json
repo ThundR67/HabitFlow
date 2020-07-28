@@ -15,12 +15,22 @@
     "done" : "Done",
     "fail" : "Fail",
 
-    "failureOne" : "Failure",
-    "failureMany" : "Failures",
-    "habitOne" : "Habit",
-    "habitMany" : "Habits",
-    "rewardOne" : "Reward",
-    "rewardsMany" : "Rewards",
+    "failure" : {
+        "one" : "Failure",
+        "many" : "Failures"
+    },
+
+    "habit" : {
+        "one" : "Habit",
+        "many" : "Habits"
+    },
+
+    "reward" : {
+        "one" : "Reward",
+        "many" : "Rewards"
+    },
+
+    "failures" : "Failures",
     "delete" : "Delete",
 
     "icon" : "Icon",
