@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -51,9 +52,9 @@ class _CreateRewardState extends State<CreateReward> {
   /// Validates reward points.
   String _validatePoints(String value) {
     if (value.isEmpty || int.tryParse(value) == null) {
-      return 'Please enter valid integer';
+      return tr('validInteger');
     } else if (int.parse(value) <= 0) {
-      return 'Please enter valid posetive integer';
+      return tr('posetiveInteger');
     }
     return null;
   }
@@ -61,7 +62,7 @@ class _CreateRewardState extends State<CreateReward> {
   /// Validates reward name.
   String _validateName(String value) {
     if (value.isEmpty) {
-      return 'Please enter valid name';
+      return tr('validName');
     }
     return null;
   }
@@ -71,7 +72,7 @@ class _CreateRewardState extends State<CreateReward> {
     _bloc = Provider.of<RewardsBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create A Reward'),
+        title: Text(tr('createRewardTitle')),
         centerTitle: true,
         backgroundColor: _color,
         elevation: 0,
@@ -93,19 +94,19 @@ class _CreateRewardState extends State<CreateReward> {
                       ),
                       NeuInputTextField(
                         controller: _nameController,
-                        text: 'Reward Name',
+                        text: tr('rewardName'),
                         validate: _validateName,
                       ),
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
-                        text: 'Reward Points Required',
+                        text: tr('rewardPoints'),
                         validate: _validatePoints,
                       ),
                       const SizedBox(height: 16.0),
                       RaisedButton(
                         onPressed: _create,
-                        child: const Text('Done'),
+                        child: Text(tr('submit')),
                         elevation: 4,
                       ),
                     ],

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -63,7 +64,7 @@ class _CreateHabitState extends State<CreateHabit> {
   /// Validates reward points.
   String _validatePoints(String value) {
     if (value.isEmpty || int.tryParse(value) == null) {
-      return 'Please enter valid integer';
+      return 'validInteger'.tr();
     } else if (int.parse(value) <= 0) {
       return 'Please enter valid posetive integer';
     }

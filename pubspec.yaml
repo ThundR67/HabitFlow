@@ -32,7 +32,7 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/
+    - assets/translations/en.json
   uses-material-design: true
 
   

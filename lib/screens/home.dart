@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
@@ -50,9 +51,9 @@ class _HomeState extends State<Home> {
     final CyclesBloc cyclesBloc = Provider.of<CyclesBloc>(context);
     final CurrentCycleBloc currentBloc = Provider.of<CurrentCycleBloc>(context);
 
-    return SafeArea(
-      child: Scaffold(
-        body: SizedBox.expand(
+    return Scaffold(
+      body: SafeArea(
+        child: SizedBox.expand(
           child: PageView(
             controller: _pageController,
             onPageChanged: (int index) {
@@ -65,36 +66,36 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavyBar(
-          selectedIndex: _currentIndex,
-          backgroundColor: Colors.black,
-          showElevation: true,
-          onItemSelected: (int index) => setState(() {
-            _currentIndex = index;
-            _pageController.animateToPage(
-              index,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.ease,
-            );
-          }),
-          items: <BottomNavyBarItem>[
-            BottomNavyBarItem(
-              icon: const Icon(Icons.refresh),
-              title: const Text('Cycles'),
-              activeColor: Colors.blue,
-            ),
-            BottomNavyBarItem(
-              icon: const Icon(Icons.today),
-              title: const Text('Today'),
-              activeColor: Colors.red,
-            ),
-            BottomNavyBarItem(
-              icon: const Icon(Icons.star),
-              title: const Text('Rewards'),
-              activeColor: Colors.yellow,
-            ),
-          ],
-        ),
+      ),
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _currentIndex,
+        backgroundColor: Colors.black,
+        showElevation: true,
+        onItemSelected: (int index) => setState(() {
+          _currentIndex = index;
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.ease,
+          );
+        }),
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: const Icon(Icons.refresh),
+            title: Text(tr('cyclesPage')),
+            activeColor: Colors.blue,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(Icons.today),
+            title: Text(tr('todaysPage')),
+            activeColor: Colors.red,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(Icons.star),
+            title: Text(tr('rewardsPage')),
+            activeColor: Colors.yellow,
+          ),
+        ],
       ),
     );
   }

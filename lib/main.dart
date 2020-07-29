@@ -14,7 +14,6 @@ import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/screens/home.dart';
 import 'package:habitflow/screens/create_reward.dart';
-import 'package:habitflow/generated/codegen_loader.g.dart';
 
 void main() {
   runApp(
@@ -29,7 +28,7 @@ void main() {
         ),
       ],
       child: EasyLocalization(
-        supportedLocales: const <Locale>[Locale('en', 'US')],
+        supportedLocales: const <Locale>[Locale('en')],
         path: 'assets/translations',
         child: const App(),
       ),
