@@ -66,7 +66,7 @@ class _CreateHabitState extends State<CreateHabit> {
     if (value.isEmpty || int.tryParse(value) == null) {
       return 'validInteger'.tr();
     } else if (int.parse(value) <= 0) {
-      return 'Please enter valid posetive integer';
+      return tr('posetiveInteger');
     }
     return null;
   }
@@ -74,7 +74,7 @@ class _CreateHabitState extends State<CreateHabit> {
   /// Validates reward name.
   String _validateName(String value) {
     if (value.isEmpty) {
-      return 'Please enter valid name';
+      return tr('validName');
     }
     return null;
   }
@@ -85,7 +85,7 @@ class _CreateHabitState extends State<CreateHabit> {
     _currentBloc = Provider.of<CurrentCycleBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create A Habit'),
+        title: Text(tr('createHabitTitle')),
         centerTitle: true,
         backgroundColor: _color,
         elevation: 0,
@@ -107,13 +107,13 @@ class _CreateHabitState extends State<CreateHabit> {
                       ),
                       NeuInputTextField(
                         controller: _nameController,
-                        text: 'Habit Name',
+                        text: tr('habitName'),
                         validate: _validateName,
                       ),
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
-                        text: 'Reward Points For Completion',
+                        text: tr('rewardPoints'),
                         validate: _validatePoints,
                       ),
                       const SizedBox(height: 16.0),
@@ -121,7 +121,7 @@ class _CreateHabitState extends State<CreateHabit> {
                       const SizedBox(height: 16.0),
                       RaisedButton(
                         onPressed: _create,
-                        child: const Text('Done'),
+                        child: Text(tr('submit')),
                         elevation: 4,
                       ),
                     ],
