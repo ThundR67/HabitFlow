@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -23,7 +24,7 @@ class CurRewardPoints extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text('Current Reward Points'),
+                Text(tr('currentPoints')),
                 RewardPoints(
                   _points,
                   size: 40,

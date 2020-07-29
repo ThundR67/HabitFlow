@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/models/status.dart';
 
@@ -40,11 +41,11 @@ class StatusView extends StatelessWidget {
   String _text() {
     switch (_status) {
       case Status.done:
-        return 'DONE';
+        return tr('done');
       case Status.skipped:
-        return 'SKIPPED';
+        return tr('skipped');
       case Status.failed:
-        return 'FAILED';
+        return tr('failed');
       default:
         return '';
     }

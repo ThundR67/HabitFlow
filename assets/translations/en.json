@@ -11,23 +11,26 @@
     "markSkip" : "Mark As Skipped",
     "markDone" : "Mark as done",
     "markFail" : "Mark as failed",
-    "skip" : "Skip",
+    "skipped" : "Skipped",
     "done" : "Done",
+    "failed" : "Failed",
+    "skip" : "Skip",
     "fail" : "Fail",
+
 
     "failure" : {
         "one" : "Failure",
-        "many" : "Failures"
+        "other" : "Failures"
     },
 
     "habit" : {
         "one" : "Habit",
-        "many" : "Habits"
+        "other" : "Habits"
     },
 
     "reward" : {
         "one" : "Reward",
-        "many" : "Rewards"
+        "other" : "Rewards"
     },
 
     "failures" : "Failures",

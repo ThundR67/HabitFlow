@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
@@ -75,7 +76,6 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
   List<Widget> _childrens(BuildContext context) {
     final CurrentCycleBloc cycleBloc = Provider.of<CurrentCycleBloc>(context);
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
-    final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
 
     final List<Widget> output = <Widget>[];
     final List<_Button> buttons = <_Button>[
@@ -213,7 +213,7 @@ class _HabitsOptionSheetState extends State<HabitsOptionSheet> {
           ),
           RaisedButton(
             color: Colors.grey,
-            child: const Text('Delete'),
+            child: Text(tr('delete')),
             onPressed: () {
               habitsBloc.delete(widget._habit);
               currentBloc.delete(widget._habit.id);

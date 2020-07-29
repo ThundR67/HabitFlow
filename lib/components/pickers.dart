@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
@@ -54,11 +55,11 @@ class _PickersState extends State<Pickers> {
         children: <Widget>[
           Column(
             children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Icon',
-                  style: TextStyle(
+                  tr('icon'),
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -79,11 +80,11 @@ class _PickersState extends State<Pickers> {
           ),
           Column(
             children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Color',
-                  style: TextStyle(
+                  tr('color'),
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                   ),

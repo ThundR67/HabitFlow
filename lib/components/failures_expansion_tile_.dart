@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/models/dates.dart';
@@ -55,9 +56,9 @@ class FailuresPanel extends StatelessWidget {
                     },
                     child: const Icon(Icons.more_vert),
                     itemBuilder: (_) {
-                      return const <PopupMenuItem<int>>[
+                      return <PopupMenuItem<int>>[
                         PopupMenuItem<int>(
-                          child: Text('Mark as skip'),
+                          child: Text(tr('markSkip')),
                           value: 0,
                         ),
                       ];
@@ -75,7 +76,7 @@ class FailuresPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: const Text('Failures'),
+      title: Text(plural('failure', -1)),
       children: _children(),
     );
   }

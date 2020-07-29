@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
@@ -38,7 +39,7 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
     showDialog<AlertDialog>(
       context: context,
       child: AlertDialog(
-        title: const Text('Pick a color'),
+        title: Text(tr('pickColor')),
         content: SingleChildScrollView(
           child: MaterialPicker(
             pickerColor: _currentColor,
@@ -47,7 +48,7 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
         ),
         actions: <Widget>[
           FlatButton(
-            child: const Text('Done'),
+            child: Text(tr('submit')),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],

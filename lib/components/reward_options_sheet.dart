@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/models/reward.dart';
@@ -27,8 +28,8 @@ class RewardOptionsSheet extends StatelessWidget {
           RaisedButton(
             onPressed: () {
               if (_reward.points > pointsBloc.points) {
-                const SnackBar snackBar = SnackBar(
-                    content: Text("You don't have enough reward points"));
+                final SnackBar snackBar =
+                    SnackBar(content: Text(tr('notEnoughPoints')));
                 Scaffold.of(context).showSnackBar(snackBar);
                 Navigator.pop(context);
                 return;
@@ -36,14 +37,14 @@ class RewardOptionsSheet extends StatelessWidget {
               rewardsBloc.take(_reward);
               pointsBloc.decrement(_reward.points);
             },
-            child: const Text('Take This Reward'),
+            child: Text(tr('take')),
           ),
           RaisedButton(
             onPressed: () {
               rewardsBloc.delete(_reward);
               Navigator.pop(context);
             },
-            child: const Text('Delete This Reward'),
+            child: Text(tr('delete')),
           ),
         ],
       ),

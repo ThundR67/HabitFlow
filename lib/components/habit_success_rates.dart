@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -58,7 +59,7 @@ class HabitSuccessRates extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: const Text('Habits'),
+      title: Text(plural('habit', -1)),
       children: _children(),
     );
   }
