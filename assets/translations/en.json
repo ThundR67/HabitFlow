@@ -18,22 +18,13 @@
     "fail" : "Fail",
 
 
-    "failure" : {
-        "one" : "Failure",
-        "other" : "Failures"
-    },
-
-    "habit" : {
-        "one" : "Habit",
-        "other" : "Habits"
-    },
-
-    "reward" : {
-        "one" : "Reward",
-        "other" : "Rewards"
-    },
-
+    "failure" : "Failure",
     "failures" : "Failures",
+    "habit": "Habit",
+    "habits" : "Habits",
+    "reward" : "Reward",
+    "rewards" : "Rewards",
+
     "delete" : "Delete",
 
     "icon" : "Icon",
