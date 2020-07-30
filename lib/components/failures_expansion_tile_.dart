@@ -1,8 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// A expansion tile to show all failures.
 class FailuresPanel extends StatelessWidget {
@@ -50,7 +50,6 @@ class FailuresPanel extends StatelessWidget {
                 if (parseDate(_bloc.current.end).isAfter(DateTime.now()))
                   PopupMenuButton<dynamic>(
                     elevation: 8,
-                    tooltip: 'This is tooltip',
                     onSelected: (dynamic value) {
                       _bloc.skip(id, parseDate(day.date));
                     },
@@ -58,7 +57,7 @@ class FailuresPanel extends StatelessWidget {
                     itemBuilder: (_) {
                       return <PopupMenuItem<int>>[
                         PopupMenuItem<int>(
-                          child: Text(tr('markSkip')),
+                          child: Text(markSkip),
                           value: 0,
                         ),
                       ];
@@ -76,7 +75,7 @@ class FailuresPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: Text(plural('failure', -1)),
+      title: Text(failures),
       children: _children(),
     );
   }

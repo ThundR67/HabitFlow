@@ -1,9 +1,9 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/points_bloc.dart';
@@ -82,17 +82,17 @@ class _HomeState extends State<Home> {
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
             icon: const Icon(Icons.refresh),
-            title: Text(tr('cyclesPage')),
+            title: Text(cyclesPage),
             activeColor: Colors.blue,
           ),
           BottomNavyBarItem(
             icon: const Icon(Icons.today),
-            title: Text(tr('todaysPage')),
+            title: Text(todaysPage),
             activeColor: Colors.red,
           ),
           BottomNavyBarItem(
             icon: const Icon(Icons.star),
-            title: Text(tr('rewardsPage')),
+            title: Text(rewardsPage),
             activeColor: Colors.yellow,
           ),
         ],

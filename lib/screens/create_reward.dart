@@ -1,8 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/models/reward.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
@@ -52,9 +52,9 @@ class _CreateRewardState extends State<CreateReward> {
   /// Validates reward points.
   String _validatePoints(String value) {
     if (value.isEmpty || int.tryParse(value) == null) {
-      return tr('validInteger');
+      return validInteger;
     } else if (int.parse(value) <= 0) {
-      return tr('posetiveInteger');
+      return positiveInteger;
     }
     return null;
   }
@@ -62,7 +62,7 @@ class _CreateRewardState extends State<CreateReward> {
   /// Validates reward name.
   String _validateName(String value) {
     if (value.isEmpty) {
-      return tr('validName');
+      return validName;
     }
     return null;
   }
@@ -72,7 +72,7 @@ class _CreateRewardState extends State<CreateReward> {
     _bloc = Provider.of<RewardsBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(tr('createRewardTitle')),
+        title: Text(createRewardTitle),
         centerTitle: true,
         backgroundColor: _color,
         elevation: 0,
@@ -94,19 +94,19 @@ class _CreateRewardState extends State<CreateReward> {
                       ),
                       NeuInputTextField(
                         controller: _nameController,
-                        text: tr('rewardName'),
+                        text: rewardName,
                         validate: _validateName,
                       ),
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
-                        text: tr('rewardPoints'),
+                        text: rewardPoints,
                         validate: _validatePoints,
                       ),
                       const SizedBox(height: 16.0),
                       RaisedButton(
                         onPressed: _create,
-                        child: Text(tr('submit')),
+                        child: Text(submit),
                         elevation: 4,
                       ),
                     ],

@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// A widget to indicate the status of the habit.
 class StatusView extends StatelessWidget {
@@ -41,11 +41,11 @@ class StatusView extends StatelessWidget {
   String _text() {
     switch (_status) {
       case Status.done:
-        return tr('done');
+        return done;
       case Status.skipped:
-        return tr('skipped');
+        return skipped;
       case Status.failed:
-        return tr('failed');
+        return failed;
       default:
         return '';
     }

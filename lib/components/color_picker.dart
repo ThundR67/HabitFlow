@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// A widget which allows user to pick colors.
 class ColorPickerButton extends StatefulWidget {
@@ -39,7 +39,7 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
     showDialog<AlertDialog>(
       context: context,
       child: AlertDialog(
-        title: Text(tr('pickColor')),
+        title: Text(pickColor),
         content: SingleChildScrollView(
           child: MaterialPicker(
             pickerColor: _currentColor,
@@ -48,7 +48,7 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
         ),
         actions: <Widget>[
           FlatButton(
-            child: Text(tr('submit')),
+            child: Text(submit),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],

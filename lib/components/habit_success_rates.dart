@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 /// A expansion tile to show success rates of all habis.
@@ -59,7 +59,7 @@ class HabitSuccessRates extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: Text(plural('habit', -1)),
+      title: Text(habits),
       children: _children(),
     );
   }

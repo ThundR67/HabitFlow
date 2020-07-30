@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -6,6 +5,7 @@ import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/weekdays_picker.dart';
 import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/resources/strings.dart';
 
 import 'package:provider/provider.dart';
 
@@ -64,9 +64,9 @@ class _CreateHabitState extends State<CreateHabit> {
   /// Validates reward points.
   String _validatePoints(String value) {
     if (value.isEmpty || int.tryParse(value) == null) {
-      return 'validInteger'.tr();
+      return validInteger;
     } else if (int.parse(value) <= 0) {
-      return tr('posetiveInteger');
+      return positiveInteger;
     }
     return null;
   }
@@ -74,7 +74,7 @@ class _CreateHabitState extends State<CreateHabit> {
   /// Validates reward name.
   String _validateName(String value) {
     if (value.isEmpty) {
-      return tr('validName');
+      return validName;
     }
     return null;
   }
@@ -85,7 +85,7 @@ class _CreateHabitState extends State<CreateHabit> {
     _currentBloc = Provider.of<CurrentCycleBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(tr('createHabitTitle')),
+        title: Text(createHabitTitle),
         centerTitle: true,
         backgroundColor: _color,
         elevation: 0,
@@ -107,13 +107,13 @@ class _CreateHabitState extends State<CreateHabit> {
                       ),
                       NeuInputTextField(
                         controller: _nameController,
-                        text: tr('habitName'),
+                        text: habitName,
                         validate: _validateName,
                       ),
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
-                        text: tr('rewardPoints'),
+                        text: rewardPoints,
                         validate: _validatePoints,
                       ),
                       const SizedBox(height: 16.0),
@@ -121,7 +121,7 @@ class _CreateHabitState extends State<CreateHabit> {
                       const SizedBox(height: 16.0),
                       RaisedButton(
                         onPressed: _create,
-                        child: Text(tr('submit')),
+                        child: Text(submit),
                         elevation: 4,
                       ),
                     ],
