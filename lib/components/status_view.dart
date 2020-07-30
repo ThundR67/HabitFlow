@@ -34,7 +34,7 @@ class StatusView extends StatelessWidget {
       case Status.failed:
         return failedIcon;
       default:
-        return Icons.ac_unit;
+        return emptyIcon;
     }
   }
 

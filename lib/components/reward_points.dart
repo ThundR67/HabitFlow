@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/resources/icons.dart';
 
 /// A widget to show reward points with the icon.
 class RewardPoints extends StatelessWidget {
@@ -37,7 +38,7 @@ class RewardPoints extends StatelessWidget {
           width: 2,
         ),
         Icon(
-          Icons.stars,
+          rewardIcon,
           size: size,
           color: color,
         ),

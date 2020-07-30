@@ -5,6 +5,7 @@ import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/weekdays_picker.dart';
 import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
 import 'package:provider/provider.dart';
@@ -26,7 +27,7 @@ class _CreateHabitState extends State<CreateHabit> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pointsController = TextEditingController();
   List<int> _activeDays = <int>[];
-  IconData _icon = Icons.accessibility;
+  IconData _icon = emptyIcon;
   Color _color = Colors.redAccent;
   HabitsBloc _bloc;
   CurrentCycleBloc _currentBloc;

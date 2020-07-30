@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/models/reward.dart';
+import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,7 @@ class _CreateRewardState extends State<CreateReward> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pointsController = TextEditingController();
-  IconData _icon = Icons.accessibility;
+  IconData _icon = emptyIcon;
   Color _color = Colors.redAccent;
   RewardsBloc _bloc;
 
