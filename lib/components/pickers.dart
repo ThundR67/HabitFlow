@@ -4,6 +4,7 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/color_picker.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// A widget which allows user pick icon and color.
 class Pickers extends StatefulWidget {
@@ -58,7 +59,7 @@ class _PickersState extends State<Pickers> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  tr('icon'),
+                  icon,
                   style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
@@ -83,7 +84,7 @@ class _PickersState extends State<Pickers> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  tr('color'),
+                  color,
                   style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,

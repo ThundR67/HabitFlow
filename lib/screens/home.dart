@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
+import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
@@ -81,17 +82,17 @@ class _HomeState extends State<Home> {
         }),
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(cycleIcon),
             title: Text(cyclesPage),
             activeColor: Colors.blue,
           ),
           BottomNavyBarItem(
-            icon: const Icon(Icons.today),
+            icon: const Icon(todayIcon),
             title: Text(todaysPage),
             activeColor: Colors.red,
           ),
           BottomNavyBarItem(
-            icon: const Icon(Icons.star),
+            icon: const Icon(rewardIcon),
             title: Text(rewardsPage),
             activeColor: Colors.yellow,
           ),

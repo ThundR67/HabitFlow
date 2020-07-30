@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A expansion tile to show all failures.
@@ -53,7 +54,7 @@ class FailuresPanel extends StatelessWidget {
                     onSelected: (dynamic value) {
                       _bloc.skip(id, parseDate(day.date));
                     },
-                    child: const Icon(Icons.more_vert),
+                    child: const Icon(moreIcon),
                     itemBuilder: (_) {
                       return <PopupMenuItem<int>>[
                         PopupMenuItem<int>(

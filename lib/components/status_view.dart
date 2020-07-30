@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A widget to indicate the status of the habit.
@@ -27,11 +28,11 @@ class StatusView extends StatelessWidget {
   IconData _icon() {
     switch (_status) {
       case Status.done:
-        return Icons.done;
+        return doneIcon;
       case Status.skipped:
-        return Icons.replay;
+        return skippedIcon;
       case Status.failed:
-        return Icons.cancel;
+        return failedIcon;
       default:
         return Icons.ac_unit;
     }

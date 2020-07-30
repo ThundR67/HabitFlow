@@ -4,6 +4,7 @@ import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
 import 'package:habitflow/components/inline_calendar.dart';
 import 'package:habitflow/components/quote.dart';
+import 'package:habitflow/resources/icons.dart';
 
 /// A screen to show user about todays information.
 class Today extends StatelessWidget {
@@ -36,7 +37,7 @@ class Today extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).pushNamed('/create_habit');
         },
-        child: const Icon(Icons.add),
+        child: const Icon(addIcon),
       ),
     );
   }
