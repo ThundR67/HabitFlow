@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 const IconData rewardIcon = Icons.stars_rounded;
 
 /// Icon to show cycle.
-const IconData cycleIcon = Icons.repeat_rounded;
+const IconData cycleIcon = Icons.replay_rounded;
 
 /// Icon to show today.
 const IconData todayIcon = Icons.today_rounded;
@@ -26,4 +26,4 @@ const IconData moreIcon = Icons.more_vert_rounded;
 const IconData addIcon = Icons.add_rounded;
 
 /// Icon just to placehold
-const IconData emptyIcon = Icons.local_dining;
+const IconData emptyIcon = Icons.accessibility_rounded;
