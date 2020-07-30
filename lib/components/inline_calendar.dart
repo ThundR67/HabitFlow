@@ -3,17 +3,8 @@ import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/success_rate.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-
-const List<String> _weekdays = <String>[
-  'MON',
-  'TUE',
-  'WED',
-  'THU',
-  'FRI',
-  'SAT',
-  'SUN',
-];
 
 /// A widget to show info about a single date.
 class _SingleDate extends StatelessWidget {
@@ -35,7 +26,7 @@ class _SingleDate extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Text(
-            _weekdays[_date.weekday - 1],
+            weekdays[_date.weekday - 1],
             style: const TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w600,
