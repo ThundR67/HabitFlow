@@ -75,11 +75,7 @@ class _HomeState extends State<Home> {
         showElevation: true,
         onItemSelected: (int index) => setState(() {
           _currentIndex = index;
-          _pageController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.ease,
-          );
+          _pageController.jumpToPage(index);
         }),
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
