@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:sembast/sembast.dart';
-import 'package:habitflow/models/cycle.dart';
 
+import 'package:habitflow/models/cycle.dart';
 import 'db.dart';
 
 const String _storeName = 'cycles';

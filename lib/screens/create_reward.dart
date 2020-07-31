@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:habitflow/models/reward.dart';
-import 'package:habitflow/resources/icons.dart';
-import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/neu_text_field.dart';
 import 'package:habitflow/components/pickers.dart';
+import 'package:habitflow/models/reward.dart';
+import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// A screen which allows user to create a reward.
 class CreateReward extends StatefulWidget {

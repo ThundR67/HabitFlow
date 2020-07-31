@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:habitflow/resources/icons.dart';
 
 /// A widget to show reward points with the icon.

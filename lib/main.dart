@@ -1,19 +1,20 @@
 import 'dart:math';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
-import 'package:habitflow/screens/create_habit.dart';
-import 'package:habitflow/services/quotes/quotes.dart';
-import 'package:provider/provider.dart';
-
-import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
-import 'package:habitflow/screens/home.dart';
+import 'package:habitflow/blocs/rewards_bloc.dart';
+import 'package:habitflow/screens/create_habit.dart';
 import 'package:habitflow/screens/create_reward.dart';
+import 'package:habitflow/screens/home.dart';
+import 'package:habitflow/services/quotes/quotes.dart';
 
 void main() {
   runApp(

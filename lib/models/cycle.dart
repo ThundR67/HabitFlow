@@ -1,6 +1,7 @@
-import 'package:habitflow/models/day.dart';
 import 'package:intl/intl.dart';
 import 'package:random_string/random_string.dart';
+
+import 'package:habitflow/models/day.dart';
 
 //// Formatter to format dates.
 final DateFormat formatter = DateFormat('yyyy-MM-dd');

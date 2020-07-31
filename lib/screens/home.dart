@@ -1,14 +1,15 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
-import 'package:habitflow/resources/icons.dart';
-import 'package:habitflow/resources/strings.dart';
-import 'package:provider/provider.dart';
-
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
+import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/cycles.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
@@ -94,7 +95,7 @@ class _HomeState extends State<Home> {
           BottomNavyBarItem(
             icon: const Icon(rewardIcon),
             title: Text(rewardsPage),
-            activeColor: Colors.yellow,
+            activeColor: Colors.amber,
           ),
         ],
       ),

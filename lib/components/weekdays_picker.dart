@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:weekday_selector/weekday_selector.dart';
 
 /// A widget to allow user to pick weekdays.

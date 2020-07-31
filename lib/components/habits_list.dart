@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
-import 'package:habitflow/components/habits_option_sheet.dart';
 
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+
+import 'package:habitflow/components/habits_option_sheet.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/status_view.dart';

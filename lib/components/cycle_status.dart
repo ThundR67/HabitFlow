@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:percent_indicator/circular_percent_indicator.dart';
+
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/success_rate.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 /// A widget to display status of cycle.
 class CycleStatus extends StatelessWidget {

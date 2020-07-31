@@ -1,5 +1,6 @@
-import 'package:habitflow/models/dates.dart';
 import 'package:random_string/random_string.dart';
+
+import 'package:habitflow/models/dates.dart';
 
 /// Key of [Day.id].
 const String idKey = 'id';

@@ -1,4 +1,5 @@
 /// Stores all variables to translations.
+
 import 'package:easy_localization/easy_localization.dart';
 
 /// List of initals of months.

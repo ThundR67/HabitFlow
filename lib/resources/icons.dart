@@ -1,4 +1,5 @@
 /// Store all icons used by the app.
+
 import 'package:flutter/material.dart';
 
 /// Icon to show reward points.

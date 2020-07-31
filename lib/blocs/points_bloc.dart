@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:habitflow/services/reward_points/reward_points.dart';
 
 /// A bloc to manage and store user's reward points.

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/cycle_status.dart';
@@ -7,7 +10,6 @@ import 'package:habitflow/components/habit_success_rates.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/success_rate.dart';
-import 'package:provider/provider.dart';
 
 /// Shows data about a cycle.
 class CycleInfo extends StatelessWidget {
