@@ -33,7 +33,7 @@ class Rewards extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        heroTag: 'btn2',
+        heroTag: 'create_reward',
         onPressed: () {
           Navigator.of(context).pushNamed('/create_reward');
         },
