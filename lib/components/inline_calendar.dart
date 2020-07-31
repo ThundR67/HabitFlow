@@ -82,17 +82,14 @@ class InlineCalendar extends StatelessWidget {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        alignment: Alignment.center,
-        child: Center(
-          child: SingleChildScrollView(
-            physics: scrollPhysics,
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: _dates(),
-            ),
+    return Container(
+      alignment: Alignment.center,
+      child: Center(
+        child: SingleChildScrollView(
+          physics: scrollPhysics,
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: _dates(),
           ),
         ),
       ),

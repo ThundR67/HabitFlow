@@ -25,12 +25,21 @@ class Today extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      appBar: AppBar(
+        flexibleSpace: Quote(_quoteID),
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: Colors.grey[850],
+      ),
       body: Column(
         children: <Widget>[
-          Quote(_quoteID),
           InlineCalendar(_currentBloc.current),
-          HabitsList(_bloc.habits, _currentBloc.statuses),
+          Expanded(
+            child: Container(
+              color: Colors.grey[850],
+              child: HabitsList(_bloc.habits, _currentBloc.statuses),
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

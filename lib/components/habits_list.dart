@@ -108,8 +108,8 @@ class HabitsList extends StatelessWidget {
         if (_statuses.length > i) {
           status = _statuses[i];
         }
-        output.add(_Habit(_habits[i], status));
         output.add(const SizedBox(height: 8.0));
+        output.add(_Habit(_habits[i], status));
       }
     }
     return output;
@@ -120,20 +120,9 @@ class HabitsList extends StatelessWidget {
     if (_habits == null || _statuses == null) {
       return const LinearProgressIndicator();
     }
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[850],
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16.0),
-            topRight: Radius.circular(16.0),
-          ),
-        ),
-        child: ListView(
-          physics: scrollPhysics,
-          children: _habitsCards(),
-        ),
-      ),
+    return ListView(
+      physics: scrollPhysics,
+      children: _habitsCards(),
     );
   }
 }
