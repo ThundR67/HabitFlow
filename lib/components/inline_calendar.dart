@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/resources/behaviour.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -87,6 +88,7 @@ class InlineCalendar extends StatelessWidget {
         alignment: Alignment.center,
         child: Center(
           child: SingleChildScrollView(
+            physics: scrollPhysics,
             scrollDirection: Axis.horizontal,
             child: Row(
               children: _dates(),

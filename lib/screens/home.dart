@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:habitflow/resources/behaviour.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
@@ -57,6 +58,7 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: SizedBox.expand(
           child: PageView(
+            physics: scrollPhysics,
             controller: _pageController,
             onPageChanged: (int index) {
               setState(() => _currentIndex = index);

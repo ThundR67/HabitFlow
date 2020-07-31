@@ -4,6 +4,7 @@ import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/components/cycle.dart';
 import 'package:habitflow/models/cycle.dart';
+import 'package:habitflow/resources/behaviour.dart';
 
 /// Cycles screen
 class Cycles extends StatelessWidget {
@@ -44,6 +45,7 @@ class Cycles extends StatelessWidget {
 
     return SafeArea(
       child: SingleChildScrollView(
+        physics: scrollPhysics,
         child: Column(
           children: _cycles(),
         ),

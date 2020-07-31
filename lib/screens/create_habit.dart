@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/resources/behaviour.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
@@ -94,6 +95,7 @@ class _CreateHabitState extends State<CreateHabit> {
       body: SafeArea(
         child: Center(
           child: ListView(
+            physics: scrollPhysics,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(24.0),

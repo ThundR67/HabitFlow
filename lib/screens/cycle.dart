@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/resources/behaviour.dart';
 
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,8 @@ class CycleInfo extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: Column(
+        body: ListView(
+          physics: scrollPhysics,
           children: <Widget>[
             CycleStatus(_cycle),
             HabitSuccessRates(

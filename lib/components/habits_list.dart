@@ -8,6 +8,7 @@ import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/status_view.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/resources/behaviour.dart';
 
 Color _colorFromHex(String hexColor) {
   final String hexCode = hexColor.replaceAll('#', '');
@@ -129,6 +130,7 @@ class HabitsList extends StatelessWidget {
           ),
         ),
         child: ListView(
+          physics: scrollPhysics,
           children: _habitsCards(),
         ),
       ),
