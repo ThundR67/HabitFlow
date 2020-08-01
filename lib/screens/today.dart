@@ -30,15 +30,17 @@ class Today extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: SingleChildScrollView(
-        physics: scrollPhysics,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            InlineCalendar(_currentBloc.current),
-            HabitsList(_bloc.habits, _currentBloc.statuses),
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          InlineCalendar(_currentBloc.current),
+          Expanded(
+            child: SingleChildScrollView(
+              physics: scrollPhysics,
+              child: HabitsList(_bloc.habits, _currentBloc.statuses),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'create_habit',
