@@ -120,9 +120,11 @@ class HabitsList extends StatelessWidget {
     if (_habits == null || _statuses == null) {
       return const LinearProgressIndicator();
     }
-    return ListView(
-      physics: scrollPhysics,
-      children: _habitsCards(),
+    return Padding(
+      padding: const EdgeInsets.all(0.0),
+      child: Column(
+        children: _habitsCards(),
+      ),
     );
   }
 }

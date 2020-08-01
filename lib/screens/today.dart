@@ -5,6 +5,7 @@ import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
 import 'package:habitflow/components/inline_calendar.dart';
 import 'package:habitflow/components/quote.dart';
+import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 
 /// A screen to show user about todays information.
@@ -31,16 +32,15 @@ class Today extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
       ),
-      body: Column(
-        children: <Widget>[
-          InlineCalendar(_currentBloc.current),
-          Expanded(
-            child: Container(
-              color: Colors.grey[850],
-              child: HabitsList(_bloc.habits, _currentBloc.statuses),
-            ),
-          ),
-        ],
+      body: SingleChildScrollView(
+        physics: scrollPhysics,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            InlineCalendar(_currentBloc.current),
+            HabitsList(_bloc.habits, _currentBloc.statuses),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'create_habit',
