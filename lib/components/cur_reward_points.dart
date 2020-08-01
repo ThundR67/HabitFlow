@@ -18,6 +18,7 @@ class CurRewardPoints extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: NeuCard(
+        context: context,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

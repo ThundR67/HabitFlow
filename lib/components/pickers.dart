@@ -67,6 +67,7 @@ class _PickersState extends State<Pickers> {
                 ),
               ),
               NeuCard(
+                context: context,
                 depth: 1.5,
                 radius: 100.0,
                 child: IconButton(
@@ -90,6 +91,7 @@ class _PickersState extends State<Pickers> {
                 ),
               ),
               NeuCard(
+                context: context,
                 depth: 1.5,
                 radius: 100.0,
                 child: Padding(

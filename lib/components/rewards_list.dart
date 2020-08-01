@@ -30,6 +30,7 @@ class _Reward extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: NeuCard(
+        context: context,
         child: Material(
           color: Colors.transparent,
           child: InkWell(

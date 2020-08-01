@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/resources/themes.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
@@ -50,7 +51,7 @@ class App extends StatelessWidget {
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
-      theme: ThemeData.dark(),
+      theme: darkTheme,
       initialRoute: '/home',
       routes: <String, Widget Function(BuildContext)>{
         '/home': (BuildContext context) =>

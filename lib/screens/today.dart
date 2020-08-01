@@ -7,6 +7,7 @@ import 'package:habitflow/components/inline_calendar.dart';
 import 'package:habitflow/components/quote.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// A screen to show user about todays information.
 class Today extends StatelessWidget {
@@ -27,10 +28,7 @@ class Today extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Quote(_quoteID),
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.grey[850],
+        title: Text(title),
       ),
       body: SingleChildScrollView(
         physics: scrollPhysics,

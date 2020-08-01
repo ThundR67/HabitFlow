@@ -15,6 +15,7 @@ class CycleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NeuCard(
+      context: context,
       child: Material(
         color: Colors.transparent,
         child: InkWell(

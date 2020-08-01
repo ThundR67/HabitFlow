@@ -29,6 +29,9 @@ List<String> weekdays = <String>[
   tr('sunday'),
 ];
 
+/// Refers to title in translations.
+String title = tr('title');
+
 /// Refers to cyclesPage in translations.
 String cyclesPage = tr('cyclesPage');
 
