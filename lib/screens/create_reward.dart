@@ -77,9 +77,7 @@ class _CreateRewardState extends State<CreateReward> {
     return Scaffold(
       appBar: AppBar(
         title: Text(createRewardTitle),
-        centerTitle: true,
         backgroundColor: _color,
-        elevation: 0,
       ),
       body: SafeArea(
         child: Center(
