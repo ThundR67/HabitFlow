@@ -14,4 +14,10 @@ ThemeData darkTheme = ThemeData(
     centerTitle: true,
     elevation: 0,
   ),
+  textTheme: const TextTheme(
+    headline5: TextStyle(
+      fontSize: 24.0,
+      fontWeight: FontWeight.w800,
+    ),
+  ),
 );

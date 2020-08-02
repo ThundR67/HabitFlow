@@ -9,7 +9,7 @@ class RewardPoints extends StatelessWidget {
     this._points, {
     Key key,
     this.size = 16.0,
-    this.color = Colors.yellow,
+    this.color = Colors.amber,
   }) : super(key: key);
 
   final int _points;
