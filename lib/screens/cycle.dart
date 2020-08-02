@@ -29,9 +29,9 @@ class CycleInfo extends StatelessWidget {
       for (Habit habit in bloc.habits) habit.id: habit.name
     };
 
-    return SafeArea(
-      child: Scaffold(
-        body: ListView(
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
           physics: scrollPhysics,
           children: <Widget>[
             CycleStatus(_cycle),

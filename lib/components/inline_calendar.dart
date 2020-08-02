@@ -29,7 +29,7 @@ class _SingleDate extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Text(
-            weekdays[_date.weekday - 1],
+            weekdays[_date.weekday - 1][0],
             style: Theme.of(context).textTheme.caption,
           ),
           const SizedBox(height: 4.0),
