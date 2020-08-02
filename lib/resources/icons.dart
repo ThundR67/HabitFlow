@@ -18,7 +18,7 @@ const IconData doneIcon = Icons.done_rounded;
 const IconData failedIcon = Icons.cancel_rounded;
 
 /// Icon to show skipped.
-const IconData skippedIcon = Icons.repeat_rounded;
+const IconData skippedIcon = Icons.replay_rounded;
 
 /// Icon to show more.
 const IconData moreIcon = Icons.more_vert_rounded;
