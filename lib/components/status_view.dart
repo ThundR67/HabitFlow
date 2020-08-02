@@ -55,28 +55,20 @@ class StatusView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        ClipOval(
-          child: Material(
-            color: _color(), // button color
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                _icon(),
-                size: 24,
-              ),
-            ),
-          ),
+        Icon(
+          _icon(),
+          color: _color(),
+          size: Theme.of(context).textTheme.subtitle1.fontSize,
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(width: 4.0),
         Text(
-          _text(),
+          _text().toLowerCase(),
           style: TextStyle(
             color: _color(),
-            fontSize: 16.0,
-            fontWeight: FontWeight.w600,
+            fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
           ),
         ),
       ],

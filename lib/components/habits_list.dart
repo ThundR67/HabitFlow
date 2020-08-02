@@ -58,25 +58,21 @@ class _Habit extends StatelessWidget {
                       ),
                       const SizedBox(width: 16.0),
                       Expanded(
-                        child: Text(
-                          _habit.name,
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w600,
-                            decoration: _status == Status.unmarked
-                                ? null
-                                : TextDecoration.lineThrough,
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Opacity(
+                              opacity: _status == Status.unmarked ? 1 : 0.5,
+                              child: Text(
+                                _habit.name,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            if (_status != Status.unmarked) StatusView(_status),
+                          ],
                         ),
                       ),
-                      if (_status == Status.unmarked)
-                        RewardPoints(
-                          _habit.points,
-                          size: 24.0,
-                          color: _colorFromHex(_habit.colorHex),
-                        )
-                      else
-                        StatusView(_status)
                     ],
                   ),
                 ),
