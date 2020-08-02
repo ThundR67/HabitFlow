@@ -73,8 +73,9 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
-        //backgroundColor: Colors.black,
         showElevation: true,
+        backgroundColor:
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         onItemSelected: (int index) => setState(() {
           _currentIndex = index;
           _pageController.jumpToPage(index);
