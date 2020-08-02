@@ -26,8 +26,8 @@ class RewardPoints extends StatelessWidget {
       return const CircularProgressIndicator();
     }
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
           _points.toString(),

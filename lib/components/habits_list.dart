@@ -69,7 +69,10 @@ class _Habit extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 4),
-                            if (_status != Status.unmarked) StatusView(_status),
+                            if (_status != Status.unmarked)
+                              StatusView(_status)
+                            else
+                              RewardPoints(_habit.points)
                           ],
                         ),
                       ),
