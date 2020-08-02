@@ -171,7 +171,6 @@ class FailuresPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(_days[_days.length - 1].failures);
     return ExpansionTile(
       title: Text(failures),
       children: _children(),

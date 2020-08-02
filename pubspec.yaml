@@ -33,6 +33,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/translations/en.json
+    - assets/images/logo.png
   uses-material-design: true
 
   

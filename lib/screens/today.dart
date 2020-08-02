@@ -28,9 +28,23 @@ class Today extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          title,
-          style: Theme.of(context).textTheme.headline5,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.cover,
+                height: 44,
+              ),
+            ),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.headline5,
+            )
+          ],
         ),
         automaticallyImplyLeading: false,
       ),
