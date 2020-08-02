@@ -60,10 +60,7 @@ class _PickersState extends State<Pickers> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   icon,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ),
               NeuCard(
@@ -84,10 +81,7 @@ class _PickersState extends State<Pickers> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   color,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ),
               NeuCard(

@@ -30,10 +30,7 @@ class _SingleDate extends StatelessWidget {
         children: <Widget>[
           Text(
             weekdays[_date.weekday - 1],
-            style: const TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.w600,
-            ),
+            style: Theme.of(context).textTheme.caption,
           ),
           const SizedBox(height: 4.0),
           CircularPercentIndicator(
@@ -44,10 +41,7 @@ class _SingleDate extends StatelessWidget {
             percent: successRate,
             center: Text(
               _date.day.toString(),
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w600,
-              ),
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
         ],

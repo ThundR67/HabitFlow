@@ -124,7 +124,10 @@ class _CreateHabitState extends State<CreateHabit> {
                       RaisedButton(
                         color: _color,
                         onPressed: _create,
-                        child: Text(submit),
+                        child: Text(
+                          submit,
+                          style: Theme.of(context).textTheme.subtitle2,
+                        ),
                         elevation: 4,
                       ),
                     ],

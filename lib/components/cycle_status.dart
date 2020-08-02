@@ -25,17 +25,11 @@ class CycleStatus extends StatelessWidget {
       children: <Widget>[
         Text(
           months[start.month - 1],
-          style: const TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.headline5,
         ),
         Text(
           '${start.day} - ${end.day}',
-          style: const TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.headline5,
         ),
         CircularPercentIndicator(
           radius: 64.0,
@@ -45,10 +39,7 @@ class CycleStatus extends StatelessWidget {
           backgroundColor: Colors.transparent,
           center: Text(
             (successRate * 100).toStringAsFixed(1) + '%',
-            style: const TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.headline6,
           ),
         ),
       ],

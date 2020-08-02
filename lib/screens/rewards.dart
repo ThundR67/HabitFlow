@@ -23,12 +23,11 @@ class Rewards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: RewardPoints(
-            _pointsBloc.points,
-            size: 32,
-          ),
+        title: RewardPoints(
+          _pointsBloc.points,
+          size: 32,
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         physics: scrollPhysics,

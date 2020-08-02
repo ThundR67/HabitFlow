@@ -53,14 +53,12 @@ class _Reward extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               _reward.name,
-                              style: const TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: Theme.of(context).textTheme.headline6,
                             ),
                             const SizedBox(width: 8.0),
                             Text(
                               'X ${_reward.amountTaken}',
+                              style: Theme.of(context).textTheme.subtitle1,
                             ),
                           ],
                         ),
