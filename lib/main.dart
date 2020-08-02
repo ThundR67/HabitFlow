@@ -50,8 +50,9 @@ class App extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      darkTheme: darkTheme,
+      themeMode: ThemeMode.system,
+      darkTheme: darkTheme(),
+      theme: lightTheme(),
       initialRoute: '/home',
       routes: <String, Widget Function(BuildContext)>{
         '/home': (BuildContext context) =>
