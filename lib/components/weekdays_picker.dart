@@ -5,23 +5,28 @@ import 'package:weekday_selector/weekday_selector.dart';
 /// A widget to allow user to pick weekdays.
 class WeekdaysPicker extends StatefulWidget {
   /// Constructs.
-  const WeekdaysPicker(this._onChange, {Key key}) : super(key: key);
+  const WeekdaysPicker(
+    this._onChange,
+    this._color, {
+    Key key,
+  }) : super(key: key);
 
   final Function _onChange;
+  final Color _color;
 
   @override
-  _WeekdaysPickerState createState() => _WeekdaysPickerState(_onChange);
+  _WeekdaysPickerState createState() => _WeekdaysPickerState();
 }
 
 class _WeekdaysPickerState extends State<WeekdaysPicker> {
-  _WeekdaysPickerState(this._onChange);
+  _WeekdaysPickerState();
 
   final List<bool> values = List<bool>.filled(7, false);
-  final Function _onChange;
 
   @override
   Widget build(BuildContext context) {
     return WeekdaySelector(
+      selectedFillColor: widget._color,
       onChanged: (int day) {
         final List<int> activeDays = <int>[];
         setState(() {
@@ -35,7 +40,7 @@ class _WeekdaysPickerState extends State<WeekdaysPicker> {
             activeDays.add(i);
           }
         }
-        _onChange(activeDays);
+        widget._onChange(activeDays);
       },
       values: values,
     );

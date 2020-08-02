@@ -63,9 +63,6 @@ class _Habit extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
-                            color: _status == Status.unmarked
-                                ? Colors.white
-                                : Colors.grey,
                             decoration: _status == Status.unmarked
                                 ? null
                                 : TextDecoration.lineThrough,

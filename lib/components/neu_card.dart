@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 Color _darker(Color color) {
-  const int delta = 16;
+  const int delta = 12;
   return Color.fromARGB(
     color.alpha,
     color.red - delta,
@@ -30,7 +30,7 @@ class NeuCard extends StatelessWidget {
     @required this.context,
     this.child,
     this.radius = 8.0,
-    this.depth = 4,
+    this.depth = 3,
   }) : super(key: key);
 
   /// Context.
@@ -48,7 +48,6 @@ class NeuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color color = Theme.of(context).scaffoldBackgroundColor;
-    print(Colors.grey[850].red - Colors.grey[900].red);
     return Neumorphic(
       child: child,
       style: NeumorphicStyle(
@@ -56,7 +55,7 @@ class NeuCard extends StatelessWidget {
           BorderRadius.circular(radius),
         ),
         depth: depth,
-        intensity: 1,
+        intensity: 0.8,
         color: color,
         shadowDarkColor: _darker(color),
         shadowLightColor: _lighter(color), //customize color here

@@ -2,6 +2,26 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+Color _darker(Color color) {
+  const int delta = 12;
+  return Color.fromARGB(
+    color.alpha,
+    color.red - delta,
+    color.green - delta,
+    color.blue - delta,
+  );
+}
+
+Color _lighter(Color color) {
+  const int delta = 16;
+  return Color.fromARGB(
+    color.alpha,
+    color.red + delta,
+    color.green + delta,
+    color.blue + delta,
+  );
+}
+
 /// A widget to allow input of text.
 class NeuInputTextField extends StatelessWidget {
   /// Constructs
@@ -23,6 +43,7 @@ class NeuInputTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color color = Theme.of(context).scaffoldBackgroundColor;
     return Container(
       child: Neumorphic(
         style: NeumorphicStyle(
@@ -31,9 +52,9 @@ class NeuInputTextField extends StatelessWidget {
           ),
           depth: -2,
           intensity: 1,
-          color: Colors.grey[850],
-          shadowDarkColorEmboss: Colors.grey[900],
-          shadowLightColorEmboss: Colors.grey[800], //customize color here
+          color: color,
+          shadowDarkColorEmboss: _darker(color),
+          shadowLightColorEmboss: _lighter(color),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),

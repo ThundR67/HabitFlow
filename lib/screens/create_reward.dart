@@ -26,7 +26,7 @@ class _CreateRewardState extends State<CreateReward> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pointsController = TextEditingController();
   IconData _icon = emptyIcon;
-  Color _color = Colors.redAccent;
+  Color _color;
   RewardsBloc _bloc;
 
   /// Changes [_color] and [_icon] to what user selected.
@@ -73,6 +73,7 @@ class _CreateRewardState extends State<CreateReward> {
   @override
   Widget build(BuildContext context) {
     _bloc = Provider.of<RewardsBloc>(context);
+    _color ??= Theme.of(context).accentColor;
     return Scaffold(
       appBar: AppBar(
         title: Text(createRewardTitle),
@@ -109,6 +110,7 @@ class _CreateRewardState extends State<CreateReward> {
                       ),
                       const SizedBox(height: 16.0),
                       RaisedButton(
+                        color: _color,
                         onPressed: _create,
                         child: Text(submit),
                         elevation: 4,

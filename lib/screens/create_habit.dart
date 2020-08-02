@@ -29,7 +29,7 @@ class _CreateHabitState extends State<CreateHabit> {
   final TextEditingController _pointsController = TextEditingController();
   List<int> _activeDays = <int>[];
   IconData _icon = emptyIcon;
-  Color _color = Colors.redAccent;
+  Color _color;
   HabitsBloc _bloc;
   CurrentCycleBloc _currentBloc;
 
@@ -85,6 +85,7 @@ class _CreateHabitState extends State<CreateHabit> {
   Widget build(BuildContext context) {
     _bloc = Provider.of<HabitsBloc>(context);
     _currentBloc = Provider.of<CurrentCycleBloc>(context);
+    _color ??= Theme.of(context).accentColor;
     return Scaffold(
       appBar: AppBar(
         title: Text(createHabitTitle),
@@ -120,9 +121,10 @@ class _CreateHabitState extends State<CreateHabit> {
                         validate: _validatePoints,
                       ),
                       const SizedBox(height: 16.0),
-                      WeekdaysPicker(_onWeekdaysChange),
+                      WeekdaysPicker(_onWeekdaysChange, _color),
                       const SizedBox(height: 16.0),
                       RaisedButton(
+                        color: _color,
                         onPressed: _create,
                         child: Text(submit),
                         elevation: 4,
