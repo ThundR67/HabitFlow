@@ -23,6 +23,9 @@ const IconData skippedIcon = Icons.replay_rounded;
 /// Icon to show more.
 const IconData moreIcon = Icons.more_vert_rounded;
 
+/// Icon to show undo.
+const IconData undoIcon = Icons.undo;
+
 /// Icon to add something.
 const IconData addIcon = Icons.add_rounded;
 

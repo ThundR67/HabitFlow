@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/points_bloc.dart';
+import 'package:habitflow/components/action_button.dart';
 
 import 'package:habitflow/components/habits_option_sheet.dart';
 import 'package:habitflow/components/neu_card.dart';
@@ -10,6 +13,8 @@ import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/strings.dart';
+import 'package:provider/provider.dart';
 
 Color _colorFromHex(String hexColor) {
   final String hexCode = hexColor.replaceAll('#', '');
@@ -34,50 +39,118 @@ class _Habit extends StatelessWidget {
     );
   }
 
+  /// Shows failure reason prompt.
+  void _showFailureReasonSheet(BuildContext context, CurrentCycleBloc bloc) {
+    Scaffold.of(context).showBottomSheet<FailureReviewSheet>(
+      (BuildContext context) => FailureReviewSheet(
+        _habit,
+        bloc,
+      ),
+    );
+  }
+
+  /// Returns undo action only.
+  List<Widget> _undoAction(CurrentCycleBloc bloc) {
+    return <Widget>[
+      ActionButton(
+        color: Colors.orangeAccent[700],
+        text: undo,
+        onPressed: () => bloc.undo(_habit.id),
+        icon: undoIcon,
+      )
+    ];
+  }
+
+  /// Returns all primary actions on habit.
+  List<Widget> _actions(CurrentCycleBloc bloc, PointsBloc pointsBloc) {
+    return <Widget>[
+      ActionButton(
+        color: Colors.green,
+        text: done,
+        onPressed: () {
+          bloc.done(_habit.id);
+          pointsBloc.increment(_habit.points);
+        },
+        icon: doneIcon,
+      )
+    ];
+  }
+
+  /// Returns all secondary actions on habit.
+  List<Widget> _secondaryActions(BuildContext context, CurrentCycleBloc bloc) {
+    return <Widget>[
+      ActionButton(
+        color: Colors.blue,
+        text: skip,
+        onPressed: () => bloc.skip(_habit.id),
+        icon: skippedIcon,
+      ),
+      ActionButton(
+        color: Colors.red,
+        text: fail,
+        onPressed: () => _showFailureReasonSheet(context, bloc),
+        icon: failedIcon,
+      )
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: NeuCard(
-        context: context,
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: () => _showSheet(context),
-            child: Ink(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        mapToIconData(_habit.iconData),
-                        color: _status == Status.unmarked
-                            ? _colorFromHex(_habit.colorHex)
-                            : Colors.grey,
-                      ),
-                      const SizedBox(width: 16.0),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Opacity(
-                              opacity: _status == Status.unmarked ? 1 : 0.5,
-                              child: Text(
-                                _habit.name,
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            if (_status != Status.unmarked)
-                              StatusView(_status)
-                            else
-                              RewardPoints(_habit.points)
-                          ],
+    final CurrentCycleBloc currentBloc = Provider.of<CurrentCycleBloc>(context);
+    final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+    final bool isUnmarked = _status == Status.unmarked;
+
+    return Slidable(
+      actions: isUnmarked
+          ? _actions(currentBloc, pointsBloc)
+          : _undoAction(currentBloc),
+      secondaryActions: isUnmarked
+          ? _secondaryActions(context, currentBloc)
+          : _undoAction(currentBloc),
+      actionPane: const SlidableScrollActionPane(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: NeuCard(
+          context: context,
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => _showSheet(context),
+              child: Ink(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          mapToIconData(_habit.iconData),
+                          color: isUnmarked
+                              ? _colorFromHex(_habit.colorHex)
+                              : Colors.grey,
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Opacity(
+                                opacity: _status == Status.unmarked ? 1 : 0.5,
+                                child: Text(
+                                  _habit.name,
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              if (!isUnmarked)
+                                StatusView(_status)
+                              else
+                                RewardPoints(_habit.points)
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -97,29 +170,6 @@ class HabitsList extends StatelessWidget {
   final List<Habit> _habits;
   final List<Status> _statuses;
 
-  /// Returns single action widget.
-  Widget _actionButton(Color color) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      margin: const EdgeInsets.all(4.0),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: const BorderRadius.all(Radius.circular(16)),
-      ),
-      child: IconSlideAction(
-        caption: 'Skip',
-        color: color,
-        icon: skippedIcon,
-        onTap: () {},
-      ),
-    );
-  }
-
-  /// Returns all actions on habit.
-  List<Widget> _actions() {
-    return <Widget>[_actionButton(Colors.blue)];
-  }
-
   /// Returns all habits.
   List<Widget> _habitsCards() {
     final List<Widget> output = <Widget>[];
@@ -130,13 +180,8 @@ class HabitsList extends StatelessWidget {
           status = _statuses[i];
         }
         output.add(const SizedBox(height: 8.0));
-
         output.add(
-          Slidable(
-            child: _Habit(_habits[i], status),
-            actions: _actions(),
-            actionPane: const SlidableScrollActionPane(),
-          ),
+          _Habit(_habits[i], status),
         );
       }
     }

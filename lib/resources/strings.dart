@@ -29,6 +29,9 @@ List<String> weekdays = <String>[
   tr('sunday'),
 ];
 
+/// Refers to undo in translations.
+String undo = tr('undo');
+
 /// Refers to title in translations.
 String title = tr('title');
 
