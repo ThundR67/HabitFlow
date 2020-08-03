@@ -32,7 +32,7 @@ class CycleStatus extends StatelessWidget {
           style: Theme.of(context).textTheme.headline5,
         ),
         CircularPercentIndicator(
-          radius: 64.0,
+          radius: 72.0,
           lineWidth: 4.0,
           progressColor: Colors.greenAccent[400],
           percent: successRate,

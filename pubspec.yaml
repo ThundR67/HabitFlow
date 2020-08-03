@@ -17,13 +17,16 @@ dependencies:
   google_fonts: ^1.1.0
   sembast_web: ^1.2.0
   flutter_colorpicker: ^0.3.4
+  flutter_slidable: ^0.5.5
   weekday_selector: ^0.4.0
+  device_preview: ^0.4.7
   percent_indicator: ^2.1.5
   easy_localization: ^2.3.2
   flutter:
     sdk: flutter
   flutter_localizations: 
     sdk: flutter
+
 
 dev_dependencies:
   import_sorter: ^4.2.1

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -15,7 +13,6 @@ import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/screens/create_habit.dart';
 import 'package:habitflow/screens/create_reward.dart';
 import 'package:habitflow/screens/home.dart';
-import 'package:habitflow/services/quotes/quotes.dart';
 
 void main() {
   runApp(
@@ -55,8 +52,7 @@ class App extends StatelessWidget {
       theme: lightTheme(),
       initialRoute: '/home',
       routes: <String, Widget Function(BuildContext)>{
-        '/home': (BuildContext context) =>
-            Home(Random().nextInt(quotes.length)),
+        '/home': (BuildContext context) => Home(),
         '/create_reward': (BuildContext context) => const CreateReward(),
         '/create_habit': (BuildContext context) => const CreateHabit(),
       },

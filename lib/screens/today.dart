@@ -4,7 +4,6 @@ import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
 import 'package:habitflow/components/inline_calendar.dart';
-import 'package:habitflow/components/quote.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -14,12 +13,9 @@ class Today extends StatelessWidget {
   /// Constructs.
   const Today(
     this._bloc,
-    this._currentBloc,
-    this._quoteID, {
+    this._currentBloc, {
     Key key,
   }) : super(key: key);
-
-  final int _quoteID;
 
   final HabitsBloc _bloc;
   final CurrentCycleBloc _currentBloc;

@@ -8,7 +8,8 @@ import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/status_view.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
-import 'package:habitflow/resources/behaviour.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habitflow/resources/icons.dart';
 
 Color _colorFromHex(String hexColor) {
   final String hexCode = hexColor.replaceAll('#', '');
@@ -96,6 +97,29 @@ class HabitsList extends StatelessWidget {
   final List<Habit> _habits;
   final List<Status> _statuses;
 
+  /// Returns single action widget.
+  Widget _actionButton(Color color) {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(4.0),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
+      ),
+      child: IconSlideAction(
+        caption: 'Skip',
+        color: color,
+        icon: skippedIcon,
+        onTap: () {},
+      ),
+    );
+  }
+
+  /// Returns all actions on habit.
+  List<Widget> _actions() {
+    return <Widget>[_actionButton(Colors.blue)];
+  }
+
   /// Returns all habits.
   List<Widget> _habitsCards() {
     final List<Widget> output = <Widget>[];
@@ -106,7 +130,14 @@ class HabitsList extends StatelessWidget {
           status = _statuses[i];
         }
         output.add(const SizedBox(height: 8.0));
-        output.add(_Habit(_habits[i], status));
+
+        output.add(
+          Slidable(
+            child: _Habit(_habits[i], status),
+            actions: _actions(),
+            actionPane: const SlidableScrollActionPane(),
+          ),
+        );
       }
     }
     return output;
