@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/components/percentage_indicator.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -31,17 +32,10 @@ class CycleStatus extends StatelessWidget {
           '${start.day} - ${end.day}',
           style: Theme.of(context).textTheme.headline5,
         ),
-        CircularPercentIndicator(
-          radius: 72.0,
-          lineWidth: 4.0,
-          progressColor: Colors.greenAccent[400],
-          percent: successRate,
-          backgroundColor: Colors.transparent,
-          center: Text(
-            (successRate * 100).toStringAsFixed(1) + '%',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-        ),
+        PercentageIndicator(
+          value: successRate,
+          style: Theme.of(context).textTheme.headline5,
+        )
       ],
     );
   }

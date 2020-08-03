@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/components/percentage_indicator.dart';
+import 'package:habitflow/models/day.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -17,7 +19,7 @@ class HabitSuccessRates extends StatelessWidget {
   final List<double> _successRates;
 
   /// Returns widgets for expansion tile.
-  List<Widget> _children() {
+  List<Widget> _children(BuildContext context) {
     final List<Widget> output = <Widget>[];
     for (int i = 0; i < _names.length; i++) {
       output.add(
@@ -36,20 +38,10 @@ class HabitSuccessRates extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              CircularPercentIndicator(
-                radius: 56.0,
-                lineWidth: 4.0,
-                progressColor: Colors.greenAccent[400],
-                percent: _successRates[i],
-                backgroundColor: Colors.transparent,
-                center: Text(
-                  (_successRates[i] * 100).toStringAsFixed(1) + '%',
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              PercentageIndicator(
+                value: _successRates[i],
+                style: Theme.of(context).textTheme.subtitle1,
+              )
             ],
           ),
         ),
@@ -62,7 +54,7 @@ class HabitSuccessRates extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: Text(habits),
-      children: _children(),
+      children: _children(context),
     );
   }
 }
