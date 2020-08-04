@@ -3,18 +3,21 @@ import 'dart:async';
 import 'package:sembast/sembast.dart';
 
 import 'package:habitflow/models/cycle.dart';
-import 'db.dart';
+import 'package:habitflow/services/database/database.dart';
 
-const String _storeName = 'current_cycle';
+/// Name of the db.
+const String _dbName = 'current_cycle';
 
-/// A DAO to manage user's cycle points.
+/// A DAO to manage user's current cycle .
 class CurrentCycleDAO {
+  /// Store of data.
   final StoreRef<String, Map<String, dynamic>> _store =
-      stringMapStoreFactory.store(_storeName);
+      stringMapStoreFactory.store(_dbName);
 
-  Future<Database> get _db async => await DB.instance.database;
+  /// Connection to db.
+  Future<Database> get _db async => await DB.instance.database(_dbName);
 
-  /// Creates a new cycle and adds it into db.
+  /// Adds [cycle] int db.
   Future<void> create(Cycle cycle) async {
     /// Clears previous cycle.
     await clear();

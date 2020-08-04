@@ -8,7 +8,7 @@ import 'package:habitflow/services/database/database.dart';
 /// Name of db.
 const String _dbName = 'cycles';
 
-/// A DAO to manage user's cycle points.
+/// A DAO to manage user's previous cycles.
 class CyclesDAO {
   /// Store of data.
   final StoreRef<String, Map<String, dynamic>> _store =
