@@ -1,4 +1,4 @@
-/// Manages user's reward points.
+/// A service to manage user's reward points.
 import 'dart:async';
 
 import 'package:sembast/sembast.dart';

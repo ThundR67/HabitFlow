@@ -1,3 +1,4 @@
+/// A service to manage user's habits.
 import 'dart:async';
 
 import 'package:sembast/sembast.dart';
@@ -8,7 +9,7 @@ import 'package:habitflow/services/database/database.dart';
 /// Name of the database
 const String _dbName = 'habits';
 
-/// A DAO to manage user's habit points.
+/// A DAO to manage user's habits.
 class HabitsDAO {
   /// Store of data.
   final StoreRef<String, Map<String, dynamic>> _store =
