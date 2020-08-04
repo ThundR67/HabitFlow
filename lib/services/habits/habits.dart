@@ -3,17 +3,21 @@ import 'dart:async';
 import 'package:sembast/sembast.dart';
 
 import 'package:habitflow/models/habit.dart';
-import 'db.dart';
+import 'package:habitflow/services/database/database.dart';
 
-const String _storeName = 'habits';
+/// Name of the database
+const String _dbName = 'habits';
 
 /// A DAO to manage user's habit points.
 class HabitsDAO {
+  /// Store of data.
   final StoreRef<String, Map<String, dynamic>> _store =
-      stringMapStoreFactory.store(_storeName);
+      stringMapStoreFactory.store(_dbName);
 
-  Future<Database> get _db async => await DB.instance.database;
+  /// Connection to db.
+  Future<Database> get _db async => await DB.instance.database(_dbName);
 
+  /// Returns a finder based on filter of [id].
   Finder _finder(String id) => Finder(filter: Filter.byKey(id));
 
   /// Adds a habit into db.
@@ -23,20 +27,17 @@ class HabitsDAO {
 
   /// Returns all habits sorted by habit points required.
   Future<List<Habit>> all() async {
-    final Finder finder = Finder(sortOrders: <SortOrder>[SortOrder(pointsKey)]);
-
     final List<RecordSnapshot<String, Map<String, dynamic>>> snapshots =
         await _store.find(
       await _db,
-      finder: finder,
+      finder: Finder(sortOrders: <SortOrder>[SortOrder(pointsKey)]),
     );
 
-    return snapshots
-        .map((RecordSnapshot<String, Map<String, dynamic>> snapshot) {
-      final Habit habit = Habit.fromMap(snapshot.value);
-      habit.id = snapshot.key;
-      return habit;
-    }).toList();
+    return snapshots.map(
+      (RecordSnapshot<String, Map<String, dynamic>> snapshot) {
+        return Habit.fromMap(snapshot.value);
+      },
+    ).toList();
   }
 
   /// Updates a habit in db.
@@ -53,11 +54,10 @@ class HabitsDAO {
     await _store.delete(await _db, finder: _finder(habit.id));
   }
 
-  /// Returns ids all active habits on [date]
+  /// Returns IDs of all habits active on [day].
   Future<List<String>> active(DateTime day) async {
     final List<String> output = <String>[];
-    final List<Habit> habits = await all();
-    for (final Habit habit in habits) {
+    for (final Habit habit in await all()) {
       if (habit.activeDays.contains(day.weekday)) {
         output.add(habit.id);
       }

@@ -36,9 +36,7 @@ class RewardsDAO {
 
     return snapshots.map(
       (RecordSnapshot<String, Map<String, dynamic>> snapshot) {
-        final Reward reward = Reward.fromMap(snapshot.value);
-        reward.id = snapshot.key;
-        return reward;
+        return Reward.fromMap(snapshot.value);
       },
     ).toList();
   }
