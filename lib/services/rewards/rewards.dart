@@ -1,3 +1,4 @@
+/// Manages user's rewards.
 import 'dart:async';
 
 import 'package:sembast/sembast.dart';
@@ -27,20 +28,19 @@ class RewardsDAO {
 
   /// Returns all rewards sorted by reward points required.
   Future<List<Reward>> all() async {
-    final Finder finder = Finder(sortOrders: <SortOrder>[SortOrder(pointsKey)]);
-
     final List<RecordSnapshot<String, Map<String, dynamic>>> snapshots =
         await _store.find(
       await _db,
-      finder: finder,
+      finder: Finder(sortOrders: <SortOrder>[SortOrder(pointsKey)]),
     );
 
-    return snapshots
-        .map((RecordSnapshot<String, Map<String, dynamic>> snapshot) {
-      final Reward reward = Reward.fromMap(snapshot.value);
-      reward.id = snapshot.key;
-      return reward;
-    }).toList();
+    return snapshots.map(
+      (RecordSnapshot<String, Map<String, dynamic>> snapshot) {
+        final Reward reward = Reward.fromMap(snapshot.value);
+        reward.id = snapshot.key;
+        return reward;
+      },
+    ).toList();
   }
 
   /// Updates a reward in db.

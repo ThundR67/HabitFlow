@@ -1,28 +1,29 @@
+/// Manages user's reward points.
 import 'dart:async';
 
 import 'package:sembast/sembast.dart';
 
-import 'db.dart';
+import 'package:habitflow/services/database/database.dart';
 
-const String _pointsRecord = 'reward_points';
+/// The name of database and store.
+const String _dbName = 'reward_points';
 
 /// A DAO to manage user's reward points.
 class RewardPointsDAO {
+  /// Store of data.
   final StoreRef<String, int> _store = StoreRef<String, int>.main();
 
-  Future<Database> get _db async => await DB.instance.database;
+  /// Connection to db.
+  Future<Database> get _db async => await DB.instance.database(_dbName);
 
   /// Returns user's current reward points from db.
   Future<int> get() async {
-    final int points = await _store.record(_pointsRecord).get(await _db);
-    return points ?? 0;
+    return (await _store.record(_dbName).get(await _db)) ?? 0;
   }
 
   /// Changes reward points by [change].
   Future<void> changeBy(int change) async {
-    int points = await get();
-    points += change;
-    await _store.record(_pointsRecord).put(await _db, points);
+    await _store.record(_dbName).put(await _db, (await get()) + change);
   }
 
   /// Clears db.
