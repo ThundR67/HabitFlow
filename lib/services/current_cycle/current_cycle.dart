@@ -1,4 +1,5 @@
 /// A service to manage user's current cycle.
+
 import 'dart:async';
 
 import 'package:sembast/sembast.dart';

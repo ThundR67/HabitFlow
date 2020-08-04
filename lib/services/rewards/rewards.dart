@@ -1,4 +1,5 @@
 /// A service to manage user's rewards.
+
 import 'dart:async';
 
 import 'package:sembast/sembast.dart';

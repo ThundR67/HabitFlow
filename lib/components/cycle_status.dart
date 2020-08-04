@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/components/percentage_indicator.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import 'package:habitflow/components/percentage_indicator.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/success_rate.dart';

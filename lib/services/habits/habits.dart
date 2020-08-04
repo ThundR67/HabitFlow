@@ -1,4 +1,5 @@
 /// A service to manage user's habits.
+
 import 'dart:async';
 
 import 'package:sembast/sembast.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/components/percentage_indicator.dart';
-import 'package:habitflow/models/day.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import 'package:habitflow/components/percentage_indicator.dart';
+import 'package:habitflow/models/day.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A expansion tile to show success rates of all habis.

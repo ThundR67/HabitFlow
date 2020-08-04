@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/components/action_button.dart';
-
 import 'package:habitflow/components/habits_option_sheet.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/status_view.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:provider/provider.dart';
 
 Color _colorFromHex(String hexColor) {
   final String hexCode = hexColor.replaceAll('#', '');

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:habitflow/resources/behaviour.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
@@ -9,6 +8,7 @@ import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
+import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/cycles.dart';

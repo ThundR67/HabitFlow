@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
-import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/color_picker.dart';
+import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
