@@ -1,6 +1,7 @@
+import 'package:random_string/random_string.dart';
+
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/map_parser.dart';
-import 'package:random_string/random_string.dart';
 
 /// Key of [Day.id].
 const String idKey = 'id';

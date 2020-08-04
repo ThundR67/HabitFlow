@@ -1,6 +1,6 @@
-import 'package:habitflow/helpers/map_parser.dart';
 import 'package:random_string/random_string.dart';
 
+import 'package:habitflow/helpers/map_parser.dart';
 import 'package:habitflow/models/day.dart';
 
 /// Key for [Cycle.start].
