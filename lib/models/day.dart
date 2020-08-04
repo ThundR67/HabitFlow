@@ -1,6 +1,6 @@
+import 'package:habitflow/helpers/date_format.dart';
+import 'package:habitflow/helpers/map_parser.dart';
 import 'package:random_string/random_string.dart';
-
-import 'package:habitflow/models/dates.dart';
 
 /// Key of [Day.id].
 const String idKey = 'id';
@@ -45,28 +45,26 @@ class Day {
   final String date;
 
   /// Active habits' ids on the day.
-  List<String> activeHabits = <String>[];
+  List<String> activeHabits;
 
   /// Ids of habits successful on the day.
-  List<String> successes = <String>[];
+  List<String> successes;
 
   /// Ids of skips on the day.
-  List<String> skips = <String>[];
+  List<String> skips;
 
   /// Map of habit id and review of failures.
-  Map<String, String> failures = <String, String>{};
+  Map<String, String> failures;
 
   /// Converts a map to [Day].
   static Day fromMap(Map<String, dynamic> map) {
     return Day(
       id: map[idKey].toString(),
       date: map[dateKey].toString(),
-      activeHabits:
-          List<String>.from(map[activeHabitsKey] as Iterable<dynamic>),
-      successes: List<String>.from(map[successesKey] as Iterable<dynamic>),
-      skips: List<String>.from(map[skipsKey] as Iterable<dynamic>),
-      failures:
-          Map<String, String>.from(map[failuresKey] as Map<String, dynamic>),
+      activeHabits: list<String>(map[activeHabitsKey]),
+      successes: list<String>(map[successesKey]),
+      skips: list<String>(map[skipsKey]),
+      failures: dynamicToMap<String>(map[failuresKey]),
     );
   }
 
@@ -82,6 +80,6 @@ class Day {
     };
   }
 
-  /// Checks if this day is [date].
-  bool isDay(DateTime date) => formatDate(date) == this.date;
+  /// Checks if this day is at [date].
+  bool isAt(DateTime date) => formatDate(date) == this.date;
 }

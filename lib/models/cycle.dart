@@ -1,10 +1,7 @@
-import 'package:intl/intl.dart';
+import 'package:habitflow/helpers/map_parser.dart';
 import 'package:random_string/random_string.dart';
 
 import 'package:habitflow/models/day.dart';
-
-//// Formatter to format dates.
-final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
 /// Key for [Cycle.start].
 const String startKey = 'start';
@@ -25,13 +22,15 @@ const String daysKey = 'days';
 class Cycle {
   /// Constructs.
   Cycle({
+    this.id,
     this.start,
     this.end,
-    this.review = '',
+    this.review,
     this.days,
   }) {
-    id = randomAlpha(12);
-    days ??= <Day>[];
+    id ??= randomAlpha(12);
+    days ??= <String, Day>{};
+    review ??= 'NOT PROVIDED';
   }
 
   /// ID of the cycle.
@@ -44,20 +43,19 @@ class Cycle {
   final String end;
 
   /// Review of the cycle by user
-  String review = '';
+  String review;
 
-  /// Each day info.
-  List<Day> days = <Day>[];
+  /// Information of each day.
+  Map<String, Day> days;
 
   /// Converts map to [Cycle].
   static Cycle fromMap(Map<String, dynamic> map) {
-    final List<Map<String, dynamic>> days =
-        List<Map<String, dynamic>>.from(map[daysKey] as Iterable<dynamic>);
     return Cycle(
+      id: map[idKey].toString(),
       start: map[startKey].toString(),
       end: map[endKey].toString(),
       review: map[reviewKey].toString(),
-      days: <Day>[for (Map<String, dynamic> map in days) Day.fromMap(map)],
+      days: dynamicToMap<Day>(map[daysKey]),
     );
   }
 
@@ -68,7 +66,7 @@ class Cycle {
       startKey: start,
       endKey: end,
       reviewKey: review,
-      daysKey: <Map<String, dynamic>>[for (Day day in days) day.toMap()],
+      daysKey: days,
     };
   }
 }

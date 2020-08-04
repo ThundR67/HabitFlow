@@ -55,8 +55,8 @@ class Reward {
     return Reward(
       id: map[idKey].toString(),
       name: map[nameKey].toString(),
-      points: int.parse(map[pointsKey].toString()),
-      amountTaken: int.parse(map[takenKey].toString()),
+      points: map[pointsKey] as int,
+      amountTaken: map[takenKey] as int,
       colorHex: map[colorKey].toString(),
       iconData: map[iconKey] as Map<String, dynamic>,
     );

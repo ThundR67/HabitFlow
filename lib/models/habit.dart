@@ -55,7 +55,7 @@ class Habit {
     return Habit(
       id: map[idKey].toString(),
       name: map[nameKey].toString(),
-      points: int.parse(map[pointsKey].toString()),
+      points: map[pointsKey] as int,
       colorHex: map[colorKey].toString(),
       iconData: map[iconKey] as Map<String, dynamic>,
       activeDays: List<int>.from(map[activeDaysKey] as Iterable<dynamic>),
