@@ -1,3 +1,4 @@
+/// This service allows any service to open connection to a database.
 import 'dart:async';
 import 'dart:io';
 
@@ -17,28 +18,28 @@ class DB {
 
   /// A single public instance of DB.
   static DB get instance => _sigleton;
-  Completer<Database> _dbOpenCompleter;
   static final DB _sigleton = DB._();
+  Map<String, Completer<Database>> _dbOpenCompleters;
 
-  /// A connection to DB.
-  Future<Database> get database async {
-    if (_dbOpenCompleter == null) {
-      _dbOpenCompleter = Completer<Database>();
-      await _openDatabase();
+  /// Creates connection to DB with [name].
+  Future<Database> database(String name) async {
+    if (_dbOpenCompleters[name] == null) {
+      _dbOpenCompleters[name] = Completer<Database>();
+      await _openDatabase(name);
     }
-    return _dbOpenCompleter.future;
+    return _dbOpenCompleters[name].future;
   }
 
-  /// Opens connection to DB.
-  Future<void> _openDatabase() async {
+  /// Opens connection to DB with [name].
+  Future<void> _openDatabase(String name) async {
     Database database;
     if (kIsWeb) {
-      database = await databaseFactoryWeb.openDatabase('rewards');
+      database = await databaseFactoryWeb.openDatabase(name);
     } else {
       final Directory appDocumentDir = await getApplicationDocumentsDirectory();
-      final String dbPath = appDocumentDir.path + 'rewards.db';
+      final String dbPath = appDocumentDir.path + '$name.db';
       database = await databaseFactoryIo.openDatabase(dbPath);
     }
-    _dbOpenCompleter.complete(database);
+    _dbOpenCompleters[name].complete(database);
   }
 }

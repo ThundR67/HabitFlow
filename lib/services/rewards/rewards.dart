@@ -3,17 +3,21 @@ import 'dart:async';
 import 'package:sembast/sembast.dart';
 
 import 'package:habitflow/models/reward.dart';
-import 'db.dart';
+import 'package:habitflow/services/database/database.dart';
 
-const String _storeName = 'rewards';
+/// Name of the database and store.
+const String _dbName = 'rewards';
 
 /// A DAO to manage user's reward points.
 class RewardsDAO {
+  /// The store where data is stored.
   final StoreRef<String, Map<String, dynamic>> _store =
-      stringMapStoreFactory.store(_storeName);
+      stringMapStoreFactory.store(_dbName);
 
-  Future<Database> get _db async => await DB.instance.database;
+  /// Connection to the DB.
+  Future<Database> get _db async => await DB.instance.database(_dbName);
 
+  /// Creates a finder with filter of [id].
   Finder _finder(String id) => Finder(filter: Filter.byKey(id));
 
   /// Adds a reward into db.
