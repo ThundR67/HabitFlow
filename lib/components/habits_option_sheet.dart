@@ -9,7 +9,7 @@ import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
-import 'package:habitflow/models/success_rate.dart';
+import 'package:habitflow/helpers/success_rate.dart';
 
 class _Button {
   _Button(this.text, this.status, this.color, this.onPressed);

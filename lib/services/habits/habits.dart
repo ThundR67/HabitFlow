@@ -28,18 +28,20 @@ class HabitsDAO {
   }
 
   /// Returns all habits sorted by habit points required.
-  Future<List<Habit>> all() async {
+  Future<Map<String, Habit>> all() async {
     final List<RecordSnapshot<String, Map<String, dynamic>>> snapshots =
         await _store.find(
       await _db,
       finder: Finder(sortOrders: <SortOrder>[SortOrder(pointsKey)]),
     );
 
-    return snapshots.map(
+    final List<Habit> habits = snapshots.map(
       (RecordSnapshot<String, Map<String, dynamic>> snapshot) {
         return Habit.fromMap(snapshot.value);
       },
     ).toList();
+
+    return <String, Habit>{for (Habit habit in habits) habit.id: habit};
   }
 
   /// Updates a habit in db.
@@ -59,7 +61,7 @@ class HabitsDAO {
   /// Returns IDs of all habits active on [day].
   Future<List<String>> active(DateTime day) async {
     final List<String> output = <String>[];
-    for (final Habit habit in await all()) {
+    for (final Habit habit in (await all()).values) {
       if (habit.activeDays.contains(day.weekday)) {
         output.add(habit.id);
       }

@@ -5,7 +5,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
-import 'package:habitflow/models/success_rate.dart';
+import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/strings.dart';
 

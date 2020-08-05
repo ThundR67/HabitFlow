@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/services/rewards/rewards.dart';
 
-/// A Bloc which does CRUD of rewards.
+/// A Bloc which manages rewards.
 class RewardsBloc extends ChangeNotifier {
   /// Causes a update as soon as bloc is initialized.
   RewardsBloc() {
@@ -16,25 +16,32 @@ class RewardsBloc extends ChangeNotifier {
   List<Reward> rewards;
 
   /// Updates [rewards].
-  void _update() {
-    _dao.all().then((List<Reward> value) {
-      rewards = value;
-      notifyListeners();
-    });
+  Future<void> _update() async {
+    rewards = await _dao.all();
+    notifyListeners();
   }
 
-  /// Adds a reward into db.
-  void add(Reward reward) => _dao.add(reward).whenComplete(_update);
+  /// Adds [reward] into db.
+  Future<void> add(Reward reward) async {
+    await _dao.add(reward);
+    await _update();
+  }
 
-  /// Updates a reward in db.
-  void update(Reward reward) => _dao.update(reward).whenComplete(_update);
+  /// Updates [reward] in db.
+  Future<void> update(Reward reward) async {
+    await _dao.update(reward);
+    await _update();
+  }
 
-  /// Deletes a reward from db.
-  void delete(Reward reward) => _dao.delete(reward).whenComplete(_update);
+  /// Deletes [reward] from db.
+  Future<void> delete(Reward reward) async {
+    await _dao.delete(reward);
+    await _update();
+  }
 
-  /// Increases [amountTaken] of reward by one.
-  void take(Reward reward) {
+  /// Increases [amountTaken] of [reward] by 1.
+  Future<void> take(Reward reward) async {
     reward.amountTaken++;
-    update(reward);
+    await update(reward);
   }
 }

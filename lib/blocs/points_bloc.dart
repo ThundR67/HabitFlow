@@ -11,26 +11,22 @@ class PointsBloc extends ChangeNotifier {
 
   final RewardPointsDAO _dao = RewardPointsDAO();
 
-  int _points = -1;
-
-  /// Current points of user.
-  int get points => _points ?? -1;
+  /// Reward points of user.
+  int points;
 
   /// Updates [point].
-  void _update() {
-    _dao.get().then((int value) {
-      _points = value;
-      notifyListeners();
-    });
+  Future<void> _update() async {
+    points = await _dao.get();
+    notifyListeners();
   }
 
   /// Increments reward points by [value].
   void increment(int value) {
-    _dao.changeBy(value).whenComplete(_update);
+    _dao.changeBy(value);
+    points += value;
+    notifyListeners();
   }
 
   /// Decrement reward points by [value].
-  void decrement(int value) {
-    _dao.changeBy(-value).whenComplete(_update);
-  }
+  void decrement(int value) => increment(-value);
 }
