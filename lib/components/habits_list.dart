@@ -29,16 +29,6 @@ class _Habit extends StatelessWidget {
   final Habit _habit;
   final Status _status;
 
-  // Shows reward options sheet.
-  void _showSheet(BuildContext context) {
-    Scaffold.of(context).showBottomSheet<HabitsOptionSheet>(
-      (BuildContext context) => HabitsOptionSheet(
-        _habit,
-        _status,
-      ),
-    );
-  }
-
   /// Shows failure reason prompt.
   void _showFailureReasonSheet(BuildContext context, CurrentCycleBloc bloc) {
     Scaffold.of(context).showBottomSheet<FailureReviewSheet>(
@@ -55,7 +45,7 @@ class _Habit extends StatelessWidget {
       ActionButton(
         color: Colors.orangeAccent[700],
         text: undo,
-        onPressed: () => bloc.undo(_habit.id),
+        onPressed: () => bloc.mark(_habit.id, Status.unmarked),
         icon: undoIcon,
       )
     ];
@@ -68,7 +58,7 @@ class _Habit extends StatelessWidget {
         color: Colors.green,
         text: done,
         onPressed: () {
-          bloc.done(_habit.id);
+          bloc.mark(_habit.id, Status.done);
           pointsBloc.increment(_habit.points);
         },
         icon: doneIcon,
@@ -82,7 +72,7 @@ class _Habit extends StatelessWidget {
       ActionButton(
         color: Colors.blue,
         text: skip,
-        onPressed: () => bloc.skip(_habit.id),
+        onPressed: () => bloc.mark(_habit.id, Status.skipped),
         icon: skippedIcon,
       ),
       ActionButton(
@@ -115,7 +105,6 @@ class _Habit extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () => _showSheet(context),
               child: Ink(
                 child: Center(
                   child: Padding(
@@ -167,21 +156,21 @@ class HabitsList extends StatelessWidget {
   /// Constructs
   const HabitsList(this._habits, this._statuses, {Key key}) : super(key: key);
 
-  final List<Habit> _habits;
-  final List<Status> _statuses;
+  final Map<String, Habit> _habits;
+  final Map<String, Status> _statuses;
 
   /// Returns all habits.
   List<Widget> _habitsCards() {
     final List<Widget> output = <Widget>[];
-    for (int i = 0; i < _habits.length; i++) {
-      if (_habits[i].activeDays.contains(DateTime.now().weekday)) {
+    for (final Habit habit in _habits.values) {
+      if (habit.activeDays.contains(DateTime.now().weekday)) {
         Status status = Status.unmarked;
-        if (_statuses.length > i) {
-          status = _statuses[i];
+        if (_statuses[habit.id] != null) {
+          status = _statuses[habit.id];
         }
         output.add(const SizedBox(height: 8.0));
         output.add(
-          _Habit(_habits[i], status),
+          _Habit(habit, status),
         );
       }
     }

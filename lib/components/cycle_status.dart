@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:habitflow/helpers/date_format.dart';
 
 import 'package:habitflow/components/percentage_indicator.dart';
 import 'package:habitflow/models/cycle.dart';
-import 'package:habitflow/models/dates.dart';
-import 'package:habitflow/models/success_rate.dart';
+import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A widget to display status of cycle.
@@ -19,7 +17,9 @@ class CycleStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     final DateTime start = parseDate(_cycle.start);
     final DateTime end = parseDate(_cycle.end);
-    final double successRate = calculateSuccessRate(_cycle.days);
+    final double successRate = calculateSuccessRate(
+      _cycle.days.values.toList(),
+    );
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,

@@ -42,7 +42,7 @@ class Days {
   }
 
   /// Marks habit with [id] as [status] at [date].
-  void mark(String id, Status status, [DateTime date, String reason]) {
+  void mark(String id, Status status, {DateTime date, String reason}) {
     unmark(id, date);
     final String key = formatDate(date ?? DateTime.now());
     if (status == Status.done) {

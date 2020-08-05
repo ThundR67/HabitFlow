@@ -31,23 +31,40 @@ class CurrentCycleBloc extends ChangeNotifier {
 
   /// Updates [statuses] and [current].
   Future<void> update() async {
-    current = await _dao.get();
     if (current == null) {
-      await _create();
+      current = await _dao.get();
+      if (current == null) {
+        await _create();
+      }
+      _days = Days(current.days);
     }
 
     // Fills missing days and unmarked failures.
-    _days = Days(current.days);
     await _days.fill(
       parseDate(current.start),
       parseDate(current.end),
       _habitsDAO,
     );
     current.days = _days.days;
+    await _updateStatuses();
 
     /// Updates.
     await _dao.update(current);
     notifyListeners();
+  }
+
+  /// Marks habit with [id] as [status].
+  Future<void> mark(String id, Status status, [String reason]) async {
+    _days.mark(id, status, reason: reason);
+    await update();
+  }
+
+  /// Updates [statuses].
+  Future<void> _updateStatuses() async {
+    statuses = <String, Status>{};
+    for (final String id in await _habitsDAO.active(DateTime.now())) {
+      statuses[id] = _days.status(id);
+    }
   }
 
   /// Creates a new cycle and updates [current].

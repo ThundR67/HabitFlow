@@ -51,7 +51,10 @@ class Today extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               physics: scrollPhysics,
-              child: HabitsList(_bloc.habits, _currentBloc.statuses),
+              child: HabitsList(
+                _bloc.habits,
+                _currentBloc.statuses,
+              ),
             ),
           ),
         ],

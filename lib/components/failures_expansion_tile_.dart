@@ -1,57 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
-import 'package:habitflow/models/dates.dart';
+import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
-
-/*
-for (final String id in day.failures.keys) {
-        toAdd.add(
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(day.date),
-                    Text(
-                      _idToName[id],
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Expanded(child: Text(day.failures[id])),
-                if (parseDate(_bloc.current.end).isAfter(DateTime.now()))
-                  PopupMenuButton<dynamic>(
-                    elevation: 8,
-                    onSelected: (dynamic value) {
-                      _bloc.skip(id, parseDate(day.date));
-                    },
-                    child: const Icon(moreIcon),
-                    itemBuilder: (_) {
-                      return <PopupMenuItem<int>>[
-                        PopupMenuItem<int>(
-                          child: Text(markSkip),
-                          value: 0,
-                        ),
-                      ];
-                    },
-                  ),
-              ],
-            ),
-          ),
-        );*/
 
 /// A widget to show all failures of a day.
 class _DaysFailures extends StatelessWidget {
@@ -104,9 +58,9 @@ class _DaysFailures extends StatelessWidget {
                 elevation: 8,
                 onSelected: (dynamic value) {
                   if (value == 0) {
-                    _bloc.skip(id, parseDate(_day.date));
+                    _bloc.mark(id, Status.skipped);
                   } else if (value == 1) {
-                    _bloc.done(id, parseDate(_day.date));
+                    _bloc.mark(id, Status.done);
                   }
                   _day.failures.remove(id);
                 },

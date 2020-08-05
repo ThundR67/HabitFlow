@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/helpers/date_format.dart';
+import 'package:habitflow/helpers/dates.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'package:habitflow/models/cycle.dart';
-import 'package:habitflow/models/dates.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/resources/behaviour.dart';
@@ -60,19 +61,19 @@ class InlineCalendar extends StatelessWidget {
   /// Return widgets for all dates.
   List<Widget> _dates() {
     final List<Widget> output = <Widget>[];
-    final List<DateTime> dates = getDates(
+    final List<DateTime> dates = datesList(
       parseDate(_cycle.start),
       parseDate(_cycle.end),
     );
     for (final DateTime date in dates) {
-      output.add(_SingleDate(date, getDay(_cycle.days, date)));
+      output.add(_SingleDate(date, _cycle.days[date]));
     }
     return output;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_cycle.start == _cycle.end) {
+    if (_cycle == null) {
       return const Center(child: CircularProgressIndicator());
     }
 

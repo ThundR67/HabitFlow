@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 
-import 'package:percent_indicator/circular_percent_indicator.dart';
-
 import 'package:habitflow/components/percentage_indicator.dart';
-import 'package:habitflow/models/day.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A expansion tile to show success rates of all habis.
 class HabitSuccessRates extends StatelessWidget {
   /// Constructs.
   const HabitSuccessRates(
-    this._names,
     this._successRates, {
     Key key,
   }) : super(key: key);
 
-  final List<String> _names;
-  final List<double> _successRates;
+  final Map<String, double> _successRates;
 
   /// Returns widgets for expansion tile.
   List<Widget> _children(BuildContext context) {
     final List<Widget> output = <Widget>[];
-    for (int i = 0; i < _names.length; i++) {
+    for (final String name in _successRates.keys) {
       output.add(
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -32,14 +27,14 @@ class HabitSuccessRates extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                _names[i],
+                name,
                 style: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               PercentageIndicator(
-                value: _successRates[i],
+                value: _successRates[name],
                 style: Theme.of(context).textTheme.subtitle1,
               )
             ],

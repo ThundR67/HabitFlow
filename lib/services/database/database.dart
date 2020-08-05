@@ -20,7 +20,9 @@ class DB {
   /// A single public instance of DB.
   static DB get instance => _sigleton;
   static final DB _sigleton = DB._();
-  Map<String, Completer<Database>> _dbOpenCompleters;
+
+  // ignore: always_specify_types
+  final Map<String, Completer<Database>> _dbOpenCompleters = {};
 
   /// Creates connection to DB with [name].
   Future<Database> database(String name) async {

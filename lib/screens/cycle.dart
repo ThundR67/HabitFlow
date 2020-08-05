@@ -9,7 +9,7 @@ import 'package:habitflow/components/failures_expansion_tile_.dart';
 import 'package:habitflow/components/habit_success_rates.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/habit.dart';
-import 'package:habitflow/models/success_rate.dart';
+import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/resources/behaviour.dart';
 
 /// Shows data about a cycle.
@@ -25,9 +25,6 @@ class CycleInfo extends StatelessWidget {
     if (bloc.habits.isEmpty) {
       return const LinearProgressIndicator();
     }
-    final Map<String, String> idToName = <String, String>{
-      for (Habit habit in bloc.habits) habit.id: habit.name
-    };
 
     return Scaffold(
       body: SafeArea(
@@ -36,16 +33,17 @@ class CycleInfo extends StatelessWidget {
           children: <Widget>[
             CycleStatus(_cycle),
             HabitSuccessRates(
-              bloc.habits.map((Habit e) => e.name).toList(),
-              bloc.habits
-                  .map(
-                    (Habit e) => calculateHabitSuccessRate(e.id, _cycle.days),
-                  )
-                  .toList(),
+              <String, double>{
+                for (Habit habit in bloc.habits.values)
+                  habit.name: calculateHabitSuccessRate(
+                      habit.id, _cycle.days.values.toList())
+              },
             ),
             FailuresPanel(
-              _cycle.days,
-              idToName,
+              _cycle.days.values.toList(),
+              <String, String>{
+                for (Habit habit in bloc.habits.values) habit.id: habit.name
+              },
               Provider.of<CurrentCycleBloc>(context),
             )
           ],
