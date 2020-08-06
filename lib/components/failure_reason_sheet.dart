@@ -17,7 +17,10 @@ class FailureReasonSheet extends StatelessWidget {
 
   /// Marks [habit] as failure.
   void _done(BuildContext context) {
-    final CurrentCycleBloc bloc = Provider.of<CurrentCycleBloc>(context);
+    final CurrentCycleBloc bloc = Provider.of<CurrentCycleBloc>(
+      context,
+      listen: false,
+    );
     bloc.mark(habit.id, Status.failed, _controller.text);
     Navigator.of(context).pop();
   }

@@ -22,7 +22,7 @@ class CycleInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
-    if (bloc.habits.isEmpty) {
+    if (bloc.habits == null) {
       return const LinearProgressIndicator();
     }
 
