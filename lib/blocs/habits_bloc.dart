@@ -7,7 +7,8 @@ import 'package:habitflow/services/habits/habits.dart';
 class HabitsBloc extends ChangeNotifier {
   /// Causes a update as soon as bloc is initialized.
   HabitsBloc() {
-    _update();
+    _dao.clear().whenComplete(_update);
+    // TODO _update();
   }
 
   final HabitsDAO _dao = HabitsDAO();

@@ -53,7 +53,7 @@ class HabitCard extends StatelessWidget {
       secondaryActions: isUnmarked
           ? _secondaryActions(context, currentBloc)
           : <Widget>[undoAction(habit, currentBloc)],
-      actionPane: const SlidableStrechActionPane(),
+      actionPane: const SlidableDrawerActionPane(),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: NeuCard(

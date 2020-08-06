@@ -21,7 +21,7 @@ Widget undoAction(Habit habit, CurrentCycleBloc bloc) {
 /// Returns action button to mark [habit] as done.
 Widget doneAction(Habit habit, PointsBloc pointsBloc, CurrentCycleBloc bloc) {
   return ActionButton(
-    color: Colors.greenAccent[700],
+    color: Colors.green,
     text: done,
     onPressed: () {
       bloc.mark(habit.id, Status.done);

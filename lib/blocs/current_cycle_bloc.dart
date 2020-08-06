@@ -13,8 +13,8 @@ import 'package:habitflow/services/habits/habits.dart';
 class CurrentCycleBloc extends ChangeNotifier {
   /// Constructs.
   CurrentCycleBloc() {
-    /// TODO remove
-    _dao.clear().whenComplete(update);
+    _dao.clear().whenComplete(_update);
+    // TODO _update();
   }
 
   final CurrentCycleDAO _dao = CurrentCycleDAO();
@@ -31,7 +31,7 @@ class CurrentCycleBloc extends ChangeNotifier {
   Map<String, Status> statuses;
 
   /// Updates [statuses] and [current].
-  Future<void> update() async {
+  Future<void> _update() async {
     if (current == null) {
       current = await _dao.get();
       if (current == null) {
@@ -54,10 +54,19 @@ class CurrentCycleBloc extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Updates current days active habits.
+  Future<void> updateActiveHabits() async {
+    final DateTime date = DateTime.now();
+    current.days[formatDate(date)].activeHabits = await _habitsDAO.active(date);
+    await _update();
+
+    print(current.days[formatDate(date)].activeHabits);
+  }
+
   /// Marks habit with [id] as [status].
   Future<void> mark(String id, Status status, [String reason]) async {
     _days.mark(id, status, reason: reason);
-    await update();
+    await _update();
   }
 
   /// Updates [statuses].
@@ -81,6 +90,6 @@ class CurrentCycleBloc extends ChangeNotifier {
   Future<void> end() async {
     await _cyclesDAO.add(current);
     await _create();
-    await update();
+    await _update();
   }
 }

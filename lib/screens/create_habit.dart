@@ -49,16 +49,18 @@ class _CreateHabitState extends State<CreateHabit> {
   /// Creates the reward.
   void _create() {
     if (_formKey.currentState.validate()) {
-      _bloc.add(
-        Habit(
-          name: _nameController.text,
-          points: int.parse(_pointsController.text),
-          colorHex: '#${_color.value.toRadixString(16)}',
-          iconData: iconDataToMap(_icon),
-          activeDays: _activeDays,
-        ),
-      );
-      _currentBloc.update();
+      _bloc
+          .add(
+            Habit(
+              name: _nameController.text,
+              points: int.parse(_pointsController.text),
+              colorHex: '#${_color.value.toRadixString(16)}',
+              iconData: iconDataToMap(_icon),
+              activeDays: _activeDays,
+            ),
+          )
+          .whenComplete(_currentBloc.updateActiveHabits);
+
       Navigator.pop(context);
     }
   }
