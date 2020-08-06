@@ -15,7 +15,10 @@ import 'package:provider/provider.dart';
 /// A widget to show a card of [habit].
 class HabitCard extends StatelessWidget {
   /// Constructs
-  const HabitCard({this.habit, this.status});
+  const HabitCard({
+    @required this.habit,
+    @required this.status,
+  });
 
   /// Habit to show.
   final Habit habit;
@@ -41,6 +44,7 @@ class HabitCard extends StatelessWidget {
     final CurrentCycleBloc currentBloc = Provider.of<CurrentCycleBloc>(context);
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
     final bool isUnmarked = status == Status.unmarked;
+    print(status);
 
     return Slidable(
       actions: isUnmarked
@@ -83,7 +87,7 @@ class HabitCard extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               if (!isUnmarked)
-                                StatusView(status: status ?? Status.unmarked)
+                                StatusView(status: status)
                               else
                                 RewardPoints(points: habit.points)
                             ],

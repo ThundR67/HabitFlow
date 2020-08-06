@@ -29,7 +29,10 @@ class Rewards extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
       ),
-      body: RewardsList(_rewardsBloc.rewards),
+      body: SingleChildScrollView(
+        physics: scrollPhysics,
+        child: RewardsList(_rewardsBloc.rewards),
+      ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'create_reward',
         onPressed: () {

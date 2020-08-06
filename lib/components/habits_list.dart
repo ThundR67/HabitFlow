@@ -17,26 +17,29 @@ class HabitsList extends StatelessWidget {
   /// All the statuses.
   final Map<String, Status> statuses;
 
+  /// Returns list of habitcards.
+  List<Widget> _habitsCards() {
+    final List<Widget> output = <Widget>[];
+    for (final Habit habit in habits.values) {
+      if (habit.activeDays.contains(DateTime.now().weekday)) {
+        output.add(
+          HabitCard(
+            habit: habit,
+            status: statuses[habit.id] ?? Status.unmarked,
+          ),
+        );
+      }
+    }
+    return output;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (habits == null || statuses == null) {
       return const LinearProgressIndicator();
     }
-    return ListView.builder(
-      physics: scrollPhysics,
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(8.0),
-      itemCount: habits.values.length,
-      itemBuilder: (_, int index) {
-        final Habit habit = habits.values.toList()[index];
-        if (habit.activeDays.contains(DateTime.now().weekday)) {
-          return HabitCard(
-            habit: habit,
-            status: statuses[habit.id],
-          );
-        }
-        return null;
-      },
+    return Column(
+      children: _habitsCards(),
     );
   }
 }
