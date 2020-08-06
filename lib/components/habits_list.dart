@@ -24,6 +24,8 @@ class HabitsList extends StatelessWidget {
     }
     return ListView.builder(
       physics: scrollPhysics,
+      shrinkWrap: true,
+      padding: const EdgeInsets.all(8.0),
       itemCount: habits.values.length,
       itemBuilder: (_, int index) {
         final Habit habit = habits.values.toList()[index];

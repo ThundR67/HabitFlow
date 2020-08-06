@@ -22,17 +22,18 @@ class RewardPoints extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextStyle newStyle = style ?? Theme.of(context).textTheme.subtitle1;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
           points.toString(),
-          style: style,
+          style: newStyle,
         ),
         const SizedBox(width: 2),
         Icon(
           rewardIcon,
-          size: style.fontSize,
+          size: newStyle.fontSize,
           color: color,
         ),
       ],

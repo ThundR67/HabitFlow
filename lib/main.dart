@@ -52,7 +52,7 @@ class App extends StatelessWidget {
       theme: lightTheme(),
       initialRoute: '/home',
       routes: <String, Widget Function(BuildContext)>{
-        '/home': (BuildContext context) => Home(),
+        '/home': (BuildContext context) => const Home(),
         '/create_reward': (BuildContext context) => const CreateReward(),
         '/create_habit': (BuildContext context) => const CreateHabit(),
       },

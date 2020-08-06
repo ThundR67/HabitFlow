@@ -17,6 +17,7 @@ class RewardsList extends StatelessWidget {
     }
 
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: _rewards.length,
       itemBuilder: (_, int index) => RewardCard(_rewards[index]),
     );
