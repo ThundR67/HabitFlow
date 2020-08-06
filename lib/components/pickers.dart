@@ -29,11 +29,6 @@ class Pickers extends StatefulWidget {
 }
 
 class _PickersState extends State<Pickers> {
-  _PickersState() {
-    _color = widget.color;
-    _icon = widget.icon;
-  }
-
   Color _color;
   IconData _icon;
 
@@ -56,6 +51,8 @@ class _PickersState extends State<Pickers> {
 
   @override
   Widget build(BuildContext context) {
+    _color ??= widget.color;
+    _icon ??= widget.icon;
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -23,11 +23,6 @@ class ColorPickerButton extends StatefulWidget {
 }
 
 class _ColorPickerButtonState extends State<ColorPickerButton> {
-  /// Sets [_color] with [widget.color].
-  _ColorPickerButtonState() {
-    _color = widget.color;
-  }
-
   Color _color;
 
   void _onChange(Color color) {
@@ -61,6 +56,7 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
 
   @override
   Widget build(BuildContext context) {
+    _color ??= widget.color;
     return Container(
       child: ClipOval(
         child: Material(
