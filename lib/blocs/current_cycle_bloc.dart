@@ -59,8 +59,6 @@ class CurrentCycleBloc extends ChangeNotifier {
     final DateTime date = DateTime.now();
     current.days[formatDate(date)].activeHabits = await _habitsDAO.active(date);
     await _update();
-
-    print(current.days[formatDate(date)].activeHabits);
   }
 
   /// Marks habit with [id] as [status].
