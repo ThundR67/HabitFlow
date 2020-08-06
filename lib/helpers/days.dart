@@ -57,11 +57,9 @@ class Days {
   /// Marks all habit that are unmarked as [Status.failed] on [date].
   void _failUnmarked(DateTime date) {
     final Day day = days[formatDate(date)];
-    if (day.date != formatDate(DateTime.now())) {
-      for (final String id in day.activeHabits) {
-        if (status(id, parseDate(day.date)) == Status.unmarked) {
-          days[day.date].failures[id] = 'NOT PROVIDED';
-        }
+    for (final String id in day.activeHabits) {
+      if (status(id, parseDate(day.date)) == Status.unmarked) {
+        days[day.date].failures[id] = 'NOT PROVIDED';
       }
     }
   }
@@ -75,6 +73,7 @@ class Days {
         for (String id in ids) id: 'NOT PROVIDED'
       };
       final Day day = Day(
+        date: formatDate(date),
         activeHabits: ids,
         failures: key == formatDate(DateTime.now()) ? null : failures,
       );
@@ -89,7 +88,7 @@ class Days {
       return;
     }
 
-    final List<DateTime> dates = datesList(start, end);
+    final List<DateTime> dates = datesList(start, DateTime.now());
     for (final DateTime date in dates) {
       await _fillDate(date, dao);
       _failUnmarked(date);

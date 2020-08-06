@@ -13,7 +13,8 @@ import 'package:habitflow/services/habits/habits.dart';
 class CurrentCycleBloc extends ChangeNotifier {
   /// Constructs.
   CurrentCycleBloc() {
-    update();
+    /// TODO remove
+    _dao.clear().whenComplete(update);
   }
 
   final CurrentCycleDAO _dao = CurrentCycleDAO();

@@ -28,10 +28,13 @@ class NeuCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Theme.of(context).scaffoldBackgroundColor;
     return Neumorphic(
       child: child,
-      style: neuStyle(context, depth: 4),
+      style: neuStyle(
+        context,
+        depth: depth,
+        radius: radius,
+      ),
     );
   }
 }

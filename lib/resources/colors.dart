@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 /// Returns neumorphic style for neumorphic elements.
 NeumorphicStyle neuStyle(
@@ -8,6 +9,10 @@ NeumorphicStyle neuStyle(
   double depth = 4,
 }) {
   final bool isLight = Theme.of(context).brightness == Brightness.light;
+  final Color color = Theme.of(context).scaffoldBackgroundColor;
+  final Color dark = TinyColor(color).darken(isLight ? 20 : 4).color;
+  final Color light = TinyColor(color).lighten(isLight ? 20 : 10).color;
+
   return NeumorphicStyle(
     boxShape: NeumorphicBoxShape.roundRect(
       BorderRadius.circular(radius),
@@ -16,8 +21,10 @@ NeumorphicStyle neuStyle(
     shape: NeumorphicShape.flat,
     lightSource: LightSource.topLeft,
     intensity: 1,
-    color: Theme.of(context).scaffoldBackgroundColor,
-    shadowDarkColor: Colors.black.withOpacity(0.4),
-    shadowLightColor: Colors.white.withOpacity(isLight ? 1 : 0.22),
+    color: color,
+    shadowDarkColor: dark,
+    shadowLightColor: light,
+    shadowDarkColorEmboss: dark,
+    shadowLightColorEmboss: light,
   );
 }

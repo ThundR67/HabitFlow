@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:habitflow/resources/colors.dart';
+import 'package:habitflow/components/neu_card.dart';
 
 /// A widget to allow input of text.
 class NeuInputTextField extends StatelessWidget {
@@ -24,14 +24,11 @@ class NeuInputTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Theme.of(context).scaffoldBackgroundColor;
     return Container(
-      child: Neumorphic(
-        style: neuStyle(
-          context,
-          radius: 100,
-          depth: -2,
-        ),
+      child: NeuCard(
+        context: context,
+        radius: 100,
+        depth: -2,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
           child: TextFormField(
