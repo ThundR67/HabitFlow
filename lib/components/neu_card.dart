@@ -1,26 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-
-Color _darker(Color color, BuildContext context) {
-  final int delta = Theme.of(context).brightness == Brightness.light ? 24 : 12;
-  return Color.fromARGB(
-    color.alpha,
-    color.red - delta,
-    color.green - delta,
-    color.blue - delta,
-  );
-}
-
-Color _lighter(Color color) {
-  const int delta = 16;
-  return Color.fromARGB(
-    color.alpha,
-    color.red + delta,
-    color.green + delta,
-    color.blue + delta,
-  );
-}
+import 'package:habitflow/resources/colors.dart';
 
 /// A Neumorphic card.
 class NeuCard extends StatelessWidget {
@@ -50,16 +31,7 @@ class NeuCard extends StatelessWidget {
     final Color color = Theme.of(context).scaffoldBackgroundColor;
     return Neumorphic(
       child: child,
-      style: NeumorphicStyle(
-        boxShape: NeumorphicBoxShape.roundRect(
-          BorderRadius.circular(radius),
-        ),
-        depth: depth,
-        intensity: Theme.of(context).brightness == Brightness.light ? 1.7 : 0.8,
-        color: color,
-        shadowDarkColor: _darker(color, context),
-        shadowLightColor: _lighter(color), //customize color here
-      ),
+      style: neuStyle(context, depth: 4),
     );
   }
 }

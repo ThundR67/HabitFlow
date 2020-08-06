@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 /// Returns default dark mode.
 ThemeData darkTheme() {
-  const Color primary = Color(0xFF121212);
+  final Color primary = Colors.grey[900];
   const Brightness brightness = Brightness.dark;
   return ThemeData(
     brightness: brightness,
     scaffoldBackgroundColor: primary,
     accentColor: Colors.blueAccent,
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: primary,
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       brightness: brightness,
       color: primary,
       centerTitle: true,
