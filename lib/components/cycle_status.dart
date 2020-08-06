@@ -9,20 +9,19 @@ import 'package:habitflow/resources/strings.dart';
 /// A widget to display status of cycle.
 class CycleStatus extends StatelessWidget {
   /// Constructs.
-  const CycleStatus(this._cycle, {Key key}) : super(key: key);
+  const CycleStatus({@required this.cycle});
 
-  final Cycle _cycle;
+  /// Cycle to show data of.
+  final Cycle cycle;
 
   @override
   Widget build(BuildContext context) {
-    final DateTime start = parseDate(_cycle.start);
-    final DateTime end = parseDate(_cycle.end);
-    final double successRate = calculateSuccessRate(
-      _cycle.days.values.toList(),
-    );
+    final DateTime start = parseDate(cycle.start);
+    final DateTime end = parseDate(cycle.end);
+    final double successRate = calculateSuccessRate(cycle.days.values.toList());
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text(
           months[start.month - 1],

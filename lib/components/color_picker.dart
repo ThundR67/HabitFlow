@@ -7,45 +7,46 @@ import 'package:habitflow/resources/strings.dart';
 /// A widget which allows user to pick colors.
 class ColorPickerButton extends StatefulWidget {
   /// Constructs.
-  const ColorPickerButton(
-    this._onChange,
-    this._currentColor, {
-    Key key,
-  }) : super(key: key);
+  const ColorPickerButton({
+    @required this.color,
+    @required this.onChange,
+  });
 
-  final Color _currentColor;
-  final Function(Color) _onChange;
+  /// Initial color.
+  final Color color;
+
+  /// Function to run when [color] is changed.
+  final Function(Color) onChange;
 
   @override
-  _ColorPickerButtonState createState() => _ColorPickerButtonState(
-        _onChange,
-        _currentColor,
-      );
+  _ColorPickerButtonState createState() => _ColorPickerButtonState();
 }
 
 class _ColorPickerButtonState extends State<ColorPickerButton> {
-  _ColorPickerButtonState(this._onChange, this._currentColor);
+  /// Sets [_color] with [widget.color].
+  _ColorPickerButtonState() {
+    _color = widget.color;
+  }
 
-  Color _currentColor;
-  final Function(Color) _onChange;
+  Color _color;
 
-  void _onColorSelected(Color color) {
+  void _onChange(Color color) {
     setState(() {
-      _currentColor = color;
-      _onChange(color);
+      _color = color;
+      widget.onChange(color);
     });
   }
 
   /// Displays color picker.
-  void _showColorPickerButton(BuildContext context) {
+  void _showPicker(BuildContext context) {
     showDialog<AlertDialog>(
       context: context,
       child: AlertDialog(
         title: Text(pickColor),
         content: SingleChildScrollView(
           child: MaterialPicker(
-            pickerColor: _currentColor,
-            onColorChanged: _onColorSelected,
+            pickerColor: _color,
+            onColorChanged: _onChange,
           ),
         ),
         actions: <Widget>[
@@ -63,13 +64,13 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
     return Container(
       child: ClipOval(
         child: Material(
-          color: _currentColor, // button color
+          color: _color, // button color
           child: InkWell(
             child: const SizedBox(
               width: 24,
               height: 24,
             ),
-            onTap: () => _showColorPickerButton(context),
+            onTap: () => _showPicker(context),
           ),
         ),
       ),

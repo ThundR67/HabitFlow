@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-/// Action button shown when with slidable.
+/// Action button with slidable cards.
 class ActionButton extends StatelessWidget {
   /// Constructs
   const ActionButton({
-    this.icon,
-    this.text,
-    this.color,
-    this.onPressed,
+    @required this.icon,
+    @required this.text,
+    @required this.color,
+    @required this.onPressed,
   });
 
   /// Text to show.
@@ -21,7 +21,7 @@ class ActionButton extends StatelessWidget {
   /// Color of button.
   final Color color;
 
-  /// Function to run.
+  /// Function to run when button pressed.
   final Function() onPressed;
 
   @override

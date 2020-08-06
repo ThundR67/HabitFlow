@@ -4,41 +4,46 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/components/color_picker.dart';
 import 'package:habitflow/components/neu_card.dart';
-import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A widget which allows user pick icon and color.
 class Pickers extends StatefulWidget {
   /// Constructs
-  const Pickers(
-    this._color,
-    this._icon,
-    this._onPick, {
-    Key key,
-  }) : super(key: key);
+  const Pickers({
+    @required this.color,
+    @required this.icon,
+    @required this.onChange,
+  });
 
-  final Color _color;
-  final IconData _icon;
-  final Function(Color, IconData) _onPick;
+  /// Initial color.
+  final Color color;
+
+  /// Initial icon.
+  final IconData icon;
+
+  /// Function to call when icon or color changes.
+  final Function(Color, IconData) onChange;
 
   @override
-  _PickersState createState() => _PickersState(_color, _icon, _onPick);
+  _PickersState createState() => _PickersState();
 }
 
 class _PickersState extends State<Pickers> {
-  _PickersState(this._color, this._icon, this._onPick);
+  _PickersState() {
+    _color = widget.color;
+    _icon = widget.icon;
+  }
 
   Color _color;
   IconData _icon;
-  final Function(Color, IconData) _onPick;
 
   /// Changes [_color] to one selected by user.
   void _onColorChange(Color color) {
     setState(() => _color = color);
-    _onPick(_color, _icon);
+    widget.onChange(_color, _icon);
   }
 
-  /// Allows to pick an icon.
+  /// Allows to pick an icon and changes [_icon].
   Future<void> _pickIcon() async {
     final IconData icon = await FlutterIconPicker.showIconPicker(
       context,
@@ -46,7 +51,7 @@ class _PickersState extends State<Pickers> {
     );
     _icon = icon;
     setState(() {});
-    _onPick(_color, icon);
+    widget.onChange(_color, icon);
   }
 
   @override
@@ -65,13 +70,12 @@ class _PickersState extends State<Pickers> {
                 ),
               ),
               NeuCard(
-                context: context,
                 depth: 1.5,
                 radius: 100.0,
                 child: IconButton(
                   onPressed: _pickIcon,
                   color: _color,
-                  icon: _icon != null ? Icon(_icon) : const Icon(emptyIcon),
+                  icon: Icon(_icon),
                 ),
               ),
             ],
@@ -86,14 +90,13 @@ class _PickersState extends State<Pickers> {
                 ),
               ),
               NeuCard(
-                context: context,
                 depth: 1.5,
                 radius: 100.0,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: ColorPickerButton(
-                    _onColorChange,
-                    _color,
+                    onChange: _onColorChange,
+                    color: _color,
                   ),
                 ),
               ),

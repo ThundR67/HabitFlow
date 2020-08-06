@@ -5,42 +5,34 @@ import 'package:habitflow/resources/icons.dart';
 /// A widget to show reward points with the icon.
 class RewardPoints extends StatelessWidget {
   /// Constructs
-  const RewardPoints(
-    this._points, {
-    Key key,
-    this.size = 16.0,
+  const RewardPoints({
+    @required this.points,
+    this.style,
     this.color = Colors.amber,
-  }) : super(key: key);
+  });
 
-  final int _points;
+  /// Amount of points.
+  final int points;
 
-  /// Size of the widget.
-  final double size;
+  /// Style of text.
+  final TextStyle style;
 
   /// Color of the icon.
   final Color color;
 
   @override
   Widget build(BuildContext context) {
-    if (_points == -1) {
-      return const CircularProgressIndicator();
-    }
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
-          _points.toString(),
-          style: TextStyle(
-            fontSize: size,
-          ),
+          points.toString(),
+          style: style,
         ),
-        const SizedBox(
-          width: 2,
-        ),
+        const SizedBox(width: 2),
         Icon(
           rewardIcon,
-          size: size,
+          size: style.fontSize,
           color: color,
         ),
       ],

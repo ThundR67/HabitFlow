@@ -7,13 +7,14 @@ import 'package:habitflow/resources/strings.dart';
 /// A widget to indicate the status of the habit.
 class StatusView extends StatelessWidget {
   //// Constructs.
-  const StatusView(this._status, {Key key}) : super(key: key);
+  const StatusView({@required this.status});
 
-  final Status _status;
+  /// Status of habit.
+  final Status status;
 
-  /// Returns color based on [_status].
+  /// Returns color based on [status].
   Color _color() {
-    switch (_status) {
+    switch (status) {
       case Status.done:
         return Colors.greenAccent;
       case Status.skipped:
@@ -25,9 +26,9 @@ class StatusView extends StatelessWidget {
     }
   }
 
-  // Returns icon based on [_status].
+  /// Returns icon based on [status].
   IconData _icon() {
-    switch (_status) {
+    switch (status) {
       case Status.done:
         return doneIcon;
       case Status.skipped:
@@ -39,9 +40,9 @@ class StatusView extends StatelessWidget {
     }
   }
 
-  // Returns text based on [_status].
+  /// Returns text based on [status].
   String _text() {
-    switch (_status) {
+    switch (status) {
       case Status.done:
         return done;
       case Status.skipped:

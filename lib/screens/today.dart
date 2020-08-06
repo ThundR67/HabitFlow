@@ -47,13 +47,13 @@ class Today extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          InlineCalendar(_currentBloc.current),
+          InlineCalendar(cycle: _currentBloc.current),
           Expanded(
             child: SingleChildScrollView(
               physics: scrollPhysics,
               child: HabitsList(
-                _bloc.habits,
-                _currentBloc.statuses,
+                habits: _bloc.habits,
+                statuses: _currentBloc.statuses,
               ),
             ),
           ),

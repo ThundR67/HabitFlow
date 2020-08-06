@@ -7,29 +7,34 @@ import 'package:habitflow/screens/cycle.dart';
 
 /// A card to show cycle data.
 class CycleCard extends StatelessWidget {
-  /// Constructs
-  const CycleCard(this._cycle, {Key key}) : super(key: key);
+  /// Constructs.
+  const CycleCard({@required this.cycle});
 
-  final Cycle _cycle;
+  /// Cycle to show data of.
+  final Cycle cycle;
+
+  /// Redirects to [CycleInfo] page.
+  void _openCycleInfo(BuildContext context) {
+    Navigator.push<CycleInfo>(
+      context,
+      MaterialPageRoute<CycleInfo>(
+        builder: (BuildContext context) => CycleInfo(cycle),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return NeuCard(
-      context: context,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => Navigator.push<CycleInfo>(
-            context,
-            MaterialPageRoute<CycleInfo>(
-              builder: (BuildContext context) => CycleInfo(_cycle),
-            ),
-          ),
+          onTap: () => _openCycleInfo(context),
           child: Ink(
             child: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
-              child: CycleStatus(_cycle),
+              child: CycleStatus(cycle: cycle),
             ),
           ),
         ),

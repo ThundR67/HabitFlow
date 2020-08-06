@@ -24,8 +24,8 @@ class Rewards extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: RewardPoints(
-          _pointsBloc.points,
-          size: 32,
+          points: _pointsBloc.points,
+          style: Theme.of(context).textTheme.headline5,
         ),
         automaticallyImplyLeading: false,
       ),

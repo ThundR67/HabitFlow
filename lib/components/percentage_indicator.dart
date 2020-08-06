@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-/// A widget to show percentage with indicator.
+/// A widget to show percentage with circular percentage indicator.
 class PercentageIndicator extends StatelessWidget {
   /// Constructs
-  const PercentageIndicator({this.value, this.style});
+  const PercentageIndicator({@required this.value, @required this.style});
 
   /// The percentage value.
   final double value;
@@ -13,16 +13,13 @@ class PercentageIndicator extends StatelessWidget {
   /// Style of text.
   final TextStyle style;
 
-  /// Returns string representation of [value].
-  String _toString() {
-    if (value.roundToDouble() == value) {
-      return (value.round() * 100).toString() + '%';
-    }
-    return (value * 100).toStringAsFixed(1) + '%';
-  }
-
   @override
   Widget build(BuildContext context) {
+    String strValue = (value * 100).toStringAsFixed(1);
+    if (value.roundToDouble() == value) {
+      strValue = (value.round() * 100).toString();
+    }
+
     return CircularPercentIndicator(
       radius: style.fontSize + 56,
       lineWidth: 4.0,
@@ -30,7 +27,7 @@ class PercentageIndicator extends StatelessWidget {
       percent: value,
       backgroundColor: Colors.transparent,
       center: Text(
-        _toString(),
+        '$strValue%',
         style: style,
       ),
     );

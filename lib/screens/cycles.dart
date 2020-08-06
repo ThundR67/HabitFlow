@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:habitflow/blocs/current_cycle_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
-import 'package:habitflow/components/cycle.dart';
+import 'package:habitflow/components/cycle_card.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/behaviour.dart';
 
@@ -23,14 +23,14 @@ class Cycles extends StatelessWidget {
     final List<Widget> output = <Widget>[
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: CycleCard(_currentBloc.current),
+        child: CycleCard(cycle: _currentBloc.current),
       ),
     ];
     _cyclesBloc.cycles.forEach((String key, Cycle value) {
       output.add(
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: CycleCard(value),
+          child: CycleCard(cycle: value),
         ),
       );
     });

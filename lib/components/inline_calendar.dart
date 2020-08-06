@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/components/percentage_indicator.dart';
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/dates.dart';
-
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
@@ -13,37 +12,28 @@ import 'package:habitflow/resources/strings.dart';
 /// A widget to show info about a single date.
 class _SingleDate extends StatelessWidget {
   /// Constructs.
-  const _SingleDate(this._date, this._day, {Key key}) : super(key: key);
+  const _SingleDate({@required this.day});
 
-  final DateTime _date;
-  final Day _day;
+  /// Info about the day.
+  final Day day;
 
   @override
   Widget build(BuildContext context) {
-    double successRate = 0;
-    if (_day != null) {
-      successRate = calculateSuccessRate(<Day>[_day]);
-    }
+    final DateTime date = parseDate(day.date);
+    final double successRate = calculateSuccessRate(<Day>[day]);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
           Text(
-            weekdays[_date.weekday - 1][0],
+            weekdays[date.weekday - 1][0],
             style: Theme.of(context).textTheme.caption,
           ),
           const SizedBox(height: 4.0),
-          CircularPercentIndicator(
-            radius: 32.0,
-            lineWidth: 2.0,
-            progressColor: Colors.greenAccent,
-            backgroundColor: Colors.transparent,
-            percent: successRate,
-            center: Text(
-              _date.day.toString(),
-              style: Theme.of(context).textTheme.headline6,
-            ),
+          PercentageIndicator(
+            value: successRate,
+            style: Theme.of(context).textTheme.headline6,
           ),
         ],
       ),
@@ -54,39 +44,28 @@ class _SingleDate extends StatelessWidget {
 /// An inline calendar.
 class InlineCalendar extends StatelessWidget {
   /// Constructs.
-  const InlineCalendar(this._cycle, {Key key}) : super(key: key);
+  const InlineCalendar({@required this.cycle});
 
-  final Cycle _cycle;
-
-  /// Return widgets for all dates.
-  List<Widget> _dates() {
-    final List<Widget> output = <Widget>[];
-    final List<DateTime> dates = datesList(
-      parseDate(_cycle.start),
-      parseDate(_cycle.end),
-    );
-    for (final DateTime date in dates) {
-      output.add(_SingleDate(date, _cycle.days[date]));
-    }
-    return output;
-  }
+  /// Cycle to get data.
+  final Cycle cycle;
 
   @override
   Widget build(BuildContext context) {
-    if (_cycle == null) {
+    if (cycle == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return Container(
-      alignment: Alignment.center,
-      child: Center(
-        child: SingleChildScrollView(
-          physics: scrollPhysics,
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: _dates(),
-          ),
-        ),
+    final List<DateTime> dates = datesList(
+      parseDate(cycle.start),
+      parseDate(cycle.end),
+    );
+
+    return Center(
+      child: ListView.builder(
+        physics: scrollPhysics,
+        scrollDirection: Axis.horizontal,
+        itemCount: dates.length,
+        itemBuilder: (_, int index) => _SingleDate(day: cycle.days[index]),
       ),
     );
   }

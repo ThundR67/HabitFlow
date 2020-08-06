@@ -31,7 +31,7 @@ class CycleInfo extends StatelessWidget {
         child: ListView(
           physics: scrollPhysics,
           children: <Widget>[
-            CycleStatus(_cycle),
+            CycleStatus(cycle: _cycle),
             HabitSuccessRates(
               <String, double>{
                 for (Habit habit in bloc.habits.values)

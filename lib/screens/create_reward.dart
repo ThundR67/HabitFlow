@@ -90,7 +90,11 @@ class _CreateRewardState extends State<CreateReward> {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      Pickers(_color, _icon, _onPick),
+                      Pickers(
+                        color: _color,
+                        icon: _icon,
+                        onChange: _onPick,
+                      ),
                       const Padding(
                         padding: EdgeInsets.all(16.0),
                         child: Divider(),
