@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/resources/widgets.dart';
 
 import 'package:provider/provider.dart';
 
@@ -38,7 +39,7 @@ class CycleInfo extends StatelessWidget {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
 
     if (bloc.habits == null) {
-      return const LinearProgressIndicator();
+      return circularIndicator;
     }
 
     return Scaffold(

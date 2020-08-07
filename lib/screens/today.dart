@@ -8,6 +8,7 @@ import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:habitflow/resources/widgets.dart';
 import 'package:provider/provider.dart';
 
 /// A screen to show user about todays information.
@@ -19,6 +20,10 @@ class Today extends StatelessWidget {
   Widget build(BuildContext context) {
     final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
     final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
+
+    if (habitsBloc.habits == null || currentBloc.statuses == null) {
+      return circularIndicator;
+    }
 
     return Scaffold(
       appBar: AppBar(

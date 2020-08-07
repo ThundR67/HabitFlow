@@ -84,10 +84,6 @@ class InlineCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (cycle == null) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
     return Container(
       alignment: Alignment.center,
       child: Center(

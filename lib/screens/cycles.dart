@@ -5,6 +5,7 @@ import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/components/cycle_card.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/behaviour.dart';
+import 'package:habitflow/resources/widgets.dart';
 import 'package:provider/provider.dart';
 
 /// A screen to show current and previous cycles.
@@ -43,7 +44,7 @@ class Cycles extends StatelessWidget {
     final CyclesBloc cyclesBloc = Provider.of<CyclesBloc>(context);
 
     if (currentBloc.current == null || cyclesBloc.cycles == null) {
-      return const Center(child: CircularProgressIndicator());
+      return circularIndicator;
     }
 
     return SafeArea(

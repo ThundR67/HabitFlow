@@ -34,9 +34,6 @@ class HabitsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (habits == null || statuses == null) {
-      return const LinearProgressIndicator();
-    }
     return Column(
       children: _habitsCards(),
     );
