@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
 import 'package:habitflow/components/neu_card.dart';
@@ -27,12 +27,12 @@ class HabitCard extends StatelessWidget {
   final Status status;
 
   /// Returns all primary actions on habit.
-  List<Widget> _actions(CurrentCycleBloc bloc, PointsBloc pointsBloc) {
+  List<Widget> _actions(CurrentBloc bloc, PointsBloc pointsBloc) {
     return <Widget>[doneAction(habit, pointsBloc, bloc)];
   }
 
   /// Returns all secondary actions on habit.
-  List<Widget> _secondaryActions(BuildContext context, CurrentCycleBloc bloc) {
+  List<Widget> _secondaryActions(BuildContext context, CurrentBloc bloc) {
     return <Widget>[
       skipAction(habit, bloc),
       failAction(context, habit),
@@ -41,10 +41,9 @@ class HabitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CurrentCycleBloc currentBloc = Provider.of<CurrentCycleBloc>(context);
+    final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
     final bool isUnmarked = status == Status.unmarked;
-    print(status);
 
     return Slidable(
       actions: isUnmarked
@@ -65,7 +64,6 @@ class HabitCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Icon(
                           mapToIconData(habit.iconData),

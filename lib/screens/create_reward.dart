@@ -99,11 +99,11 @@ class _CreateRewardState extends State<CreateReward> {
                       RaisedButton(
                         color: _color,
                         onPressed: _create,
+                        elevation: 4,
                         child: Text(
                           submit,
                           style: Theme.of(context).textTheme.subtitle2,
                         ),
-                        elevation: 4,
                       ),
                     ],
                   ),

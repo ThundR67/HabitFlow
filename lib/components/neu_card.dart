@@ -25,12 +25,12 @@ class NeuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Neumorphic(
-      child: child,
       style: neuStyle(
         context,
         depth: depth,
         radius: radius,
       ),
+      child: child,
     );
   }
 }

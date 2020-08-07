@@ -43,7 +43,7 @@ class Day {
   String id;
 
   /// Date of the day formatted.
-  final String date;
+  String date;
 
   /// Active habits' ids on the day.
   List<String> activeHabits;
@@ -58,15 +58,13 @@ class Day {
   Map<String, String> failures;
 
   /// Converts a map to [Day].
-  static Day fromMap(Map<String, dynamic> map) {
-    return Day(
-      id: map[idKey].toString(),
-      date: map[dateKey].toString(),
-      activeHabits: list<String>(map[activeHabitsKey]),
-      successes: list<String>(map[successesKey]),
-      skips: list<String>(map[skipsKey]),
-      failures: dynamicToMap<String>(map[failuresKey]),
-    );
+  Day.fromMap(Map<String, dynamic> map) {
+    id = map[idKey].toString();
+    date = map[dateKey].toString();
+    activeHabits = list<String>(map[activeHabitsKey]);
+    successes = list<String>(map[successesKey]);
+    skips = list<String>(map[skipsKey]);
+    failures = dynamicToMap<String>(map[failuresKey]);
   }
 
   /// Converts [Day] into map.

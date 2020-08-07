@@ -57,7 +57,6 @@ class StatusView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Icon(
           _icon(),

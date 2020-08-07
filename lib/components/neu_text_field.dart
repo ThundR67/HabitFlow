@@ -23,27 +23,25 @@ class NeuInputTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: NeuCard(
-        radius: 100,
-        depth: -2,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 32.0,
-            vertical: 8.0,
+    return NeuCard(
+      radius: 100,
+      depth: -2,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 32.0,
+          vertical: 8.0,
+        ),
+        child: TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
+            labelText: text,
           ),
-          child: TextFormField(
-            controller: controller,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
-              labelText: text,
-            ),
-            validator: validate,
-          ),
+          validator: validate,
         ),
       ),
     );

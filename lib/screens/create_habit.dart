@@ -35,9 +35,6 @@ class _CreateHabitState extends State<CreateHabit> {
   HabitsBloc _bloc;
   CurrentBloc _currentBloc;
 
-  /// Updates [_activeDays].
-  void _onDaysChange(List<int> days) => _activeDays = days;
-
   /// Changes [_color] and [_icon] to what user selected.
   void _onChange(Color color, IconData icon) {
     setState(() {
@@ -109,18 +106,18 @@ class _CreateHabitState extends State<CreateHabit> {
                       ),
                       const SizedBox(height: 16.0),
                       WeekdaysPicker(
-                        onChange: _onDaysChange,
+                        onChange: (List<int> days) => _activeDays = days,
                         color: _color,
                       ),
                       const SizedBox(height: 16.0),
                       RaisedButton(
                         color: _color,
                         onPressed: _create,
+                        elevation: 4,
                         child: Text(
                           submit,
                           style: Theme.of(context).textTheme.subtitle2,
                         ),
-                        elevation: 4,
                       ),
                     ],
                   ),

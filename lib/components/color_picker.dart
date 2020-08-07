@@ -46,8 +46,8 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
         ),
         actions: <Widget>[
           FlatButton(
-            child: Text(submit),
             onPressed: () => Navigator.of(context).pop(),
+            child: Text(submit),
           ),
         ],
       ),
@@ -57,16 +57,14 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
   @override
   Widget build(BuildContext context) {
     _color ??= widget.color;
-    return Container(
-      child: ClipOval(
-        child: Material(
-          color: _color, // button color
-          child: InkWell(
-            child: const SizedBox(
-              width: 24,
-              height: 24,
-            ),
-            onTap: () => _showPicker(context),
+    return ClipOval(
+      child: Material(
+        color: _color, // button color
+        child: InkWell(
+          onTap: () => _showPicker(context),
+          child: const SizedBox(
+            width: 24,
+            height: 24,
           ),
         ),
       ),

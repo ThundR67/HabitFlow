@@ -40,10 +40,7 @@ class _PickersState extends State<Pickers> {
 
   /// Allows to pick an icon and changes [_icon].
   Future<void> _pickIcon() async {
-    final IconData icon = await FlutterIconPicker.showIconPicker(
-      context,
-      iconPackMode: IconPack.material,
-    );
+    final IconData icon = await FlutterIconPicker.showIconPicker(context);
     _icon = icon;
     setState(() {});
     widget.onChange(_color, icon);
@@ -53,54 +50,52 @@ class _PickersState extends State<Pickers> {
   Widget build(BuildContext context) {
     _color ??= widget.color;
     _icon ??= widget.icon;
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  icon,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                icon,
+                style: Theme.of(context).textTheme.headline6,
               ),
-              NeuCard(
-                depth: 1.5,
-                radius: 100.0,
-                child: IconButton(
-                  onPressed: _pickIcon,
+            ),
+            NeuCard(
+              depth: 1.5,
+              radius: 100.0,
+              child: IconButton(
+                onPressed: _pickIcon,
+                color: _color,
+                icon: Icon(_icon),
+              ),
+            ),
+          ],
+        ),
+        Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                color,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            NeuCard(
+              depth: 1.5,
+              radius: 100.0,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ColorPickerButton(
+                  onChange: _onColorChange,
                   color: _color,
-                  icon: Icon(_icon),
                 ),
               ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  color,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-              ),
-              NeuCard(
-                depth: 1.5,
-                radius: 100.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: ColorPickerButton(
-                    onChange: _onColorChange,
-                    color: _color,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

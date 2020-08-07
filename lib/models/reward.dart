@@ -36,30 +36,28 @@ class Reward {
   String id;
 
   /// Unique name of this reward.
-  final String name;
+  String name;
 
   /// Points required to acquire this reward.
-  final int points;
+  int points;
 
   /// Amount of time this reward is acquired.
   int amountTaken;
 
   /// Hex value of color of this reward.
-  final String colorHex;
+  String colorHex;
 
   /// Icon of this reward.
-  final Map<String, dynamic> iconData;
+  Map<String, dynamic> iconData;
 
   /// Converts a map to [Reward].
-  static Reward fromMap(Map<String, dynamic> map) {
-    return Reward(
-      id: map[idKey].toString(),
-      name: map[nameKey].toString(),
-      points: map[pointsKey] as int,
-      amountTaken: map[takenKey] as int,
-      colorHex: map[colorKey].toString(),
-      iconData: map[iconKey] as Map<String, dynamic>,
-    );
+  Reward.fromMap(Map<String, dynamic> map) {
+    id = map[idKey].toString();
+    name = map[nameKey].toString();
+    points = map[pointsKey] as int;
+    amountTaken = map[takenKey] as int;
+    colorHex = map[colorKey].toString();
+    iconData = map[iconKey] as Map<String, dynamic>;
   }
 
   /// Converts [Reward] to map.

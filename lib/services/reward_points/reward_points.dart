@@ -15,7 +15,7 @@ class RewardPointsDAO {
   final StoreRef<String, int> _store = StoreRef<String, int>.main();
 
   /// Connection to db.
-  Future<Database> get _db async => await DB.instance.database(_dbName);
+  Future<Database> get _db => DB.instance.database(_dbName);
 
   /// Returns user's current reward points from db.
   Future<int> get() async {
@@ -28,5 +28,5 @@ class RewardPointsDAO {
   }
 
   /// Clears db.
-  Future<void> clear() async => await _store.drop(await _db);
+  Future<void> clear() async => _store.drop(await _db);
 }

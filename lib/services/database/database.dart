@@ -40,7 +40,7 @@ class DB {
       database = await databaseFactoryWeb.openDatabase(name);
     } else {
       final Directory appDocumentDir = await getApplicationDocumentsDirectory();
-      final String dbPath = appDocumentDir.path + '$name.db';
+      final String dbPath = '${appDocumentDir.path}${'$name.db'}';
       database = await databaseFactoryIo.openDatabase(dbPath);
     }
     _dbOpenCompleters[name].complete(database);

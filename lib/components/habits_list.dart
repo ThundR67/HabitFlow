@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitflow/components/habit_card.dart';
-import 'package:habitflow/resources/behaviour.dart';
 
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';

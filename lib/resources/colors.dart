@@ -18,7 +18,6 @@ NeumorphicStyle neuStyle(
       BorderRadius.circular(radius),
     ),
     depth: depth,
-    shape: NeumorphicShape.flat,
     lightSource: LightSource.topLeft,
     intensity: 1,
     color: color,

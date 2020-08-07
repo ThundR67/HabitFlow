@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -17,7 +17,7 @@ class FailureReasonSheet extends StatelessWidget {
 
   /// Marks [habit] as failure.
   void _done(BuildContext context) {
-    final CurrentCycleBloc bloc = Provider.of<CurrentCycleBloc>(
+    final CurrentBloc bloc = Provider.of<CurrentBloc>(
       context,
       listen: false,
     );
@@ -39,9 +39,9 @@ class FailureReasonSheet extends StatelessWidget {
             decoration: InputDecoration(labelText: failureReason),
           ),
           RaisedButton(
-            child: Text(done),
             color: Theme.of(context).accentColor,
             onPressed: () => _done(context),
+            child: Text(done),
           ),
         ],
       ),

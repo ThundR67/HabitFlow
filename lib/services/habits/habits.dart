@@ -17,7 +17,7 @@ class HabitsDAO {
       stringMapStoreFactory.store(_dbName);
 
   /// Connection to db.
-  Future<Database> get _db async => await DB.instance.database(_dbName);
+  Future<Database> get _db async => DB.instance.database(_dbName);
 
   /// Returns a finder based on filter of [id].
   Finder _finder(String id) => Finder(filter: Filter.byKey(id));
@@ -70,5 +70,5 @@ class HabitsDAO {
   }
 
   /// Clears db.
-  Future<void> clear() async => await _store.drop(await _db);
+  Future<void> clear() async => _store.drop(await _db);
 }

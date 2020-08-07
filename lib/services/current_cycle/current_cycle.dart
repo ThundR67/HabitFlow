@@ -17,7 +17,7 @@ class CurrentCycleDAO {
       stringMapStoreFactory.store(_dbName);
 
   /// Connection to db.
-  Future<Database> get _db async => await DB.instance.database(_dbName);
+  Future<Database> get _db => DB.instance.database(_dbName);
 
   /// Adds [cycle] int db.
   Future<void> create(Cycle cycle) async {
@@ -42,5 +42,5 @@ class CurrentCycleDAO {
   }
 
   /// Clears db.
-  Future<void> clear() async => await _store.drop(await _db);
+  Future<void> clear() async => _store.drop(await _db);
 }

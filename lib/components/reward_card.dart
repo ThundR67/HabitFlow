@@ -26,7 +26,6 @@ class RewardCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Icon(
                         mapToIconData(_reward.iconData),

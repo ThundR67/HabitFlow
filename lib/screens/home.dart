@@ -53,7 +53,6 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
-        showElevation: true,
         backgroundColor:
             Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         onItemSelected: (int index) => setState(() {
@@ -64,7 +63,6 @@ class _HomeState extends State<Home> {
           BottomNavyBarItem(
             icon: const Icon(cycleIcon),
             title: Text(cyclesPage),
-            activeColor: Colors.blue,
           ),
           BottomNavyBarItem(
             icon: const Icon(todayIcon),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
@@ -18,18 +18,18 @@ class _DaysFailures extends StatelessWidget {
 
   final Day _day;
   final Map<String, String> _idToName;
-  final CurrentCycleBloc _bloc;
+  final CurrentBloc _bloc;
 
   /// All more option buttons.
   List<PopupMenuItem<int>> _menuOptions() {
     return <PopupMenuItem<int>>[
       PopupMenuItem<int>(
-        child: Text(markSkip),
         value: 0,
+        child: Text(markSkip),
       ),
       PopupMenuItem<int>(
-        child: Text(markDone),
         value: 0,
+        child: Text(markDone),
       ),
     ];
   }
@@ -64,10 +64,10 @@ class _DaysFailures extends StatelessWidget {
                   }
                   _day.failures.remove(id);
                 },
-                child: const Icon(moreIcon),
                 itemBuilder: (_) {
                   return _menuOptions();
                 },
+                child: const Icon(moreIcon),
               ),
           ],
         ),
@@ -109,7 +109,7 @@ class FailuresPanel extends StatelessWidget {
 
   final Map<String, String> _idToName;
   final List<Day> _days;
-  final CurrentCycleBloc _bloc;
+  final CurrentBloc _bloc;
 
   /// Returns widgets for expansion tile.
   List<Widget> _children() {

@@ -36,30 +36,28 @@ class Habit {
   String id;
 
   /// Name of the habit.
-  final String name;
+  String name;
 
   /// Points gained when habit is completed.
-  final int points;
+  int points;
 
   /// Hex color code of the habit.
-  final String colorHex;
+  String colorHex;
 
   /// Weekdays the habit is active on.
-  final List<int> activeDays;
+  List<int> activeDays;
 
   /// Icon of the habit.
-  final Map<String, dynamic> iconData;
+  Map<String, dynamic> iconData;
 
   /// Converts a map to [Habit].
-  static Habit fromMap(Map<String, dynamic> map) {
-    return Habit(
-      id: map[idKey].toString(),
-      name: map[nameKey].toString(),
-      points: map[pointsKey] as int,
-      colorHex: map[colorKey].toString(),
-      iconData: map[iconKey] as Map<String, dynamic>,
-      activeDays: List<int>.from(map[activeDaysKey] as Iterable<dynamic>),
-    );
+  Habit.fromMap(Map<String, dynamic> map) {
+    id = map[idKey].toString();
+    name = map[nameKey].toString();
+    points = map[pointsKey] as int;
+    colorHex = map[colorKey].toString();
+    iconData = map[iconKey] as Map<String, dynamic>;
+    activeDays = List<int>.from(map[activeDaysKey] as Iterable<dynamic>);
   }
 
   /// Converts [Habit] to map.

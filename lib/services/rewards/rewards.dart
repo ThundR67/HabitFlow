@@ -17,7 +17,7 @@ class RewardsDAO {
       stringMapStoreFactory.store(_dbName);
 
   /// Connection to the DB.
-  Future<Database> get _db async => await DB.instance.database(_dbName);
+  Future<Database> get _db async => DB.instance.database(_dbName);
 
   /// Creates a finder with filter of [id].
   Finder _finder(String id) => Finder(filter: Filter.byKey(id));
@@ -57,5 +57,5 @@ class RewardsDAO {
   }
 
   /// Clears db.
-  Future<void> clear() async => await _store.drop(await _db);
+  Future<void> clear() async => _store.drop(await _db);
 }

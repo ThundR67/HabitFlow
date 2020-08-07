@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/components/action_button.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
@@ -9,7 +9,7 @@ import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// Returns action button to undo marking [habit].
-Widget undoAction(Habit habit, CurrentCycleBloc bloc) {
+Widget undoAction(Habit habit, CurrentBloc bloc) {
   return ActionButton(
     color: Colors.orangeAccent[700],
     text: undo,
@@ -19,7 +19,7 @@ Widget undoAction(Habit habit, CurrentCycleBloc bloc) {
 }
 
 /// Returns action button to mark [habit] as done.
-Widget doneAction(Habit habit, PointsBloc pointsBloc, CurrentCycleBloc bloc) {
+Widget doneAction(Habit habit, PointsBloc pointsBloc, CurrentBloc bloc) {
   return ActionButton(
     color: Colors.green,
     text: done,
@@ -32,7 +32,7 @@ Widget doneAction(Habit habit, PointsBloc pointsBloc, CurrentCycleBloc bloc) {
 }
 
 /// Returns action button to mark [habit] as skipped.
-Widget skipAction(Habit habit, CurrentCycleBloc bloc) {
+Widget skipAction(Habit habit, CurrentBloc bloc) {
   return ActionButton(
     color: Colors.blueAccent,
     text: skip,
