@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habitflow/blocs/points_bloc.dart';
+import 'package:habitflow/blocs/rewards_bloc.dart';
+import 'package:habitflow/components/action_buttons.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/reward.dart';
+import 'package:provider/provider.dart';
 
 /// A widget to show a reward in a card.
 class RewardCard extends StatelessWidget {
@@ -15,30 +20,37 @@ class RewardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: NeuCard(
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            child: Ink(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        mapToIconData(_reward.iconData),
-                        color: hexToColor(_reward.colorHex),
-                      ),
-                      const SizedBox(width: 16.0),
-                      _RewardName(_reward),
-                      RewardPoints(
-                        points: _reward.points,
-                        color: hexToColor(_reward.colorHex),
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                    ],
+    final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
+    final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+    return Slidable(
+      actionPane: const SlidableDrawerActionPane(),
+      actions: [takeAction(_reward, rewardsBloc, pointsBloc)],
+      secondaryActions: [deleteAction(_reward, rewardsBloc)],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: NeuCard(
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              child: Ink(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          mapToIconData(_reward.iconData),
+                          color: hexToColor(_reward.colorHex),
+                        ),
+                        const SizedBox(width: 16.0),
+                        _RewardName(_reward),
+                        RewardPoints(
+                          points: _reward.points,
+                          color: hexToColor(_reward.colorHex),
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -27,12 +27,6 @@ class RewardsBloc extends ChangeNotifier {
     await _update();
   }
 
-  /// Updates [reward] in db.
-  Future<void> update(Reward reward) async {
-    await _dao.update(reward);
-    await _update();
-  }
-
   /// Deletes [reward] from db.
   Future<void> delete(Reward reward) async {
     await _dao.delete(reward);
@@ -42,6 +36,7 @@ class RewardsBloc extends ChangeNotifier {
   /// Increases [amountTaken] of [reward] by 1.
   Future<void> take(Reward reward) async {
     reward.amountTaken++;
-    await update(reward);
+    await _dao.update(reward);
+    await _update();
   }
 }

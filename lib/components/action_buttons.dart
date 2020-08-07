@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
+import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_button.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
 import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// Returns action button to undo marking [habit].
-Widget undoAction(Habit habit, CurrentBloc bloc) {
+ActionButton undoAction(Habit habit, CurrentBloc bloc) {
   return ActionButton(
     color: Colors.orangeAccent[700],
     text: undo,
@@ -19,7 +21,7 @@ Widget undoAction(Habit habit, CurrentBloc bloc) {
 }
 
 /// Returns action button to mark [habit] as done.
-Widget doneAction(Habit habit, PointsBloc pointsBloc, CurrentBloc bloc) {
+ActionButton doneAction(Habit habit, PointsBloc pointsBloc, CurrentBloc bloc) {
   return ActionButton(
     color: Colors.green,
     text: done,
@@ -32,7 +34,7 @@ Widget doneAction(Habit habit, PointsBloc pointsBloc, CurrentBloc bloc) {
 }
 
 /// Returns action button to mark [habit] as skipped.
-Widget skipAction(Habit habit, CurrentBloc bloc) {
+ActionButton skipAction(Habit habit, CurrentBloc bloc) {
   return ActionButton(
     color: Colors.blueAccent,
     text: skip,
@@ -42,7 +44,7 @@ Widget skipAction(Habit habit, CurrentBloc bloc) {
 }
 
 /// Returns action button to mark [habit] as failed.
-Widget failAction(BuildContext context, Habit habit) {
+ActionButton failAction(BuildContext context, Habit habit) {
   return ActionButton(
     color: Colors.redAccent,
     text: fail,
@@ -50,5 +52,32 @@ Widget failAction(BuildContext context, Habit habit) {
       (BuildContext context) => FailureReasonSheet(habit),
     ),
     icon: failedIcon,
+  );
+}
+
+/// Returns action button take [reward].
+ActionButton takeAction(
+  Reward reward,
+  RewardsBloc bloc,
+  PointsBloc pointsBloc,
+) {
+  return ActionButton(
+    icon: takeIcon,
+    text: take,
+    color: Colors.blueAccent,
+    onPressed: () {
+      bloc.take(reward);
+      pointsBloc.decrement(reward.points);
+    },
+  );
+}
+
+/// Returns action button delete [reward].
+ActionButton deleteAction(Reward reward, RewardsBloc bloc) {
+  return ActionButton(
+    icon: deleteIcon,
+    text: delete,
+    color: Colors.redAccent,
+    onPressed: () => bloc.delete(reward),
   );
 }

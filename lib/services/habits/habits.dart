@@ -20,7 +20,7 @@ class HabitsDAO {
   Future<Database> get _db async => DB.instance.database(_dbName);
 
   /// Returns a finder based on filter of [id].
-  Finder _finder(String id) => Finder(filter: Filter.byKey(id));
+  Finder _finder(String id) => Finder(filter: Filter.equals(idKey, id));
 
   /// Adds a habit into db.
   Future<void> add(Habit habit) async {

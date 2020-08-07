@@ -34,3 +34,9 @@ const IconData emptyIcon = Icons.accessibility_rounded;
 
 /// Icon to show user of no active habits on current day.
 const IconData noActiveHabitsIcon = Icons.bedtime;
+
+/// Icon to take a reward.
+const IconData takeIcon = Icons.gif;
+
+/// Icon to delete.
+const IconData deleteIcon = Icons.delete;

@@ -20,7 +20,7 @@ class RewardsDAO {
   Future<Database> get _db async => DB.instance.database(_dbName);
 
   /// Creates a finder with filter of [id].
-  Finder _finder(String id) => Finder(filter: Filter.byKey(id));
+  Finder _finder(String id) => Finder(filter: Filter.equals(idKey, id));
 
   /// Adds a reward into db.
   Future<void> add(Reward reward) async {
