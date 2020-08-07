@@ -69,7 +69,7 @@ class Day {
 
   /// Converts [Day] into map.
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       idKey: id,
       dateKey: date,
       activeHabitsKey: activeHabits,

@@ -57,12 +57,12 @@ class Habit {
     points = map[pointsKey] as int;
     colorHex = map[colorKey].toString();
     iconData = map[iconKey] as Map<String, dynamic>;
-    activeDays = List<int>.from(map[activeDaysKey] as Iterable<dynamic>);
+    activeDays = List<int>.from(map[activeDaysKey] as Iterable);
   }
 
   /// Converts [Habit] to map.
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       idKey: id,
       nameKey: name,
       pointsKey: points,

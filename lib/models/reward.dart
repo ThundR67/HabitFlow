@@ -62,7 +62,7 @@ class Reward {
 
   /// Converts [Reward] to map.
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       idKey: id,
       nameKey: name,
       pointsKey: points,
