@@ -57,6 +57,7 @@ ActionButton failAction(BuildContext context, Habit habit) {
 
 /// Returns action button take [reward].
 ActionButton takeAction(
+  BuildContext context,
   Reward reward,
   RewardsBloc bloc,
   PointsBloc pointsBloc,
@@ -66,6 +67,12 @@ ActionButton takeAction(
     text: take,
     color: Colors.blueAccent,
     onPressed: () {
+      if (pointsBloc.points < reward.points) {
+        Scaffold.of(context).showSnackBar(
+          SnackBar(content: Text(notEnoughPoints)),
+        );
+        return;
+      }
       bloc.take(reward);
       pointsBloc.decrement(reward.points);
     },

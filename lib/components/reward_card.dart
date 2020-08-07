@@ -24,7 +24,7 @@ class RewardCard extends StatelessWidget {
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
     return Slidable(
       actionPane: const SlidableDrawerActionPane(),
-      actions: [takeAction(_reward, rewardsBloc, pointsBloc)],
+      actions: [takeAction(context, _reward, rewardsBloc, pointsBloc)],
       secondaryActions: [deleteAction(_reward, rewardsBloc)],
       child: Padding(
         padding: const EdgeInsets.all(8.0),
