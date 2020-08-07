@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/components/no_possesion.dart';
 import 'package:habitflow/components/reward_card.dart';
 import 'package:habitflow/models/reward.dart';
-import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A widget to show all rewards in list.

@@ -6,7 +6,6 @@ import 'package:habitflow/components/no_possesion.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
-import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A widget to show all habits in list.
