@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:provider/provider.dart';
 
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
-import 'package:habitflow/blocs/cycles_bloc.dart';
-import 'package:habitflow/blocs/habits_bloc.dart';
-import 'package:habitflow/blocs/points_bloc.dart';
-import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -17,8 +11,8 @@ import 'package:habitflow/screens/today.dart';
 
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
-  /// Constructs
-  const Home({Key key}) : super(key: key);
+  /// Constructs.
+  const Home();
 
   @override
   _HomeState createState() => _HomeState();
@@ -42,25 +36,17 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
-    final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
-    final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
-    final CyclesBloc cyclesBloc = Provider.of<CyclesBloc>(context);
-    final CurrentCycleBloc currentBloc = Provider.of<CurrentCycleBloc>(context);
-
     return Scaffold(
       body: SafeArea(
         child: SizedBox.expand(
           child: PageView(
             physics: scrollPhysics,
             controller: _pageController,
-            onPageChanged: (int index) {
-              setState(() => _currentIndex = index);
-            },
-            children: <Widget>[
-              Cycles(cyclesBloc, currentBloc),
-              Today(habitsBloc, currentBloc),
-              Rewards(rewardsBloc, pointsBloc),
+            onPageChanged: (int index) => setState(() => _currentIndex = index),
+            children: const <Widget>[
+              Cycles(),
+              Today(),
+              Rewards(),
             ],
           ),
         ),

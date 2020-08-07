@@ -10,9 +10,9 @@ import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/habits/habits.dart';
 
 /// Bloc to manage current cycle and statuses of habits.
-class CurrentCycleBloc extends ChangeNotifier {
+class CurrentBloc extends ChangeNotifier {
   /// Constructs.
-  CurrentCycleBloc() {
+  CurrentBloc() {
     _dao.clear().whenComplete(_update);
     // TODO _update();
   }

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/resources/routes.dart';
 import 'package:provider/provider.dart';
 
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
@@ -22,9 +23,7 @@ void main() {
         ChangeNotifierProvider<PointsBloc>(create: (_) => PointsBloc()),
         ChangeNotifierProvider<HabitsBloc>(create: (_) => HabitsBloc()),
         ChangeNotifierProvider<CyclesBloc>(create: (_) => CyclesBloc()),
-        ChangeNotifierProvider<CurrentCycleBloc>(
-          create: (_) => CurrentCycleBloc(),
-        ),
+        ChangeNotifierProvider<CurrentBloc>(create: (_) => CurrentBloc()),
       ],
       child: EasyLocalization(
         supportedLocales: const <Locale>[Locale('en')],
@@ -46,15 +45,14 @@ class App extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       darkTheme: darkTheme(),
       theme: lightTheme(),
-      initialRoute: '/home',
+      initialRoute: homeRoute,
       routes: <String, Widget Function(BuildContext)>{
-        '/home': (BuildContext context) => const Home(),
-        '/create_reward': (BuildContext context) => const CreateReward(),
-        '/create_habit': (BuildContext context) => const CreateHabit(),
+        homeRoute: (BuildContext context) => const Home(),
+        createRewardRoute: (BuildContext context) => const CreateReward(),
+        createHabitRoute: (BuildContext context) => const CreateHabit(),
       },
     );
   }

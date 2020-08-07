@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
 import 'package:habitflow/components/inline_calendar.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:provider/provider.dart';
 
 /// A screen to show user about todays information.
 class Today extends StatelessWidget {
   /// Constructs.
-  const Today(
-    this._bloc,
-    this._currentBloc, {
-    Key key,
-  }) : super(key: key);
-
-  final HabitsBloc _bloc;
-  final CurrentCycleBloc _currentBloc;
+  const Today();
 
   @override
   Widget build(BuildContext context) {
+    final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
+    final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -47,23 +45,21 @@ class Today extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          InlineCalendar(cycle: _currentBloc.current),
+          InlineCalendar(cycle: currentBloc.current),
           Expanded(
             child: SingleChildScrollView(
               physics: scrollPhysics,
               child: HabitsList(
-                habits: _bloc.habits,
-                statuses: _currentBloc.statuses,
+                habits: habitsBloc.habits,
+                statuses: currentBloc.statuses,
               ),
             ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        heroTag: 'create_habit',
-        onPressed: () {
-          Navigator.of(context).pushNamed('/create_habit');
-        },
+        heroTag: createHabitRoute,
+        onPressed: () => Navigator.of(context).pushNamed(createHabitRoute),
         child: const Icon(addIcon),
       ),
     );

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/helpers/colors.dart';
+import 'package:habitflow/helpers/validators.dart';
 import 'package:provider/provider.dart';
 
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/neu_text_field.dart';
 import 'package:habitflow/components/pickers.dart';
@@ -14,10 +16,10 @@ import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
-/// A screen which allows user to create a reward.
+/// A screen which allows user to create a habit.
 class CreateHabit extends StatefulWidget {
   /// Constructs
-  const CreateHabit({Key key}) : super(key: key);
+  const CreateHabit();
 
   @override
   _CreateHabitState createState() => _CreateHabitState();
@@ -31,22 +33,20 @@ class _CreateHabitState extends State<CreateHabit> {
   IconData _icon = emptyIcon;
   Color _color;
   HabitsBloc _bloc;
-  CurrentCycleBloc _currentBloc;
+  CurrentBloc _currentBloc;
 
   /// Updates [_activeDays].
-  void _onWeekdaysChange(List<int> days) {
-    _activeDays = days;
-  }
+  void _onDaysChange(List<int> days) => _activeDays = days;
 
   /// Changes [_color] and [_icon] to what user selected.
-  void _onPick(Color color, IconData icon) {
+  void _onChange(Color color, IconData icon) {
     setState(() {
       _color = color;
       _icon = icon;
     });
   }
 
-  /// Creates the reward.
+  /// Creates the habit.
   void _create() {
     if (_formKey.currentState.validate()) {
       _bloc
@@ -54,7 +54,7 @@ class _CreateHabitState extends State<CreateHabit> {
             Habit(
               name: _nameController.text,
               points: int.parse(_pointsController.text),
-              colorHex: '#${_color.value.toRadixString(16)}',
+              colorHex: colorToHex(_color),
               iconData: iconDataToMap(_icon),
               activeDays: _activeDays,
             ),
@@ -65,29 +65,12 @@ class _CreateHabitState extends State<CreateHabit> {
     }
   }
 
-  /// Validates reward points.
-  String _validatePoints(String value) {
-    if (value.isEmpty || int.tryParse(value) == null) {
-      return validInteger;
-    } else if (int.parse(value) <= 0) {
-      return positiveInteger;
-    }
-    return null;
-  }
-
-  /// Validates reward name.
-  String _validateName(String value) {
-    if (value.isEmpty) {
-      return validName;
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     _bloc = Provider.of<HabitsBloc>(context);
-    _currentBloc = Provider.of<CurrentCycleBloc>(context);
+    _currentBloc = Provider.of<CurrentBloc>(context);
     _color ??= Theme.of(context).accentColor;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(createHabitTitle),
@@ -107,7 +90,7 @@ class _CreateHabitState extends State<CreateHabit> {
                       Pickers(
                         color: _color,
                         icon: _icon,
-                        onChange: _onPick,
+                        onChange: _onChange,
                       ),
                       const Padding(
                         padding: EdgeInsets.all(16.0),
@@ -116,17 +99,17 @@ class _CreateHabitState extends State<CreateHabit> {
                       NeuInputTextField(
                         controller: _nameController,
                         text: habitName,
-                        validate: _validateName,
+                        validate: validateStr,
                       ),
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
                         text: rewardPoints,
-                        validate: _validatePoints,
+                        validate: validatePosInt,
                       ),
                       const SizedBox(height: 16.0),
                       WeekdaysPicker(
-                        onChange: _onWeekdaysChange,
+                        onChange: _onDaysChange,
                         color: _color,
                       ),
                       const SizedBox(height: 16.0),

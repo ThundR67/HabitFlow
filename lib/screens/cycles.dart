@@ -1,45 +1,48 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/blocs/current_cycle_bloc.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/components/cycle_card.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/behaviour.dart';
+import 'package:provider/provider.dart';
 
-/// Cycles screen
+/// A screen to show current and previous cycles.
 class Cycles extends StatelessWidget {
   /// Constructs
-  const Cycles(
-    this._cyclesBloc,
-    this._currentBloc, {
-    Key key,
-  }) : super(key: key);
-
-  final CyclesBloc _cyclesBloc;
-  final CurrentCycleBloc _currentBloc;
+  const Cycles();
 
   /// Returns cards for previous cycles.
-  List<Widget> _cycles() {
+  List<Widget> _cycles(CurrentBloc currentBloc, CyclesBloc cyclesBloc) {
+    // Adding current cycle.
     final List<Widget> output = <Widget>[
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: CycleCard(cycle: _currentBloc.current),
+        child: CycleCard(cycle: currentBloc.current),
       ),
     ];
-    _cyclesBloc.cycles.forEach((String key, Cycle value) {
-      output.add(
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CycleCard(cycle: value),
-        ),
-      );
-    });
+
+    // Adding previous cycles.
+    cyclesBloc.cycles.forEach(
+      (String key, Cycle value) {
+        output.add(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CycleCard(cycle: value),
+          ),
+        );
+      },
+    );
+
     return output;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_currentBloc.current == null || _cyclesBloc.cycles == null) {
+    final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
+    final CyclesBloc cyclesBloc = Provider.of<CyclesBloc>(context);
+
+    if (currentBloc.current == null || cyclesBloc.cycles == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -47,7 +50,7 @@ class Cycles extends StatelessWidget {
       child: SingleChildScrollView(
         physics: scrollPhysics,
         child: Column(
-          children: _cycles(),
+          children: _cycles(currentBloc, cyclesBloc),
         ),
       ),
     );

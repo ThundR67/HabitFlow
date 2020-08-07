@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/helpers/colors.dart';
+import 'package:habitflow/helpers/validators.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
@@ -14,8 +16,8 @@ import 'package:habitflow/resources/strings.dart';
 
 /// A screen which allows user to create a reward.
 class CreateReward extends StatefulWidget {
-  /// Constructs
-  const CreateReward({Key key}) : super(key: key);
+  /// Constructs.
+  const CreateReward();
 
   @override
   _CreateRewardState createState() => _CreateRewardState();
@@ -30,7 +32,7 @@ class _CreateRewardState extends State<CreateReward> {
   RewardsBloc _bloc;
 
   /// Changes [_color] and [_icon] to what user selected.
-  void _onPick(Color color, IconData icon) {
+  void _onChange(Color color, IconData icon) {
     setState(() {
       _color = color;
       _icon = icon;
@@ -44,7 +46,7 @@ class _CreateRewardState extends State<CreateReward> {
         Reward(
           name: _nameController.text,
           points: int.parse(_pointsController.text),
-          colorHex: '#${_color.value.toRadixString(16)}',
+          colorHex: colorToHex(_color),
           iconData: iconDataToMap(_icon),
         ),
       );
@@ -52,28 +54,11 @@ class _CreateRewardState extends State<CreateReward> {
     }
   }
 
-  /// Validates reward points.
-  String _validatePoints(String value) {
-    if (value.isEmpty || int.tryParse(value) == null) {
-      return validInteger;
-    } else if (int.parse(value) <= 0) {
-      return positiveInteger;
-    }
-    return null;
-  }
-
-  /// Validates reward name.
-  String _validateName(String value) {
-    if (value.isEmpty) {
-      return validName;
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     _bloc = Provider.of<RewardsBloc>(context);
     _color ??= Theme.of(context).accentColor;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(createRewardTitle),
@@ -93,7 +78,7 @@ class _CreateRewardState extends State<CreateReward> {
                       Pickers(
                         color: _color,
                         icon: _icon,
-                        onChange: _onPick,
+                        onChange: _onChange,
                       ),
                       const Padding(
                         padding: EdgeInsets.all(16.0),
@@ -102,13 +87,13 @@ class _CreateRewardState extends State<CreateReward> {
                       NeuInputTextField(
                         controller: _nameController,
                         text: rewardName,
-                        validate: _validateName,
+                        validate: validateStr,
                       ),
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
                         text: rewardPoints,
-                        validate: _validatePoints,
+                        validate: validatePosInt,
                       ),
                       const SizedBox(height: 16.0),
                       RaisedButton(

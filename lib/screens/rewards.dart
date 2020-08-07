@@ -6,38 +6,34 @@ import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/rewards_list.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/routes.dart';
+import 'package:provider/provider.dart';
 
-/// A page to show all rewards and allow user to create and take reward.
+/// A screen to show all rewards and allow user to delete and take reward.
 class Rewards extends StatelessWidget {
   /// Constructs
-  const Rewards(
-    this._rewardsBloc,
-    this._pointsBloc, {
-    Key key,
-  }) : super(key: key);
-
-  final PointsBloc _pointsBloc;
-  final RewardsBloc _rewardsBloc;
+  const Rewards();
 
   @override
   Widget build(BuildContext context) {
+    final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+    final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: RewardPoints(
-          points: _pointsBloc.points,
+          points: pointsBloc.points,
           style: Theme.of(context).textTheme.headline5,
         ),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         physics: scrollPhysics,
-        child: RewardsList(_rewardsBloc.rewards),
+        child: RewardsList(rewardsBloc.rewards),
       ),
       floatingActionButton: FloatingActionButton(
-        heroTag: 'create_reward',
-        onPressed: () {
-          Navigator.of(context).pushNamed('/create_reward');
-        },
+        heroTag: createRewardRoute,
+        onPressed: () => Navigator.of(context).pushNamed(createRewardRoute),
         child: const Icon(addIcon),
       ),
     );
