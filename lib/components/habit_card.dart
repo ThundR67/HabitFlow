@@ -7,6 +7,7 @@ import 'package:habitflow/components/action_buttons.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/status_view.dart';
+import 'package:habitflow/components/tappable_neu_card.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
@@ -55,46 +56,39 @@ class HabitCard extends StatelessWidget {
       actionPane: const SlidableDrawerActionPane(),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: NeuCard(
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              child: Ink(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
+        child: TappableCard(
+          onTap: () {},
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    mapToIconData(habit.iconData),
+                    color:
+                        isUnmarked ? hexToColor(habit.colorHex) : Colors.grey,
+                  ),
+                  const SizedBox(width: 16.0),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Icon(
-                          mapToIconData(habit.iconData),
-                          color: isUnmarked
-                              ? hexToColor(habit.colorHex)
-                              : Colors.grey,
-                        ),
-                        const SizedBox(width: 16.0),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Opacity(
-                                opacity: status == Status.unmarked ? 1 : 0.5,
-                                child: Text(
-                                  habit.name,
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              if (!isUnmarked)
-                                StatusView(status: status)
-                              else
-                                RewardPoints(points: habit.points)
-                            ],
+                        Opacity(
+                          opacity: status == Status.unmarked ? 1 : 0.5,
+                          child: Text(
+                            habit.name,
+                            style: Theme.of(context).textTheme.headline6,
                           ),
                         ),
+                        const SizedBox(height: 4),
+                        if (!isUnmarked)
+                          StatusView(status: status)
+                        else
+                          RewardPoints(points: habit.points)
                       ],
                     ),
                   ),
-                ),
+                ],
               ),
             ),
           ),

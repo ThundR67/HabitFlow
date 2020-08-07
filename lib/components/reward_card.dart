@@ -6,6 +6,7 @@ import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
+import 'package:habitflow/components/tappable_neu_card.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/reward.dart';
 import 'package:provider/provider.dart';
@@ -28,31 +29,25 @@ class RewardCard extends StatelessWidget {
       secondaryActions: [deleteAction(_reward, rewardsBloc)],
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: NeuCard(
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              child: Ink(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          mapToIconData(_reward.iconData),
-                          color: hexToColor(_reward.colorHex),
-                        ),
-                        const SizedBox(width: 16.0),
-                        _RewardName(_reward),
-                        RewardPoints(
-                          points: _reward.points,
-                          color: hexToColor(_reward.colorHex),
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ],
-                    ),
+        child: TappableCard(
+          onTap: () {},
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    mapToIconData(_reward.iconData),
+                    color: hexToColor(_reward.colorHex),
                   ),
-                ),
+                  const SizedBox(width: 16.0),
+                  _RewardName(_reward),
+                  RewardPoints(
+                    points: _reward.points,
+                    color: hexToColor(_reward.colorHex),
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ],
               ),
             ),
           ),
