@@ -16,12 +16,7 @@ class Cycles extends StatelessWidget {
   /// Returns cards for previous cycles.
   List<Widget> _cycles(CurrentBloc currentBloc, CyclesBloc cyclesBloc) {
     // Adding current cycle.
-    final List<Widget> output = <Widget>[
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CycleCard(cycle: currentBloc.current),
-      ),
-    ];
+    final List<Widget> output = <Widget>[];
 
     // Adding previous cycles.
     cyclesBloc.cycles.forEach(
@@ -51,7 +46,13 @@ class Cycles extends StatelessWidget {
       child: SingleChildScrollView(
         physics: scrollPhysics,
         child: Column(
-          children: _cycles(currentBloc, cyclesBloc),
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CycleCard(cycle: currentBloc.current),
+            ),
+            ..._cycles(currentBloc, cyclesBloc),
+          ],
         ),
       ),
     );

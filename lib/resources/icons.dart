@@ -31,3 +31,6 @@ const IconData addIcon = Icons.add_rounded;
 
 /// Icon just to placehold
 const IconData emptyIcon = Icons.accessibility_rounded;
+
+/// Icon to show user of no active habits on current day.
+const IconData noActiveHabitsIcon = Icons.bedtime;

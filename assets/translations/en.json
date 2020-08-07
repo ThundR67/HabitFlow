@@ -67,5 +67,9 @@
     "thursday" : "Thursday",
     "friday": "Friday",
     "saturday" : "Saturday",
-    "sunday" : "Sunday"
+    "sunday" : "Sunday",
+
+    "noHabits" : "You don't have any habit currently",
+    "noRewards" : "You don't have any rewards currently",
+    "noActiveHabits" : "You don't have any active habit today"
 }

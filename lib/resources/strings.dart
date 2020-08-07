@@ -32,6 +32,15 @@ List<String> weekdays = <String>[
 /// failureReason to undo in translations.
 String failureReason = tr('failureReason');
 
+/// Refers to noHabits in translations.
+String noHabits = tr('noHabits');
+
+/// Refers to noRewards in translations.
+String noRewards = tr('noRewards');
+
+/// Refers to noActiveHabits in translations.
+String noActiveHabits = tr('noActiveHabits');
+
 /// Refers to undo in translations.
 String undo = tr('undo');
 

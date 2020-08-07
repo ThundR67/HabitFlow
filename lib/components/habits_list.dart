@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitflow/components/habit_card.dart';
+import 'package:habitflow/components/no_possesion.dart';
 
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/routes.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// A widget to show all habits in list.
 class HabitsList extends StatelessWidget {
@@ -32,8 +36,24 @@ class HabitsList extends StatelessWidget {
     return output;
   }
 
+  /// Returns if is there active habits on current day.
+  bool _isActiveToday() {
+    for (final Habit habit in habits.values) {
+      if (habit.activeDays.contains(DateTime.now().weekday)) return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (habits.isEmpty) return NoPossesion(text: noHabits);
+    if (!_isActiveToday()) {
+      return NoPossesion(
+        text: noActiveHabits,
+        icon: noActiveHabitsIcon,
+      );
+    }
+
     return Column(
       children: _habitsCards(),
     );
