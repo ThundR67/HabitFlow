@@ -9,7 +9,7 @@ ThemeData darkTheme() {
     scaffoldBackgroundColor: primary,
     accentColor: Colors.blueAccent,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: primary,
+      backgroundColor: Colors.grey[850],
     ),
     appBarTheme: AppBarTheme(
       brightness: brightness,
@@ -35,7 +35,7 @@ ThemeData lightTheme() {
     scaffoldBackgroundColor: primary,
     accentColor: Colors.blueAccent,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: primary,
+      backgroundColor: Colors.white,
     ),
     appBarTheme: const AppBarTheme(
       brightness: brightness,
