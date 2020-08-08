@@ -15,7 +15,7 @@ import 'package:habitflow/screens/create_habit.dart';
 import 'package:habitflow/screens/create_reward.dart';
 import 'package:habitflow/screens/home.dart';
 
-void main() {
+Future<void> main() async {
   runApp(
     MultiProvider(
       providers: <ChangeNotifierProvider<dynamic>>[
@@ -37,7 +37,7 @@ void main() {
 /// The main app.
 class App extends StatelessWidget {
   /// Constructs.
-  const App({Key key}) : super(key: key);
+  const App();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,6 @@ class App extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      themeMode: ThemeMode.dark,
       darkTheme: darkTheme(),
       theme: lightTheme(),
       initialRoute: homeRoute,

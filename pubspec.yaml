@@ -23,6 +23,7 @@ dependencies:
   percent_indicator: ^2.1.5
   tinycolor: ^1.0.2
   easy_localization: ^2.3.2
+  shared_preferences: ^0.5.8
   flutter:
     sdk: flutter
   flutter_localizations: 

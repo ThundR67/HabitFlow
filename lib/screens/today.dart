@@ -4,6 +4,7 @@ import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
 import 'package:habitflow/components/inline_calendar.dart';
+import 'package:habitflow/components/main_drawer.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
@@ -26,6 +27,7 @@ class Today extends StatelessWidget {
     }
 
     return Scaffold(
+      drawer: const MainDrawer(),
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -44,7 +46,7 @@ class Today extends StatelessWidget {
             )
           ],
         ),
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

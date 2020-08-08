@@ -19,7 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _currentIndex = 2;
+  int _currentIndex = 1;
   PageController _pageController;
 
   @override
