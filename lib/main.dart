@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/helpers/intro.dart';
 import 'package:habitflow/helpers/theme.dart';
 import 'package:habitflow/resources/routes.dart';
+import 'package:habitflow/routes.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
@@ -11,9 +13,6 @@ import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
-import 'package:habitflow/screens/create_habit.dart';
-import 'package:habitflow/screens/create_reward.dart';
-import 'package:habitflow/screens/home.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 Future<void> main() async {
@@ -55,12 +54,7 @@ class App extends StatelessWidget {
               theme: ThemeProvider.themeOf(context).data,
               themeMode: ThemeMode.light,
               initialRoute: homeRoute,
-              routes: {
-                homeRoute: (BuildContext context) => const Home(),
-                createRewardRoute: (BuildContext context) =>
-                    const CreateReward(),
-                createHabitRoute: (BuildContext context) => const CreateHabit(),
-              },
+              routes: routes,
             );
           },
         ),

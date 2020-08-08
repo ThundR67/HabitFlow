@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:after_layout/after_layout.dart';
+import 'package:habitflow/helpers/intro.dart';
 
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/cycles.dart';
 import 'package:habitflow/screens/rewards.dart';
@@ -18,7 +21,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
   int _currentIndex = 1;
   PageController _pageController;
 
@@ -32,6 +35,17 @@ class _HomeState extends State<Home> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    isIntroShown().then(
+      (value) {
+        if (!value) {
+          Navigator.of(context).pushNamed(introRoute);
+        }
+      },
+    );
   }
 
   @override
