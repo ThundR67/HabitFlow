@@ -10,6 +10,7 @@ import 'package:habitflow/components/tappable_neu_card.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/screens/habit.dart';
 import 'package:provider/provider.dart';
 
 /// A widget to show a card of [habit].
@@ -39,6 +40,16 @@ class HabitCard extends StatelessWidget {
     ];
   }
 
+  /// Redirects to HabitInfo.
+  void _showHabitInfo(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HabitInfo(habit),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
@@ -59,7 +70,7 @@ class HabitCard extends StatelessWidget {
           horizontal: 16.0,
         ),
         child: TappableCard(
-          onTap: () {},
+          onTap: () => _showHabitInfo(context),
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
