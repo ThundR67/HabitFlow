@@ -21,12 +21,7 @@ class Cycles extends StatelessWidget {
     // Adding previous cycles.
     cyclesBloc.cycles.forEach(
       (String key, Cycle value) {
-        output.add(
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CycleCard(cycle: value),
-          ),
-        );
+        output.add(CycleCard(cycle: value));
       },
     );
 
@@ -47,10 +42,7 @@ class Cycles extends StatelessWidget {
         physics: scrollPhysics,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CycleCard(cycle: currentBloc.current),
-            ),
+            CycleCard(cycle: currentBloc.current),
             ..._cycles(currentBloc, cyclesBloc),
           ],
         ),

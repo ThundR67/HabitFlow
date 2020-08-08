@@ -25,16 +25,19 @@ class CycleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NeuCard(
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () => _openCycleInfo(context),
-          child: Ink(
-            child: Container(
-              padding: const EdgeInsets.all(8.0),
-              alignment: Alignment.center,
-              child: CycleStatus(cycle: cycle),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: NeuCard(
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () => _openCycleInfo(context),
+            child: Ink(
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: CycleStatus(cycle: cycle),
+              ),
             ),
           ),
         ),
