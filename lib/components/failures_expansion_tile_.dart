@@ -41,12 +41,15 @@ class _DaysFailures extends StatelessWidget {
       output.add(const SizedBox(height: 8.0));
       output.add(
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              _idToName[id],
-              style: Theme.of(context).textTheme.subtitle1,
+            Expanded(
+              child: Text(
+                _idToName[id],
+                style: Theme.of(context).textTheme.subtitle1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            const Spacer(),
             Expanded(
               child: Text(
                 _day.failures[id],
