@@ -29,7 +29,6 @@ class FailureReasonSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 160,
-      color: Colors.black,
       alignment: Alignment.center,
       padding: const EdgeInsets.all(24.0),
       child: Column(
