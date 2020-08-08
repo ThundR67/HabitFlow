@@ -39,7 +39,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
 
   @override
   void afterFirstLayout(BuildContext context) {
-    isIntroShown().then(
+    isIntroShown(mainIntro).then(
       (value) {
         if (!value) {
           Navigator.of(context).pushNamed(introRoute);
@@ -56,9 +56,9 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
           physics: scrollPhysics,
           controller: _pageController,
           onPageChanged: (int index) => setState(() => _currentIndex = index),
-          children: const <Widget>[
-            Cycles(),
-            Today(),
+          children: <Widget>[
+            const Cycles(),
+            const Today(),
             Rewards(),
           ],
         ),

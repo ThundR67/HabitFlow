@@ -47,7 +47,7 @@ class _IntroState extends State<Intro> {
         shouldHideStatusBar: false,
         colorDot: Colors.white,
         onDonePress: () {
-          introShown();
+          introShown(mainIntro);
           Navigator.of(context).pop();
         },
       ),
