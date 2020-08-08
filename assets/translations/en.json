@@ -78,6 +78,9 @@
     "system" : "system",
     "theme" : "theme",
 
+    "successes" : "Successes",
+    "skips" : "Skips",
+
     "unprovidedReason" : "REASON NOT PROVIDED",
     "recentFailures" : "Recent Failure Reasons"
 }

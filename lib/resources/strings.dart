@@ -28,15 +28,6 @@ List<String> weekdays = <String>[
   tr('sunday'),
 ];
 
-/// Refers to unprovidedReason in translations.
-String unprovidedReason = tr('unprovidedReason');
-
-/// Refers to recentFailures in translations.
-String recentFailures = tr('recentFailures');
-
-/// Refers to theme in translations.
-String theme = tr('theme');
-
 /// Refers to title in translations.
 String title = tr('title');
 
@@ -222,3 +213,18 @@ String dark = tr('dark');
 
 /// Refers to system in translations.
 String system = tr('system');
+
+/// Refers to theme in translations.
+String theme = tr('theme');
+
+/// Refers to successes in translations.
+String successes = tr('successes');
+
+/// Refers to skips in translations.
+String skips = tr('skips');
+
+/// Refers to unprovidedReason in translations.
+String unprovidedReason = tr('unprovidedReason');
+
+/// Refers to recentFailures in translations.
+String recentFailures = tr('recentFailures');

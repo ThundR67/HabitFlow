@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/components/recent_failures.dart';
+import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -32,6 +33,22 @@ class HabitInfo extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            const SizedBox(height: 24.0),
+            Stats(
+              successesNum: successesAmount(
+                _habit.id,
+                currentBloc.current.days.values.toList(),
+              ),
+              skipsNum: skipsAmount(
+                _habit.id,
+                currentBloc.current.days.values.toList(),
+              ),
+              failuresNum: failureAmount(
+                _habit.id,
+                currentBloc.current.days.values.toList(),
+              ),
+            ),
+            const SizedBox(height: 64.0),
             if (recentFailures.isNotEmpty) RecentFailures(recentFailures),
           ],
         ),

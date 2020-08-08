@@ -62,3 +62,30 @@ List<String> getRecentFailures(String id, List<Day> days) {
   }
   return reasons;
 }
+
+/// Calculates amount of skips.
+int skipsAmount(String id, List<Day> days) {
+  int output = 0;
+  for (final Day day in days) {
+    if (day.skips.contains(id)) output++;
+  }
+  return output;
+}
+
+/// Calculates amount of successes.
+int successesAmount(String id, List<Day> days) {
+  int output = 0;
+  for (final Day day in days) {
+    if (day.successes.contains(id)) output++;
+  }
+  return output;
+}
+
+/// Calculates amount of failures.
+int failureAmount(String id, List<Day> days) {
+  int output = 0;
+  for (final Day day in days) {
+    if (day.failures.containsKey(id)) output++;
+  }
+  return output;
+}
