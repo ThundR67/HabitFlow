@@ -3,6 +3,7 @@ import 'package:habitflow/helpers/dates.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/services/habits/habits.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// A class to manage days of a cycle
 class Days {
@@ -59,7 +60,7 @@ class Days {
     final Day day = days[formatDate(date)];
     for (final String id in day.activeHabits) {
       if (status(id, parseDate(day.date)) == Status.unmarked) {
-        days[day.date].failures[id] = 'NOT PROVIDED';
+        days[day.date].failures[id] = unprovidedReason;
       }
     }
   }
@@ -69,13 +70,9 @@ class Days {
     final String key = formatDate(date);
     if (days[key] == null) {
       final List<String> ids = await dao.active(date);
-      final Map<String, String> failures = <String, String>{
-        for (String id in ids) id: 'NOT PROVIDED'
-      };
       final Day day = Day(
         date: formatDate(date),
         activeHabits: ids,
-        failures: key == formatDate(DateTime.now()) ? null : failures,
       );
       days[key] = day;
     }

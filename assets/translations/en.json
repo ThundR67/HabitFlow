@@ -76,5 +76,8 @@
     "light" : "light",
     "dark" : "dark",
     "system" : "system",
-    "theme" : "theme"
+    "theme" : "theme",
+
+    "unprovidedReason" : "REASON NOT PROVIDED",
+    "recentFailures" : "Recent Failure Reasons"
 }

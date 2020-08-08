@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/components/recent_failures.dart';
+import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/resources/strings.dart';
+import 'package:provider/provider.dart';
 
 /// A screen to show info about [habit].
 class HabitInfo extends StatelessWidget {
@@ -10,8 +15,27 @@ class HabitInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(_habit.id),
+    final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
+    final List<String> recentFailures = getRecentFailures(
+      _habit.id,
+      currentBloc.current.days.values.toList(),
+    );
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          _habit.name,
+          style: Theme.of(context).textTheme.headline5,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            if (recentFailures.isNotEmpty) RecentFailures(recentFailures),
+          ],
+        ),
+      ),
     );
   }
 }

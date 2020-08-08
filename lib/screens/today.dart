@@ -29,7 +29,6 @@ class Today extends StatelessWidget {
     return Scaffold(
       drawer: const MainDrawer(),
       appBar: AppBar(
-        iconTheme: Theme.of(context).iconTheme,
         title: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,

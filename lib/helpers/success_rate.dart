@@ -1,4 +1,5 @@
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// Returns success rates of [days].
 double calculateSuccessRate(List<Day> days) {
@@ -47,4 +48,17 @@ int calculateTimesCompleted(String id, List<Day> days) {
     }
   }
   return total;
+}
+
+/// Returns all failure reasons of habits recently.
+List<String> getRecentFailures(String id, List<Day> days) {
+  final List<String> reasons = [];
+  for (final Day day in days) {
+    if (day.failures.containsKey(id)) {
+      if (day.failures[id] != unprovidedReason) {
+        reasons.add(day.failures[id]);
+      }
+    }
+  }
+  return reasons;
 }

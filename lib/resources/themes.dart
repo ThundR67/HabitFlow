@@ -16,6 +16,9 @@ ThemeData darkTheme() {
       color: primary,
       centerTitle: true,
       elevation: 0,
+      iconTheme: const IconThemeData(
+        color: Colors.white,
+      ),
     ),
     textTheme: const TextTheme(
       headline5: TextStyle(
@@ -42,6 +45,9 @@ ThemeData lightTheme() {
       color: primary,
       centerTitle: true,
       elevation: 0,
+      iconTheme: IconThemeData(
+        color: Colors.black,
+      ),
     ),
     textTheme: const TextTheme(
       headline5: TextStyle(
