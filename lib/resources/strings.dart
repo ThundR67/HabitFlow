@@ -1,5 +1,4 @@
 /// Stores all variables to translations.
-
 import 'package:easy_localization/easy_localization.dart';
 
 /// List of initals of months.
@@ -29,20 +28,8 @@ List<String> weekdays = <String>[
   tr('sunday'),
 ];
 
-/// failureReason to undo in translations.
-String failureReason = tr('failureReason');
-
-/// Refers to noHabits in translations.
-String noHabits = tr('noHabits');
-
-/// Refers to noRewards in translations.
-String noRewards = tr('noRewards');
-
-/// Refers to noActiveHabits in translations.
-String noActiveHabits = tr('noActiveHabits');
-
-/// Refers to undo in translations.
-String undo = tr('undo');
+/// Refers to theme in translations.
+String theme = tr('theme');
 
 /// Refers to title in translations.
 String title = tr('title');
@@ -89,6 +76,9 @@ String skip = tr('skip');
 /// Refers to fail in translations.
 String fail = tr('fail');
 
+/// Refers to undo in translations.
+String undo = tr('undo');
+
 /// Refers to failure in translations.
 String failure = tr('failure');
 
@@ -125,7 +115,7 @@ String take = tr('take');
 /// Refers to createHabitTitle in translations.
 String createHabitTitle = tr('createHabitTitle');
 
-/// Refers to validInteger in translations
+/// Refers to validInteger in translations.
 String validInteger = tr('validInteger');
 
 /// Refers to positiveInteger in translations.
@@ -148,3 +138,81 @@ String createRewardTitle = tr('createRewardTitle');
 
 /// Refers to rewardName in translations.
 String rewardName = tr('rewardName');
+
+/// Refers to failureReason in translations.
+String failureReason = tr('failureReason');
+
+/// Refers to january in translations.
+String january = tr('january');
+
+/// Refers to february in translations.
+String february = tr('february');
+
+/// Refers to march in translations.
+String march = tr('march');
+
+/// Refers to april in translations.
+String april = tr('april');
+
+/// Refers to may in translations.
+String may = tr('may');
+
+/// Refers to june in translations.
+String june = tr('june');
+
+/// Refers to july in translations.
+String july = tr('july');
+
+/// Refers to august in translations.
+String august = tr('august');
+
+/// Refers to september in translations.
+String september = tr('september');
+
+/// Refers to october in translations.
+String october = tr('october');
+
+/// Refers to november in translations.
+String november = tr('november');
+
+/// Refers to december in translations.
+String december = tr('december');
+
+/// Refers to monday in translations.
+String monday = tr('monday');
+
+/// Refers to tuesday in translations.
+String tuesday = tr('tuesday');
+
+/// Refers to wednesday in translations.
+String wednesday = tr('wednesday');
+
+/// Refers to thursday in translations.
+String thursday = tr('thursday');
+
+/// Refers to friday in translations.
+String friday = tr('friday');
+
+/// Refers to saturday in translations.
+String saturday = tr('saturday');
+
+/// Refers to sunday in translations.
+String sunday = tr('sunday');
+
+/// Refers to noHabits in translations.
+String noHabits = tr('noHabits');
+
+/// Refers to noRewards in translations.
+String noRewards = tr('noRewards');
+
+/// Refers to noActiveHabits in translations.
+String noActiveHabits = tr('noActiveHabits');
+
+/// Refers to light in translations.
+String light = tr('light');
+
+/// Refers to dark in translations.
+String dark = tr('dark');
+
+/// Refers to system in translations.
+String system = tr('system');

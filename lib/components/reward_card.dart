@@ -4,7 +4,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
-import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/tappable_neu_card.dart';
 import 'package:habitflow/helpers/colors.dart';

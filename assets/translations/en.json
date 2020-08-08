@@ -71,5 +71,10 @@
 
     "noHabits" : "You don't have any habit currently",
     "noRewards" : "You don't have any rewards currently",
-    "noActiveHabits" : "You don't have any active habit today"
+    "noActiveHabits" : "You don't have any active habit today",
+
+    "light" : "light",
+    "dark" : "dark",
+    "system" : "system",
+    "theme" : "theme"
 }

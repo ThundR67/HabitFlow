@@ -55,7 +55,7 @@ class App extends StatelessWidget {
               theme: ThemeProvider.themeOf(context).data,
               themeMode: ThemeMode.light,
               initialRoute: homeRoute,
-              routes: <String, Widget Function(BuildContext)>{
+              routes: {
                 homeRoute: (BuildContext context) => const Home(),
                 createRewardRoute: (BuildContext context) =>
                     const CreateReward(),

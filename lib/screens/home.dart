@@ -37,18 +37,16 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SizedBox.expand(
-          child: PageView(
-            physics: scrollPhysics,
-            controller: _pageController,
-            onPageChanged: (int index) => setState(() => _currentIndex = index),
-            children: const <Widget>[
-              Cycles(),
-              Today(),
-              Rewards(),
-            ],
-          ),
+      body: SizedBox.expand(
+        child: PageView(
+          physics: scrollPhysics,
+          controller: _pageController,
+          onPageChanged: (int index) => setState(() => _currentIndex = index),
+          children: const <Widget>[
+            Cycles(),
+            Today(),
+            Rewards(),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavyBar(

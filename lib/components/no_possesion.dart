@@ -3,6 +3,7 @@ import 'package:habitflow/resources/icons.dart';
 
 /// Widget to indicate something to user such as no habits, rewards, or active habits.
 class NoPossesion extends StatelessWidget {
+  /// Constructs.
   const NoPossesion({
     @required this.text,
     this.icon = addIcon,
