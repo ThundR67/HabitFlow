@@ -51,6 +51,7 @@ class CycleInfo extends StatelessWidget {
           physics: scrollPhysics,
           children: <Widget>[
             CycleStatus(cycle: _cycle),
+            const SizedBox(height: 16.0),
             Stats(
               successesNum: stats[0],
               skipsNum: stats[1],

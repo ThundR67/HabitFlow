@@ -28,7 +28,7 @@ class _DaysFailures extends StatelessWidget {
         child: Text(markSkip),
       ),
       PopupMenuItem<int>(
-        value: 0,
+        value: 1,
         child: Text(markDone),
       ),
     ];
