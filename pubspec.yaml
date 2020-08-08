@@ -21,6 +21,7 @@ dependencies:
   weekday_selector: ^0.4.0
   device_preview: ^0.4.7
   percent_indicator: ^2.1.5
+  theme_provider: ^0.4.0+1
   tinycolor: ^1.0.2
   easy_localization: ^2.3.2
   shared_preferences: ^0.5.8

@@ -1,6 +1,6 @@
-import 'package:dynamic_theme/dynamic_theme.dart';
-import 'package:dynamic_theme/theme_switcher_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:habitflow/resources/themes.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 /// Main app drawer.
 class MainDrawer extends StatelessWidget {
@@ -14,9 +14,9 @@ class MainDrawer extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              RaisedButton(
-                  onPressed: () => showDialog(
-                      context: context, child: BrightnessSwitcherDialog())),
+              RaisedButton(onPressed: () {
+                ThemeProvider.controllerOf(context).nextTheme();
+              }),
             ],
           ),
         ),

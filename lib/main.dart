@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/helpers/theme.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,7 @@ import 'package:habitflow/resources/themes.dart';
 import 'package:habitflow/screens/create_habit.dart';
 import 'package:habitflow/screens/create_reward.dart';
 import 'package:habitflow/screens/home.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 Future<void> main() async {
   runApp(
@@ -41,18 +43,30 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      darkTheme: darkTheme(),
-      theme: lightTheme(),
-      initialRoute: homeRoute,
-      routes: <String, Widget Function(BuildContext)>{
-        homeRoute: (BuildContext context) => const Home(),
-        createRewardRoute: (BuildContext context) => const CreateReward(),
-        createHabitRoute: (BuildContext context) => const CreateHabit(),
-      },
+    return ThemeProvider(
+      saveThemesOnChange: true,
+      onInitCallback: themeCallback,
+      themes: themes(),
+      child: ThemeConsumer(
+        child: Builder(
+          builder: (context) {
+            return MaterialApp(
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme: ThemeProvider.themeOf(context).data,
+              themeMode: ThemeMode.light,
+              initialRoute: homeRoute,
+              routes: <String, Widget Function(BuildContext)>{
+                homeRoute: (BuildContext context) => const Home(),
+                createRewardRoute: (BuildContext context) =>
+                    const CreateReward(),
+                createHabitRoute: (BuildContext context) => const CreateHabit(),
+              },
+            );
+          },
+        ),
+      ),
     );
   }
 }
