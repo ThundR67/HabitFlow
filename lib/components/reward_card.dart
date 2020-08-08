@@ -27,7 +27,10 @@ class RewardCard extends StatelessWidget {
       actions: [takeAction(context, _reward, rewardsBloc, pointsBloc)],
       secondaryActions: [deleteAction(_reward, rewardsBloc)],
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(
+          vertical: 8.0,
+          horizontal: 16.0,
+        ),
         child: TappableCard(
           onTap: () {},
           child: Center(
