@@ -10,8 +10,8 @@ NeumorphicStyle neuStyle(
 }) {
   final bool isLight = Theme.of(context).brightness == Brightness.light;
   final Color color = Theme.of(context).scaffoldBackgroundColor;
-  final Color dark = TinyColor(color).darken(isLight ? 20 : 4).color;
-  final Color light = TinyColor(color).lighten(isLight ? 20 : 10).color;
+  final Color dark = TinyColor(color).darken(isLight ? 20 : 3).color;
+  final Color light = TinyColor(color).lighten(isLight ? 20 : 8).color;
 
   return NeumorphicStyle(
     boxShape: NeumorphicBoxShape.roundRect(
