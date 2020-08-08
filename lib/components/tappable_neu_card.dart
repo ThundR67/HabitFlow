@@ -3,6 +3,7 @@ import 'package:habitflow/components/neu_card.dart';
 
 /// A widget to show tappable neu card.
 class TappableCard extends StatelessWidget {
+  /// Constructs.
   const TappableCard({
     @required this.child,
     @required this.onTap,
@@ -11,7 +12,11 @@ class TappableCard extends StatelessWidget {
 
   /// Child of card.
   final Widget child;
+
+  /// Function to run on tap.
   final Function() onTap;
+
+  /// Radius of card.
   final double radius;
 
   @override

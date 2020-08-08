@@ -11,7 +11,6 @@ import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
-import 'package:habitflow/resources/themes.dart';
 import 'package:habitflow/screens/create_habit.dart';
 import 'package:habitflow/screens/create_reward.dart';
 import 'package:habitflow/screens/home.dart';
