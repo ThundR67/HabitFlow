@@ -89,3 +89,16 @@ int failureAmount(String id, List<Day> days) {
   }
   return output;
 }
+
+/// Calculates stats for a cycle.
+List<int> cycleStats(List<Day> days) {
+  int successes = 0;
+  int skips = 0;
+  int failures = 0;
+  for (final Day day in days) {
+    successes += day.successes.length;
+    skips += day.skips.length;
+    failures += day.failures.length;
+  }
+  return [successes, skips, failures];
+}

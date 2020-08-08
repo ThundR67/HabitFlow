@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/resources/widgets.dart';
 
 import 'package:provider/provider.dart';
@@ -42,12 +43,19 @@ class CycleInfo extends StatelessWidget {
       return circularIndicator;
     }
 
+    final List<int> stats = cycleStats(_cycle.days.values.toList());
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
           physics: scrollPhysics,
           children: <Widget>[
             CycleStatus(cycle: _cycle),
+            Stats(
+              successesNum: stats[0],
+              skipsNum: stats[1],
+              failuresNum: stats[2],
+            ),
             HabitSuccessRates(_successRates(bloc)),
             FailuresPanel(
               _cycle.days.values.toList(),
