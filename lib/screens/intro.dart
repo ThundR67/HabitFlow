@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/helpers/intro.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 
@@ -44,7 +45,11 @@ class _IntroState extends State<Intro> {
       child: IntroSlider(
         slides: slides,
         shouldHideStatusBar: false,
-        onDonePress: () => Navigator.of(context).pop(),
+        colorDot: Colors.white,
+        onDonePress: () {
+          introShown();
+          Navigator.of(context).pop();
+        },
       ),
     );
   }
