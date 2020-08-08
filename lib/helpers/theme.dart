@@ -1,27 +1,59 @@
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/resources/themes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_provider/theme_provider.dart';
 
+const String _dark = 'dark';
+const String _light = 'light';
+const String _system = '_system';
+const String _theme = 'theme';
+
+/// Sets theme to [theme] and saves it.
+Future<void> _setTheme(String theme) async {
+  final SharedPreferences pref = await SharedPreferences.getInstance();
+  pref.setString(_theme, theme);
+}
+
+/// Gets current theme.
+Future<ThemeMode> getTheme() async {
+  final SharedPreferences pref = await SharedPreferences.getInstance();
+  final String theme = pref.getString(_theme) ?? _system;
+  if (theme == _dark) return ThemeMode.dark;
+  if (theme == _light) return ThemeMode.light;
+  return ThemeMode.system;
+}
+
 /// Callback when theme provider initializes.
-Future<void> themeCallback(
-    ThemeController controller, Future<String> prev) async {
-  final String savedTheme = await prev;
+Future<void> themeCallback(ThemeController controller, _) async {
+  final ThemeMode saved = await getTheme();
+  if (ThemeMode.dark == saved) setDark(controller);
+  if (ThemeMode.light == saved) setLight(controller);
+  if (ThemeMode.system == saved) setSystem(controller);
+}
 
-  if (savedTheme != null) {
-    controller.setTheme(savedTheme);
-    return;
-  }
+/// Sets theme to light.
+void setLight(ThemeController controller) {
+  controller.setTheme(_light);
+  _setTheme(_light);
+}
 
-  final Brightness platformBrightness =
+/// Sets theme to dark.
+void setDark(ThemeController controller) {
+  controller.setTheme(_dark);
+  _setTheme(_dark);
+}
+
+/// Sets theme to system by forgetting saved theme.
+void setSystem(ThemeController controller) {
+  final Brightness brightness =
       SchedulerBinding.instance.window.platformBrightness;
-  if (platformBrightness == Brightness.dark) {
-    controller.setTheme('dark');
+  if (brightness == Brightness.dark) {
+    controller.setTheme(_dark);
   } else {
-    controller.setTheme('light');
+    controller.setTheme(_light);
   }
-
-  controller.forgetSavedTheme();
+  _setTheme(_system);
 }
 
 /// Returns a list of app themes.

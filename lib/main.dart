@@ -43,7 +43,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeProvider(
-      saveThemesOnChange: true,
       onInitCallback: themeCallback,
       themes: themes(),
       child: ThemeConsumer(
