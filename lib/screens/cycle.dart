@@ -56,6 +56,7 @@ class CycleInfo extends StatelessWidget {
               skipsNum: stats[1],
               failuresNum: stats[2],
             ),
+            const SizedBox(height: 16.0),
             HabitSuccessRates(_successRates(bloc)),
             FailuresPanel(
               _cycle.days.values.toList(),
