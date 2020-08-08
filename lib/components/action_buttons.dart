@@ -4,6 +4,7 @@ import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_button.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
+import 'package:habitflow/helpers/sounds.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/models/status.dart';
@@ -28,6 +29,7 @@ ActionButton doneAction(Habit habit, PointsBloc pointsBloc, CurrentBloc bloc) {
     onPressed: () {
       bloc.mark(habit.id, Status.done);
       pointsBloc.increment(habit.points);
+      play('success');
     },
     icon: doneIcon,
   );
