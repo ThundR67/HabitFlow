@@ -26,18 +26,20 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      margin: const EdgeInsets.all(4.0),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: const BorderRadius.all(Radius.circular(16)),
-      ),
-      child: IconSlideAction(
-        caption: text,
-        color: color,
-        icon: icon,
-        onTap: onPressed,
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+        ),
+        child: IconSlideAction(
+          caption: text,
+          color: color,
+          icon: icon,
+          onTap: onPressed,
+        ),
       ),
     );
   }

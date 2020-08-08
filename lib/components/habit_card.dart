@@ -54,7 +54,7 @@ class HabitCard extends StatelessWidget {
           : <Widget>[undoAction(habit, currentBloc)],
       actionPane: const SlidableDrawerActionPane(),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: TappableCard(
           onTap: () {},
           child: Center(
