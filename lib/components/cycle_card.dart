@@ -27,7 +27,7 @@ class CycleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 8.0,
+        vertical: 12.0,
         horizontal: 16.0,
       ),
       child: NeuCard(

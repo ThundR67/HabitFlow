@@ -55,7 +55,7 @@ class HabitCard extends StatelessWidget {
       actionPane: const SlidableDrawerActionPane(),
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 8.0,
+          vertical: 12.0,
           horizontal: 16.0,
         ),
         child: TappableCard(
