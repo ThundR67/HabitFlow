@@ -15,9 +15,9 @@ class ThemeDropDown extends StatefulWidget {
 class _ThemeDropDownState extends State<ThemeDropDown> {
   _ThemeDropDownState() {
     getTheme().then((value) {
-      if (value == ThemeMode.system) _onChange(system);
-      if (value == ThemeMode.light) _onChange(system);
-      if (value == ThemeMode.dark) _onChange(system);
+      if (value == ThemeMode.system) _onChange(system, false);
+      if (value == ThemeMode.light) _onChange(light, false);
+      if (value == ThemeMode.dark) _onChange(dark, false);
     });
   }
 
@@ -25,12 +25,14 @@ class _ThemeDropDownState extends State<ThemeDropDown> {
   String _value;
 
   /// Changes states when user selects a value.
-  void _onChange(String value) {
+  void _onChange(String value, [bool save = true]) {
     final ThemeController controller = ThemeProvider.controllerOf(context);
     setState(() => _value = value);
-    if (value == system) setSystem(controller);
-    if (value == light) setLight(controller);
-    if (value == dark) setDark(controller);
+    if (save) {
+      if (value == system) setSystem(controller);
+      if (value == light) setLight(controller);
+      if (value == dark) setDark(controller);
+    }
   }
 
   @override

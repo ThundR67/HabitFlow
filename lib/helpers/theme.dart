@@ -12,7 +12,7 @@ const String _theme = 'theme';
 /// Sets theme to [theme] and saves it.
 Future<void> _setTheme(String theme) async {
   final SharedPreferences pref = await SharedPreferences.getInstance();
-  pref.setString(_theme, theme);
+  await pref.setString(_theme, theme);
 }
 
 /// Gets current theme.
@@ -33,19 +33,19 @@ Future<void> themeCallback(ThemeController controller, _) async {
 }
 
 /// Sets theme to light.
-void setLight(ThemeController controller) {
+Future<void> setLight(ThemeController controller) async {
   controller.setTheme(_light);
-  _setTheme(_light);
+  await _setTheme(_light);
 }
 
 /// Sets theme to dark.
-void setDark(ThemeController controller) {
+Future<void> setDark(ThemeController controller) async {
   controller.setTheme(_dark);
-  _setTheme(_dark);
+  await _setTheme(_dark);
 }
 
 /// Sets theme to system by forgetting saved theme.
-void setSystem(ThemeController controller) {
+Future<void> setSystem(ThemeController controller) async {
   final Brightness brightness =
       SchedulerBinding.instance.window.platformBrightness;
   if (brightness == Brightness.dark) {
@@ -53,7 +53,7 @@ void setSystem(ThemeController controller) {
   } else {
     controller.setTheme(_light);
   }
-  _setTheme(_system);
+  await _setTheme(_system);
 }
 
 /// Returns a list of app themes.

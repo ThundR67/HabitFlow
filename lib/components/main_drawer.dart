@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/components/theme_dropdown.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:theme_provider/theme_provider.dart';
 
 /// Main app drawer.
 class MainDrawer extends StatelessWidget {
