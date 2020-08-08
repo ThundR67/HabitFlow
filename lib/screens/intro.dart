@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intro_slider/intro_slider.dart';
+import 'package:intro_slider/slide_object.dart';
 
 /// Screen to introduce user to the app.
 class Intro extends StatefulWidget {
@@ -10,10 +12,40 @@ class Intro extends StatefulWidget {
 }
 
 class _IntroState extends State<Intro> {
+  final List<Slide> slides = [];
+  Function goToTab;
+
+  @override
+  void initState() {
+    super.initState();
+
+    slides.addAll([
+      Slide(
+        title: "Cycle",
+        description: 'blah blah blah',
+        backgroundColor: Colors.blue,
+      ),
+      Slide(
+        title: "Rewards",
+        description: 'blah blah blah',
+        backgroundColor: Colors.amber[900],
+      ),
+      Slide(
+        title: "Powerful Habit Tracking",
+        description: 'blah blah blah',
+        backgroundColor: Colors.green,
+      ),
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: Text('test')),
+    return SafeArea(
+      child: IntroSlider(
+        slides: slides,
+        shouldHideStatusBar: false,
+        onDonePress: () => Navigator.of(context).pop(),
+      ),
     );
   }
 }
