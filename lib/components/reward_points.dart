@@ -8,7 +8,7 @@ class RewardPoints extends StatelessWidget {
   const RewardPoints({
     @required this.points,
     this.style,
-    this.color = Colors.amber,
+    this.color = Colors.orange,
   });
 
   /// Amount of points.

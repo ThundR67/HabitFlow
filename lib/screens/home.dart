@@ -84,7 +84,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
           BottomNavyBarItem(
             icon: const Icon(rewardIcon),
             title: Text(rewardsPage),
-            activeColor: Colors.amber,
+            activeColor: Colors.orange,
           ),
         ],
       ),
