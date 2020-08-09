@@ -256,6 +256,9 @@ String faqPage = tr('faqPage');
 /// Refers to about in translations.
 String about = tr('about');
 
+/// Refers to updateReason in translations.
+String updateReason = tr('updateReason');
+
 /// Refers to appName in translations.
 String appName = tr('appName');
 

@@ -94,6 +94,7 @@
     "activeDays" : "Active Days",
     "faqPage" : "FAQs",
     "about" : "About HabitFlow",
+    "updateReason" : "Update Failure Reason",
 
     "appName" : "HabitFlow",
     "appVersion" : "0.1.0",

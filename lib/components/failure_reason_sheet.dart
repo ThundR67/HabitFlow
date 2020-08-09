@@ -10,10 +10,10 @@ import 'package:provider/provider.dart';
 /// Allows user to provide reason for failure and then marks [habit] as failed.
 class FailureReasonSheet extends StatelessWidget {
   /// Constructs.
-  FailureReasonSheet(this.habit);
+  FailureReasonSheet(this.id);
 
   /// Habit on which user is failing.
-  final Habit habit;
+  final String id;
   final TextEditingController _controller = TextEditingController();
 
   /// Marks [habit] as failure.
@@ -22,7 +22,7 @@ class FailureReasonSheet extends StatelessWidget {
       context,
       listen: false,
     );
-    bloc.mark(habit.id, Status.failed, _controller.text);
+    bloc.mark(id, Status.failed, _controller.text);
     play('failure');
     Navigator.of(context).pop();
   }

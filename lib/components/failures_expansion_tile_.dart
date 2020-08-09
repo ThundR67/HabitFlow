@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/components/failure_reason_sheet.dart';
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -20,6 +22,13 @@ class _DaysFailures extends StatelessWidget {
   final Map<String, String> _idToName;
   final CurrentBloc _bloc;
 
+  /// Shows failure reason sheet.
+  void _showFailureReasonSheet(BuildContext context, String id) {
+    Scaffold.of(context).showBottomSheet<FailureReasonSheet>(
+      (BuildContext context) => FailureReasonSheet(id),
+    );
+  }
+
   /// All more option buttons.
   List<PopupMenuItem<int>> _menuOptions() {
     return <PopupMenuItem<int>>[
@@ -30,6 +39,10 @@ class _DaysFailures extends StatelessWidget {
       PopupMenuItem<int>(
         value: 1,
         child: Text(markDone),
+      ),
+      PopupMenuItem<int>(
+        value: 2,
+        child: Text(updateReason),
       ),
     ];
   }
@@ -62,10 +75,13 @@ class _DaysFailures extends StatelessWidget {
                 onSelected: (dynamic value) {
                   if (value == 0) {
                     _bloc.mark(id, Status.skipped);
+                    _day.failures.remove(id);
                   } else if (value == 1) {
                     _bloc.mark(id, Status.done);
+                    _day.failures.remove(id);
+                  } else if (value == 2) {
+                    _showFailureReasonSheet(context, id);
                   }
-                  _day.failures.remove(id);
                 },
                 itemBuilder: (_) {
                   return _menuOptions();

@@ -54,7 +54,7 @@ ActionButton failAction(BuildContext context, Habit habit) {
     color: Colors.redAccent,
     text: fail,
     onPressed: () => Scaffold.of(context).showBottomSheet<FailureReasonSheet>(
-      (BuildContext context) => FailureReasonSheet(habit),
+      (BuildContext context) => FailureReasonSheet(habit.id),
     ),
     icon: failedIcon,
   );

@@ -66,8 +66,13 @@ class CurrentBloc extends ChangeNotifier {
   }
 
   /// Marks habit with [id] as [status].
-  Future<void> mark(String id, Status status, [String reason]) async {
-    _days.mark(id, status, reason: reason);
+  Future<void> mark(
+    String id,
+    Status status, [
+    String reason,
+    DateTime date,
+  ]) async {
+    _days.mark(id, status, reason: reason, date: date ?? DateTime.now());
     await _update();
   }
 
