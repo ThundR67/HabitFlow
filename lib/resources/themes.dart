@@ -46,6 +46,12 @@ ThemeData lightTheme() {
       brightness: brightness,
       color: primary,
       centerTitle: true,
+      textTheme: TextTheme(
+        headline6: TextStyle(
+          color: Colors.black,
+          fontSize: 24.0,
+        ),
+      ),
       elevation: 0,
       iconTheme: IconThemeData(
         color: Colors.black,
