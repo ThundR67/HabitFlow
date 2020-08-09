@@ -3,6 +3,7 @@ import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/days.dart';
 
 import 'package:habitflow/models/cycle.dart';
+import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/services/current_cycle/current_cycle.dart';
 import 'package:habitflow/services/cycles/cycles.dart';
@@ -35,7 +36,6 @@ class CurrentBloc extends ChangeNotifier {
       if (current == null) {
         await create();
       }
-      _days = Days(current.days);
     }
 
     if (isEnded()) {
@@ -45,6 +45,7 @@ class CurrentBloc extends ChangeNotifier {
     }
 
     // Fills missing days and unmarked failures.
+    _days = Days(current.days);
     await _days.fill(
       parseDate(current.start),
       parseDate(current.end),
@@ -86,9 +87,14 @@ class CurrentBloc extends ChangeNotifier {
 
   /// Creates a new cycle and updates [current].
   Future<void> create() async {
+    final Day day = Day(
+      date: formatDate(DateTime.now()),
+      activeHabits: await _habitsDAO.active(DateTime.now()),
+    );
     current = Cycle(
       start: formatDate(DateTime.now()),
       end: formatDate(DateTime.now().add(const Duration(days: 15))),
+      days: {day.date: day},
     );
     await _dao.create(current);
     await _update();

@@ -72,9 +72,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (bloc.isEnded()) {
-        _redirectToCycleEnded(bloc.current);
-      }
+      if (bloc.isEnded()) _redirectToCycleEnded(bloc.current);
     });
 
     return Scaffold(

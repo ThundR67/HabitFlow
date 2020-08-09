@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/helpers/intro.dart';
+import 'package:habitflow/resources/routes.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 
@@ -48,7 +49,11 @@ class _IntroState extends State<Intro> {
         colorDot: Colors.white,
         onDonePress: () {
           introShown(mainIntro);
-          Navigator.of(context).pop();
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          } else {
+            Navigator.of(context).pushNamed(homeRoute);
+          }
         },
       ),
     );
