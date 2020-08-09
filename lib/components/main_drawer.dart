@@ -3,6 +3,7 @@ import 'package:habitflow/components/theme_dropdown.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Main app drawer.
 class MainDrawer extends StatelessWidget {
@@ -59,7 +60,9 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
               FlatButton(
-                onPressed: () => Navigator.of(context).pushNamed(faqRoute),
+                onPressed: () => launch(
+                  'https://thundrx.pythonanywhere.com/faq',
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.min,

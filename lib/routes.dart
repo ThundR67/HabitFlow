@@ -1,9 +1,9 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/resources/routes.dart';
-import 'package:habitflow/screens/faq.dart';
+
 import 'package:habitflow/screens/create_habit.dart';
 import 'package:habitflow/screens/create_reward.dart';
-import 'package:habitflow/screens/cycle.dart';
+
 import 'package:habitflow/screens/home.dart';
 import 'package:habitflow/screens/intro.dart';
 
@@ -13,5 +13,4 @@ final Map<String, Widget Function(BuildContext)> routes = {
   createRewardRoute: (_) => const CreateReward(),
   createHabitRoute: (_) => const CreateHabit(),
   introRoute: (_) => const Intro(),
-  faqRoute: (_) => const FAQ(),
 };
