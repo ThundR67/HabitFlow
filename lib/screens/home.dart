@@ -48,7 +48,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
     isIntroShown(mainIntro).then(
       (value) {
         if (!value) {
-          Navigator.of(context).pushNamed(introRoute);
+          Navigator.of(context).pushReplacementNamed(introRoute);
         }
       },
     );

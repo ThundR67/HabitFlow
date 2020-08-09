@@ -40,3 +40,6 @@ const IconData takeIcon = Icons.gif;
 
 /// Icon to delete.
 const IconData deleteIcon = Icons.delete;
+
+/// Icon for about page.
+const IconData aboutIcon = Icons.info;

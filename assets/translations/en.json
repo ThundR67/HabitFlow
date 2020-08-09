@@ -91,5 +91,11 @@
     "startCycle" : "Start New Cycle",
     "cycleInfo" : "Cycle Info",
     "cycleEnded" : "Hurray! Cycle Ended",
-    "activeDays" : "Active Days"
+    "activeDays" : "Active Days",
+    "aboutPage" : "About HabitFlow",
+
+    "appName" : "HabitFlow",
+    "appVersion" : "0.1.0",
+    "appLegalese" : "By ThundRX",
+    "appDescription" : "HabitFlow is a good app."
 }
