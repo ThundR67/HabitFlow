@@ -24,7 +24,7 @@ const IconData skippedIcon = Icons.replay_rounded;
 const IconData moreIcon = Icons.more_vert_rounded;
 
 /// Icon to show undo.
-const IconData undoIcon = Icons.undo;
+const IconData undoIcon = Icons.undo_rounded;
 
 /// Icon to add something.
 const IconData addIcon = Icons.add_rounded;
@@ -33,16 +33,16 @@ const IconData addIcon = Icons.add_rounded;
 const IconData emptyIcon = Icons.accessibility_rounded;
 
 /// Icon to show user of no active habits on current day.
-const IconData noActiveHabitsIcon = Icons.bedtime;
+const IconData noActiveHabitsIcon = Icons.bedtime_rounded;
 
 /// Icon to take a reward.
-const IconData takeIcon = Icons.gif;
+const IconData takeIcon = Icons.gif_rounded;
 
 /// Icon to delete.
-const IconData deleteIcon = Icons.delete;
+const IconData deleteIcon = Icons.delete_rounded;
 
 /// Icon for about page.
-const IconData aboutIcon = Icons.info;
+const IconData aboutIcon = Icons.info_rounded;
 
 /// Icon for faq page.
-const IconData faqIcon = Icons.question_answer;
+const IconData faqIcon = Icons.question_answer_rounded;

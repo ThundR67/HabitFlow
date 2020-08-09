@@ -15,7 +15,7 @@ class FAQ extends StatelessWidget {
           style: Theme.of(context).textTheme.headline5,
         ),
       ),
-      body: Placeholder(),
+      body: const Placeholder(),
     );
   }
 }
