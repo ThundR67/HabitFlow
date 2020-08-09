@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
 import 'package:habitflow/helpers/date_format.dart';
+import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
@@ -11,12 +12,7 @@ import 'package:habitflow/resources/strings.dart';
 
 /// A widget to show all failures of a day.
 class _DaysFailures extends StatelessWidget {
-  const _DaysFailures(
-    this._day,
-    this._idToName,
-    this._bloc, {
-    Key key,
-  }) : super(key: key);
+  const _DaysFailures(this._day, this._idToName, this._bloc);
 
   final Day _day;
   final Map<String, String> _idToName;
@@ -69,7 +65,7 @@ class _DaysFailures extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle1,
               ),
             ),
-            if (parseDate(_bloc.current.end).isAfter(DateTime.now()))
+            if (!_bloc.isEnded())
               PopupMenuButton<dynamic>(
                 elevation: 8,
                 onSelected: (dynamic value) {
