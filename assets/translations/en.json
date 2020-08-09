@@ -97,7 +97,7 @@
     "updateReason" : "Update Failure Reason",
 
     "appName" : "HabitFlow",
-    "appVersion" : "0.1.0",
+    "appVersion" : "1.0.0",
     "appLegalese" : "By ThundRX",
-    "appDescription" : "HabitFlow is a good app."
+    "appDescription" : "HabitFlow is a free, easy-to-use, unique, and powerful habit tracker. The app uses cycles and rewards to provide an optimal environment to build, break, and sustain habits."
 }
