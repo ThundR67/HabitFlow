@@ -36,6 +36,7 @@ class _CreateHabitState extends State<CreateHabit> {
   Color _color;
   HabitsBloc _bloc;
   CurrentBloc _currentBloc;
+  TimeOfDay _time;
 
   /// Changes [_color] and [_icon] to what user selected.
   void _onChange(Color color, IconData icon) {
@@ -59,6 +60,7 @@ class _CreateHabitState extends State<CreateHabit> {
                 activeDays: _activeDays,
                 time: 1,
                 unit: 'default',
+                notificationTimes: [_time],
               ),
             ),
           )
@@ -117,7 +119,7 @@ class _CreateHabitState extends State<CreateHabit> {
                       ),
                       const SizedBox(height: 16.0),
                       NotificationTimeSelector(
-                        onChange: (_) {},
+                        onChange: (TimeOfDay time) => _time = time,
                         color: _color,
                       ),
                       const SizedBox(height: 16.0),
