@@ -75,10 +75,8 @@ class _DaysFailures extends StatelessWidget {
                 onSelected: (dynamic value) {
                   if (value == 0) {
                     _bloc.mark(id, Status.skipped);
-                    _day.failures.remove(id);
                   } else if (value == 1) {
                     _bloc.mark(id, Status.done);
-                    _day.failures.remove(id);
                   } else if (value == 2) {
                     _showFailureReasonSheet(context, id);
                   }
