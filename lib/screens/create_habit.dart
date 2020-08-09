@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/components/notification_time_selector.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/validators.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +80,7 @@ class _CreateHabitState extends State<CreateHabit> {
             physics: scrollPhysics,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -110,13 +111,21 @@ class _CreateHabitState extends State<CreateHabit> {
                         color: _color,
                       ),
                       const SizedBox(height: 16.0),
-                      RaisedButton(
+                      NotificationTimeSelector(
+                        onChange: (_) {},
                         color: _color,
+                      ),
+                      const SizedBox(height: 16.0),
+                      RaisedButton(
+                        color:
+                            Theme.of(context).buttonTheme.colorScheme.surface,
                         onPressed: _create,
                         elevation: 4,
                         child: Text(
                           submit,
-                          style: Theme.of(context).textTheme.subtitle2,
+                          style: Theme.of(context).textTheme.subtitle2.copyWith(
+                                color: _color,
+                              ),
                         ),
                       ),
                     ],

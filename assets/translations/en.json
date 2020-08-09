@@ -82,5 +82,7 @@
     "skips" : "Skips",
 
     "unprovidedReason" : "REASON NOT PROVIDED",
-    "recentFailures" : "Recent Failure Reasons"
+    "recentFailures" : "Recent Failure Reasons",
+
+    "selectTime" : "Select Notification Time"
 }

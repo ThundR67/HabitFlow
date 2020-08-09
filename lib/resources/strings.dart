@@ -28,6 +28,9 @@ List<String> weekdays = <String>[
   tr('sunday'),
 ];
 
+/// Refers to selectTime in translations.
+String selectTime = tr('selectTime');
+
 /// Refers to title in translations.
 String title = tr('title');
 

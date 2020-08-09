@@ -24,6 +24,7 @@ dependencies:
   percent_indicator: ^2.1.5
   theme_provider: ^0.4.0+1
   tinycolor: ^1.0.2
+  day_night_time_picker: ^0.2.0+1
   audioplayers: ^0.15.1
   intro_slider: ^2.3.1
   easy_localization: ^2.3.2
@@ -47,6 +48,8 @@ flutter:
     - assets/sounds/success.mpeg
     - assets/sounds/failure.mpeg
     - assets/sounds/skip.mpeg
+    - packages/day_night_time_picker/assets/sun.png
+    - packages/day_night_time_picker/assets/moon.png
   uses-material-design: true
 
   
