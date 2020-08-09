@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 /// FAQ page.
 class FAQ extends StatelessWidget {
@@ -15,7 +16,9 @@ class FAQ extends StatelessWidget {
           style: Theme.of(context).textTheme.headline5,
         ),
       ),
-      body: const Placeholder(),
+      body: const WebView(
+        initialUrl: 'https://thundrx.pythonanywhere.com/faq',
+      ),
     );
   }
 }
