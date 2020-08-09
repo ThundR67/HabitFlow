@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/recent_failures.dart';
 import 'package:habitflow/components/stats.dart';
+import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/icons.dart';
@@ -103,10 +105,21 @@ class HabitInfo extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _habit.name,
-          style: Theme.of(context).textTheme.headline5,
-          overflow: TextOverflow.ellipsis,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              mapToIconData(_habit.iconData),
+              color: hexToColor(_habit.colorHex),
+              size: Theme.of(context).textTheme.headline5.fontSize,
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              _habit.name,
+              style: Theme.of(context).textTheme.headline5,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ),
         actions: [
           IconButton(
