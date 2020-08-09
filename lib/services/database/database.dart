@@ -3,12 +3,9 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
-
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
-import 'package:sembast_web/sembast_web.dart';
 
 /// Allow connection to database.
 ///
@@ -35,14 +32,9 @@ class DB {
 
   /// Opens connection to DB with [name].
   Future<void> _openDatabase(String name) async {
-    Database database;
-    if (kIsWeb) {
-      database = await databaseFactoryWeb.openDatabase(name);
-    } else {
-      final Directory appDocumentDir = await getApplicationDocumentsDirectory();
-      final String dbPath = '${appDocumentDir.path}${'$name.db'}';
-      database = await databaseFactoryIo.openDatabase(dbPath);
-    }
+    final Directory appDocumentDir = await getApplicationDocumentsDirectory();
+    final String dbPath = '${appDocumentDir.path}${'$name.db'}';
+    final Database database = await databaseFactoryIo.openDatabase(dbPath);
     _dbOpenCompleters[name].complete(database);
   }
 }

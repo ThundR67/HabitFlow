@@ -224,13 +224,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
-  idb_shim:
-    dependency: transitive
-    description:
-      name: idb_shim
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.11.1"
   import_sorter:
     dependency: "direct dev"
     description:
@@ -252,13 +245,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.1"
-  js:
-    dependency: transitive
-    description:
-      name: js
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.6.2"
   json_annotation:
     dependency: transitive
     description:
@@ -413,13 +399,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.7+4"
-  sembast_web:
-    dependency: "direct main"
-    description:
-      name: sembast_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
   shared_preferences:
     dependency: "direct main"
     description:
