@@ -7,6 +7,33 @@ import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
+/// A widget to show notification time.
+class _Time extends StatelessWidget {
+  const _Time(this._time);
+
+  final TimeOfDay _time;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '$notificationTime: ',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          Text(
+            _time.format(context),
+            style: Theme.of(context).textTheme.headline6,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// A screen to show info about [habit].
 class HabitInfo extends StatelessWidget {
   /// Constructs.
@@ -33,7 +60,8 @@ class HabitInfo extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 24.0),
+            if (_habit.goal.notificationTimes.isNotEmpty)
+              _Time(_habit.goal.notificationTimes[0]),
             Stats(
               successesNum: successesAmount(
                 _habit.id,
@@ -48,7 +76,7 @@ class HabitInfo extends StatelessWidget {
                 currentBloc.current.days.values.toList(),
               ),
             ),
-            const SizedBox(height: 64.0),
+            const SizedBox(height: 24.0),
             if (recentFailures.isNotEmpty) RecentFailures(recentFailures),
           ],
         ),

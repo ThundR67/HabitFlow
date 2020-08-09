@@ -1,5 +1,5 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:habitflow/resources/strings.dart';
+import 'package:habitflow/helpers/notification_time_format.dart';
 
 const _daysKey = 'active_days';
 const _timeKey = 'time';
@@ -25,12 +25,16 @@ class Goal {
 
   /// Converts map to Goal.
   Goal.fromMap(Map<String, dynamic> map) {
+    final List<String> timesStr = List<String>.from(
+      map[_notificationTimesKey] as Iterable,
+    );
+
     activeDays = List<int>.from(map[_daysKey] as Iterable);
     time = int.parse(map[_timeKey].toString());
     unit = map[_unitKey].toString();
-    notificationTimes = List<TimeOfDay>.from(
-      map[_notificationTimesKey] as Iterable,
-    );
+    notificationTimes = [
+      for (String time in timesStr) parseNotificationTime(time)
+    ];
   }
 
   /// Converts Goal to map.
@@ -39,7 +43,9 @@ class Goal {
       _daysKey: activeDays,
       _timeKey: time,
       _unitKey: unit,
-      _notificationTimesKey: notificationTimes,
+      _notificationTimesKey: [
+        for (TimeOfDay time in notificationTimes) formatNotificationTime(time)
+      ],
     };
   }
 }

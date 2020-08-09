@@ -84,5 +84,7 @@
     "unprovidedReason" : "REASON NOT PROVIDED",
     "recentFailures" : "Recent Failure Reasons",
 
-    "selectTime" : "Select Notification Time"
+    "selectTime" : "Select Notification Time",
+
+    "notificationTime" : "Notification Time"
 }
