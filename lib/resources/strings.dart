@@ -238,5 +238,14 @@ String notificationTime = tr('notificationTime');
 /// Refers to habitInfo in translations.
 String habitInfo = tr('habitInfo');
 
+/// Refers to startCycle in translations.
+String startCycle = tr('startCycle');
+
+/// Refers to cycleInfo in translations.
+String cycleInfo = tr('cycleInfo');
+
+/// Refers to cycleEnded in translations.
+String cycleEnded = tr('cycleEnded');
+
 /// Refers to activeDays in translations.
 String activeDays = tr('activeDays');

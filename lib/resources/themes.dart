@@ -8,6 +8,7 @@ ThemeData darkTheme() {
     brightness: brightness,
     scaffoldBackgroundColor: primary,
     accentColor: Colors.blueAccent,
+    buttonColor: Colors.blueAccent,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey[850],
     ),
@@ -37,6 +38,7 @@ ThemeData lightTheme() {
     brightness: brightness,
     scaffoldBackgroundColor: primary,
     accentColor: Colors.blueAccent,
+    buttonColor: Colors.blueAccent,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
     ),

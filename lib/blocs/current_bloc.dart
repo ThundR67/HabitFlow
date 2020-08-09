@@ -12,8 +12,15 @@ import 'package:habitflow/services/habits/habits.dart';
 class CurrentBloc extends ChangeNotifier {
   /// Constructs.
   CurrentBloc() {
-    _dao.clear().whenComplete(_update);
-    // TODO _update();
+    _dao.clear().whenComplete(() {
+      _dao
+          .create(Cycle(
+            start: formatDate(DateTime.now().subtract(Duration(days: 5))),
+            end: formatDate(DateTime.now()),
+            days: {},
+          ))
+          .whenComplete(_update);
+    });
   }
 
   final CurrentCycleDAO _dao = CurrentCycleDAO();
@@ -34,9 +41,15 @@ class CurrentBloc extends ChangeNotifier {
     if (current == null) {
       current = await _dao.get();
       if (current == null) {
-        await _create();
+        await create();
       }
       _days = Days(current.days);
+    }
+
+    if (isEnded()) {
+      /// If [current] has ended then stop.
+      notifyListeners();
+      return;
     }
 
     // Fills missing days and unmarked failures.
@@ -75,18 +88,25 @@ class CurrentBloc extends ChangeNotifier {
   }
 
   /// Creates a new cycle and updates [current].
-  Future<void> _create() async {
+  Future<void> create() async {
     current = Cycle(
       start: formatDate(DateTime.now()),
       end: formatDate(DateTime.now().add(const Duration(days: 15))),
     );
     await _dao.create(current);
+    await _update();
   }
 
   /// Ends a cycle, puts in previous cycles, then creates new one.
   Future<void> end() async {
     await _cyclesDAO.add(current);
-    await _create();
+    await create();
     await _update();
+  }
+
+  /// Returns if [current] ended.
+  bool isEnded() {
+    return (DateTime.now().isAfter(parseDate(current.end))) ||
+        current.end == formatDate(DateTime.now());
   }
 }

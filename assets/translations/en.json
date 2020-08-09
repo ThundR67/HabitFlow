@@ -88,5 +88,8 @@
 
     "notificationTime" : "Notification Time",
     "habitInfo" : "Habit Info",
+    "startCycle" : "Start New Cycle",
+    "cycleInfo" : "Cycle Info",
+    "cycleEnded" : "Cycle Ended",
     "activeDays" : "Active Days"
 }

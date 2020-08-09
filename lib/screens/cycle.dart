@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/components/stats.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/resources/widgets.dart';
 
 import 'package:provider/provider.dart';
@@ -17,9 +18,12 @@ import 'package:habitflow/resources/behaviour.dart';
 /// Screen to show data about [cycle].
 class CycleInfo extends StatelessWidget {
   /// Constructs.
-  const CycleInfo(this._cycle);
+  const CycleInfo(this._cycle, {this.ended = false});
 
   final Cycle _cycle;
+
+  /// If cycle ended.
+  final bool ended;
 
   Map<String, double> _successRates(HabitsBloc bloc) {
     return <String, double>{
@@ -35,6 +39,13 @@ class CycleInfo extends StatelessWidget {
     };
   }
 
+  /// Starts new cycle.
+  void _startCycle(BuildContext context) {
+    final CurrentBloc bloc = Provider.of<CurrentBloc>(context, listen: false);
+    bloc.create();
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
@@ -46,6 +57,12 @@ class CycleInfo extends StatelessWidget {
     final List<int> stats = cycleStats(_cycle.days.values.toList());
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          ended ? cycleEnded : cycleInfo,
+          style: Theme.of(context).textTheme.headline5,
+        ),
+      ),
       body: SafeArea(
         child: ListView(
           physics: scrollPhysics,
@@ -63,7 +80,20 @@ class CycleInfo extends StatelessWidget {
               _cycle.days.values.toList(),
               _habits(bloc),
               Provider.of<CurrentBloc>(context),
-            )
+            ),
+            if (ended)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RaisedButton(
+                  onPressed: () => _startCycle(context),
+                  child: Text(
+                    startCycle,
+                    style: Theme.of(context).textTheme.button.copyWith(
+                          color: Colors.white,
+                        ),
+                  ),
+                ),
+              )
           ],
         ),
       ),

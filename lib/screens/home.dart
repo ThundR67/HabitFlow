@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:after_layout/after_layout.dart';
+import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/intro.dart';
+import 'package:habitflow/models/cycle.dart';
 
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:habitflow/resources/widgets.dart';
+import 'package:habitflow/screens/cycle.dart';
 import 'package:habitflow/screens/cycles.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
+import 'package:provider/provider.dart';
 
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
@@ -48,8 +54,29 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
     );
   }
 
+  /// Redirects to cycle ended.
+  void _redirectToCycleEnded(Cycle cycle) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CycleInfo(cycle, ended: true),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final CurrentBloc bloc = Provider.of<CurrentBloc>(context);
+    if (bloc.current == null) {
+      return const Scaffold(body: circularIndicator);
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (bloc.isEnded()) {
+        _redirectToCycleEnded(bloc.current);
+      }
+    });
+
     return Scaffold(
       body: SizedBox.expand(
         child: PageView(
