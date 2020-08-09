@@ -12,5 +12,5 @@ const String createRewardRoute = '/create_reward';
 /// Route to Intro screen.
 const String introRoute = '/intro';
 
-/// Route to about page.
-const String aboutRoute = '/about';
+/// Route to faq page.
+const String faqRoute = '/faq';

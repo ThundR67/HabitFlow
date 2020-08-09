@@ -54,7 +54,19 @@ class MainDrawer extends StatelessWidget {
                   children: [
                     const Icon(aboutIcon),
                     const SizedBox(width: 8.0),
-                    Text(aboutPage),
+                    Text(about),
+                  ],
+                ),
+              ),
+              FlatButton(
+                onPressed: () => Navigator.of(context).pushNamed(faqRoute),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(faqIcon),
+                    const SizedBox(width: 8.0),
+                    Text(faqPage),
                   ],
                 ),
               ),

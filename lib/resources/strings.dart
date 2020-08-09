@@ -250,8 +250,11 @@ String cycleEnded = tr('cycleEnded');
 /// Refers to activeDays in translations.
 String activeDays = tr('activeDays');
 
-/// Refers to aboutPage in translations.
-String aboutPage = tr('aboutPage');
+/// Refers to faqPage in translations.
+String faqPage = tr('faqPage');
+
+/// Refers to about in translations.
+String about = tr('about');
 
 /// Refers to appName in translations.
 String appName = tr('appName');

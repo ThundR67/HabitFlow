@@ -43,3 +43,6 @@ const IconData deleteIcon = Icons.delete;
 
 /// Icon for about page.
 const IconData aboutIcon = Icons.info;
+
+/// Icon for faq page.
+const IconData faqIcon = Icons.question_answer;

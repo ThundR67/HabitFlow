@@ -92,7 +92,8 @@
     "cycleInfo" : "Cycle Info",
     "cycleEnded" : "Hurray! Cycle Ended",
     "activeDays" : "Active Days",
-    "aboutPage" : "About HabitFlow",
+    "faqPage" : "FAQs",
+    "about" : "About HabitFlow",
 
     "appName" : "HabitFlow",
     "appVersion" : "0.1.0",

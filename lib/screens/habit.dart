@@ -69,6 +69,7 @@ class _Info extends StatelessWidget {
                 habitInfo,
                 style: Theme.of(context).textTheme.headline5,
               ),
+              const SizedBox(height: 8.0),
               if (_habit.goal.notificationTimes.isNotEmpty)
                 _KeyValue(
                   keyText: notificationTime,
