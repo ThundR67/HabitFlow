@@ -9,13 +9,13 @@ const _notificationTimesKey = 'notification_times';
 /// A type to store info about habits goal.
 class Goal {
   /// Constrcuts.
-  Goal({this.activeDays, this.time, this.unit, this.notificationTimes});
+  Goal({this.activeDays, this.times, this.unit, this.notificationTimes});
 
   /// Days habit active on.
   List<int> activeDays;
 
   /// Time to do each day.
-  int time;
+  int times;
 
   /// Unit of measurement.
   String unit;
@@ -30,7 +30,7 @@ class Goal {
     );
 
     activeDays = List<int>.from(map[_daysKey] as Iterable);
-    time = int.parse(map[_timeKey].toString());
+    times = int.parse(map[_timeKey].toString());
     unit = map[_unitKey].toString();
     notificationTimes = [
       for (String time in timesStr) parseNotificationTime(time)
@@ -39,13 +39,15 @@ class Goal {
 
   /// Converts Goal to map.
   Map<String, dynamic> toMap() {
+    final List notificationTimesList = [
+      for (TimeOfDay time in notificationTimes) formatNotificationTime(time)
+    ];
     return {
       _daysKey: activeDays,
-      _timeKey: time,
+      _timeKey: times,
       _unitKey: unit,
-      _notificationTimesKey: [
-        for (TimeOfDay time in notificationTimes) formatNotificationTime(time)
-      ],
+      _notificationTimesKey:
+          notificationTimes.isEmpty ? [] : notificationTimesList,
     };
   }
 }

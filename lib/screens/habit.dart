@@ -7,11 +7,15 @@ import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
-/// A widget to show notification time.
-class _Time extends StatelessWidget {
-  const _Time(this._time);
+/// Widget to show info in key and value.
+class _KeyValue extends StatelessWidget {
+  const _KeyValue({@required this.keyText, @required this.valueText});
 
-  final TimeOfDay _time;
+  /// Key.
+  final String keyText;
+
+  /// Value.
+  final String valueText;
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +25,49 @@ class _Time extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '$notificationTime: ',
-            style: Theme.of(context).textTheme.headline6,
+            '$keyText: ',
+            style: Theme.of(context).textTheme.bodyText1,
           ),
           Text(
-            _time.format(context),
-            style: Theme.of(context).textTheme.headline6,
+            valueText,
+            style: Theme.of(context).textTheme.bodyText1,
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Widget to display habit info.
+class _Info extends StatelessWidget {
+  const _Info(this._habit);
+
+  final Habit _habit;
+
+  /// Returns initials of all active weekdays.
+  List<String> _days() {
+    List<String> output = [];
+    for (final int day in _habit.goal.activeDays) {
+      output.add(weekdays[day - 1][0]);
+    }
+    return output;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          habitInfo,
+          style: Theme.of(context).textTheme.headline5,
+        ),
+        if (_habit.goal.notificationTimes.isNotEmpty)
+          _KeyValue(
+            keyText: notificationTime,
+            valueText: _habit.goal.notificationTimes[0].format(context),
+          ),
+        _KeyValue(keyText: activeDays, valueText: _days().join(', ')),
+      ],
     );
   }
 }
@@ -60,8 +98,8 @@ class HabitInfo extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            if (_habit.goal.notificationTimes.isNotEmpty)
-              _Time(_habit.goal.notificationTimes[0]),
+            _Info(_habit),
+            const SizedBox(height: 24.0),
             Stats(
               successesNum: successesAmount(
                 _habit.id,

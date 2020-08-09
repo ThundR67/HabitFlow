@@ -58,9 +58,9 @@ class _CreateHabitState extends State<CreateHabit> {
               iconData: iconDataToMap(_icon),
               goal: Goal(
                 activeDays: _activeDays,
-                time: 1,
+                times: 1,
                 unit: 'default',
-                notificationTimes: [_time],
+                notificationTimes: _time != null ? [_time] : [],
               ),
             ),
           )

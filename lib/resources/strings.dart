@@ -28,12 +28,6 @@ List<String> weekdays = <String>[
   tr('sunday'),
 ];
 
-/// Refers to notificationTime in translations.
-String notificationTime = tr('notificationTime');
-
-/// Refers to selectTime in translations.
-String selectTime = tr('selectTime');
-
 /// Refers to title in translations.
 String title = tr('title');
 
@@ -234,3 +228,15 @@ String unprovidedReason = tr('unprovidedReason');
 
 /// Refers to recentFailures in translations.
 String recentFailures = tr('recentFailures');
+
+/// Refers to selectTime in translations.
+String selectTime = tr('selectTime');
+
+/// Refers to notificationTime in translations.
+String notificationTime = tr('notificationTime');
+
+/// Refers to habitInfo in translations.
+String habitInfo = tr('habitInfo');
+
+/// Refers to activeDays in translations.
+String activeDays = tr('activeDays');
