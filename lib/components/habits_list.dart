@@ -23,7 +23,7 @@ class HabitsList extends StatelessWidget {
   List<Widget> _habitsCards() {
     final List<Widget> output = <Widget>[];
     for (final Habit habit in habits.values) {
-      if (habit.activeDays.contains(DateTime.now().weekday)) {
+      if (habit.goal.activeDays.contains(DateTime.now().weekday)) {
         output.add(
           HabitCard(
             habit: habit,
@@ -38,7 +38,7 @@ class HabitsList extends StatelessWidget {
   /// Returns if is there active habits on current day.
   bool _isActiveToday() {
     for (final Habit habit in habits.values) {
-      if (habit.activeDays.contains(DateTime.now().weekday)) return true;
+      if (habit.goal.activeDays.contains(DateTime.now().weekday)) return true;
     }
     return false;
   }

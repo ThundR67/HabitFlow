@@ -32,10 +32,6 @@ class _NotificationTimeSelectorState extends State<NotificationTimeSelector> {
     });
   }
 
-  Color _textColor() {
-    return TinyColor(widget.color).isLight() ? Colors.black : Colors.white;
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -58,14 +54,15 @@ class _NotificationTimeSelectorState extends State<NotificationTimeSelector> {
         child: _time == null
             ? Text(
                 selectTime,
-                style: Theme.of(context).textTheme.button.copyWith(
-                      color: _textColor(),
-                    ),
+                style: Theme.of(context)
+                    .textTheme
+                    .button
+                    .copyWith(color: Colors.white),
               )
             : Text(
                 _time.format(context),
                 style: Theme.of(context).textTheme.headline6.copyWith(
-                      color: _textColor(),
+                      color: Colors.white,
                     ),
               ),
       ),

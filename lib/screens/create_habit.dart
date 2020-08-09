@@ -5,6 +5,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/components/notification_time_selector.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/validators.dart';
+import 'package:habitflow/models/goal.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
@@ -54,7 +55,11 @@ class _CreateHabitState extends State<CreateHabit> {
               points: int.parse(_pointsController.text),
               colorHex: colorToHex(_color),
               iconData: iconDataToMap(_icon),
-              activeDays: _activeDays,
+              goal: Goal(
+                activeDays: _activeDays,
+                time: 1,
+                unit: 'default',
+              ),
             ),
           )
           .whenComplete(_currentBloc.updateActiveHabits);

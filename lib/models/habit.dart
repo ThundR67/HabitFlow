@@ -1,3 +1,4 @@
+import 'package:habitflow/models/goal.dart';
 import 'package:random_string/random_string.dart';
 
 /// Key to refrence id of habit in map.
@@ -15,8 +16,8 @@ const String colorKey = 'color_hex';
 /// Key to refrence icon data of habit in map.
 const String iconKey = 'icon_data';
 
-/// Key for [Habit.activeDays].
-const String activeDaysKey = 'active_days';
+/// Key for [Habit.goal].
+const String goalKey = 'goal';
 
 /// A type to store habit information.
 class Habit {
@@ -27,7 +28,7 @@ class Habit {
     this.points,
     this.colorHex,
     this.iconData,
-    this.activeDays,
+    this.goal,
   }) {
     id ??= randomAlphaNumeric(12);
   }
@@ -44,8 +45,8 @@ class Habit {
   /// Hex color code of the habit.
   String colorHex;
 
-  /// Weekdays the habit is active on.
-  List<int> activeDays;
+  /// Goal of habit.
+  Goal goal;
 
   /// Icon of the habit.
   Map<String, dynamic> iconData;
@@ -57,7 +58,7 @@ class Habit {
     points = map[pointsKey] as int;
     colorHex = map[colorKey].toString();
     iconData = map[iconKey] as Map<String, dynamic>;
-    activeDays = List<int>.from(map[activeDaysKey] as Iterable);
+    goal = Goal.fromMap(map[goalKey] as Map<String, dynamic>);
   }
 
   /// Converts [Habit] to map.
@@ -68,7 +69,7 @@ class Habit {
       pointsKey: points,
       colorKey: colorHex,
       iconKey: iconData,
-      activeDaysKey: activeDays,
+      goalKey: goal.toMap()
     };
   }
 }

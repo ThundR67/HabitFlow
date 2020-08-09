@@ -62,7 +62,7 @@ class HabitsDAO {
   Future<List<String>> active(DateTime day) async {
     final List<String> output = <String>[];
     for (final Habit habit in (await all()).values) {
-      if (habit.activeDays.contains(day.weekday)) {
+      if (habit.goal.activeDays.contains(day.weekday)) {
         output.add(habit.id);
       }
     }
