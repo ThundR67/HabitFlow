@@ -90,6 +90,6 @@
     "habitInfo" : "Habit Info",
     "startCycle" : "Start New Cycle",
     "cycleInfo" : "Cycle Info",
-    "cycleEnded" : "Cycle Ended",
+    "cycleEnded" : "Hurray! Cycle Ended",
     "activeDays" : "Active Days"
 }
