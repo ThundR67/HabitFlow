@@ -29,24 +29,7 @@ class Today extends StatelessWidget {
     return Scaffold(
       drawer: const MainDrawer(),
       appBar: AppBar(
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                'assets/images/logo.png',
-                fit: BoxFit.cover,
-                height: 44,
-              ),
-            ),
-            Text(
-              title,
-              style: Theme.of(context).textTheme.headline5,
-            )
-          ],
-        ),
+        title: const _Title(),
         //automaticallyImplyLeading: false,
       ),
       body: Column(
@@ -69,6 +52,34 @@ class Today extends StatelessWidget {
         onPressed: () => Navigator.of(context).pushNamed(createHabitRoute),
         child: const Icon(addIcon),
       ),
+    );
+  }
+}
+
+class _Title extends StatelessWidget {
+  const _Title({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            'assets/images/logo.png',
+            fit: BoxFit.cover,
+            height: 44,
+          ),
+        ),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.headline5,
+        )
+      ],
     );
   }
 }

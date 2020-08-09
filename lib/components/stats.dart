@@ -23,7 +23,7 @@ class Stats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _Stat(
           text: successes,
@@ -57,21 +57,18 @@ class _Stat extends StatelessWidget {
       height: 96,
       width: 96,
       child: NeuCard(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                text,
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
-              Text(
-                number.toString(),
-                style: Theme.of(context).textTheme.headline5,
-              ),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              text,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            Text(
+              number.toString(),
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ],
         ),
       ),
     );

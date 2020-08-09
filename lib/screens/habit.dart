@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
+import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/recent_failures.dart';
 import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/success_rate.dart';
@@ -57,19 +58,27 @@ class _Info extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          habitInfo,
-          style: Theme.of(context).textTheme.headline5,
-        ),
-        if (_habit.goal.notificationTimes.isNotEmpty)
-          _KeyValue(
-            keyText: notificationTime,
-            valueText: _habit.goal.notificationTimes[0].format(context),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: NeuCard(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Text(
+                habitInfo,
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              if (_habit.goal.notificationTimes.isNotEmpty)
+                _KeyValue(
+                  keyText: notificationTime,
+                  valueText: _habit.goal.notificationTimes[0].format(context),
+                ),
+              _KeyValue(keyText: activeDays, valueText: _days().join(', ')),
+            ],
           ),
-        _KeyValue(keyText: activeDays, valueText: _days().join(', ')),
-      ],
+        ),
+      ),
     );
   }
 }
@@ -113,6 +122,7 @@ class HabitInfo extends StatelessWidget {
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _Info(_habit),
             const SizedBox(height: 24.0),
@@ -130,7 +140,7 @@ class HabitInfo extends StatelessWidget {
                 currentBloc.current.days.values.toList(),
               ),
             ),
-            const SizedBox(height: 24.0),
+            const SizedBox(height: 32.0),
             if (recentFailures.isNotEmpty) RecentFailures(recentFailures),
           ],
         ),

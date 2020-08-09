@@ -62,7 +62,7 @@ class CycleInfo extends StatelessWidget {
           ended ? cycleEnded : cycleInfo,
           style: Theme.of(context).textTheme.headline5,
         ),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: !ended,
       ),
       body: SafeArea(
         child: ListView(
