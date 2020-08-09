@@ -44,7 +44,9 @@ flutter:
   assets:
     - assets/translations/en.json
     - assets/images/logo.png
-    - assets/sounds/success.mp3
+    - assets/sounds/success.mpeg
+    - assets/sounds/failure.mpeg
+    - assets/sounds/skip.mpeg
   uses-material-design: true
 
   

@@ -40,7 +40,10 @@ ActionButton skipAction(Habit habit, CurrentBloc bloc) {
   return ActionButton(
     color: Colors.blueAccent,
     text: skip,
-    onPressed: () => bloc.mark(habit.id, Status.skipped),
+    onPressed: () {
+      bloc.mark(habit.id, Status.skipped);
+      play('skip');
+    },
     icon: skippedIcon,
   );
 }
@@ -75,6 +78,7 @@ ActionButton takeAction(
         );
         return;
       }
+      play('success');
       bloc.take(reward);
       pointsBloc.decrement(reward.points);
     },
