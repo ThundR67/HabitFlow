@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/recent_failures.dart';
 import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
@@ -46,7 +48,7 @@ class _Info extends StatelessWidget {
 
   /// Returns initials of all active weekdays.
   List<String> _days() {
-    List<String> output = [];
+    final List<String> output = [];
     for (final int day in _habit.goal.activeDays) {
       output.add(weekdays[day - 1][0]);
     }
@@ -87,6 +89,8 @@ class HabitInfo extends StatelessWidget {
       currentBloc.current.days.values.toList(),
     );
 
+    final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -94,6 +98,18 @@ class HabitInfo extends StatelessWidget {
           style: Theme.of(context).textTheme.headline5,
           overflow: TextOverflow.ellipsis,
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              deleteIcon,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            onPressed: () {
+              bloc.delete(_habit);
+              Navigator.of(context).pop();
+            },
+          )
+        ],
       ),
       body: SafeArea(
         child: Column(
