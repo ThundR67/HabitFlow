@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "557666265757",
+    "firebase_url": "https://habitflow-e7b74.firebaseio.com",
+    "project_id": "habitflow-e7b74",
+    "storage_bucket": "habitflow-e7b74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557666265757:android:3b115770fb7e21cf998274",
+        "android_client_info": {
+          "package_name": "thundrx.app.habitflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557666265757-7lc2v0gubsellnbjf9t4cjqkto7vjo98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8bMkUxQSVJHF7-hD5-FNvewouVv3GDkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557666265757-7lc2v0gubsellnbjf9t4cjqkto7vjo98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

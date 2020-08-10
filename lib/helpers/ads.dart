@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:habitflow/helpers/analytics.dart';
 
 /// App id for admob.
 const String appID = 'ca-app-pub-3940256099942544~3347511713';
@@ -30,5 +31,6 @@ void showInterstitialAd() {
       ..load()
       ..show()
       ..dispose();
+    analytics.logEvent(name: 'interstitial_ad_shown');
   }
 }

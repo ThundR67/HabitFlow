@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:habitflow/components/cycle_status.dart';
 import 'package:habitflow/components/neu_card.dart';
+import 'package:habitflow/components/redirect.dart';
 import 'package:habitflow/models/cycle.dart';
+import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/screens/cycle.dart';
 
 /// A card to show cycle data.
@@ -15,12 +17,7 @@ class CycleCard extends StatelessWidget {
 
   /// Redirects to [CycleInfo] page.
   void _openCycleInfo(BuildContext context) {
-    Navigator.push<CycleInfo>(
-      context,
-      MaterialPageRoute<CycleInfo>(
-        builder: (BuildContext context) => CycleInfo(cycle),
-      ),
-    );
+    redirect(context, cycleInfoRoute, CycleInfo(cycle));
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/helpers/analytics.dart';
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/days.dart';
 
@@ -98,6 +99,7 @@ class CurrentBloc extends ChangeNotifier {
     );
     await _dao.create(current);
     await _update();
+    analytics.logEvent(name: 'cycle_added');
   }
 
   /// Ends a cycle, puts in previous cycles, then creates new one.
@@ -105,6 +107,7 @@ class CurrentBloc extends ChangeNotifier {
     await _cyclesDAO.add(current);
     await create();
     await _update();
+    analytics.logEvent(name: 'cycle_ended');
   }
 
   /// Returns if [current] ended.

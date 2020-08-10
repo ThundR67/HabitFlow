@@ -11,3 +11,9 @@ const String createRewardRoute = '/create_reward';
 
 /// Route to Intro screen.
 const String introRoute = '/intro';
+
+/// Route to habit info page.
+const String habitInfoRoute = '/habit_info';
+
+/// Route to cycle info page.
+const String cycleInfoRoute = '/cycle_info';
