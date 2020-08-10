@@ -2,14 +2,9 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/helpers/notifications.dart';
 import 'package:habitflow/helpers/quotes.dart';
 import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/services/habits/habits.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-/// Converts TimeOfDay to DateTime.
-DateTime _timeToDate(TimeOfDay time) {
-  final now = DateTime.now();
-  return DateTime(now.year, now.month, now.day, time.hour, time.minute);
-}
 
 /// A Bloc which manages user's habits.
 class HabitsBloc extends ChangeNotifier {
@@ -43,7 +38,7 @@ class HabitsBloc extends ChangeNotifier {
     final TimeOfDay time = habit.goal.notificationTimes[0];
     await _notifications.schedule(
       Time(time.hour, time.minute),
-      'Reminder for ${habit.name}',
+      '$remind ${habit.name}',
       randQuote(),
       days,
     );

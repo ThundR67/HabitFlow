@@ -253,6 +253,15 @@ String activeDays = tr('activeDays');
 /// Refers to faqPage in translations.
 String faqPage = tr('faqPage');
 
+/// Refers to share in translations.
+String share = tr('share');
+
+/// Refers to shareValue in translations.
+String shareValue = tr('shareValue');
+
+/// Refers to remind in translations.
+String remind = tr('remind');
+
 /// Refers to about in translations.
 String about = tr('about');
 

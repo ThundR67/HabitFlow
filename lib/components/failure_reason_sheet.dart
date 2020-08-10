@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/helpers/sounds.dart';
-import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';

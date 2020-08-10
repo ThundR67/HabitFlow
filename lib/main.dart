@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:habitflow/helpers/intro.dart';
+
 import 'package:habitflow/helpers/theme.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/routes.dart';

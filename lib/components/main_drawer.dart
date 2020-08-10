@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/components/theme_dropdown.dart';
 import 'package:habitflow/resources/icons.dart';
-import 'package:habitflow/resources/routes.dart';
+
 import 'package:habitflow/resources/strings.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Main app drawer.
@@ -70,6 +71,18 @@ class MainDrawer extends StatelessWidget {
                     const Icon(faqIcon),
                     const SizedBox(width: 8.0),
                     Text(faqPage),
+                  ],
+                ),
+              ),
+              FlatButton(
+                onPressed: () => Share.share(shareValue),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(shareIcon),
+                    const SizedBox(width: 8.0),
+                    Text(share),
                   ],
                 ),
               ),

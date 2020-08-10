@@ -96,6 +96,10 @@
     "about" : "About HabitFlow",
     "updateReason" : "Update Failure Reason",
 
+    "share" : "Share",
+    "shareValue" : "Please Download HabitFlow",
+    "remind": "Reminder For",
+
     "appName" : "HabitFlow",
     "appVersion" : "1.0.0",
     "appLegalese" : "By ThundRX",

@@ -46,3 +46,6 @@ const IconData aboutIcon = Icons.info;
 
 /// Icon for faq page.
 const IconData faqIcon = Icons.question_answer;
+
+/// Icon for sharing.
+const IconData shareIcon = Icons.share;

@@ -1,7 +1,6 @@
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:tinycolor/tinycolor.dart';
 
 /// Button to allow user to select notification time.
 class NotificationTimeSelector extends StatefulWidget {
