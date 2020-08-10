@@ -40,6 +40,30 @@ String todaysPage = tr('todaysPage');
 /// Refers to rewardsPage in translations.
 String rewardsPage = tr('rewardsPage');
 
+/// Refers to cycleIntroTitle in translations.
+String cycleIntroTitle = tr('cycleIntroTitle');
+
+/// Refers to cycleIntroDescription in translations.
+String cycleIntroDescription = tr('cycleIntroDescription');
+
+/// Refers to habitIntroTitle in translations.
+String habitIntroTitle = tr('habitIntroTitle');
+
+/// Refers to habitIntroDescription in translations.
+String habitIntroDescription = tr('habitIntroDescription');
+
+/// Refers to journalIntroTitle in translations.
+String journalIntroTitle = tr('journalIntroTitle');
+
+/// Refers to journalIntroDescription in translations.
+String journalIntroDescription = tr('journalIntroDescription');
+
+/// Refers to rewardIntroTitle in translations.
+String rewardIntroTitle = tr('rewardIntroTitle');
+
+/// Refers to rewardIntroDescription in translations.
+String rewardIntroDescription = tr('rewardIntroDescription');
+
 /// Refers to pickColor in translations.
 String pickColor = tr('pickColor');
 
@@ -253,6 +277,12 @@ String activeDays = tr('activeDays');
 /// Refers to faqPage in translations.
 String faqPage = tr('faqPage');
 
+/// Refers to about in translations.
+String about = tr('about');
+
+/// Refers to updateReason in translations.
+String updateReason = tr('updateReason');
+
 /// Refers to share in translations.
 String share = tr('share');
 
@@ -261,12 +291,6 @@ String shareValue = tr('shareValue');
 
 /// Refers to remind in translations.
 String remind = tr('remind');
-
-/// Refers to about in translations.
-String about = tr('about');
-
-/// Refers to updateReason in translations.
-String updateReason = tr('updateReason');
 
 /// Refers to appName in translations.
 String appName = tr('appName');

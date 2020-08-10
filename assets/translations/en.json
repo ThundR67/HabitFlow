@@ -4,6 +4,16 @@
     "todaysPage" : "Today",
     "rewardsPage" : "Rewards",
 
+    "cycleIntroTitle" : "Cycle Based",
+    "cycleIntroDescription" : "Cycle is this that",
+    "habitIntroTitle" : "Powerful Habit Tracking",
+    "habitIntroDescription" :"Habit tracking is this and that",
+    "journalIntroTitle" : "Inbuilt Journaling",
+    "journalIntroDescription" : "Journaling is this and that",
+    "rewardIntroTitle" : "Rewards",
+    "rewardIntroDescription" : "Rewards are this and that",
+
+
     "pickColor" : "Pick A Color",
     "pickIcon" : "Pick An Icon",
 

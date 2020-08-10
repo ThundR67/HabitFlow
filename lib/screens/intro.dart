@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/helpers/intro.dart';
 import 'package:habitflow/resources/routes.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 
@@ -23,19 +24,27 @@ class _IntroState extends State<Intro> {
 
     slides.addAll([
       Slide(
-        title: "Cycle",
-        description: 'blah blah blah',
+        title: cycleIntroTitle,
+        description: cycleIntroDescription,
         backgroundColor: Colors.blue,
       ),
       Slide(
-        title: "Rewards",
-        description: 'blah blah blah',
+        title: rewardIntroTitle,
+        pathImage: 'assets/images/reward.png',
+        description: rewardIntroDescription,
         backgroundColor: Colors.amber[900],
       ),
       Slide(
-        title: "Powerful Habit Tracking",
-        description: 'blah blah blah',
+        title: habitIntroTitle,
+        description: habitIntroDescription,
         backgroundColor: Colors.green,
+        pathImage: 'assets/images/habit.png',
+      ),
+      Slide(
+        title: journalIntroTitle,
+        description: journalIntroDescription,
+        backgroundColor: Colors.red,
+        pathImage: 'assets/images/journal.png',
       ),
     ]);
   }
