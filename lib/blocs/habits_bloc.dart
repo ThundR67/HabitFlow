@@ -1,5 +1,6 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/helpers/notifications.dart';
+import 'package:habitflow/helpers/quotes.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/services/habits/habits.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -42,8 +43,8 @@ class HabitsBloc extends ChangeNotifier {
     final TimeOfDay time = habit.goal.notificationTimes[0];
     await _notifications.schedule(
       Time(time.hour, time.minute),
-      habit.name,
-      'placeholder',
+      'Reminder for ${habit.name}',
+      randQuote(),
       days,
     );
   }
