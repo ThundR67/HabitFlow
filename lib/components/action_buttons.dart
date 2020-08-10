@@ -4,6 +4,7 @@ import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_button.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
+import 'package:habitflow/helpers/ads.dart';
 import 'package:habitflow/helpers/sounds.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/reward.dart';
@@ -16,7 +17,10 @@ ActionButton undoAction(Habit habit, CurrentBloc bloc) {
   return ActionButton(
     color: Colors.orangeAccent[700],
     text: undo,
-    onPressed: () => bloc.mark(habit.id, Status.unmarked),
+    onPressed: () {
+      bloc.mark(habit.id, Status.unmarked);
+      showInterstitialAd();
+    },
     icon: undoIcon,
   );
 }
@@ -27,9 +31,10 @@ ActionButton doneAction(Habit habit, PointsBloc pointsBloc, CurrentBloc bloc) {
     color: Colors.green,
     text: done,
     onPressed: () {
+      play('success');
       bloc.mark(habit.id, Status.done);
       pointsBloc.increment(habit.points);
-      play('success');
+      showInterstitialAd();
     },
     icon: doneIcon,
   );
@@ -41,8 +46,9 @@ ActionButton skipAction(Habit habit, CurrentBloc bloc) {
     color: Colors.blueAccent,
     text: skip,
     onPressed: () {
-      bloc.mark(habit.id, Status.skipped);
       play('skip');
+      bloc.mark(habit.id, Status.skipped);
+      showInterstitialAd();
     },
     icon: skippedIcon,
   );
@@ -81,6 +87,7 @@ ActionButton takeAction(
       play('success');
       bloc.take(reward);
       pointsBloc.decrement(reward.points);
+      showInterstitialAd();
     },
   );
 }
@@ -91,6 +98,9 @@ ActionButton deleteAction(Reward reward, RewardsBloc bloc) {
     icon: deleteIcon,
     text: delete,
     color: Colors.redAccent,
-    onPressed: () => bloc.delete(reward),
+    onPressed: () {
+      bloc.delete(reward);
+      showInterstitialAd();
+    },
   );
 }

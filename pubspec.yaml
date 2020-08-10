@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   flutter_iconpicker: ^2.0.0
+  firebase_admob: ^0.9.3+4
   path_provider: ^1.6.11
   sembast: ^2.4.7+4
   bottom_navy_bar: ^5.4.0

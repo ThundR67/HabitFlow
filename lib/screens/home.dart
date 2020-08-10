@@ -1,8 +1,10 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/helpers/ads.dart';
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/intro.dart';
 import 'package:habitflow/models/cycle.dart';
@@ -35,6 +37,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _currentIndex);
+    FirebaseAdMob.instance.initialize(appId: appID);
   }
 
   @override

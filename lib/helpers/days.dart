@@ -80,15 +80,10 @@ class Days {
 
   /// Fills all missing days.
   Future<void> fill(DateTime start, DateTime end, HabitsDAO dao) async {
-    if (formatDate(start) == formatDate(DateTime.now())) {
-      await _fillDate(DateTime.now(), dao);
-      return;
-    }
-
     final List<DateTime> dates = datesList(start, DateTime.now());
     for (final DateTime date in dates) {
       await _fillDate(date, dao);
-      _failUnmarked(date);
+      if (formatDate(date) != formatDate(DateTime.now())) _failUnmarked(date);
     }
   }
 }
