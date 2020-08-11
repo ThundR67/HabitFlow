@@ -17,3 +17,6 @@ const String habitInfoRoute = '/habit_info';
 
 /// Route to cycle info page.
 const String cycleInfoRoute = '/cycle_info';
+
+/// Route to cycle ended page.
+const String cycleEndedRoute = '/cycle_ended';

@@ -18,12 +18,9 @@ import 'package:habitflow/resources/behaviour.dart';
 /// Screen to show data about [cycle].
 class CycleInfo extends StatelessWidget {
   /// Constructs.
-  const CycleInfo(this._cycle, {this.ended = false});
+  const CycleInfo(this._cycle);
 
   final Cycle _cycle;
-
-  /// If cycle ended.
-  final bool ended;
 
   Map<String, double> _successRates(HabitsBloc bloc) {
     return <String, double>{
@@ -59,10 +56,9 @@ class CycleInfo extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          ended ? cycleEnded : cycleInfo,
+          cycleInfo,
           style: Theme.of(context).textTheme.headline5,
         ),
-        automaticallyImplyLeading: !ended,
       ),
       body: SafeArea(
         child: ListView(
@@ -82,19 +78,6 @@ class CycleInfo extends StatelessWidget {
               _habits(bloc),
               Provider.of<CurrentBloc>(context),
             ),
-            if (ended)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RaisedButton(
-                  onPressed: () => _startCycle(context),
-                  child: Text(
-                    startCycle,
-                    style: Theme.of(context).textTheme.button.copyWith(
-                          color: Colors.white,
-                        ),
-                  ),
-                ),
-              )
           ],
         ),
       ),

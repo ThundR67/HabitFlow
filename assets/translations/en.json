@@ -101,6 +101,7 @@
     "startCycle" : "Start New Cycle",
     "cycleInfo" : "Cycle Info",
     "cycleEnded" : "Hurray! Cycle Ended",
+    "cycleEndedDescription" : "Cycle ended so this and that",
     "activeDays" : "Active Days",
     "faqPage" : "FAQs",
     "about" : "About HabitFlow",

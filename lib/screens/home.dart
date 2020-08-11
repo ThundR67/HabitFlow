@@ -50,7 +50,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
   void afterFirstLayout(BuildContext context) {
     isIntroShown(mainIntro).then(
       (value) {
-        if (value) {
+        if (!value) {
           Navigator.of(context).pushReplacementNamed(introRoute);
         }
       },
@@ -59,12 +59,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
 
   /// Redirects to cycle ended.
   void _redirectToCycleEnded(Cycle cycle) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CycleInfo(cycle, ended: true),
-      ),
-    );
+    Navigator.of(context).pushReplacementNamed(cycleEndedRoute);
   }
 
   @override
