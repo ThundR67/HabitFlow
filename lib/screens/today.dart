@@ -72,7 +72,7 @@ class _Title extends StatelessWidget {
           child: Image.asset(
             'assets/images/logo.png',
             fit: BoxFit.cover,
-            height: 44,
+            height: 32,
           ),
         ),
         Text(
