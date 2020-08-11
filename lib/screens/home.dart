@@ -2,19 +2,16 @@ import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:after_layout/after_layout.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/helpers/ads.dart';
 
-import 'package:habitflow/helpers/intro.dart';
 import 'package:habitflow/models/cycle.dart';
 
-import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/resources/widgets.dart';
-import 'package:habitflow/screens/cycle.dart';
 import 'package:habitflow/screens/cycles.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
@@ -30,7 +27,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
+class _HomeState extends State<Home> {
   int _currentIndex = 1;
   PageController _pageController;
   final List<Widget> _pages = [
@@ -52,17 +49,6 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
     super.dispose();
   }
 
-  @override
-  void afterFirstLayout(BuildContext context) {
-    isIntroShown(mainIntro).then(
-      (value) {
-        if (!value) {
-          Navigator.of(context).pushReplacementNamed(introRoute);
-        }
-      },
-    );
-  }
-
   /// Redirects to cycle ended.
   void _redirectToCycleEnded(Cycle cycle) {
     Navigator.of(context).pushReplacementNamed(cycleEndedRoute);
@@ -71,12 +57,17 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
   @override
   Widget build(BuildContext context) {
     final CurrentBloc bloc = Provider.of<CurrentBloc>(context);
+    final IntroBloc introBloc = Provider.of<IntroBloc>(context);
+
     if (bloc.current == null) {
       return const Scaffold(body: circularIndicator);
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (bloc.isEnded()) _redirectToCycleEnded(bloc.current);
+      if (!introBloc.intros[mainIntro]) {
+        Navigator.pushReplacementNamed(context, introRoute);
+      }
     });
 
     return ShowCaseWidget(

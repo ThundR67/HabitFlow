@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/helpers/analytics.dart';
 
 import 'package:habitflow/helpers/theme.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
         ChangeNotifierProvider<HabitsBloc>(create: (_) => HabitsBloc()),
         ChangeNotifierProvider<CyclesBloc>(create: (_) => CyclesBloc()),
         ChangeNotifierProvider<CurrentBloc>(create: (_) => CurrentBloc()),
+        ChangeNotifierProvider<IntroBloc>(create: (_) => IntroBloc()),
       ],
       child: EasyLocalization(
         supportedLocales: const <Locale>[Locale('en')],

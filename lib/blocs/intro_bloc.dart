@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:habitflow/services/intro/intro.dart';
+
+/// Main app intro.
+const mainIntro = 'main';
+
+/// Intro for swipping habits.
+const habitIntro = 'habit';
+
+/// Intro for swipping rewards.
+const rewardIntro = 'reward';
+
+/// List of all intros.
+const List<String> allIntros = [mainIntro, habitIntro, rewardIntro];
+
+/// This bloc will manage if all intros are shown or not.
+class IntroBloc extends ChangeNotifier {
+  IntroBloc();
+
+  final IntroDAO _dao = IntroDAO();
+
+  /// Value of all intros.
+  Map<String, bool> intros;
+
+  /// Updates [intros].
+  Future<void> _update() async {
+    for (final String intro in allIntros) {
+      intros[intro] = await _dao.isShown(intro);
+    }
+    notifyListeners();
+  }
+
+  /// Sets [intro] as shown.
+  Future<void> shown(String name) async {
+    await _dao.isShown(name);
+    intros[name] = true;
+    notifyListeners();
+  }
+}

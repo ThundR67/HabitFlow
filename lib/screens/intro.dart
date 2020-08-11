@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/helpers/intro.dart';
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:provider/provider.dart';
 
 /// Screen to introduce user to the app.
 class Intro extends StatefulWidget {
@@ -70,7 +71,7 @@ class _IntroState extends State<Intro> {
         shouldHideStatusBar: false,
         colorDot: Colors.white,
         onDonePress: () {
-          introShown(mainIntro);
+          Provider.of<IntroBloc>(context).shown(mainIntro);
           Navigator.of(context).pushReplacementNamed(homeRoute);
         },
       ),
