@@ -9,6 +9,7 @@ class RewardPoints extends StatelessWidget {
     @required this.points,
     this.style,
     this.color = Colors.orange,
+    this.isTitle = false,
   });
 
   /// Amount of points.
@@ -20,12 +21,16 @@ class RewardPoints extends StatelessWidget {
   /// Color of the icon.
   final Color color;
 
+  /// If [RewardPoints] is being used in appbar.
+  final bool isTitle;
+
   @override
   Widget build(BuildContext context) {
     final TextStyle newStyle = style ?? Theme.of(context).textTheme.subtitle1;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
+        if (isTitle) SizedBox(width: newStyle.fontSize),
         Text(
           points.toString(),
           style: newStyle,

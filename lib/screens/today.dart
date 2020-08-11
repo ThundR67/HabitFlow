@@ -65,7 +65,8 @@ class _Title extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
+      //mainAxisAlignment: MainAxisAlignment.center,
+
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -78,7 +79,9 @@ class _Title extends StatelessWidget {
         Text(
           title,
           style: Theme.of(context).textTheme.headline5,
-        )
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(width: 40)
       ],
     );
   }
