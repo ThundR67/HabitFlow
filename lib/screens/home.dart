@@ -12,7 +12,9 @@ import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/resources/widgets.dart';
+import 'package:habitflow/screens/cycle_ended.dart';
 import 'package:habitflow/screens/cycles.dart';
+import 'package:habitflow/screens/intro.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
 import 'package:provider/provider.dart';
@@ -30,11 +32,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 1;
   PageController _pageController;
-  final List<Widget> _pages = [
-    const Cycles(),
-    const Today(),
-    Rewards(),
-  ];
 
   @override
   void initState() {
@@ -59,16 +56,19 @@ class _HomeState extends State<Home> {
     final CurrentBloc bloc = Provider.of<CurrentBloc>(context);
     final IntroBloc introBloc = Provider.of<IntroBloc>(context);
 
-    if (bloc.current == null) {
+    if (bloc.current == null || introBloc.intros == null) {
       return const Scaffold(body: circularIndicator);
     }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (bloc.isEnded()) _redirectToCycleEnded(bloc.current);
-      if (!introBloc.intros[mainIntro]) {
-        Navigator.pushReplacementNamed(context, introRoute);
-      }
-    });
+    if (!introBloc.intros[mainIntro]) return const Intro();
+
+    if (bloc.isEnded()) return const CycleEnded();
+
+    final List<Widget> _pages = [
+      const Cycles(),
+      const Today(),
+      Rewards(),
+    ];
 
     return ShowCaseWidget(
       builder: Builder(

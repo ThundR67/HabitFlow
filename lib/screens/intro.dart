@@ -71,7 +71,7 @@ class _IntroState extends State<Intro> {
         shouldHideStatusBar: false,
         colorDot: Colors.white,
         onDonePress: () {
-          Provider.of<IntroBloc>(context).shown(mainIntro);
+          Provider.of<IntroBloc>(context, listen: false).shown(mainIntro);
           Navigator.of(context).pushReplacementNamed(homeRoute);
         },
       ),

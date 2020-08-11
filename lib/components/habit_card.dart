@@ -3,6 +3,7 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
 import 'package:habitflow/components/main_card.dart';
@@ -25,7 +26,6 @@ class HabitCard extends StatelessWidget {
     @required this.habit,
     @required this.status,
     @required this.controller,
-    this.isIntroToBeShown = false,
   });
 
   /// Habit to show.
@@ -36,9 +36,6 @@ class HabitCard extends StatelessWidget {
 
   /// Controller for slidable.
   final SlidableController controller;
-
-  /// Should intro be shown.
-  final bool isIntroToBeShown;
 
   /// Returns all primary actions on habit.
   List<Widget> _actions(CurrentBloc bloc, PointsBloc pointsBloc) {
@@ -64,7 +61,7 @@ class HabitCard extends StatelessWidget {
     final bool isUnmarked = status == Status.unmarked;
 
     return MainCard(
-      isIntroToBeShown: isIntroToBeShown,
+      intro: habitIntro,
       actions: _actions(currentBloc, pointsBloc),
       secondaryActions: _secondaryActions(context, currentBloc),
       onTap: () => redirect(context, habitInfoRoute, HabitInfo(habit)),

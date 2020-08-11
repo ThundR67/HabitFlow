@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
@@ -32,6 +33,7 @@ class RewardCard extends StatelessWidget {
       secondaryActions: [deleteAction(reward, rewardsBloc)],
       description: rewardSwipeDescription,
       controller: controller,
+      intro: rewardIntro,
       onTap: () {},
       child: Row(
         children: <Widget>[

@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/components/tappable_neu_card.dart';
+import 'package:provider/provider.dart';
 import 'package:showcaseview/showcase.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 /// A slidable, tappable and showcasable card.
-class MainCard extends StatefulWidget {
+class MainCard extends StatelessWidget {
   /// Constructs.
-  const MainCard({
+  MainCard({
     @required this.child,
     @required this.actions,
     @required this.secondaryActions,
     @required this.onTap,
     @required this.controller,
     @required this.description,
-    this.isIntroToBeShown = false,
+    @required this.intro,
   });
 
   /// Child of the card.
@@ -29,8 +31,8 @@ class MainCard extends StatefulWidget {
   /// Funtion to run on tap.
   final Function() onTap;
 
-  /// Should intro be shown.
-  final bool isIntroToBeShown;
+  /// Name of intro.
+  final String intro;
 
   /// Description for the intro.
   final String description;
@@ -38,43 +40,49 @@ class MainCard extends StatefulWidget {
   /// Controller for slidable.
   final SlidableController controller;
 
-  @override
-  _MainCardState createState() => _MainCardState();
-}
-
-class _MainCardState extends State<MainCard> {
   final GlobalKey _key = GlobalKey();
-  bool _introShown = false;
 
-  /// Shows an intro.
-  void _showIntro(BuildContext context) {
-    if (!_introShown) {
-      const Duration duration = Duration(seconds: 3);
-      final SlidableState state = Slidable.of(context);
-      ShowCaseWidget.of(context).startShowCase([_key]);
-      state.open();
+  /// Shows an intro and marks it as shown.
+  void _showIntro(BuildContext context, IntroBloc bloc) {
+    if (bloc.introsBeingShown[intro]) return;
+    bloc.beingShown(intro);
+
+    print('called');
+    const Duration duration = Duration(seconds: 3);
+    final SlidableState state = Slidable.of(context);
+
+    ShowCaseWidget.of(context).startShowCase([_key]);
+    state.open();
+    Future.delayed(duration).whenComplete(() {
+      state.close();
+      state.open(actionType: SlideActionType.secondary);
       Future.delayed(duration).whenComplete(() {
-        state.open(actionType: SlideActionType.secondary);
-        Future.delayed(duration).whenComplete(state.close);
+        state.close();
       });
-    }
-    setState(() => _introShown = true);
+    });
+
+    bloc.shown(intro);
   }
 
   @override
   Widget build(BuildContext context) {
+    final IntroBloc bloc = Provider.of<IntroBloc>(context);
     return Showcase(
       key: _key,
-      description: widget.description,
+      description: description,
       child: Slidable(
-        actions: widget.actions,
-        secondaryActions: widget.secondaryActions,
+        actions: actions,
+        secondaryActions: secondaryActions,
         actionPane: const SlidableDrawerActionPane(),
-        controller: widget.controller,
+        controller: controller,
         child: Builder(
           builder: (context) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (widget.isIntroToBeShown) _showIntro(context);
+              if (bloc.intros != null) {
+                if (!bloc.intros[intro]) {
+                  _showIntro(context, bloc);
+                }
+              }
             });
             return Padding(
               padding: const EdgeInsets.symmetric(
@@ -82,11 +90,11 @@ class _MainCardState extends State<MainCard> {
                 horizontal: 16.0,
               ),
               child: TappableCard(
-                onTap: widget.onTap,
+                onTap: onTap,
                 child: Container(
                   padding: const EdgeInsets.all(16.0),
                   alignment: Alignment.center,
-                  child: widget.child,
+                  child: child,
                 ),
               ),
             );

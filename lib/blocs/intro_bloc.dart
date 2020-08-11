@@ -15,7 +15,10 @@ const List<String> allIntros = [mainIntro, habitIntro, rewardIntro];
 
 /// This bloc will manage if all intros are shown or not.
 class IntroBloc extends ChangeNotifier {
-  IntroBloc();
+  /// Constructs.
+  IntroBloc() {
+    _dao.clear().whenComplete(_update);
+  }
 
   final IntroDAO _dao = IntroDAO();
 
@@ -24,16 +27,17 @@ class IntroBloc extends ChangeNotifier {
 
   /// Updates [intros].
   Future<void> _update() async {
+    intros = {};
     for (final String intro in allIntros) {
       intros[intro] = await _dao.isShown(intro);
     }
     notifyListeners();
   }
 
-  /// Sets [intro] as shown.
+  /// Sets [name] as shown.
   Future<void> shown(String name) async {
-    await _dao.isShown(name);
     intros[name] = true;
     notifyListeners();
+    await _dao.introShown(name);
   }
 }
