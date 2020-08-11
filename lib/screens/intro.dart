@@ -38,7 +38,7 @@ class _IntroState extends State<Intro> {
       _slide(
         cycleIntroTitle,
         cycleIntroDescription,
-        'reward.png',
+        'cycle.png',
         Colors.blue,
       ),
       _slide(
