@@ -50,7 +50,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
   void afterFirstLayout(BuildContext context) {
     isIntroShown(mainIntro).then(
       (value) {
-        if (!value) {
+        if (value) {
           Navigator.of(context).pushReplacementNamed(introRoute);
         }
       },

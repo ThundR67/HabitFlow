@@ -18,33 +18,46 @@ class _IntroState extends State<Intro> {
   final List<Slide> slides = [];
   Function goToTab;
 
+  /// Returna a [Slide] object.
+  Slide _slide(String title, String description, String image, Color color) {
+    return Slide(
+      title: title,
+      description: description,
+      backgroundColor: color,
+      pathImage: 'assets/images/$image',
+      //styleTitle: Theme.of(context).textTheme.headline5,
+      maxLineTitle: 2,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
 
     slides.addAll([
-      Slide(
-        title: cycleIntroTitle,
-        description: cycleIntroDescription,
-        backgroundColor: Colors.blue,
+      _slide(
+        cycleIntroTitle,
+        cycleIntroDescription,
+        'reward.png',
+        Colors.blue,
       ),
-      Slide(
-        title: rewardIntroTitle,
-        pathImage: 'assets/images/reward.png',
-        description: rewardIntroDescription,
-        backgroundColor: Colors.amber[900],
+      _slide(
+        rewardIntroTitle,
+        rewardIntroDescription,
+        'reward.png',
+        Colors.amber[900],
       ),
-      Slide(
-        title: habitIntroTitle,
-        description: habitIntroDescription,
-        backgroundColor: Colors.green,
-        pathImage: 'assets/images/habit.png',
+      _slide(
+        journalIntroTitle,
+        journalIntroDescription,
+        'journal.png',
+        Colors.red,
       ),
-      Slide(
-        title: journalIntroTitle,
-        description: journalIntroDescription,
-        backgroundColor: Colors.red,
-        pathImage: 'assets/images/journal.png',
+      _slide(
+        habitIntroTitle,
+        habitIntroDescription,
+        'habit.png',
+        Colors.green,
       ),
     ]);
   }
