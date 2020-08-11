@@ -71,11 +71,7 @@ class _IntroState extends State<Intro> {
         colorDot: Colors.white,
         onDonePress: () {
           introShown(mainIntro);
-          if (Navigator.canPop(context)) {
-            Navigator.pop(context);
-          } else {
-            Navigator.of(context).pushNamed(homeRoute);
-          }
+          Navigator.of(context).pushReplacementNamed(homeRoute);
         },
       ),
     );

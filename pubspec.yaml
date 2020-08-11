@@ -46,16 +46,8 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/translations/en.json
-    - assets/images/logo.png
-    - assets/sounds/success.mpeg
-    - assets/sounds/failure.mpeg
-    - assets/sounds/skip.mpeg
-    - assets/images/habit.png
-    - assets/images/journal.png
-    - assets/images/reward.png
-    - packages/day_night_time_picker/assets/sun.png
-    - packages/day_night_time_picker/assets/moon.png
+    - assets/
+    - packages/day_night_time_picker/assets/
   uses-material-design: true
 
   
