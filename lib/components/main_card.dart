@@ -7,9 +7,9 @@ import 'package:showcaseview/showcase.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 /// A slidable, tappable and showcasable card.
-class MainCard extends StatelessWidget {
+class MainCard extends StatefulWidget {
   /// Constructs.
-  MainCard({
+  const MainCard({
     @required this.child,
     @required this.actions,
     @required this.secondaryActions,
@@ -40,14 +40,17 @@ class MainCard extends StatelessWidget {
   /// Controller for slidable.
   final SlidableController controller;
 
+  @override
+  _MainCardState createState() => _MainCardState();
+}
+
+class _MainCardState extends State<MainCard> {
   final GlobalKey _key = GlobalKey();
+  bool _isBeingShown = false;
 
   /// Shows an intro and marks it as shown.
   void _showIntro(BuildContext context, IntroBloc bloc) {
-    if (bloc.introsBeingShown[intro]) return;
-    bloc.beingShown(intro);
-
-    print('called');
+    setState(() => _isBeingShown = true);
     const Duration duration = Duration(seconds: 3);
     final SlidableState state = Slidable.of(context);
 
@@ -61,7 +64,7 @@ class MainCard extends StatelessWidget {
       });
     });
 
-    bloc.shown(intro);
+    bloc.shown(widget.intro);
   }
 
   @override
@@ -69,19 +72,17 @@ class MainCard extends StatelessWidget {
     final IntroBloc bloc = Provider.of<IntroBloc>(context);
     return Showcase(
       key: _key,
-      description: description,
+      description: widget.description,
       child: Slidable(
-        actions: actions,
-        secondaryActions: secondaryActions,
+        actions: widget.actions,
+        secondaryActions: widget.secondaryActions,
         actionPane: const SlidableDrawerActionPane(),
-        controller: controller,
+        controller: widget.controller,
         child: Builder(
           builder: (context) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (bloc.intros != null) {
-                if (!bloc.intros[intro]) {
-                  _showIntro(context, bloc);
-                }
+              if (!bloc.intros[widget.intro] && !_isBeingShown) {
+                _showIntro(context, bloc);
               }
             });
             return Padding(
@@ -90,11 +91,11 @@ class MainCard extends StatelessWidget {
                 horizontal: 16.0,
               ),
               child: TappableCard(
-                onTap: onTap,
+                onTap: widget.onTap,
                 child: Container(
                   padding: const EdgeInsets.all(16.0),
                   alignment: Alignment.center,
-                  child: child,
+                  child: widget.child,
                 ),
               ),
             );
