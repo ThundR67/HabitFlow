@@ -18,6 +18,7 @@ ActionButton undoAction(Habit habit, CurrentBloc bloc) {
     color: Colors.orangeAccent[700],
     text: undo,
     onPressed: () {
+      play('undo');
       bloc.mark(habit.id, Status.unmarked);
       showInterstitialAd();
     },
