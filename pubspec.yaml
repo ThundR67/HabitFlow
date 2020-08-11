@@ -32,6 +32,7 @@ dependencies:
   flutter_local_notifications: ^1.4.4+2
   shared_preferences: ^0.5.8
   url_launcher: ^5.5.0
+  showcaseview: ^0.1.5
   flutter:
     sdk: flutter
   flutter_localizations: 

@@ -19,6 +19,7 @@ import 'package:habitflow/screens/cycles.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
@@ -73,43 +74,50 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
       if (bloc.isEnded()) _redirectToCycleEnded(bloc.current);
     });
 
-    return Scaffold(
-      body: SizedBox.expand(
-        child: PageView(
-          physics: scrollPhysics,
-          controller: _pageController,
-          onPageChanged: (int index) => setState(() => _currentIndex = index),
-          children: <Widget>[
-            const Cycles(),
-            const Today(),
-            Rewards(),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _currentIndex,
-        backgroundColor:
-            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-        onItemSelected: (int index) => setState(() {
-          _currentIndex = index;
-          _pageController.jumpToPage(index);
-        }),
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            icon: const Icon(cycleIcon),
-            title: Text(cyclesPage),
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(todayIcon),
-            title: Text(todaysPage),
-            activeColor: Colors.red,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(rewardIcon),
-            title: Text(rewardsPage),
-            activeColor: Colors.orange,
-          ),
-        ],
+    return ShowCaseWidget(
+      builder: Builder(
+        builder: (context) {
+          return Scaffold(
+            body: SizedBox.expand(
+              child: PageView(
+                physics: scrollPhysics,
+                controller: _pageController,
+                onPageChanged: (int index) =>
+                    setState(() => _currentIndex = index),
+                children: <Widget>[
+                  const Cycles(),
+                  const Today(),
+                  Rewards(),
+                ],
+              ),
+            ),
+            bottomNavigationBar: BottomNavyBar(
+              selectedIndex: _currentIndex,
+              backgroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+              onItemSelected: (int index) => setState(() {
+                _currentIndex = index;
+                _pageController.jumpToPage(index);
+              }),
+              items: <BottomNavyBarItem>[
+                BottomNavyBarItem(
+                  icon: const Icon(cycleIcon),
+                  title: Text(cyclesPage),
+                ),
+                BottomNavyBarItem(
+                  icon: const Icon(todayIcon),
+                  title: Text(todaysPage),
+                  activeColor: Colors.red,
+                ),
+                BottomNavyBarItem(
+                  icon: const Icon(rewardIcon),
+                  title: Text(rewardsPage),
+                  activeColor: Colors.orange,
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
