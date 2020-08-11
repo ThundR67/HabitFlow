@@ -1,7 +1,13 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Main intro.
-const String mainIntro = 'isIntroShown';
+const String mainIntro = 'main';
+
+/// Intro for habits.
+const String habitsIntro = 'habits';
+
+/// Intro for rewards.
+const String rewardsIntro = 'rewards';
 
 /// Returns if intro screen was shown.
 Future<bool> isIntroShown(String key) async {

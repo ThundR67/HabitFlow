@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:habitflow/components/habit_card.dart';
 import 'package:habitflow/components/no_possesion.dart';
@@ -11,13 +12,16 @@ import 'package:habitflow/resources/strings.dart';
 /// A widget to show all habits in list.
 class HabitsList extends StatelessWidget {
   /// Constructs
-  const HabitsList({this.habits, this.statuses});
+  HabitsList({this.habits, this.statuses});
 
   /// All the habits.
   final Map<String, Habit> habits;
 
   /// All the statuses.
   final Map<String, Status> statuses;
+
+  /// Controller for all slidables.
+  final SlidableController slidableController = SlidableController();
 
   /// Returns list of habitcards.
   List<Widget> _habitsCards() {
@@ -26,6 +30,7 @@ class HabitsList extends StatelessWidget {
       if (habit.goal.activeDays.contains(DateTime.now().weekday)) {
         output.add(
           HabitCard(
+            controller: slidableController,
             habit: habit,
             status: statuses[habit.id] ?? Status.unmarked,
           ),

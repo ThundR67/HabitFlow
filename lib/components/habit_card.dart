@@ -21,6 +21,7 @@ class HabitCard extends StatelessWidget {
   const HabitCard({
     @required this.habit,
     @required this.status,
+    @required this.controller,
   });
 
   /// Habit to show.
@@ -28,6 +29,9 @@ class HabitCard extends StatelessWidget {
 
   /// Status of [habit].
   final Status status;
+
+  /// Controller for slidable.
+  final SlidableController controller;
 
   /// Returns all primary actions on habit.
   List<Widget> _actions(CurrentBloc bloc, PointsBloc pointsBloc) {
@@ -61,6 +65,7 @@ class HabitCard extends StatelessWidget {
           ? _secondaryActions(context, currentBloc)
           : <Widget>[undoAction(habit, currentBloc)],
       actionPane: const SlidableDrawerActionPane(),
+      controller: controller,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 12.0,
