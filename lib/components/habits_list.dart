@@ -58,6 +58,10 @@ class HabitsList extends StatelessWidget {
       );
     }
 
+    if (slidableController.activeState != null) {
+      slidableController.activeState.open();
+    }
+
     return Column(
       children: _habitsCards(),
     );

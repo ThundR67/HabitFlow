@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
+import 'package:habitflow/components/main_card.dart';
 import 'package:habitflow/components/redirect.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/status_view.dart';
@@ -22,6 +23,7 @@ class HabitCard extends StatelessWidget {
     @required this.habit,
     @required this.status,
     @required this.controller,
+    this.isIntroToShow = true,
   });
 
   /// Habit to show.
@@ -33,22 +35,36 @@ class HabitCard extends StatelessWidget {
   /// Controller for slidable.
   final SlidableController controller;
 
+  /// Should intro be shown.
+  final bool isIntroToShow;
+
+  /// Shows intro.
+  void _showIntro(BuildContext context) {
+    const Duration duration = Duration(seconds: 1);
+    final SlidableState state = Slidable.of(context);
+    state.open();
+    Future.delayed(duration).whenComplete(() {
+      state.open(actionType: SlideActionType.secondary);
+      Future.delayed(duration).whenComplete(state.close);
+      print('here');
+    });
+  }
+
   /// Returns all primary actions on habit.
   List<Widget> _actions(CurrentBloc bloc, PointsBloc pointsBloc) {
-    return <Widget>[doneAction(habit, pointsBloc, bloc)];
+    final List<Widget> actions = <Widget>[
+      doneAction(habit, pointsBloc, bloc),
+    ];
+    return status == Status.unmarked ? actions : [undoAction(habit, bloc)];
   }
 
   /// Returns all secondary actions on habit.
   List<Widget> _secondaryActions(BuildContext context, CurrentBloc bloc) {
-    return <Widget>[
+    final List<Widget> actions = <Widget>[
       skipAction(habit, bloc),
       failAction(context, habit),
     ];
-  }
-
-  /// Redirects to HabitInfo.
-  void _showHabitInfo(BuildContext context) {
-    redirect(context, habitInfoRoute, HabitInfo(habit));
+    return status == Status.unmarked ? actions : [undoAction(habit, bloc)];
   }
 
   @override
@@ -57,57 +73,38 @@ class HabitCard extends StatelessWidget {
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
     final bool isUnmarked = status == Status.unmarked;
 
-    return Slidable(
-      actions: isUnmarked
-          ? _actions(currentBloc, pointsBloc)
-          : <Widget>[undoAction(habit, currentBloc)],
-      secondaryActions: isUnmarked
-          ? _secondaryActions(context, currentBloc)
-          : <Widget>[undoAction(habit, currentBloc)],
-      actionPane: const SlidableDrawerActionPane(),
+    return MainCard(
+      actions: _actions(currentBloc, pointsBloc),
+      secondaryActions: _secondaryActions(context, currentBloc),
+      onTap: () => redirect(context, habitInfoRoute, HabitInfo(habit)),
       controller: controller,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 12.0,
-          horizontal: 16.0,
-        ),
-        child: TappableCard(
-          onTap: () => _showHabitInfo(context),
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    mapToIconData(habit.iconData),
-                    color:
-                        isUnmarked ? hexToColor(habit.colorHex) : Colors.grey,
+      child: Row(
+        children: <Widget>[
+          Icon(
+            mapToIconData(habit.iconData),
+            color: isUnmarked ? hexToColor(habit.colorHex) : Colors.grey,
+          ),
+          const SizedBox(width: 16.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Opacity(
+                  opacity: status == Status.unmarked ? 1 : 0.5,
+                  child: Text(
+                    habit.name,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
-                  const SizedBox(width: 16.0),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Opacity(
-                          opacity: status == Status.unmarked ? 1 : 0.5,
-                          child: Text(
-                            habit.name,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        if (!isUnmarked)
-                          StatusView(status: status)
-                        else
-                          RewardPoints(points: habit.points)
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 4),
+                if (!isUnmarked)
+                  StatusView(status: status)
+                else
+                  RewardPoints(points: habit.points)
+              ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }

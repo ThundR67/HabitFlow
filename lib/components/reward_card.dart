@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
+import 'package:habitflow/components/main_card.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/tappable_neu_card.dart';
 import 'package:habitflow/helpers/colors.dart';
@@ -13,47 +14,37 @@ import 'package:provider/provider.dart';
 /// A widget to show a reward in a card.
 class RewardCard extends StatelessWidget {
   /// Constructs.
-  const RewardCard(this._reward);
+  const RewardCard({this.reward, this.controller});
 
   /// Reward to show.
-  final Reward _reward;
+  final Reward reward;
+
+  /// Slidable Controller.
+  final SlidableController controller;
 
   @override
   Widget build(BuildContext context) {
     final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
-    return Slidable(
-      actionPane: const SlidableDrawerActionPane(),
-      actions: [takeAction(context, _reward, rewardsBloc, pointsBloc)],
-      secondaryActions: [deleteAction(_reward, rewardsBloc)],
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 12.0,
-          horizontal: 16.0,
-        ),
-        child: TappableCard(
-          onTap: () {},
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    mapToIconData(_reward.iconData),
-                    color: hexToColor(_reward.colorHex),
-                  ),
-                  const SizedBox(width: 16.0),
-                  _RewardName(_reward),
-                  RewardPoints(
-                    points: _reward.points,
-                    color: hexToColor(_reward.colorHex),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ],
-              ),
-            ),
+    return MainCard(
+      actions: [takeAction(context, reward, rewardsBloc, pointsBloc)],
+      secondaryActions: [deleteAction(reward, rewardsBloc)],
+      controller: controller,
+      onTap: () {},
+      child: Row(
+        children: <Widget>[
+          Icon(
+            mapToIconData(reward.iconData),
+            color: hexToColor(reward.colorHex),
           ),
-        ),
+          const SizedBox(width: 16.0),
+          _RewardName(reward),
+          RewardPoints(
+            points: reward.points,
+            color: hexToColor(reward.colorHex),
+            style: Theme.of(context).textTheme.headline6,
+          ),
+        ],
       ),
     );
   }
