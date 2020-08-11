@@ -6,9 +6,10 @@ import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
 import 'package:habitflow/components/main_card.dart';
 import 'package:habitflow/components/reward_points.dart';
-import 'package:habitflow/components/tappable_neu_card.dart';
+
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/reward.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
 /// A widget to show a reward in a card.
@@ -29,6 +30,7 @@ class RewardCard extends StatelessWidget {
     return MainCard(
       actions: [takeAction(context, reward, rewardsBloc, pointsBloc)],
       secondaryActions: [deleteAction(reward, rewardsBloc)],
+      description: rewardSwipeDescription,
       controller: controller,
       onTap: () {},
       child: Row(

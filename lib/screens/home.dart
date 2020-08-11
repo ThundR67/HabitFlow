@@ -33,6 +33,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
   int _currentIndex = 1;
   PageController _pageController;
+  final List<Widget> _pages = [
+    const Cycles(),
+    const Today(),
+    Rewards(),
+  ];
 
   @override
   void initState() {
@@ -78,17 +83,10 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
       builder: Builder(
         builder: (context) {
           return Scaffold(
-            body: SizedBox.expand(
-              child: PageView(
-                physics: scrollPhysics,
-                controller: _pageController,
-                onPageChanged: (int index) =>
-                    setState(() => _currentIndex = index),
-                children: <Widget>[
-                  const Cycles(),
-                  const Today(),
-                  Rewards(),
-                ],
+            body: ShowCaseWidget(
+              builder: Builder(
+                builder: (context) =>
+                    SizedBox.expand(child: _pages[_currentIndex]),
               ),
             ),
             bottomNavigationBar: BottomNavyBar(
@@ -97,7 +95,6 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               onItemSelected: (int index) => setState(() {
                 _currentIndex = index;
-                _pageController.jumpToPage(index);
               }),
               items: <BottomNavyBarItem>[
                 BottomNavyBarItem(

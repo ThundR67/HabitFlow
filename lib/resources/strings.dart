@@ -277,6 +277,12 @@ String activeDays = tr('activeDays');
 /// Refers to faqPage in translations.
 String faqPage = tr('faqPage');
 
+/// Refers to habitSwipeDescription in translations.
+String habitSwipeDescription = tr('habitSwipeDescription');
+
+/// Refers to rewardSwipeDescription in translations.
+String rewardSwipeDescription = tr('rewardSwipeDescription');
+
 /// Refers to cycleEndedDescription in translations.
 String cycleEndedDescription = tr('cycleEndedDescription');
 

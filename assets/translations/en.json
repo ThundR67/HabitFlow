@@ -107,6 +107,9 @@
     "about" : "About HabitFlow",
     "updateReason" : "Update Failure Reason",
 
+    "habitSwipeDescription" : "Swipe to do stuff",
+    "rewardSwipeDescription" : "Swipe to do stuff", 
+
     "share" : "Share",
     "shareValue" : "Please Download HabitFlow",
     "remind": "Reminder For",

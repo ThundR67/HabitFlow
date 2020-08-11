@@ -13,6 +13,7 @@ import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/routes.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/habit.dart';
 import 'package:provider/provider.dart';
 
@@ -77,6 +78,7 @@ class HabitCard extends StatelessWidget {
       actions: _actions(currentBloc, pointsBloc),
       secondaryActions: _secondaryActions(context, currentBloc),
       onTap: () => redirect(context, habitInfoRoute, HabitInfo(habit)),
+      description: habitSwipeDescription,
       controller: controller,
       child: Row(
         children: <Widget>[
