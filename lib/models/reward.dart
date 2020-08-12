@@ -1,4 +1,7 @@
+import 'package:hive/hive.dart';
 import 'package:random_string/random_string.dart';
+
+part 'reward.g.dart';
 
 /// Key to refrence id of reward in map.
 const String idKey = 'id';
@@ -19,6 +22,7 @@ const String colorKey = 'color_hex';
 const String iconKey = 'icon_data';
 
 /// A type to store information about a reward.
+@HiveType(typeId: 0)
 class Reward {
   /// Creates a reward.
   Reward({
@@ -33,42 +37,26 @@ class Reward {
   }
 
   /// Unique ID of this reward.
+  @HiveField(0)
   String id;
 
   /// Unique name of this reward.
+  @HiveField(1)
   String name;
 
   /// Points required to acquire this reward.
+  @HiveField(2)
   int points;
 
   /// Amount of time this reward is acquired.
+  @HiveField(3)
   int amountTaken;
 
   /// Hex value of color of this reward.
+  @HiveField(4)
   String colorHex;
 
   /// Icon of this reward.
+  @HiveField(5)
   Map<String, dynamic> iconData;
-
-  /// Converts a map to [Reward].
-  Reward.fromMap(Map<String, dynamic> map) {
-    id = map[idKey].toString();
-    name = map[nameKey].toString();
-    points = map[pointsKey] as int;
-    amountTaken = map[takenKey] as int;
-    colorHex = map[colorKey].toString();
-    iconData = map[iconKey] as Map<String, dynamic>;
-  }
-
-  /// Converts [Reward] to map.
-  Map<String, dynamic> toMap() {
-    return {
-      idKey: id,
-      nameKey: name,
-      pointsKey: points,
-      takenKey: amountTaken,
-      colorKey: colorHex,
-      iconKey: iconData,
-    };
-  }
 }
