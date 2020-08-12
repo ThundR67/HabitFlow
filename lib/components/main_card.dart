@@ -72,6 +72,7 @@ class _MainCardState extends State<MainCard> {
     final IntroBloc bloc = Provider.of<IntroBloc>(context);
     return Showcase(
       key: _key,
+      shapeBorder: const BeveledRectangleBorder(),
       description: widget.description,
       child: Slidable(
         actions: widget.actions,
