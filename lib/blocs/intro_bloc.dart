@@ -17,7 +17,7 @@ const List<String> allIntros = [mainIntro, habitIntro, rewardIntro];
 class IntroBloc extends ChangeNotifier {
   /// Constructs.
   IntroBloc() {
-    _dao.clear().whenComplete(_update);
+    _update();
   }
 
   final IntroDAO _dao = IntroDAO();
