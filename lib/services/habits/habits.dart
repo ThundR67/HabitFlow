@@ -12,7 +12,7 @@ const String _dbName = 'habits';
 
 /// A DAO to manage user's habits.
 class HabitsDAO {
-  Future<Box<Habit>> get _db async => DB2.instance.open<Habit>(_dbName);
+  Future<Box<Habit>> get _db async => DB.instance.open<Habit>(_dbName);
 
   /// Adds a habit into db.
   Future<void> add(Habit habit) async => (await _db).put(habit.id, habit);

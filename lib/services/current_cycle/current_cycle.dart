@@ -14,7 +14,7 @@ const String _dbName = 'current_cycle';
 /// A DAO to manage user's current cycle .
 class CurrentCycleDAO {
   /// Store of data.
-  Future<Box> get _db async => DB2.instance.open(_dbName);
+  Future<Box> get _db async => DB.instance.open(_dbName);
 
   /// Adds [cycle] int db.
   Future<void> create(Cycle cycle) async => (await _db).put(_dbName, cycle);

@@ -12,7 +12,7 @@ const String _dbName = 'cycles';
 
 /// A DAO to manage user's previous cycles.
 class CyclesDAO {
-  Future<Box<Cycle>> get _db async => DB2.instance.open<Cycle>(_dbName);
+  Future<Box<Cycle>> get _db async => DB.instance.open<Cycle>(_dbName);
 
   /// Adds a cycle into db.
   Future<void> add(Cycle cycle) async => (await _db).put(cycle.start, cycle);
