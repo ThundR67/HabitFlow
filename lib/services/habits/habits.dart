@@ -37,6 +37,9 @@ class HabitsDAO {
     return output;
   }
 
+  /// Closes connection to db.
+  Future<void> close() async => (await _db).close();
+
   /// Clears db.
   Future<void> clear() async => (await _db).clear();
 }

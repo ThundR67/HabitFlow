@@ -115,4 +115,12 @@ class CurrentBloc extends ChangeNotifier {
     return (DateTime.now().isAfter(parseDate(current.end))) ||
         current.end == formatDate(DateTime.now());
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _cyclesDAO.close();
+    _dao.close();
+    _habitsDAO.close();
+  }
 }

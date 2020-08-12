@@ -40,4 +40,10 @@ class IntroBloc extends ChangeNotifier {
     notifyListeners();
     await _dao.introShown(name);
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _dao.close();
+  }
 }

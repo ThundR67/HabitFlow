@@ -36,13 +36,6 @@ class CycleInfo extends StatelessWidget {
     };
   }
 
-  /// Starts new cycle.
-  void _startCycle(BuildContext context) {
-    final CurrentBloc bloc = Provider.of<CurrentBloc>(context, listen: false);
-    bloc.create();
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);

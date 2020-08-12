@@ -43,4 +43,11 @@ class RewardsBloc extends ChangeNotifier {
     await _update();
     analytics.logEvent(name: 'reward_taken');
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _dao.close();
+    print('disposes');
+  }
 }

@@ -13,11 +13,17 @@ class CyclesBloc extends ChangeNotifier {
   final CyclesDAO _dao = CyclesDAO();
 
   /// All the cycles.
-  Map<String, Cycle> cycles;
+  List<Cycle> cycles;
 
   /// Updates [cycles].
   Future<void> _update() async {
     cycles = await _dao.all();
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _dao.close();
   }
 }

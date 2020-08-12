@@ -65,4 +65,10 @@ class HabitsBloc extends ChangeNotifier {
     await _update();
     analytics.logEvent(name: 'habit_deleted');
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _dao.close();
+  }
 }

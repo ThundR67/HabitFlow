@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:hive/hive.dart';
-import 'package:sembast/sembast.dart';
 
 import 'package:habitflow/services/database/database.dart';
 
@@ -22,6 +21,9 @@ class RewardPointsDAO {
     final int current = await get();
     await (await _db).put(_dbName, current + change);
   }
+
+  /// Closes connection to db.
+  Future<void> close() async => (await _db).close();
 
   /// Clears db.
   Future<void> clear() async => (await _db).clear();

@@ -15,17 +15,7 @@ class Cycles extends StatelessWidget {
 
   /// Returns cards for previous cycles.
   List<Widget> _cycles(CurrentBloc currentBloc, CyclesBloc cyclesBloc) {
-    // Adding current cycle.
-    final List<Widget> output = <Widget>[];
-
-    // Adding previous cycles.
-    cyclesBloc.cycles.forEach(
-      (String key, Cycle value) {
-        output.add(CycleCard(cycle: value));
-      },
-    );
-
-    return output;
+    return [for (Cycle cycle in cyclesBloc.cycles) CycleCard(cycle: cycle)];
   }
 
   @override

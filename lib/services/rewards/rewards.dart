@@ -26,6 +26,9 @@ class RewardsDAO {
   /// Deletes a reward from db.
   Future<void> delete(Reward reward) async => (await _db).delete(reward.id);
 
+  /// Closes connection to db.
+  Future<void> close() async => (await _db).close();
+
   /// Clears db.
   Future<void> clear() async => (await _db).clear();
 }

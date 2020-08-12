@@ -6,10 +6,7 @@ import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/helpers/ads.dart';
 
-import 'package:habitflow/models/cycle.dart';
-
 import 'package:habitflow/resources/icons.dart';
-import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/resources/widgets.dart';
 import 'package:habitflow/screens/cycle_ended.dart';
@@ -44,11 +41,6 @@ class _HomeState extends State<Home> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
-  }
-
-  /// Redirects to cycle ended.
-  void _redirectToCycleEnded(Cycle cycle) {
-    Navigator.of(context).pushReplacementNamed(cycleEndedRoute);
   }
 
   @override

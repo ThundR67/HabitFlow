@@ -19,6 +19,9 @@ class IntroDAO {
   Future<bool> isShown(String name) async =>
       (await _db).get(name, defaultValue: false);
 
+  /// Closes connection to db.
+  Future<void> close() async => (await _db).close();
+
   /// Clears db.
   Future<void> clear() async => (await _db).clear();
 }
