@@ -2,12 +2,37 @@
 
 export 'db_legacy.dart';
 import 'dart:async';
+import 'dart:io';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-/// Opens database with [name].
-Future<Box> openDatabase(String name) async {
-  final path = await getApplicationDocumentsDirectory();
-  Hive.init(path.path);
-  return Hive.openBox(name);
+/// Allow connection to database.
+///
+/// Is singleton hence there will ever only be one instance.
+/// This prevents multiple connections to db.
+class DB2 {
+  DB2._();
+
+  /// A single public instance of DB.
+  static DB2 get instance => _sigleton;
+  static final DB2 _sigleton = DB2._();
+
+  final Map<String, Completer<Box>> _completers = {};
+
+  /// Creates connection to DB with [name].
+  Future<Box> open(String name) async {
+    if (_completers[name] == null) {
+      _completers[name] = Completer<Box>();
+      await _openDatabase(name);
+    }
+    return _completers[name].future;
+  }
+
+  /// Opens connection to DB with [name].
+  Future<void> _openDatabase(String name) async {
+    final Directory dir = await getApplicationDocumentsDirectory();
+    Hive.init(dir.path);
+    assert(!Hive.isBoxOpen(name));
+    _completers[name].complete(Hive.openBox(name));
+  }
 }

@@ -11,7 +11,7 @@ const String _dbName = 'introduction';
 /// A DAO to manage all introductions.
 class IntroDAO {
   /// Connection to db.
-  Future<Box> get _db => openDatabase(_dbName);
+  Future<Box> get _db async => await DB2.instance.open(_dbName);
 
   /// Set an intro as true.
   Future<void> introShown(String name) async {

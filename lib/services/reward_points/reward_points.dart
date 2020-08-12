@@ -12,8 +12,8 @@ const String _dbName = 'reward_points';
 
 /// A DAO to manage user's reward points.
 class RewardPointsDAO {
-  /// Connection to db.
-  Future<Box> get _db => openDatabase(_dbName);
+  /// Initializes [_db].
+  Future<Box> get _db async => DB2.instance.open(_dbName);
 
   /// Returns user's current reward points from db.
   Future<int> get() async {
