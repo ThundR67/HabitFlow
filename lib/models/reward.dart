@@ -3,24 +3,6 @@ import 'package:random_string/random_string.dart';
 
 part 'reward.g.dart';
 
-/// Key to refrence id of reward in map.
-const String idKey = 'id';
-
-/// Key to refrence name of reward in map.
-const String nameKey = 'name';
-
-/// Key to refrence points of reward in map.
-const String pointsKey = 'reward_points';
-
-/// Key to refrence amount taken of reward in map.
-const String takenKey = 'amount_taken';
-
-/// Key to refrence acolor of reward in map.
-const String colorKey = 'color_hex';
-
-/// Key to refrence icon data of reward in map.
-const String iconKey = 'icon_data';
-
 /// A type to store information about a reward.
 @HiveType(typeId: 0)
 class Reward {

@@ -1,25 +1,11 @@
 import 'package:habitflow/models/goal.dart';
+import 'package:hive/hive.dart';
 import 'package:random_string/random_string.dart';
 
-/// Key to refrence id of habit in map.
-const String idKey = 'id';
-
-/// Key to refrence name of habit in map.
-const String nameKey = 'name';
-
-/// Key to refrence points of habit in map.
-const String pointsKey = 'habit_points';
-
-/// Key to refrence acolor of habit in map.
-const String colorKey = 'color_hex';
-
-/// Key to refrence icon data of habit in map.
-const String iconKey = 'icon_data';
-
-/// Key for [Habit.goal].
-const String goalKey = 'goal';
+part 'habit.g.dart';
 
 /// A type to store habit information.
+@HiveType(typeId: 1)
 class Habit {
   /// Constructs.
   Habit({
@@ -34,42 +20,26 @@ class Habit {
   }
 
   /// Unique id of the habit.
+  @HiveField(0)
   String id;
 
   /// Name of the habit.
+  @HiveField(1)
   String name;
 
   /// Points gained when habit is completed.
+  @HiveField(2)
   int points;
 
   /// Hex color code of the habit.
+  @HiveField(3)
   String colorHex;
 
   /// Goal of habit.
+  @HiveField(4)
   Goal goal;
 
   /// Icon of the habit.
+  @HiveField(5)
   Map<String, dynamic> iconData;
-
-  /// Converts a map to [Habit].
-  Habit.fromMap(Map<String, dynamic> map) {
-    id = map[idKey].toString();
-    name = map[nameKey].toString();
-    points = map[pointsKey] as int;
-    colorHex = map[colorKey].toString();
-    iconData = map[iconKey] as Map<String, dynamic>;
-    goal = Goal.fromMap(map[goalKey] as Map<String, dynamic>);
-  }
-
-  /// Converts [Habit] to map.
-  Map<String, dynamic> toMap() {
-    return {
-      idKey: id,
-      nameKey: name,
-      pointsKey: points,
-      colorKey: colorHex,
-      iconKey: iconData,
-      goalKey: goal.toMap()
-    };
-  }
 }
