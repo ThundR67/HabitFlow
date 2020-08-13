@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
       return const Scaffold(body: circularIndicator);
     }
 
-    if (introBloc.intros[mainIntro]) return const Intro();
+    if (!introBloc.intros[mainIntro]) return const Intro();
 
     if (bloc.isEnded()) return const CycleEnded();
 

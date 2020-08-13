@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -73,9 +74,10 @@ class _IntroState extends State<Intro> {
   Widget build(BuildContext context) {
     return IntroSlider(
       slides: slides,
-      shouldHideStatusBar: false,
+      shouldHideStatusBar: true,
       colorDot: Colors.white,
       onDonePress: () {
+        SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
         Provider.of<IntroBloc>(context, listen: false).shown(mainIntro);
         Navigator.of(context).pushReplacementNamed(homeRoute);
       },
