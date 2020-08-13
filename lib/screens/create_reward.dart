@@ -105,7 +105,9 @@ class _CreateRewardState extends State<CreateReward> {
                         elevation: 4,
                         child: Text(
                           submit,
-                          style: Theme.of(context).textTheme.subtitle2,
+                          style: Theme.of(context).textTheme.subtitle2.copyWith(
+                                color: Colors.white,
+                              ),
                         ),
                       ),
                     ],
