@@ -5,23 +5,21 @@
     "rewardsPage" : "Rewards",
 
     "cycleIntroTitle" : "Cycle Based",
-    "cycleIntroDescription" : "Cycle is this that",
+    "cycleIntroDescription" : "One Cycle lasts for 15 days. Focus on sustaining habits for one cycle at a time. Once a cycle ends, review your cycle and adjust yourself for next cycle for a greater success rate.",
     "habitIntroTitle" : "Powerful Habit Tracking",
-    "habitIntroDescription" :"Habit tracking is this and that",
+    "habitIntroDescription" :"Swipe on habits to mark then as done, skipped of failed. Use skip when you weren't able to complete the habits due to reasons out of your control.",
     "journalIntroTitle" : "Inbuilt Journaling",
-    "journalIntroDescription" : "Journaling is this and that",
+    "journalIntroDescription" : "Whenever you fail a habit, you can provide a reason for failure. You can review these reasons to adjust and improve.",
     "rewardIntroTitle" : "Rewards",
-    "rewardIntroDescription" : "Rewards are this and that",
+    "rewardIntroDescription" : "When you complete habits, you get reward points for it. This points can be traded for rewards you set for yourself such as watch TV for 1 hour.",
 
 
     "pickColor" : "Pick A Color",
     "pickIcon" : "Pick An Icon",
 
-    "currentPoints" : "Current Reward Points",
-
     "markSkip" : "Mark As Skipped",
-    "markDone" : "Mark As done",
-    "markFail" : "Mark As failed",
+    "markDone" : "Mark As Done",
+    "markFail" : "Mark As Failed",
     "skipped" : "Skipped",
     "done" : "Done",
     "failed" : "Failed",
@@ -79,19 +77,19 @@
     "saturday" : "Saturday",
     "sunday" : "Sunday",
 
-    "noHabits" : "You don't have any habit currently",
-    "noRewards" : "You don't have any rewards currently",
-    "noActiveHabits" : "You don't have any active habit today",
+    "noHabits" : "You don't have any habit currently. Press on the button below to create a habit.",
+    "noRewards" : "You don't have any rewards currently. Press on the button below to create a reward",
+    "noActiveHabits" : "You don't have any active habit today. Enjoy!!!",
 
-    "light" : "light",
-    "dark" : "dark",
-    "system" : "system",
-    "theme" : "theme",
+    "light" : "Light",
+    "dark" : "Dark",
+    "system" : "System",
+    "theme" : "Theme",
 
     "successes" : "Successes",
     "skips" : "Skips",
 
-    "unprovidedReason" : "REASON NOT PROVIDED",
+    "unprovidedReason" : "Reason not given",
     "recentFailures" : "Recent Failure Reasons",
 
     "selectTime" : "Select Notification Time",
@@ -101,17 +99,17 @@
     "startCycle" : "Start New Cycle",
     "cycleInfo" : "Cycle Info",
     "cycleEnded" : "Hurray! Cycle Ended",
-    "cycleEndedDescription" : "Cycle ended so this and that",
+    "cycleEndedDescription" : "Your cycle has just ended. Press button below to start a new one. You can view statistics in Cycles tab.",
     "activeDays" : "Active Days",
     "faqPage" : "FAQs",
     "about" : "About HabitFlow",
     "updateReason" : "Update Failure Reason",
 
-    "habitSwipeDescription" : "Swipe to do stuff",
-    "rewardSwipeDescription" : "Swipe to do stuff", 
+    "habitSwipeDescription" : "Swipe to mark habit as done, skipped, or failed.",
+    "rewardSwipeDescription" : "Swipe to take the reward for exchange of points or delete it.", 
 
     "share" : "Share",
-    "shareValue" : "Please Download HabitFlow",
+    "shareValue" : "https://play.google.com/store/apps/details?id=thundrx.app.habitflow Download this amazing habit tracker called HabitFlow. It works on a completely new concept of cycles to make you build, break, or sustain any habits. It also has rewards system to reward you as you complete your habits.",
     "remind": "Reminder For",
 
     "appName" : "HabitFlow",
