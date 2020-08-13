@@ -61,7 +61,10 @@ class _CreateRewardState extends State<CreateReward> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(createRewardTitle),
+        title: Text(
+          createRewardTitle,
+          style: Theme.of(context).textTheme.headline5,
+        ),
         backgroundColor: _color,
       ),
       body: SafeArea(
