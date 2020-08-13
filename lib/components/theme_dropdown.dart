@@ -33,7 +33,9 @@ class _ThemeDropDownState extends State<ThemeDropDown> {
   @override
   Widget build(BuildContext context) {
     final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
-    _value = bloc.current;
+    themeNames.forEach((key, value) {
+      if (value == bloc.current) _value = key;
+    });
 
     return DropdownButton<String>(
       items: themeNames.keys.map(
