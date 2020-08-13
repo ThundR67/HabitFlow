@@ -26,7 +26,13 @@ class NoPossesion extends StatelessWidget {
               icon,
               size: 96,
             ),
-            Text(text),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+              ),
+            ),
           ],
         ),
       ),

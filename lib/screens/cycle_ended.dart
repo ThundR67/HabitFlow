@@ -60,6 +60,7 @@ class _CycleEndedState extends State<CycleEnded> {
                     const SizedBox(height: 16.0),
                     Text(
                       cycleEndedDescription,
+                      textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     const SizedBox(height: 16.0),
