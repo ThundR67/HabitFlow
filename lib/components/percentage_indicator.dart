@@ -21,7 +21,7 @@ class PercentageIndicator extends StatelessWidget {
     }
 
     return CircularPercentIndicator(
-      radius: style.fontSize + 56,
+      radius: style.fontSize + 64,
       lineWidth: 4.0,
       progressColor: Colors.greenAccent[400],
       percent: value,

@@ -26,6 +26,7 @@ class Rewards extends StatelessWidget {
         title: RewardPoints(
           points: pointsBloc.points,
           style: Theme.of(context).textTheme.headline5,
+          isTitle: true,
         ),
         automaticallyImplyLeading: false,
       ),

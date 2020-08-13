@@ -39,8 +39,8 @@ class _SingleDate extends StatelessWidget {
           const SizedBox(height: 4.0),
           CircularPercentIndicator(
             percent: successRate,
-            lineWidth: 2,
-            radius: 32,
+            lineWidth: 3,
+            radius: 38,
             backgroundColor: Colors.transparent,
             progressColor: Colors.greenAccent,
             center: Text(
