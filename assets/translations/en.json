@@ -106,8 +106,8 @@
     "about" : "About HabitFlow",
     "updateReason" : "Update Failure Reason",
 
-    "habitSwipeDescription" : "Swipe to mark habit as done, skipped, or failed.",
-    "rewardSwipeDescription" : "Swipe to take the reward for exchange of points or delete it.", 
+    "habitSwipeDescription" : "Swipe to mark habit as done, skipped, or failed",
+    "rewardSwipeDescription" : "Swipe to take or delete reward", 
 
     "share" : "Share",
     "shareValue" : "https://play.google.com/store/apps/details?id=thundrx.app.habitflow Download this amazing habit tracker called HabitFlow. It works on a completely new concept of cycles to make you build, break, or sustain any habits. It also has rewards system to reward you as you complete your habits.",
