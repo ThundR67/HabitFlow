@@ -43,7 +43,6 @@ class CycleAdapter extends TypeAdapter<Cycle> {
 
   @override
   bool operator ==(Object other) {
-    print(other);
     return identical(this, other) ||
         other is CycleAdapter &&
             runtimeType == other.runtimeType &&

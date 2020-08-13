@@ -48,6 +48,5 @@ class RewardsBloc extends ChangeNotifier {
   void dispose() {
     super.dispose();
     _dao.close();
-    print('disposes');
   }
 }

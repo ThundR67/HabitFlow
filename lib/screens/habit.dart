@@ -129,6 +129,7 @@ class HabitInfo extends StatelessWidget {
             ),
             onPressed: () {
               bloc.delete(_habit);
+              currentBloc.deleteHistory(_habit.id);
               Navigator.of(context).pop();
             },
           )

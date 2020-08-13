@@ -67,6 +67,13 @@ class CurrentBloc extends ChangeNotifier {
     await _update();
   }
 
+  /// Deletes history of habit with [id].
+  Future<void> deleteHistory(String id) async {
+    _days.deleteHistory(id);
+    current.days = _days.days;
+    await _update();
+  }
+
   /// Marks habit with [id] as [status].
   Future<void> mark(
     String id,

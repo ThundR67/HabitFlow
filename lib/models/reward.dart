@@ -5,7 +5,7 @@ part 'reward.g.dart';
 
 /// A type to store information about a reward.
 @HiveType(typeId: 0)
-class Reward extends HiveObject {
+class Reward {
   /// Creates a reward.
   Reward({
     this.id,
