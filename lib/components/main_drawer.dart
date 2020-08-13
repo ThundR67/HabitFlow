@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/components/theme_dropdown.dart';
 import 'package:habitflow/resources/icons.dart';
+import 'package:habitflow/resources/routes.dart';
 
 import 'package:habitflow/resources/strings.dart';
 import 'package:share/share.dart';
@@ -66,9 +67,7 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
               FlatButton(
-                onPressed: () => launch(
-                  'https://thundrx.pythonanywhere.com/faq',
-                ),
+                onPressed: () => Navigator.of(context).pushNamed(faqRoute),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.min,

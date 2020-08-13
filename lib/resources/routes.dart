@@ -20,3 +20,6 @@ const String cycleInfoRoute = '/cycle_info';
 
 /// Route to cycle ended page.
 const String cycleEndedRoute = '/cycle_ended';
+
+/// Route to faq page.
+const String faqRoute = '/faq';
