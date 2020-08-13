@@ -9,12 +9,8 @@ double calculateSuccessRate(List<Day> days) {
     total += day.activeHabits.length;
     successes += day.successes.length + day.skips.length;
   }
-  if (successes > total) {
-    return 0;
-  }
-  if (total == 0) {
-    return 0;
-  }
+  if (successes > total) return 0;
+  if (total == 0) return 1;
   return successes / total;
 }
 
