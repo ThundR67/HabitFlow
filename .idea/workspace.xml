@@ -7,11 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdf2b2ae-1d4f-418f-a303-d30081ca5653" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/ic_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/ic_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/ic_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/ic_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/ic_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/ic_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/ic_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/ic_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxxhdpi/ic_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxxhdpi/ic_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/blocs/theme_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/blocs/theme_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/theme_dropdown.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/theme_dropdown.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/theme/theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/theme/theme.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,13 +47,17 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="466" y="124" key="FileChooserDialogImpl" timestamp="1597129132582">
+    <state x="466" y="124" key="FileChooserDialogImpl" timestamp="1597298312346">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="466" y="124" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1597129132582" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1597129087847">
+    <state x="466" y="124" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1597298312346" />
+    <state x="106" y="110" width="1146" height="528" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1597303261779">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1597129087847" />
+    <state x="106" y="110" width="1146" height="528" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.768@0.0.1366.768" timestamp="1597303261779" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1597303186836">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1597303186836" />
   </component>
 </project>

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -31,6 +33,10 @@ Future<void> main() async {
   Hive.registerAdapter(GoalAdapter());
   Hive.registerAdapter(DayAdapter());
   Hive.registerAdapter(TimeAdapter());
+  WidgetsFlutterBinding.ensureInitialized();
+  final Directory dir = await getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+
   runApp(
     MultiProvider(
       providers: <ChangeNotifierProvider<dynamic>>[
@@ -58,18 +64,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getApplicationDocumentsDirectory().then((value) {
-      Hive.init(value.path);
-    });
-
     final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
-
+    print(bloc.current);
     return MaterialApp(
       navigatorObservers: [observer],
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      theme: bloc.theme,
+      theme: bloc.themes[bloc.current],
       themeMode: ThemeMode.light,
       initialRoute: homeRoute,
       routes: routes,
