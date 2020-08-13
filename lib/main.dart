@@ -8,7 +8,6 @@ import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/blocs/theme_bloc.dart';
 import 'package:habitflow/helpers/analytics.dart';
 
-import 'package:habitflow/helpers/theme.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/habit.dart';
