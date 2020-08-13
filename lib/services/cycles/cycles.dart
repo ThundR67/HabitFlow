@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:habitflow/helpers/date_format.dart';
 import 'package:hive/hive.dart';
 
 import 'package:habitflow/models/cycle.dart';
@@ -17,7 +18,15 @@ class CyclesDAO {
   Future<void> add(Cycle cycle) async => (await _db).put(cycle.start, cycle);
 
   /// Returns all cycles reversly sorted by cycle start dates.
-  Future<List<Cycle>> all() async => (await _db).values.toList();
+  Future<List<Cycle>> all() async {
+    final List<Cycle> cycles = (await _db).values.toList();
+    cycles.sort((Cycle a, Cycle b) {
+      if (a.start == b.start) return 0;
+      if (parseDate(a.start).isAfter(parseDate(b.start))) return -1;
+      return 1;
+    });
+    return cycles;
+  }
 
   /// Closes connection to db.
   Future<void> close() async => (await _db).close();
