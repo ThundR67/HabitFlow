@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
 
     if (!introBloc.intros[mainIntro]) return const Intro();
 
-    if (bloc.isEnded()) return const CycleEnded();
+    if (!bloc.isEnded()) return const CycleEnded();
 
     return ShowCaseWidget(
       builder: Builder(
