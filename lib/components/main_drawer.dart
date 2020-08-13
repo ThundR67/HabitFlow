@@ -42,12 +42,17 @@ class MainDrawer extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(theme),
+                  Text(
+                    theme,
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                  const SizedBox(width: 8.0),
                   const ThemeDropDown(),
                 ],
               ),
+              const Divider(),
               FlatButton(
                 onPressed: () => _showAboutDialog(context),
                 child: Row(
