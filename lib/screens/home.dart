@@ -28,7 +28,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 1;
-  PageController _pageController;
   final List<Widget> _pages = const [
     Cycles(),
     Today(),
@@ -38,14 +37,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: _currentIndex);
     FirebaseAdMob.instance.initialize(appId: appID);
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 
   @override
