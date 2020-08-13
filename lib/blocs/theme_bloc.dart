@@ -16,6 +16,7 @@ class ThemeBloc extends ChangeNotifier {
   /// Changes current theme to [toTheme] and updates.
   void set(ThemeMode toTheme) {
     _dao.set(toTheme);
+    mode = toTheme;
     if (toTheme == ThemeMode.light) theme = lightTheme();
     if (toTheme == ThemeMode.dark) theme = darkTheme();
     if (toTheme == ThemeMode.system) {

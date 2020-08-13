@@ -3,7 +3,6 @@ import 'package:habitflow/blocs/theme_bloc.dart';
 import 'package:habitflow/helpers/theme.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
-import 'package:theme_provider/theme_provider.dart';
 
 /// Dropdown widget to allow user to change themes.
 class ThemeDropDown extends StatefulWidget {
