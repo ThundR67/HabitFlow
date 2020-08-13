@@ -4,6 +4,7 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/components/color_picker.dart';
 import 'package:habitflow/components/neu_card.dart';
+import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
@@ -45,7 +46,7 @@ class _PickersState extends State<Pickers> {
       context,
       iconPackMode: IconPack.materialOutline,
     );
-    _icon = icon;
+    _icon = icon ?? emptyIcon;
     setState(() {});
     widget.onChange(_color, icon);
   }
