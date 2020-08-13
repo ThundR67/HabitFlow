@@ -1,6 +1,7 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/helpers/sounds.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,7 @@ class _CycleEndedState extends State<CycleEnded> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _controller.play();
+      play('success');
     });
 
     return Scaffold(
@@ -77,7 +79,9 @@ class _CycleEndedState extends State<CycleEnded> {
                 alignment: Alignment.bottomCenter,
                 child: ConfettiWidget(
                   confettiController: _controller,
-                  numberOfParticles: 20,
+                  blastDirectionality: BlastDirectionality.explosive,
+                  blastDirection: 3.18 / 2,
+                  numberOfParticles: 50,
                   maxBlastForce: 100,
                   minBlastForce: 80,
                   gravity: 0.1,
