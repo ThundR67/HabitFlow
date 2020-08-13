@@ -38,7 +38,7 @@ const IconData emptyIcon = OMIcons.accessibility;
 const IconData noActiveHabitsIcon = OMIcons.acUnit;
 
 /// Icon to take a reward.
-const IconData takeIcon = OMIcons.gif;
+const IconData takeIcon = OMIcons.cardGiftcard;
 
 /// Icon to delete.
 const IconData deleteIcon = OMIcons.delete;
