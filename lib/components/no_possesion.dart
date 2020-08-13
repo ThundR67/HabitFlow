@@ -18,14 +18,17 @@ class NoPossesion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
-          Icon(
-            icon,
-            size: 96,
-          ),
-          Text(text),
-        ],
+      child: Opacity(
+        opacity: 0.6,
+        child: Column(
+          children: [
+            Icon(
+              icon,
+              size: 96,
+            ),
+            Text(text),
+          ],
+        ),
       ),
     );
   }
