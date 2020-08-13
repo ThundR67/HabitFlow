@@ -65,7 +65,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
-    print(bloc.current);
     return MaterialApp(
       navigatorObservers: [observer],
       localizationsDelegates: context.localizationDelegates,

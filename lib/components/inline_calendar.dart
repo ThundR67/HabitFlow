@@ -29,7 +29,7 @@ class _SingleDate extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: Column(
         children: <Widget>[
           Text(
@@ -40,7 +40,7 @@ class _SingleDate extends StatelessWidget {
           CircularPercentIndicator(
             percent: successRate,
             lineWidth: 3,
-            radius: 38,
+            radius: 40,
             backgroundColor: Colors.transparent,
             progressColor: Colors.greenAccent,
             center: Text(

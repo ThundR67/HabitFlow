@@ -8,21 +8,7 @@ import 'package:habitflow/services/cycles/cycles.dart';
 class CyclesBloc extends ChangeNotifier {
   /// Constructs.
   CyclesBloc() {
-    _dao
-        .add(Cycle(
-      start: formatDate(DateTime.now().subtract(Duration(days: 20))),
-      end: formatDate(DateTime.now().subtract(Duration(days: 5))),
-      days: {},
-    ))
-        .whenComplete(() {
-      _dao
-          .add(Cycle(
-            start: formatDate(DateTime.now().subtract(Duration(days: 4))),
-            end: formatDate(DateTime.now().add(Duration(days: 5))),
-            days: {},
-          ))
-          .whenComplete(_update);
-    });
+    _update();
   }
 
   final CyclesDAO _dao = CyclesDAO();
