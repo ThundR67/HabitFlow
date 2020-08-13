@@ -44,6 +44,15 @@ class RewardsBloc extends ChangeNotifier {
     analytics.logEvent(name: 'reward_taken');
   }
 
+  /// Resets [amountTaken] of all reward to 0.
+  Future<void> reset() async {
+    for (final Reward reward in rewards) {
+      reward.amountTaken = 0;
+      await _dao.update(reward);
+    }
+    await _update();
+  }
+
   @override
   void dispose() {
     super.dispose();

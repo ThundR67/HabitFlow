@@ -30,6 +30,13 @@ class PointsBloc extends ChangeNotifier {
   /// Decrement reward points by [value].
   void decrement(int value) => increment(-value);
 
+  /// Resets [points] to 0.
+  void reset() {
+    _dao.changeBy(-points);
+    points = 0;
+    notifyListeners();
+  }
+
   @override
   void dispose() {
     super.dispose();

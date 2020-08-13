@@ -1,6 +1,8 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/blocs/points_bloc.dart';
+import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/helpers/sounds.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -33,6 +35,8 @@ class _CycleEndedState extends State<CycleEnded> {
   @override
   Widget build(BuildContext context) {
     final CurrentBloc bloc = Provider.of<CurrentBloc>(context);
+    final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
+    final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _controller.play();
@@ -63,6 +67,8 @@ class _CycleEndedState extends State<CycleEnded> {
                       color: Colors.white,
                       onPressed: () {
                         bloc.create();
+                        pointsBloc.reset();
+                        rewardsBloc.reset();
                         Navigator.of(context).pushReplacementNamed(homeRoute);
                       },
                       child: Text(
