@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/theme_bloc.dart';
 import 'package:habitflow/resources/strings.dart' as strings;
-import 'package:provider/provider.dart';
 
 /// Dropdown widget to allow user to change themes.
 class ThemeDropDown extends StatefulWidget {

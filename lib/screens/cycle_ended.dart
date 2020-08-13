@@ -1,12 +1,14 @@
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+
+import 'package:confetti/confetti.dart';
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/helpers/sounds.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:provider/provider.dart';
 
 /// A screen to show when cycle ends
 class CycleEnded extends StatefulWidget {

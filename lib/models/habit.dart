@@ -1,6 +1,7 @@
-import 'package:habitflow/models/goal.dart';
 import 'package:hive/hive.dart';
 import 'package:random_string/random_string.dart';
+
+import 'package:habitflow/models/goal.dart';
 
 part 'habit.g.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';

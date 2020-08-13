@@ -1,4 +1,5 @@
 /// A service to manage user's current theme.
+
 import 'dart:async';
 
 import 'package:hive/hive.dart';

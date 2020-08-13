@@ -1,11 +1,12 @@
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+
 import 'package:habitflow/helpers/analytics.dart';
 import 'package:habitflow/helpers/notifications.dart';
 import 'package:habitflow/helpers/quotes.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/services/habits/habits.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 /// A Bloc which manages user's habits.
 class HabitsBloc extends ChangeNotifier {

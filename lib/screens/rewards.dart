@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/rewards_list.dart';
-
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/widgets.dart';
-import 'package:provider/provider.dart';
 
 /// A screen to show all rewards and allow user to delete and take reward.
 class Rewards extends StatelessWidget {

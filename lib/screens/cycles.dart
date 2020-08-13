@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+import 'package:showcaseview/showcaseview.dart';
+
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/intro_bloc.dart';
@@ -8,8 +11,6 @@ import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/strings.dart' as strings;
 import 'package:habitflow/resources/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 /// A screen to show current and previous cycles.
 class Cycles extends StatelessWidget {

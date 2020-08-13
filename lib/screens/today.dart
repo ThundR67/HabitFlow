@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/habits_list.dart';
@@ -10,7 +12,6 @@ import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/resources/widgets.dart';
-import 'package:provider/provider.dart';
 
 /// A screen to show user about todays information.
 class Today extends StatelessWidget {

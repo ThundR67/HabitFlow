@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/neu_card.dart';
@@ -10,7 +13,6 @@ import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:provider/provider.dart';
 
 /// Widget to show info in key and value.
 class _KeyValue extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:habitflow/resources/strings.dart';
 
 /// Shows [failures] as recent failures.

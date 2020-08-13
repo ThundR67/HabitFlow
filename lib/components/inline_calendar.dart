@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'package:percent_indicator/circular_percent_indicator.dart';
+
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/dates.dart';
-
+import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
-import 'package:habitflow/helpers/success_rate.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 /// A widget to show info about a single date.
 class _SingleDate extends StatelessWidget {

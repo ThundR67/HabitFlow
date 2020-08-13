@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/helpers/date_format.dart';
 
 import 'package:habitflow/components/percentage_indicator.dart';
-import 'package:habitflow/models/cycle.dart';
+import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/success_rate.dart';
+import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A widget to display status of cycle.

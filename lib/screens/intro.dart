@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:habitflow/blocs/intro_bloc.dart';
-import 'package:habitflow/resources/routes.dart';
-import 'package:habitflow/resources/strings.dart';
+
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:provider/provider.dart';
+
+import 'package:habitflow/blocs/intro_bloc.dart';
+import 'package:habitflow/resources/routes.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// Screen to introduce user to the app.
 class Intro extends StatefulWidget {

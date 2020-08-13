@@ -2,9 +2,9 @@
 
 import 'dart:async';
 
-import 'package:habitflow/helpers/date_format.dart';
 import 'package:hive/hive.dart';
 
+import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/models/cycle.dart';
 
 /// Name of db.

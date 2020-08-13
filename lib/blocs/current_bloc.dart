@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:habitflow/helpers/analytics.dart';
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/days.dart';
-
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';

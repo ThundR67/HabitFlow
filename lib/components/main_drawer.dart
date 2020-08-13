@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:share/share.dart';
+
 import 'package:habitflow/components/theme_dropdown.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
-
 import 'package:habitflow/resources/strings.dart';
-import 'package:share/share.dart';
 
 /// Main app drawer.
 class MainDrawer extends StatelessWidget {

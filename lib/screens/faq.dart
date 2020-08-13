@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/resources/strings.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'package:habitflow/resources/strings.dart';
 
 /// Displays webview to show faq about the app.
 class FAQ extends StatefulWidget {

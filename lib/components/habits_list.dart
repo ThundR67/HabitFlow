@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:habitflow/components/habit_card.dart';
 import 'package:habitflow/components/no_possesion.dart';
-
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';

@@ -2,8 +2,8 @@ import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/dates.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
-import 'package:habitflow/services/habits/habits.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:habitflow/services/habits/habits.dart';
 
 /// A class to manage days of a cycle
 class Days {
