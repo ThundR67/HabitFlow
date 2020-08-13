@@ -60,6 +60,12 @@ class _IntroState extends State<Intro> {
         'habit.png',
         Colors.green,
       ),
+      _slide(
+        newYouTitle,
+        newYouDescription,
+        'new_you.png',
+        Colors.purple,
+      ),
     ]);
   }
 

@@ -70,9 +70,6 @@ String pickColor = tr('pickColor');
 /// Refers to pickIcon in translations.
 String pickIcon = tr('pickIcon');
 
-/// Refers to currentPoints in translations.
-String currentPoints = tr('currentPoints');
-
 /// Refers to markSkip in translations.
 String markSkip = tr('markSkip');
 
@@ -159,6 +156,9 @@ String createRewardTitle = tr('createRewardTitle');
 
 /// Refers to rewardName in translations.
 String rewardName = tr('rewardName');
+
+/// Refers to rewardCost in translations.
+String rewardCost = tr('rewardCost');
 
 /// Refers to failureReason in translations.
 String failureReason = tr('failureReason');
@@ -271,29 +271,32 @@ String cycleInfo = tr('cycleInfo');
 /// Refers to cycleEnded in translations.
 String cycleEnded = tr('cycleEnded');
 
+/// Refers to cycleEndedDescription in translations.
+String cycleEndedDescription = tr('cycleEndedDescription');
+
 /// Refers to activeDays in translations.
 String activeDays = tr('activeDays');
 
 /// Refers to faqPage in translations.
 String faqPage = tr('faqPage');
 
-/// Refers to rewardCost in translations.
-String rewardCost = tr('rewardCost');
+/// Refers to about in translations.
+String about = tr('about');
+
+/// Refers to updateReason in translations.
+String updateReason = tr('updateReason');
+
+/// Refers to newYouTitle in translations.
+String newYouTitle = tr('newYouTitle');
+
+/// Refers to newYouDescription in translations.
+String newYouDescription = tr('newYouDescription');
 
 /// Refers to habitSwipeDescription in translations.
 String habitSwipeDescription = tr('habitSwipeDescription');
 
 /// Refers to rewardSwipeDescription in translations.
 String rewardSwipeDescription = tr('rewardSwipeDescription');
-
-/// Refers to cycleEndedDescription in translations.
-String cycleEndedDescription = tr('cycleEndedDescription');
-
-/// Refers to about in translations.
-String about = tr('about');
-
-/// Refers to updateReason in translations.
-String updateReason = tr('updateReason');
 
 /// Refers to share in translations.
 String share = tr('share');

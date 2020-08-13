@@ -105,6 +105,8 @@
     "faqPage" : "FAQs",
     "about" : "About HabitFlow",
     "updateReason" : "Update Failure Reason",
+    "newYouTitle" : "Welcome To New You",
+    "newYouDescription" : "Are you ready to be a better version of yourself?",
 
     "habitSwipeDescription" : "Swipe to mark habit as done, skipped, or failed",
     "rewardSwipeDescription" : "Swipe to take or delete reward", 
