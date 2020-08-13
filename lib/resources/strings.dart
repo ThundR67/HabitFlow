@@ -280,6 +280,9 @@ String activeDays = tr('activeDays');
 /// Refers to faqPage in translations.
 String faqPage = tr('faqPage');
 
+/// Refers to cycleIntro in translations.
+String cycleIntro = tr('cycleIntro');
+
 /// Refers to about in translations.
 String about = tr('about');
 

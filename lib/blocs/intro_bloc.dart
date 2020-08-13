@@ -10,8 +10,11 @@ const habitIntro = 'habit';
 /// Intro for swipping rewards.
 const rewardIntro = 'reward';
 
+/// Intro for cycle data.
+const cycleIntro = 'cycle';
+
 /// List of all intros.
-const List<String> allIntros = [mainIntro, habitIntro, rewardIntro];
+const List<String> allIntros = [mainIntro, habitIntro, rewardIntro, cycleIntro];
 
 /// This bloc will manage if all intros are shown or not.
 class IntroBloc extends ChangeNotifier {

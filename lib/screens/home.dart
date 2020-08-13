@@ -28,10 +28,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 1;
-  final List<Widget> _pages = const [
+  final List<Widget> _pages = [
     Cycles(),
-    Today(),
-    Rewards(),
+    const Today(),
+    const Rewards(),
   ];
 
   @override

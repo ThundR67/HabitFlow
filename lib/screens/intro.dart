@@ -24,7 +24,7 @@ class _IntroState extends State<Intro> {
   Slide _slide(String title, String description, String image, Color color) {
     return Slide(
       title: title,
-      marginDescription: EdgeInsets.all(16.0),
+      marginDescription: const EdgeInsets.all(16.0),
       description: description,
       backgroundColor: color,
       pathImage: 'assets/images/$image',

@@ -54,6 +54,7 @@
     "createRewardTitle" : "Create A Reward",
     "rewardName" : "Reward Name",
     "rewardCost" : "Reward Points Cost",
+    "cycleIntro" : "This is your current cycle data. As you complete cycles, their data will be shown here",
 
     "failureReason" : "Failure Reason",
 

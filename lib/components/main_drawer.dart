@@ -5,7 +5,6 @@ import 'package:habitflow/resources/routes.dart';
 
 import 'package:habitflow/resources/strings.dart';
 import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// Main app drawer.
 class MainDrawer extends StatelessWidget {
