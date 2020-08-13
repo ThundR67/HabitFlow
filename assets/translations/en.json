@@ -53,6 +53,7 @@
 
     "createRewardTitle" : "Create A Reward",
     "rewardName" : "Reward Name",
+    "rewardCost" : "Reward Points Cost",
 
     "failureReason" : "Failure Reason",
 
@@ -78,7 +79,7 @@
     "sunday" : "Sunday",
 
     "noHabits" : "You don't have any habit currently. Press on the button below to create a habit.",
-    "noRewards" : "You don't have any rewards currently. Press on the button below to create a reward",
+    "noRewards" : "You don't have any rewards currently. Press on the button below to create a reward. Eg :- Watch TV for 30 mins",
     "noActiveHabits" : "You don't have any active habit today. Enjoy!!!",
 
     "light" : "Light",

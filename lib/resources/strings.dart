@@ -277,6 +277,9 @@ String activeDays = tr('activeDays');
 /// Refers to faqPage in translations.
 String faqPage = tr('faqPage');
 
+/// Refers to rewardCost in translations.
+String rewardCost = tr('rewardCost');
+
 /// Refers to habitSwipeDescription in translations.
 String habitSwipeDescription = tr('habitSwipeDescription');
 

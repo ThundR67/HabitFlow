@@ -92,7 +92,7 @@ class _CreateRewardState extends State<CreateReward> {
                       const SizedBox(height: 24.0),
                       NeuInputTextField(
                         controller: _pointsController,
-                        text: rewardPoints,
+                        text: rewardCost,
                         validate: validatePosInt,
                       ),
                       const SizedBox(height: 16.0),
