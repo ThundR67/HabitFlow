@@ -51,7 +51,7 @@ class _MainCardState extends State<MainCard> {
   /// Shows an intro and marks it as shown.
   void _showIntro(BuildContext context, IntroBloc bloc) {
     setState(() => _isBeingShown = true);
-    const Duration duration = Duration(seconds: 3);
+    const Duration duration = Duration(seconds: 1);
     final SlidableState state = Slidable.of(context);
 
     ShowCaseWidget.of(context).startShowCase([_key]);
