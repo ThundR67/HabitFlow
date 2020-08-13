@@ -5,6 +5,7 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:habitflow/components/color_picker.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 /// A widget which allows user pick icon and color.
 class Pickers extends StatefulWidget {
@@ -40,7 +41,10 @@ class _PickersState extends State<Pickers> {
 
   /// Allows to pick an icon and changes [_icon].
   Future<void> _pickIcon() async {
-    final IconData icon = await FlutterIconPicker.showIconPicker(context);
+    final IconData icon = await FlutterIconPicker.showIconPicker(
+      context,
+      iconPackMode: IconPack.materialOutline,
+    );
     _icon = icon;
     setState(() {});
     widget.onChange(_color, icon);

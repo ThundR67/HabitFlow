@@ -24,7 +24,6 @@ class NoPossesion extends StatelessWidget {
             icon,
             size: 96,
           ),
-          const SizedBox(height: 16.0),
           Text(text),
         ],
       ),
