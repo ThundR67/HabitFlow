@@ -29,7 +29,7 @@ const IconData moreIcon = OMIcons.moreVert;
 const IconData undoIcon = OMIcons.undo;
 
 /// Icon to add something.
-const IconData addIcon = OMIcons.create;
+const IconData addIcon = OMIcons.add;
 
 /// Icon just to placehold
 const IconData emptyIcon = OMIcons.accessibility;
