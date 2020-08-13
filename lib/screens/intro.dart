@@ -23,10 +23,10 @@ class _IntroState extends State<Intro> {
   Slide _slide(String title, String description, String image, Color color) {
     return Slide(
       title: title,
+      marginDescription: EdgeInsets.all(16.0),
       description: description,
       backgroundColor: color,
       pathImage: 'assets/images/$image',
-      //styleTitle: Theme.of(context).textTheme.headline5,
       maxLineTitle: 2,
     );
   }
@@ -65,16 +65,14 @@ class _IntroState extends State<Intro> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: IntroSlider(
-        slides: slides,
-        shouldHideStatusBar: false,
-        colorDot: Colors.white,
-        onDonePress: () {
-          Provider.of<IntroBloc>(context, listen: false).shown(mainIntro);
-          Navigator.of(context).pushReplacementNamed(homeRoute);
-        },
-      ),
+    return IntroSlider(
+      slides: slides,
+      shouldHideStatusBar: false,
+      colorDot: Colors.white,
+      onDonePress: () {
+        Provider.of<IntroBloc>(context, listen: false).shown(mainIntro);
+        Navigator.of(context).pushReplacementNamed(homeRoute);
+      },
     );
   }
 }
