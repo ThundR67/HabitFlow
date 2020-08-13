@@ -29,6 +29,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 1;
   PageController _pageController;
+  final List<Widget> _pages = const [
+    Cycles(),
+    Today(),
+    Rewards(),
+  ];
 
   @override
   void initState() {
@@ -55,12 +60,6 @@ class _HomeState extends State<Home> {
     if (!introBloc.intros[mainIntro]) return const Intro();
 
     if (bloc.isEnded()) return const CycleEnded();
-
-    final List<Widget> _pages = [
-      const Cycles(),
-      const Today(),
-      Rewards(),
-    ];
 
     return ShowCaseWidget(
       builder: Builder(
