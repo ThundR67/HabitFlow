@@ -24,7 +24,7 @@ class CycleStatus extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Text(
-          months[start.month - 1],
+          months[start.month - 1].substring(0, 3),
           style: Theme.of(context).textTheme.headline5,
         ),
         Text(
