@@ -5,7 +5,7 @@ part 'goal.g.dart';
 
 /// A type to store info about habits goal.
 @HiveType(typeId: 2)
-class Goal {
+class Goal extends HiveObject {
   /// Constrcuts.
   Goal({this.activeDays, this.times, this.unit, this.notificationTimes});
 

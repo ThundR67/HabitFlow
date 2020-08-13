@@ -21,5 +21,5 @@ class TimeAdapter extends TypeAdapter<TimeOfDay> {
   }
 
   @override
-  int get typeId => 201;
+  int get typeId => 7;
 }

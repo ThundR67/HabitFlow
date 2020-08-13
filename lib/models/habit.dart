@@ -6,7 +6,7 @@ part 'habit.g.dart';
 
 /// A type to store habit information.
 @HiveType(typeId: 1)
-class Habit {
+class Habit extends HiveObject {
   /// Constructs.
   Habit({
     this.id,

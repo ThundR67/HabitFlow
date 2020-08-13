@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/theme_bloc.dart';
 import 'package:habitflow/helpers/theme.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:provider/provider.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 /// Dropdown widget to allow user to change themes.
@@ -13,31 +15,28 @@ class ThemeDropDown extends StatefulWidget {
 }
 
 class _ThemeDropDownState extends State<ThemeDropDown> {
-  _ThemeDropDownState() {
-    getTheme().then((value) {
-      if (value == ThemeMode.system) _onChange(system, false);
-      if (value == ThemeMode.light) _onChange(light, false);
-      if (value == ThemeMode.dark) _onChange(dark, false);
-    });
-  }
-
   final List<String> _values = [system, light, dark];
   String _value;
 
   /// Changes states when user selects a value.
   void _onChange(String value, [bool save = true]) {
-    final ThemeController controller = ThemeProvider.controllerOf(context);
+    final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
     setState(() => _value = value);
     if (save) {
-      if (value == system) setSystem(controller);
-      if (value == light) setLight(controller);
-      if (value == dark) setDark(controller);
+      if (value == system) bloc.set(ThemeMode.system);
+      if (value == light) bloc.set(ThemeMode.light);
+      if (value == dark) bloc.set(ThemeMode.dark);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_value == null) return const Text('...');
+    final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
+    if (bloc.theme == null) return const Text('...');
+
+    if (bloc.mode == ThemeMode.system) _value = system;
+    if (bloc.mode == ThemeMode.light) _value = light;
+    if (bloc.mode == ThemeMode.dark) _value = dark;
 
     return DropdownButton<String>(
       items: _values.map(

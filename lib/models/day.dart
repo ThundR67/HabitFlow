@@ -4,7 +4,7 @@ part 'day.g.dart';
 
 /// A type to store one day of information.
 @HiveType(typeId: 3)
-class Day {
+class Day extends HiveObject {
   /// Constructs.
   Day({
     this.date,

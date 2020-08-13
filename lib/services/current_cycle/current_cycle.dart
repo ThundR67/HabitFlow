@@ -6,15 +6,13 @@ import 'package:hive/hive.dart';
 
 import 'package:habitflow/models/cycle.dart';
 
-import 'package:habitflow/services/database/database.dart';
-
 /// Name of the db.
 const String _dbName = 'current_cycle';
 
 /// A DAO to manage user's current cycle .
 class CurrentCycleDAO {
   /// Store of data.
-  Future<Box> get _db async => DB.instance.open(_dbName);
+  Future<Box> get _db async => Hive.openBox(_dbName);
 
   /// Adds [cycle] int db.
   Future<void> create(Cycle cycle) async => (await _db).put(_dbName, cycle);

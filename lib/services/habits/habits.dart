@@ -5,14 +5,13 @@ import 'dart:async';
 import 'package:hive/hive.dart';
 
 import 'package:habitflow/models/habit.dart';
-import 'package:habitflow/services/database/database.dart';
 
 /// Name of the database
 const String _dbName = 'habits';
 
 /// A DAO to manage user's habits.
 class HabitsDAO {
-  Future<Box<Habit>> get _db async => DB.instance.open<Habit>(_dbName);
+  Future<Box<Habit>> get _db async => Hive.openBox(_dbName);
 
   /// Adds a habit into db.
   Future<void> add(Habit habit) async => (await _db).put(habit.id, habit);

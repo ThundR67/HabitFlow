@@ -6,7 +6,7 @@ part 'cycle.g.dart';
 
 /// A type to store cycle's information.
 @HiveType(typeId: 4)
-class Cycle {
+class Cycle extends HiveObject {
   /// Constructs.
   Cycle({
     this.start,

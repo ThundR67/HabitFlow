@@ -3,14 +3,12 @@ import 'dart:async';
 
 import 'package:hive/hive.dart';
 
-import 'package:habitflow/services/database/database.dart';
-
 /// Name of the database
 const String _dbName = 'introduction';
 
 /// A DAO to manage all introductions.
 class IntroDAO {
-  Future<Box<bool>> get _db async => DB.instance.open<bool>(_dbName);
+  Future<Box<bool>> get _db async => Hive.openBox(_dbName);
 
   /// Set an intro as true.
   Future<void> introShown(String name) async => (await _db).put(name, true);

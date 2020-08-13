@@ -4,14 +4,12 @@ import 'dart:async';
 
 import 'package:hive/hive.dart';
 
-import 'package:habitflow/services/database/database.dart';
-
 /// The name of database and store.
 const String _dbName = 'reward_points';
 
 /// A DAO to manage user's reward points.
 class RewardPointsDAO {
-  Future<Box<int>> get _db async => DB.instance.open<int>(_dbName);
+  Future<Box<int>> get _db async => Hive.openBox(_dbName);
 
   /// Returns user's current reward points from db.
   Future<int> get() async => (await _db).get(_dbName, defaultValue: 0);

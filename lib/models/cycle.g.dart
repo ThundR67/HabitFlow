@@ -42,9 +42,11 @@ class CycleAdapter extends TypeAdapter<Cycle> {
   int get hashCode => typeId.hashCode;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CycleAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+  bool operator ==(Object other) {
+    print(other);
+    return identical(this, other) ||
+        other is CycleAdapter &&
+            runtimeType == other.runtimeType &&
+            typeId == other.typeId;
+  }
 }
