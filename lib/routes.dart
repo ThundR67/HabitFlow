@@ -16,6 +16,6 @@ final Map<String, Widget Function(BuildContext)> routes = {
   createHabitRoute: (_) => const CreateHabit(),
   cycleEndedRoute: (_) => const CycleEnded(),
   faqRoute: (_) => const FAQ(),
-  introRoute: (_) => const Intro(),
+  introRoute: (_) => Intro(),
   loadingRoute: (_) => const Loading(),
 };
