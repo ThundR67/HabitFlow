@@ -76,12 +76,11 @@ class _IntroState extends State<Intro> {
   Widget build(BuildContext context) {
     return IntroSlider(
       slides: widget._slides,
-      shouldHideStatusBar: true,
+      shouldHideStatusBar: false,
       colorDot: Colors.white,
       onDonePress: () {
-        _navigator.pushReplacementNamed(homeRoute);
-        SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
         Provider.of<IntroBloc>(context, listen: false).shown(mainIntro);
+        _navigator.pushReplacementNamed(homeRoute);
       },
     );
   }
