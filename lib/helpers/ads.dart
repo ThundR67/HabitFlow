@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:habitflow/helpers/analytics.dart';
 
@@ -23,15 +24,17 @@ const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
 
 /// 30% chance of showing interstrial ad.
 void showInterstitialAd() {
-  final Random rand = Random();
-  if (rand.nextInt(99) < 30) {
-    InterstitialAd(
-      adUnitId: 'ca-app-pub-5935597695294717/6275521390',
-      targetingInfo: targetingInfo,
-    )
-      ..load()
-      ..show()
-      ..dispose();
-    analytics.logEvent(name: 'interstitial_ad_shown');
+  if (kReleaseMode) {
+    final Random rand = Random();
+    if (rand.nextInt(99) < 30) {
+      InterstitialAd(
+        adUnitId: 'ca-app-pub-5935597695294717/6275521390',
+        targetingInfo: targetingInfo,
+      )
+        ..load()
+        ..show()
+        ..dispose();
+      analytics.logEvent(name: 'interstitial_ad_shown');
+    }
   }
 }

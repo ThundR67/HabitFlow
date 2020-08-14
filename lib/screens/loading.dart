@@ -15,16 +15,19 @@ class Loading extends StatelessWidget {
     final CurrentBloc bloc = Provider.of<CurrentBloc>(context);
     final IntroBloc introBloc = Provider.of<IntroBloc>(context);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!introBloc.intros[mainIntro]) {
-        Navigator.pushReplacementNamed(context, introRoute);
-      }
-      else if (bloc.isEnded()) {
-        Navigator.pushReplacementNamed(context, cycleEndedRoute);
-      } else {
-        Navigator.pushReplacementNamed(context, homeRoute);
-      }
-    });
+    if (introBloc.intros != null) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) {
+          if (!introBloc.intros[mainIntro]) {
+            Navigator.pushReplacementNamed(context, introRoute);
+          } else if (bloc.isEnded()) {
+            Navigator.pushReplacementNamed(context, cycleEndedRoute);
+          } else {
+            Navigator.pushReplacementNamed(context, homeRoute);
+          }
+        },
+      );
+    }
 
     return const Scaffold(
       body: circularIndicator,
