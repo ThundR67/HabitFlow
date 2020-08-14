@@ -2,18 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:firebase_admob/firebase_admob.dart';
-import 'package:provider/provider.dart';
 import 'package:showcaseview/showcaseview.dart';
 
-import 'package:habitflow/blocs/current_bloc.dart';
-import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/helpers/ads.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:habitflow/resources/widgets.dart';
-import 'package:habitflow/screens/cycle_ended.dart';
 import 'package:habitflow/screens/cycles.dart';
-import 'package:habitflow/screens/intro.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
 
@@ -42,17 +36,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final CurrentBloc bloc = Provider.of<CurrentBloc>(context);
-    final IntroBloc introBloc = Provider.of<IntroBloc>(context);
-
-    if (bloc.current == null || introBloc.intros == null) {
-      return const Scaffold(body: circularIndicator);
-    }
-
-    if (!introBloc.intros[mainIntro]) return const Intro();
-
-    if (bloc.isEnded()) return const CycleEnded();
-
     return ShowCaseWidget(
       builder: Builder(
         builder: (context) {

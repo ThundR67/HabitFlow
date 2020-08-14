@@ -7,6 +7,7 @@ import 'package:habitflow/screens/cycle_ended.dart';
 import 'package:habitflow/screens/faq.dart';
 import 'package:habitflow/screens/home.dart';
 import 'package:habitflow/screens/intro.dart';
+import 'package:habitflow/screens/loading.dart';
 
 /// Routes to all screen.
 final Map<String, Widget Function(BuildContext)> routes = {
@@ -16,4 +17,5 @@ final Map<String, Widget Function(BuildContext)> routes = {
   cycleEndedRoute: (_) => const CycleEnded(),
   faqRoute: (_) => const FAQ(),
   introRoute: (_) => const Intro(),
+  loadingRoute: (_) => const Loading(),
 };

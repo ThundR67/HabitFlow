@@ -3,6 +3,9 @@
 /// Route of home.
 const String homeRoute = '/home';
 
+/// Route to initial loading screen.
+const String loadingRoute = '/loading';
+
 /// Route to Create Habit Screen.
 const String createHabitRoute = '/create_habit';
 
