@@ -74,7 +74,6 @@ class App extends StatelessWidget {
       initialRoute: introRoute,
       routes: routes,
       color: Colors.white,
-      checkerboardRasterCacheImages: true,
     );
   }
 }
