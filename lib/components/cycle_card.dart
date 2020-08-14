@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/components/cycle_status.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/redirect.dart';
+import 'package:habitflow/helpers/ads.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/screens/cycle.dart';
@@ -17,6 +18,7 @@ class CycleCard extends StatelessWidget {
 
   /// Redirects to [CycleInfo] page.
   void _openCycleInfo(BuildContext context) {
+    showInterstitialAd();
     redirect(context, cycleInfoRoute, CycleInfo(cycle));
   }
 
