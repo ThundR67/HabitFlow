@@ -73,6 +73,8 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.light,
       initialRoute: introRoute,
       routes: routes,
+      color: Colors.white,
+      checkerboardRasterCacheImages: true,
     );
   }
 }

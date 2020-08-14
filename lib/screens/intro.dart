@@ -79,9 +79,9 @@ class _IntroState extends State<Intro> {
       shouldHideStatusBar: true,
       colorDot: Colors.white,
       onDonePress: () {
+        _navigator.pushReplacementNamed(homeRoute);
         SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
         Provider.of<IntroBloc>(context, listen: false).shown(mainIntro);
-        _navigator.pushReplacementNamed(homeRoute);
       },
     );
   }

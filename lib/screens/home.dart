@@ -36,42 +36,35 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return ShowCaseWidget(
-      builder: Builder(
-        builder: (context) {
-          return Scaffold(
-            body: ShowCaseWidget(
-              builder: Builder(
-                builder: (context) =>
-                    SizedBox.expand(child: _pages[_currentIndex]),
-              ),
-            ),
-            bottomNavigationBar: BottomNavyBar(
-              selectedIndex: _currentIndex,
-              backgroundColor:
-                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              onItemSelected: (int index) => setState(() {
-                _currentIndex = index;
-              }),
-              items: <BottomNavyBarItem>[
-                BottomNavyBarItem(
-                  icon: const Icon(cycleIcon),
-                  title: Text(cyclesPage),
-                ),
-                BottomNavyBarItem(
-                  icon: const Icon(todayIcon),
-                  title: Text(todaysPage),
-                  activeColor: Colors.red,
-                ),
-                BottomNavyBarItem(
-                  icon: const Icon(rewardIcon),
-                  title: Text(rewardsPage),
-                  activeColor: Colors.orange,
-                ),
-              ],
-            ),
-          );
-        },
+    return Scaffold(
+      body: ShowCaseWidget(
+        builder: Builder(
+          builder: (context) => SizedBox.expand(child: _pages[_currentIndex]),
+        ),
+      ),
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _currentIndex,
+        backgroundColor:
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        onItemSelected: (int index) => setState(() {
+          _currentIndex = index;
+        }),
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: const Icon(cycleIcon),
+            title: Text(cyclesPage),
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(todayIcon),
+            title: Text(todaysPage),
+            activeColor: Colors.red,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(rewardIcon),
+            title: Text(rewardsPage),
+            activeColor: Colors.orange,
+          ),
+        ],
       ),
     );
   }
