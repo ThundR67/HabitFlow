@@ -5,7 +5,7 @@ import 'package:firebase_admob/firebase_admob.dart';
 import 'package:habitflow/helpers/analytics.dart';
 
 /// App id for admob.
-const String appID = 'ca-app-pub-3940256099942544~3347511713';
+const String appID = 'ca-app-pub-5935597695294717~4847422484';
 
 /// Id for interstitial ad.
 final String interstitialAdId = InterstitialAd.testAdUnitId;
@@ -26,7 +26,7 @@ void showInterstitialAd() {
   final Random rand = Random();
   if (rand.nextInt(99) < 30) {
     InterstitialAd(
-      adUnitId: interstitialAdId,
+      adUnitId: 'ca-app-pub-5935597695294717/6275521390',
       targetingInfo: targetingInfo,
     )
       ..load()
