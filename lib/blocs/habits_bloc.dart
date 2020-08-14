@@ -57,14 +57,20 @@ class HabitsBloc extends ChangeNotifier {
   Future<void> add(Habit habit) async {
     await _dao.add(habit);
     await _update();
-    analytics.logEvent(name: 'habit_added');
+    analytics.logEvent(
+      name: 'habit_added',
+      parameters: {'name': habit.name},
+    );
   }
 
   /// Deletes [habit]t from db.
   Future<void> delete(Habit habit) async {
     await _dao.delete(habit);
     await _update();
-    analytics.logEvent(name: 'habit_deleted');
+    analytics.logEvent(
+      name: 'habit_deleted',
+      parameters: {'name': habit.name},
+    );
   }
 
   @override
