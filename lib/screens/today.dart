@@ -33,20 +33,18 @@ class Today extends StatelessWidget {
         title: const _Title(),
         //automaticallyImplyLeading: false,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          InlineCalendar(cycle: currentBloc.current),
-          Expanded(
-            child: SingleChildScrollView(
-              physics: scrollPhysics,
+      body: SizedBox.expand(
+        child: Column(
+          children: <Widget>[
+            InlineCalendar(cycle: currentBloc.current),
+            Expanded(
               child: HabitsList(
                 habits: habitsBloc.habits,
                 statuses: currentBloc.statuses,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: createHabitRoute,

@@ -6,6 +6,7 @@ import 'package:habitflow/components/habit_card.dart';
 import 'package:habitflow/components/no_possesion.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
@@ -22,23 +23,6 @@ class HabitsList extends StatelessWidget {
 
   /// Controller for all slidables.
   final SlidableController slidableController = SlidableController();
-
-  /// Returns list of habitcards.
-  List<Widget> _habitsCards() {
-    final List<Widget> output = <Widget>[];
-    for (final Habit habit in habits.values) {
-      if (habit.goal.activeDays.contains(DateTime.now().weekday)) {
-        output.add(
-          HabitCard(
-            controller: slidableController,
-            habit: habit,
-            status: statuses[habit.id] ?? Status.unmarked,
-          ),
-        );
-      }
-    }
-    return output;
-  }
 
   /// Returns if is there active habits on current day.
   bool _isActiveToday() {
@@ -58,12 +42,20 @@ class HabitsList extends StatelessWidget {
       );
     }
 
-    if (slidableController.activeState != null) {
-      slidableController.activeState.open();
-    }
-
-    return Column(
-      children: _habitsCards(),
+    return ListView.builder(
+      physics: scrollPhysics,
+      itemCount: habits.values.length,
+      itemBuilder: (context, index) {
+        final Habit habit = habits.values.toList()[index];
+        if (habit.goal.activeDays.contains(DateTime.now().weekday)) {
+          return HabitCard(
+            controller: slidableController,
+            habit: habit,
+            status: statuses[habit.id] ?? Status.unmarked,
+          );
+        }
+        return Container();
+      },
     );
   }
 }
