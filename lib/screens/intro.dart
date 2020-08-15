@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';

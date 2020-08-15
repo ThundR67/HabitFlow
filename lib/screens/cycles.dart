@@ -13,14 +13,7 @@ import 'package:habitflow/resources/widgets.dart';
 /// A screen to show current and previous cycles.
 class Cycles extends StatelessWidget {
   /// Constructs
-  Cycles();
-
-  final GlobalKey _key = GlobalKey();
-
-  /// Returns cards for previous cycles.
-  List<Widget> _cycles(CurrentBloc currentBloc, CyclesBloc cyclesBloc) {
-    return [for (Cycle cycle in cyclesBloc.cycles) CycleCard(cycle: cycle)];
-  }
+  const Cycles();
 
   @override
   Widget build(BuildContext context) {
