@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_iconpicker/IconPicker/icons.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
 /// Icon to show reward points.
