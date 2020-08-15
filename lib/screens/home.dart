@@ -37,30 +37,46 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox.expand(child: _pages[_currentIndex]),
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _currentIndex,
-        backgroundColor:
-            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-        onItemSelected: (int index) => setState(() {
-          _currentIndex = index;
-        }),
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            icon: const Icon(cycleIcon),
-            title: Text(cyclesPage),
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(todayIcon),
-            title: Text(todaysPage),
-            activeColor: Colors.red,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(rewardIcon),
-            title: Text(rewardsPage),
-            activeColor: Colors.orange,
-          ),
-        ],
+      bottomNavigationBar: _BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onChange: (index) => setState(() => _currentIndex = index),
       ),
+    );
+  }
+}
+
+class _BottomNavigationBar extends StatelessWidget {
+  const _BottomNavigationBar({
+    @required this.currentIndex,
+    @required this.onChange,
+  });
+
+  final int currentIndex;
+  final Function(int) onChange;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavyBar(
+      selectedIndex: currentIndex,
+      backgroundColor:
+          Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+      onItemSelected: onChange,
+      items: <BottomNavyBarItem>[
+        BottomNavyBarItem(
+          icon: const Icon(cycleIcon),
+          title: Text(cyclesPage),
+        ),
+        BottomNavyBarItem(
+          icon: const Icon(todayIcon),
+          title: Text(todaysPage),
+          activeColor: Colors.red,
+        ),
+        BottomNavyBarItem(
+          icon: const Icon(rewardIcon),
+          title: Text(rewardsPage),
+          activeColor: Colors.orange,
+        ),
+      ],
     );
   }
 }
