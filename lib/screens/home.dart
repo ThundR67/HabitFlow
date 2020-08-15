@@ -13,13 +13,7 @@ import 'package:habitflow/screens/today.dart';
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
   /// Constructs.
-  Home();
-
-  final List<Widget> _pages = const [
-    Cycles(),
-    Today(),
-    Rewards(),
-  ];
+  const Home();
 
   @override
   _HomeState createState() => _HomeState();
@@ -27,6 +21,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 1;
+
+  final List<Widget> _pages = const [
+    Cycles(),
+    Today(),
+    Rewards(),
+  ];
 
   @override
   void initState() {
@@ -37,7 +37,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox.expand(child: widget._pages[_currentIndex]),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
+      ),
       bottomNavigationBar: _BottomNavigationBar(
         currentIndex: _currentIndex,
         onChange: (index) => setState(() => _currentIndex = index),
@@ -57,6 +60,7 @@ class _BottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('builds');
     return BottomNavyBar(
       selectedIndex: currentIndex,
       backgroundColor:

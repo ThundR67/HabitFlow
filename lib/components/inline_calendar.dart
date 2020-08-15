@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -74,8 +76,8 @@ class InlineCalendar extends StatelessWidget {
       height: 72,
       alignment: Alignment.center,
       child: ListView.builder(
-        dragStartBehavior: DragStartBehavior.down,
         physics: scrollPhysics,
+        cacheExtent: 75,
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
         itemBuilder: (context, index) {

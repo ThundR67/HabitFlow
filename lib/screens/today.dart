@@ -22,13 +22,11 @@ class Today extends StatelessWidget {
     final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
     final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
 
-    print('build');
-
     return Scaffold(
       drawer: const MainDrawer(),
       appBar: AppBar(
         title: const _Title(),
-        //automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
       ),
       body: SizedBox.expand(
         child: Column(
