@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -45,7 +46,7 @@ class _SingleDate extends StatelessWidget {
             progressColor: Colors.greenAccent,
             center: Text(
               date.day.toString(),
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.subtitle1,
             ),
           ),
         ],
@@ -62,38 +63,28 @@ class InlineCalendar extends StatelessWidget {
   /// Cycle to get data.
   final Cycle cycle;
 
-  /// Returns widget for all days.
-  List<Widget> _datesCards() {
-    final List<Widget> output = <Widget>[];
+  @override
+  Widget build(BuildContext context) {
     final List<DateTime> dates = datesList(
       parseDate(cycle.start),
       parseDate(cycle.end),
     );
 
-    for (final DateTime date in dates) {
-      output.add(
-        _SingleDate(
-          date: date,
-          day: cycle.days[formatDate(date)],
-        ),
-      );
-    }
-
-    return output;
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Container(
+      height: 72,
       alignment: Alignment.center,
-      child: Center(
-        child: SingleChildScrollView(
-          physics: scrollPhysics,
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: _datesCards(),
-          ),
-        ),
+      child: ListView.builder(
+        dragStartBehavior: DragStartBehavior.down,
+        physics: scrollPhysics,
+        scrollDirection: Axis.horizontal,
+        itemCount: dates.length,
+        itemBuilder: (context, index) {
+          final DateTime date = dates[index];
+          return _SingleDate(
+            date: date,
+            day: cycle.days[formatDate(date)],
+          );
+        },
       ),
     );
   }
