@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
@@ -36,46 +35,14 @@ class Cycles extends StatelessWidget {
       return circularIndicator;
     }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!introBloc.intros[cycleIntro]) {
-        ShowCaseWidget.of(context).startShowCase([_key]);
-        introBloc.shown(cycleIntro);
-      }
-    });
-
     return SafeArea(
       child: SingleChildScrollView(
         physics: scrollPhysics,
-        child: Showcase.withWidget(
-          key: _key,
-          width: 336,
-          height: 100,
-          container: Center(
-            child: Card(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 320,
-                  child: Text(
-                    strings.cycleIntro,
-                    maxLines: 100,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          child: Column(
-            children: [
-              CycleCard(cycle: currentBloc.current),
-              ..._cycles(currentBloc, cyclesBloc),
-            ],
-          ),
+        child: Column(
+          children: [
+            CycleCard(cycle: currentBloc.current),
+            ..._cycles(currentBloc, cyclesBloc),
+          ],
         ),
       ),
     );

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:showcaseview/showcase.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/components/tappable_neu_card.dart';
@@ -56,7 +54,6 @@ class _MainCardState extends State<MainCard> {
     const Duration duration = Duration(seconds: 2);
     final SlidableState state = Slidable.of(context);
 
-    ShowCaseWidget.of(context).startShowCase([_key]);
     state.open();
     Future.delayed(duration).whenComplete(() {
       state.close();
@@ -72,38 +69,33 @@ class _MainCardState extends State<MainCard> {
   @override
   Widget build(BuildContext context) {
     final IntroBloc bloc = Provider.of<IntroBloc>(context);
-    return Showcase(
-      key: _key,
-      shapeBorder: const BeveledRectangleBorder(),
-      description: widget.description,
-      child: Slidable(
-        actions: widget.actions,
-        secondaryActions: widget.secondaryActions,
-        actionPane: const SlidableDrawerActionPane(),
-        controller: widget.controller,
-        child: Builder(
-          builder: (context) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (!bloc.intros[widget.intro] && !_isBeingShown) {
-                _showIntro(context, bloc);
-              }
-            });
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12.0,
-                horizontal: 16.0,
+    return Slidable(
+      actions: widget.actions,
+      secondaryActions: widget.secondaryActions,
+      actionPane: const SlidableDrawerActionPane(),
+      controller: widget.controller,
+      child: Builder(
+        builder: (context) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!bloc.intros[widget.intro] && !_isBeingShown) {
+              _showIntro(context, bloc);
+            }
+          });
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 16.0,
+            ),
+            child: TappableCard(
+              onTap: widget.onTap,
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                alignment: Alignment.center,
+                child: widget.child,
               ),
-              child: TappableCard(
-                onTap: widget.onTap,
-                child: Container(
-                  padding: const EdgeInsets.all(16.0),
-                  alignment: Alignment.center,
-                  child: widget.child,
-                ),
-              ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:firebase_admob/firebase_admob.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 import 'package:habitflow/helpers/ads.dart';
 import 'package:habitflow/resources/icons.dart';
@@ -37,11 +36,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ShowCaseWidget(
-        builder: Builder(
-          builder: (context) => SizedBox.expand(child: _pages[_currentIndex]),
-        ),
-      ),
+      body: SizedBox.expand(child: _pages[_currentIndex]),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
         backgroundColor:
