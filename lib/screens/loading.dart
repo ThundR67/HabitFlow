@@ -15,7 +15,7 @@ class Loading extends StatelessWidget {
     final CurrentBloc bloc = Provider.of<CurrentBloc>(context);
     final IntroBloc introBloc = Provider.of<IntroBloc>(context);
 
-    if (introBloc.intros != null) {
+    if (introBloc.intros[mainIntro] != null) {
       WidgetsBinding.instance.addPostFrameCallback(
         (_) {
           if (!introBloc.intros[mainIntro]) {

@@ -35,7 +35,7 @@ const IconData addIcon = OMIcons.add;
 const IconData emptyIcon = OMIcons.accessibility;
 
 /// Icon to show user of no active habits on current day.
-const IconData noActiveHabitsIcon = OMIcons.acUnit;
+const IconData noActiveHabitsIcon = OMIcons.airlineSeatIndividualSuite;
 
 /// Icon to take a reward.
 const IconData takeIcon = OMIcons.cardGiftcard;
