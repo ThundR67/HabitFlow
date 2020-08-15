@@ -13,7 +13,6 @@ import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:habitflow/resources/widgets.dart';
 
 /// Screen to show data about [cycle].
 class CycleInfo extends StatelessWidget {
@@ -39,10 +38,6 @@ class CycleInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
-
-    if (bloc.habits == null) {
-      return circularIndicator;
-    }
 
     final List<int> stats = cycleStats(_cycle.days.values.toList());
 

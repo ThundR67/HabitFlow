@@ -7,12 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdf2b2ae-1d4f-418f-a303-d30081ca5653" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/blocs/theme_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/blocs/theme_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/theme_dropdown.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/theme_dropdown.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/theme/theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/theme/theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/habits_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/habits_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/cycle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/cycle.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/loading.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/loading.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/rewards.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/rewards.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/today.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/today.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +35,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -51,13 +57,45 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="466" y="124" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1597298312346" />
+    <state width="661" height="422" key="GridCell.Tab.0.bottom" timestamp="1597500081892">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="661" height="422" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1597500081892" />
+    <state width="661" height="422" key="GridCell.Tab.0.center" timestamp="1597500081892">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="661" height="422" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1597500081892" />
+    <state width="661" height="422" key="GridCell.Tab.0.left" timestamp="1597500081892">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="661" height="422" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1597500081892" />
+    <state width="661" height="422" key="GridCell.Tab.0.right" timestamp="1597500081892">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="661" height="422" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1597500081892" />
+    <state width="1323" height="238" key="GridCell.Tab.1.bottom" timestamp="1597498914493">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="238" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1597498914493" />
+    <state width="1323" height="238" key="GridCell.Tab.1.center" timestamp="1597498914493">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="238" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1597498914493" />
+    <state width="1323" height="238" key="GridCell.Tab.1.left" timestamp="1597498914493">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="238" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1597498914493" />
+    <state width="1323" height="238" key="GridCell.Tab.1.right" timestamp="1597498914493">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="238" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1597498914493" />
     <state x="106" y="110" width="1146" height="528" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1597303261779">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="106" y="110" width="1146" height="528" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.768@0.0.1366.768" timestamp="1597303261779" />
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1597303186836">
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1597499492774">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1597303186836" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1597499492774" />
   </component>
 </project>

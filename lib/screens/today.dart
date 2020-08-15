@@ -22,9 +22,7 @@ class Today extends StatelessWidget {
     final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
     final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
 
-    if (habitsBloc.habits == null || currentBloc.statuses == null) {
-      return circularIndicator;
-    }
+    print('build');
 
     return Scaffold(
       drawer: const MainDrawer(),

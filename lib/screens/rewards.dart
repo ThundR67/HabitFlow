@@ -20,10 +20,6 @@ class Rewards extends StatelessWidget {
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
     final RewardsBloc rewardsBloc = Provider.of<RewardsBloc>(context);
 
-    if (rewardsBloc.rewards == null || pointsBloc.points == null) {
-      return circularIndicator;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: RewardPoints(

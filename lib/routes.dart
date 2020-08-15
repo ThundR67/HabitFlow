@@ -11,7 +11,7 @@ import 'package:habitflow/screens/loading.dart';
 
 /// Routes to all screen.
 final Map<String, Widget Function(BuildContext)> routes = {
-  homeRoute: (_) => const Home(),
+  homeRoute: (_) => Home(),
   createRewardRoute: (_) => const CreateReward(),
   createHabitRoute: (_) => const CreateHabit(),
   cycleEndedRoute: (_) => const CycleEnded(),

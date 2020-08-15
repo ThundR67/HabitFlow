@@ -163,6 +163,13 @@
             </list>
           </value>
         </entry>
+        <entry key="confetti">
+          <value>
+            <list>
+              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/confetti-0.5.4/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="convert">
           <value>
             <list>
@@ -223,6 +230,13 @@
           <value>
             <list>
               <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="feature_discovery">
+          <value>
+            <list>
+              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/feature_discovery-0.12.0+2/lib" />
             </list>
           </value>
         </entry>
@@ -618,13 +632,6 @@
             </list>
           </value>
         </entry>
-        <entry key="platform_detect">
-          <value>
-            <list>
-              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/platform_detect-1.4.0/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="plugin_platform_interface">
           <value>
             <list>
@@ -671,6 +678,13 @@
           <value>
             <list>
               <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.3/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="random_color">
+          <value>
+            <list>
+              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/random_color-1.0.5/lib" />
             </list>
           </value>
         </entry>
@@ -734,13 +748,6 @@
           <value>
             <list>
               <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_web_socket-0.2.3/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="showcaseview">
-          <value>
-            <list>
-              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/showcaseview-0.1.5/lib" />
             </list>
           </value>
         </entry>
@@ -835,41 +842,6 @@
             </list>
           </value>
         </entry>
-        <entry key="url_launcher">
-          <value>
-            <list>
-              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.5.0/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="url_launcher_linux">
-          <value>
-            <list>
-              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-0.0.1+1/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="url_launcher_macos">
-          <value>
-            <list>
-              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+7/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="url_launcher_platform_interface">
-          <value>
-            <list>
-              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_platform_interface-1.0.7/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="url_launcher_web">
-          <value>
-            <list>
-              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.2/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="uuid">
           <value>
             <list>
@@ -895,6 +867,13 @@
           <value>
             <list>
               <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/web_socket_channel-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="webview_flutter">
+          <value>
+            <list>
+              <option value="C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.22+1/lib" />
             </list>
           </value>
         </entry>
@@ -945,6 +924,7 @@
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/code_builder-3.4.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.14.13/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/colorize-2.0.0/lib" />
+      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/confetti-0.5.4/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-2.1.5/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/csslib-0.16.2/lib" />
@@ -954,6 +934,7 @@
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/day_night_time_picker-0.2.0+1/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/easy_localization-2.3.3/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.1.0/lib" />
+      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/feature_discovery-0.12.0+2/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/file-5.2.1/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase-7.3.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_admob-0.9.3+4/lib" />
@@ -1006,7 +987,6 @@
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/percent_indicator-2.1.5/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/pigment-1.0.3/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/platform-2.2.1/lib" />
-      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/platform_detect-1.4.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-1.0.2/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/pool-1.4.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/process-3.0.13/lib" />
@@ -1014,6 +994,7 @@
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/pub_semver-1.4.4/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/pubspec_parse-0.1.5/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.3/lib" />
+      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/random_color-1.0.5/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/random_string-2.1.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.4+3/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.8/lib" />
@@ -1023,7 +1004,6 @@
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+7/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/shelf-0.7.7/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_web_socket-0.2.3/lib" />
-      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/showcaseview-0.1.5/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/source_gen-0.9.6/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.7.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.9.5/lib" />
@@ -1036,15 +1016,11 @@
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/timing-0.1.1+2/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/tinycolor-1.0.2/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.2.0/lib" />
-      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.5.0/lib" />
-      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-0.0.1+1/lib" />
-      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+7/lib" />
-      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_platform_interface-1.0.7/lib" />
-      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.2/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/uuid-2.2.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.0.8/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/watcher-0.9.7+15/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/web_socket_channel-1.1.0/lib" />
+      <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.22+1/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/weekday_selector-0.4.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-0.1.0/lib" />
       <root url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/yaml-2.2.1/lib" />
