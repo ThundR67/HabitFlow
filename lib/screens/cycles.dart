@@ -35,15 +35,13 @@ class Cycles extends StatelessWidget {
       return circularIndicator;
     }
 
+    final List<Cycle> cycles = [currentBloc.current] + cyclesBloc.cycles;
+
     return SafeArea(
-      child: SingleChildScrollView(
+      child: ListView.builder(
         physics: scrollPhysics,
-        child: Column(
-          children: [
-            CycleCard(cycle: currentBloc.current),
-            ..._cycles(currentBloc, cyclesBloc),
-          ],
-        ),
+        itemCount: cycles.length,
+        itemBuilder: (context, index) => CycleCard(cycle: cycles[index]),
       ),
     );
   }
