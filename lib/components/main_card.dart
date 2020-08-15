@@ -45,7 +45,6 @@ class MainCard extends StatefulWidget {
 }
 
 class _MainCardState extends State<MainCard> {
-  final GlobalKey _key = GlobalKey();
   bool _isBeingShown = false;
 
   /// Shows an intro and marks it as shown.

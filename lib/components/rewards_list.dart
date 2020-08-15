@@ -20,20 +20,6 @@ class RewardsList extends StatelessWidget {
   /// Controller for slidables.
   final SlidableController _controller = SlidableController();
 
-  /// Creates list of RewardCard.
-  List<Widget> _rewardsCards() {
-    final List<Widget> output = <Widget>[];
-    for (final Reward reward in _rewards) {
-      output.add(
-        RewardCard(
-          reward: reward,
-          controller: _controller,
-        ),
-      );
-    }
-    return output;
-  }
-
   @override
   Widget build(BuildContext context) {
     if (_rewards == null) return circularIndicator;
