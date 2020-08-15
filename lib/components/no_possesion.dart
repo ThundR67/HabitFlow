@@ -19,23 +19,24 @@ class NoPossesion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Opacity(
-        opacity: 0.6,
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              size: 96,
+      child: Column(
+        children: [
+          Icon(
+            icon,
+            size: 96,
+            color: Colors.grey,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.subtitle2.copyWith(
+                    color: Colors.grey,
+                  ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

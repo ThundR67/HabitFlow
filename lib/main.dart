@@ -74,6 +74,7 @@ class App extends StatelessWidget {
       initialRoute: loadingRoute,
       routes: routes,
       color: Colors.white,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
