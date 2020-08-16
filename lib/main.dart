@@ -71,7 +71,7 @@ class App extends StatelessWidget {
       locale: context.locale,
       theme: bloc.themes[bloc.current],
       themeMode: ThemeMode.light,
-      initialRoute: loadingRoute,
+      initialRoute: homeRoute,
       routes: routes,
       color: Colors.white,
       debugShowCheckedModeBanner: false,

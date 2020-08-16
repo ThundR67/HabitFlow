@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -26,11 +23,6 @@ class _SingleDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double successRate = 0;
-    if (day != null) {
-      successRate = calculateSuccessRate(<Day>[day]);
-    }
-
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Column(
@@ -41,7 +33,7 @@ class _SingleDate extends StatelessWidget {
           ),
           const SizedBox(height: 4.0),
           CircularPercentIndicator(
-            percent: successRate,
+            percent: calculateSuccessRate([day]) ?? 0,
             lineWidth: 3,
             radius: 40,
             backgroundColor: Colors.transparent,
@@ -76,8 +68,9 @@ class InlineCalendar extends StatelessWidget {
       height: 72,
       alignment: Alignment.center,
       child: ListView.builder(
+        itemExtent: 64,
+        cacheExtent: 0,
         physics: scrollPhysics,
-        cacheExtent: 75,
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
         itemBuilder: (context, index) {

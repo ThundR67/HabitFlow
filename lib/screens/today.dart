@@ -19,33 +19,35 @@ class Today extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
+    //final HabitsBloc habitsBloc = Provider.of<HabitsBloc>(context);
     final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
 
     return Scaffold(
-      drawer: const MainDrawer(),
-      appBar: AppBar(
-        title: const _Title(),
-        automaticallyImplyLeading: false,
-      ),
-      body: SizedBox.expand(
-        child: Column(
-          children: <Widget>[
-            InlineCalendar(cycle: currentBloc.current),
-            Expanded(
-              child: HabitsList(
-                habits: habitsBloc.habits,
-                statuses: currentBloc.statuses,
-              ),
-            ),
-          ],
+      // drawer: const MainDrawer(),
+      // appBar: AppBar(
+      //  title: const _Title(),
+      //   automaticallyImplyLeading: false,
+      //  ),
+      body: SafeArea(
+        child: SizedBox.expand(
+          child: Column(
+            children: <Widget>[
+              InlineCalendar(cycle: currentBloc.current),
+              //Expanded(
+              //  child: HabitsList(
+              //    habits: habitsBloc.habits,
+              //   statuses: currentBloc.statuses,
+              //  ),
+              // ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: createHabitRoute,
-        onPressed: () => Navigator.of(context).pushNamed(createHabitRoute),
-        child: const Icon(addIcon),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   heroTag: createHabitRoute,
+      ///   onPressed: () => Navigator.of(context).pushNamed(createHabitRoute),
+      //   child: const Icon(addIcon),
+      //),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:habitflow/resources/strings.dart';
 
 /// Returns success rates of [days].
 double calculateSuccessRate(List<Day> days) {
+  if (days[0] == null) return null;
   int total = 0;
   int successes = 0;
   for (final Day day in days) {

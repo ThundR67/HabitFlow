@@ -41,10 +41,10 @@ class _HomeState extends State<Home> {
         index: _currentIndex,
         children: _pages,
       ),
-      bottomNavigationBar: _BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onChange: (index) => setState(() => _currentIndex = index),
-      ),
+      //  bottomNavigationBar: _BottomNavigationBar(
+      //    currentIndex: _currentIndex,
+      //    onChange: (index) => setState(() => _currentIndex = index),
+      //  ),
     );
   }
 }
@@ -60,7 +60,6 @@ class _BottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('builds');
     return BottomNavyBar(
       selectedIndex: currentIndex,
       backgroundColor:
