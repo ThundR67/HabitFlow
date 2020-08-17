@@ -38,7 +38,7 @@ class AdBloc {
   }
 
   /// Shows an interstitial ad with probability of [chance]%.
-  void interstitial([double chance = kReleaseMode ? 30 : 100]) {
+  void interstitial([double chance = kReleaseMode ? 30 : -1]) {
     if (kIsWeb || !_shouldShow) return;
 
     if (Random().nextInt(100) <= chance) {

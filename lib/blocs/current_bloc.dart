@@ -21,7 +21,7 @@ class CurrentBloc extends ChangeNotifier {
   final CyclesDAO _cyclesDAO = CyclesDAO();
   final HabitsDAO _habitsDAO = HabitsDAO();
 
-  /// Days of cycle.
+  /// Helper for days of cycle.
   Days _days;
 
   /// Current cycle.
@@ -32,15 +32,14 @@ class CurrentBloc extends ChangeNotifier {
 
   /// Updates [statuses] and [current].
   Future<void> _update() async {
+    /// Loads up current cycle if not loaded.
     if (current == null) {
       current = await _dao.get();
-      if (current == null) {
-        await create();
-      }
+      if (current == null) await create();
     }
 
+    /// If [current] has ended then stop and notify listeners.
     if (isEnded()) {
-      /// If [current] has ended then stop.
       notifyListeners();
       return;
     }
@@ -53,14 +52,25 @@ class CurrentBloc extends ChangeNotifier {
       _habitsDAO,
     );
     current.days = _days.days;
-    await _updateStatuses();
 
-    /// Updates.
-    await _dao.update(current);
+    /// Updates. [statuses] and notify listeners.
+    _updateStatuses();
     notifyListeners();
+
+    /// Updates [current] in the db.
+    await _dao.update(current);
   }
 
-  /// Updates current days active habits.
+  /// Updates [statuses].
+  void _updateStatuses() {
+    statuses = {};
+    final String key = formatDate(DateTime.now());
+    for (final String id in current.days[key].activeHabits) {
+      statuses[id] = _days.status(id);
+    }
+  }
+
+  /// Updates current day's active habits.
   Future<void> updateActiveHabits() async {
     final DateTime date = DateTime.now();
     current.days[formatDate(date)].activeHabits = await _habitsDAO.active(date);
@@ -70,30 +80,26 @@ class CurrentBloc extends ChangeNotifier {
   /// Deletes history of habit with [id].
   Future<void> deleteHistory(String id) async {
     _days.deleteHistory(id);
-    current.days = _days.days;
     await _update();
   }
 
-  /// Marks habit with [id] as [status].
+  /// Marks habit with [id] as [status] on [date].
   Future<void> mark(
     String id,
     Status status, [
     String reason,
     DateTime date,
   ]) async {
-    _days.mark(id, status, reason: reason, date: date ?? DateTime.now());
+    _days.mark(
+      id,
+      status,
+      reason: reason,
+      date: date ?? DateTime.now(),
+    );
     await _update();
   }
 
-  /// Updates [statuses].
-  Future<void> _updateStatuses() async {
-    statuses = <String, Status>{};
-    for (final String id in await _habitsDAO.active(DateTime.now())) {
-      statuses[id] = _days.status(id);
-    }
-  }
-
-  /// Creates a new cycle and updates [current].
+  /// Updates [current]  to a new cycle.
   Future<void> create() async {
     final Day day = Day(
       date: formatDate(DateTime.now()),
@@ -104,7 +110,6 @@ class CurrentBloc extends ChangeNotifier {
       end: formatDate(DateTime.now().add(const Duration(days: 15))),
       days: {day.date: day},
     );
-    await _dao.create(current);
     await _update();
     Analytics().logSimple('cycle_added');
   }
@@ -113,14 +118,14 @@ class CurrentBloc extends ChangeNotifier {
   Future<void> end() async {
     await _cyclesDAO.add(current);
     await create();
-    await _update();
     Analytics().logSimple('cycle_ended');
   }
 
   /// Returns if [current] ended.
   bool isEnded() {
-    return (DateTime.now().isAfter(parseDate(current.end))) ||
-        current.end == formatDate(DateTime.now());
+    final bool isAfter = DateTime.now().isAfter(parseDate(current.end));
+    final bool isSameDay = current.end == formatDate(DateTime.now());
+    return isAfter || isSameDay;
   }
 
   @override
