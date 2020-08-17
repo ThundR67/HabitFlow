@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/helpers/analytics.dart';
 import 'package:habitflow/helpers/date_format.dart';
 import 'package:habitflow/helpers/days.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:habitflow/services/current_cycle/current_cycle.dart';
 import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/habits/habits.dart';
@@ -106,7 +106,7 @@ class CurrentBloc extends ChangeNotifier {
     );
     await _dao.create(current);
     await _update();
-    analytics.logEvent(name: 'cycle_added');
+    Analytics().logSimple('cycle_added');
   }
 
   /// Ends a cycle, puts in previous cycles, then creates new one.
@@ -114,7 +114,7 @@ class CurrentBloc extends ChangeNotifier {
     await _cyclesDAO.add(current);
     await create();
     await _update();
-    analytics.logEvent(name: 'cycle_ended');
+    Analytics().logSimple('cycle_ended');
   }
 
   /// Returns if [current] ended.

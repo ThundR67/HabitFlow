@@ -1,11 +1,11 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-import 'package:habitflow/helpers/analytics.dart';
 import 'package:habitflow/helpers/notifications.dart';
 import 'package:habitflow/helpers/quotes.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:habitflow/services/habits/habits.dart';
 
 /// A Bloc which manages user's habits.
@@ -57,20 +57,14 @@ class HabitsBloc extends ChangeNotifier {
   Future<void> add(Habit habit) async {
     await _dao.add(habit);
     await _update();
-    analytics.logEvent(
-      name: 'habit_added',
-      parameters: {'name': habit.name},
-    );
+    Analytics().logHabit('habit_added', habit);
   }
 
   /// Deletes [habit]t from db.
   Future<void> delete(Habit habit) async {
     await _dao.delete(habit);
     await _update();
-    analytics.logEvent(
-      name: 'habit_deleted',
-      parameters: {'name': habit.name},
-    );
+    Analytics().logHabit('habit_ended', habit);
   }
 
   @override

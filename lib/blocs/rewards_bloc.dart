@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/helpers/analytics.dart';
 import 'package:habitflow/models/reward.dart';
+import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:habitflow/services/rewards/rewards.dart';
 
 /// A Bloc which manages rewards.
@@ -26,20 +26,14 @@ class RewardsBloc extends ChangeNotifier {
   Future<void> add(Reward reward) async {
     await _dao.add(reward);
     await _update();
-    analytics.logEvent(
-      name: 'reward_added',
-      parameters: {'name': reward.name},
-    );
+    Analytics().logReward('reward_taken', reward);
   }
 
   /// Deletes [reward] from db.
   Future<void> delete(Reward reward) async {
     await _dao.delete(reward);
     await _update();
-    analytics.logEvent(
-      name: 'reward_deleted',
-      parameters: {'name': reward.name},
-    );
+    Analytics().logReward('reward_taken', reward);
   }
 
   /// Increases [amountTaken] of [reward] by 1.
@@ -47,10 +41,7 @@ class RewardsBloc extends ChangeNotifier {
     reward.amountTaken++;
     await _dao.update(reward);
     await _update();
-    analytics.logEvent(
-      name: 'reward_taken',
-      parameters: {'name': reward.name},
-    );
+    Analytics().logReward('reward_taken', reward);
   }
 
   /// Resets [amountTaken] of all reward to 0.

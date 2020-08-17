@@ -31,7 +31,7 @@ class RewardCard extends StatelessWidget {
     final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
     return MainCard(
       actions: [takeAction(context, reward, rewardsBloc, pointsBloc)],
-      secondaryActions: [deleteAction(reward, rewardsBloc)],
+      secondaryActions: [deleteAction(context, reward, rewardsBloc)],
       description: rewardSwipeDescription,
       controller: controller,
       intro: rewardIntro,

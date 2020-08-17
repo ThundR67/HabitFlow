@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/ad_bloc.dart';
 
 import 'package:habitflow/components/cycle_status.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/redirect.dart';
-import 'package:habitflow/helpers/ads.dart';
+
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/screens/cycle.dart';
+import 'package:provider/provider.dart';
 
 /// A card to show cycle data.
 class CycleCard extends StatelessWidget {
@@ -18,7 +20,7 @@ class CycleCard extends StatelessWidget {
 
   /// Redirects to [CycleInfo] page.
   void _openCycleInfo(BuildContext context) {
-    showInterstitialAd();
+    Provider.of<AdBloc>(context).interstitial();
     redirect(context, cycleInfoRoute, CycleInfo(cycle));
   }
 

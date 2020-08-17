@@ -38,20 +38,31 @@ class HabitCard extends StatelessWidget {
   final SlidableController controller;
 
   /// Returns all primary actions on habit.
-  List<Widget> _actions(CurrentBloc bloc, PointsBloc pointsBloc) {
+  List<Widget> _actions(
+      BuildContext context, CurrentBloc bloc, PointsBloc pointsBloc) {
     final List<Widget> actions = <Widget>[
-      doneAction(habit, pointsBloc, bloc),
+      doneAction(context, habit, pointsBloc, bloc),
     ];
-    return status == Status.unmarked ? actions : [undoAction(habit, bloc)];
+    return status == Status.unmarked
+        ? actions
+        : [
+            undoAction(
+              context,
+              habit,
+              bloc,
+            ),
+          ];
   }
 
   /// Returns all secondary actions on habit.
   List<Widget> _secondaryActions(BuildContext context, CurrentBloc bloc) {
     final List<Widget> actions = <Widget>[
-      skipAction(habit, bloc),
+      skipAction(context, habit, bloc),
       failAction(context, habit),
     ];
-    return status == Status.unmarked ? actions : [undoAction(habit, bloc)];
+    return status == Status.unmarked
+        ? actions
+        : [undoAction(context, habit, bloc)];
   }
 
   @override
@@ -62,7 +73,7 @@ class HabitCard extends StatelessWidget {
 
     return MainCard(
       intro: habitIntro,
-      actions: _actions(currentBloc, pointsBloc),
+      actions: _actions(context, currentBloc, pointsBloc),
       secondaryActions: _secondaryActions(context, currentBloc),
       onTap: () => redirect(context, habitInfoRoute, HabitInfo(habit)),
       description: habitSwipeDescription,

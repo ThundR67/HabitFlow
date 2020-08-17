@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 
-import 'package:habitflow/helpers/ads.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/cycles.dart';
@@ -27,12 +26,6 @@ class _HomeState extends State<Home> {
     Today(),
     Rewards(),
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    FirebaseAdMob.instance.initialize(appId: appID);
-  }
 
   @override
   Widget build(BuildContext context) {

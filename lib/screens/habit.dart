@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
-import 'package:habitflow/helpers/ads.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
@@ -133,7 +132,6 @@ class HabitInfo extends StatelessWidget {
             onPressed: () {
               bloc.delete(_habit);
               currentBloc.deleteHistory(_habit.id);
-              showInterstitialAd();
               Navigator.of(context).pop();
             },
           )

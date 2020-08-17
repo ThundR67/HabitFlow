@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:habitflow/blocs/ad_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,6 @@ import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/blocs/theme_bloc.dart';
-import 'package:habitflow/helpers/analytics.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/goal.dart';
@@ -38,7 +38,7 @@ Future<void> main() async {
 
   runApp(
     MultiProvider(
-      providers: <ChangeNotifierProvider<dynamic>>[
+      providers: [
         ChangeNotifierProvider<RewardsBloc>(create: (_) => RewardsBloc()),
         ChangeNotifierProvider<PointsBloc>(create: (_) => PointsBloc()),
         ChangeNotifierProvider<HabitsBloc>(create: (_) => HabitsBloc()),
@@ -46,6 +46,7 @@ Future<void> main() async {
         ChangeNotifierProvider<CurrentBloc>(create: (_) => CurrentBloc()),
         ChangeNotifierProvider<IntroBloc>(create: (_) => IntroBloc()),
         ChangeNotifierProvider<ThemeBloc>(create: (_) => ThemeBloc()),
+        Provider<AdBloc>(create: (_) => AdBloc()),
       ],
       child: EasyLocalization(
         supportedLocales: const <Locale>[Locale('en')],
@@ -65,13 +66,13 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
     return MaterialApp(
-      navigatorObservers: [observer],
+      //TODO navigatorObservers: [observer],
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: bloc.themes[bloc.current],
       themeMode: ThemeMode.light,
-      initialRoute: homeRoute,
+      initialRoute: loadingRoute,
       routes: routes,
       color: Colors.white,
       debugShowCheckedModeBanner: false,

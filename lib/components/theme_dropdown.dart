@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/helpers/ads.dart';
+import 'package:habitflow/blocs/ad_bloc.dart';
 
 import 'package:provider/provider.dart';
 
@@ -26,7 +26,7 @@ class _ThemeDropDownState extends State<ThemeDropDown> {
 
   /// Changes states when user selects a value.
   void _onChange(String value, [bool save = true]) {
-    showInterstitialAd();
+    Provider.of<AdBloc>(context).interstitial();
     final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
     setState(() => _value = value);
     if (save) {
