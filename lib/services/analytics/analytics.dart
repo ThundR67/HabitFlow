@@ -25,10 +25,14 @@ class Analytics {
   }
 
   /// Logs an simple event with [name].
-  void logSimple(String name) => _analytics.logEvent(name: name);
+  void logSimple(String name) {
+    if (kIsWeb) return;
+    _analytics.logEvent(name: name);
+  }
 
   /// Logs a reward with event [name].
   void logHabit(String name, Habit habit) {
+    if (kIsWeb) return;
     _analytics.logEvent(
       name: name,
       parameters: {
@@ -40,6 +44,7 @@ class Analytics {
 
   /// Logs a reward with event [name].
   void logReward(String name, Reward reward) {
+    if (kIsWeb) return;
     _analytics.logEvent(
       name: name,
       parameters: {
