@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:habitflow/blocs/ad_bloc.dart';
+import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final Directory dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
+  Analytics().init();
 
   runApp(
     MultiProvider(

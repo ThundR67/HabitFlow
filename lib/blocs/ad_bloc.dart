@@ -56,7 +56,7 @@ class AdBloc {
           ..load()
           ..show()
           ..dispose();
-        //Analytics().logSimple('interstitial_ad_shown');
+        Analytics().logSimple('interstitial_ad_shown');
       }
     }
   }
