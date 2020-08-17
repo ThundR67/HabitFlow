@@ -34,12 +34,13 @@ class ThemeBloc extends ChangeNotifier {
 
   /// Name of current theme.
   String current;
+
   final ThemeDAO _dao = ThemeDAO();
 
   /// Sets [current] theme to [name].
   void set(String name) {
-    _dao.set(name);
     current = name;
     notifyListeners();
+    _dao.set(name);
   }
 }
