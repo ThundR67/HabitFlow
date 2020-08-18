@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 import 'package:habitflow/resources/themes.dart';
 import 'package:habitflow/services/theme/theme.dart';
@@ -27,7 +26,7 @@ class ThemeBloc extends ChangeNotifier {
     system: systemTheme(),
   };
 
-  /// Sets [current] to current theme name or defaults to system.
+  /// Sets [current] to current theme name or defaults to [system].
   ThemeBloc() {
     _dao.current().then((value) {
       current = value ?? system;
