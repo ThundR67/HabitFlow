@@ -10,10 +10,9 @@ class CyclesBloc extends ChangeNotifier {
     _update();
   }
 
-  final CyclesDAO _dao = CyclesDAO();
-
   /// All the cycles.
   List<Cycle> cycles;
+  final CyclesDAO _dao = CyclesDAO();
 
   /// Updates [cycles].
   Future<void> _update() async {
