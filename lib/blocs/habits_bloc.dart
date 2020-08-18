@@ -32,9 +32,7 @@ class HabitsBloc extends ChangeNotifier {
     if (habit.goal.notificationTimes.isEmpty) return;
     if (habit.goal.activeDays.isEmpty) return;
 
-    final List<Day> days = [
-      for (int i in habit.goal.activeDays) Day.values[i - 1]
-    ];
+    final days = <Day>[for (int i in habit.goal.activeDays) Day.values[i - 1]];
 
     final TimeOfDay time = habit.goal.notificationTimes[0];
     await _notifications.schedule(
