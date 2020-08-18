@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 /// Returns default dark mode.
 ThemeData darkTheme() {
@@ -64,4 +65,11 @@ ThemeData lightTheme() {
       ),
     ),
   );
+}
+
+/// Returns the [lightTheme()] or [darkTheme()] based on system.
+ThemeData systemTheme() {
+  final Brightness brightness =
+      SchedulerBinding.instance.window.platformBrightness;
+  return brightness == Brightness.light ? lightTheme() : darkTheme();
 }

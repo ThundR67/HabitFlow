@@ -17,21 +17,18 @@ const system = 'system';
 class ThemeBloc extends ChangeNotifier {
   final ThemeDAO _dao = ThemeDAO();
 
-  /// All the themes.
-  Map<String, ThemeData> themes;
-
   /// Name of current theme.
   String current;
 
-  /// Sets [themes] and [currentTheme].
-  ThemeBloc() {
-    final brightness = SchedulerBinding.instance.window.platformBrightness;
-    themes = {
-      light: lightTheme(),
-      dark: darkTheme(),
-      system: brightness == Brightness.light ? lightTheme() : darkTheme(),
-    };
+  /// All the themes.
+  Map<String, ThemeData> themes = {
+    light: lightTheme(),
+    dark: darkTheme(),
+    system: systemTheme(),
+  };
 
+  /// Sets [current] to current theme name or defaults to system.
+  ThemeBloc() {
     _dao.current().then((value) {
       current = value ?? system;
       notifyListeners();
