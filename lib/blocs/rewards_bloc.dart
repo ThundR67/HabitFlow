@@ -11,10 +11,9 @@ class RewardsBloc extends ChangeNotifier {
     _update();
   }
 
-  final RewardsDAO _dao = RewardsDAO();
-
   /// All the rewards.
   List<Reward> rewards;
+  final RewardsDAO _dao = RewardsDAO();
 
   /// Updates [rewards].
   Future<void> _update() async {
