@@ -45,7 +45,7 @@ class HabitsBloc extends ChangeNotifier {
     );
   }
 
-  /// Updates [habits].
+  /// Updates [habits] and sets up notifications.
   Future<void> _update() async {
     habits = await _dao.all();
     notifyListeners();
