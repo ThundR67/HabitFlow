@@ -9,6 +9,7 @@ import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:habitflow/services/current_cycle/current_cycle.dart';
 import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/habits/habits.dart';
+import 'package:habitflow/helpers/time.dart';
 
 /// Bloc to manage current cycle and statuses of habits.
 class CurrentBloc extends ChangeNotifier {
@@ -47,8 +48,8 @@ class CurrentBloc extends ChangeNotifier {
     // Fills missing days and unmarked failures.
     _days = Days(current.days);
     await _days.fill(
-      parseDate(current.start),
-      parseDate(current.end),
+      Time.parse(current.start),
+      Time.parse(current.end),
       _habitsDAO,
     );
     current.days = _days.days;
@@ -63,17 +64,17 @@ class CurrentBloc extends ChangeNotifier {
 
   /// Updates [statuses].
   void _updateStatuses() {
-    statuses = {};
-    final String key = formatDate(DateTime.now());
-    for (final String id in current.days[key].activeHabits) {
-      statuses[id] = _days.status(id);
-    }
+    final String key = DateTime.now().format();
+    statuses = {
+      for (final String id in current.days[key].activeHabits)
+        id: _days.status(id)
+    };
   }
 
   /// Updates current day's active habits.
   Future<void> updateActiveHabits() async {
     final DateTime date = DateTime.now();
-    current.days[formatDate(date)].activeHabits = await _habitsDAO.active(date);
+    current.days[date.format()].activeHabits = await _habitsDAO.active(date);
     await _update();
   }
 
@@ -101,15 +102,21 @@ class CurrentBloc extends ChangeNotifier {
 
   /// Updates [current]  to a new cycle.
   Future<void> create() async {
+    final DateTime date = DateTime.now();
+
+    /// Creating [Day] for current day.
     final Day day = Day(
-      date: formatDate(DateTime.now()),
-      activeHabits: await _habitsDAO.active(DateTime.now()),
+      date: date.format(),
+      activeHabits: await _habitsDAO.active(date),
     );
+
+    /// Creating a cycle.
     current = Cycle(
-      start: formatDate(DateTime.now()),
-      end: formatDate(DateTime.now().add(const Duration(days: 15))),
+      start: date.format(),
+      end: date.add(const Duration(days: 15)).format(),
       days: {day.date: day},
     );
+
     await _update();
     Analytics().logSimple('cycle_added');
   }
@@ -122,11 +129,7 @@ class CurrentBloc extends ChangeNotifier {
   }
 
   /// Returns if [current] ended.
-  bool isEnded() {
-    final bool isAfter = DateTime.now().isAfter(parseDate(current.end));
-    final bool isSameDay = current.end == formatDate(DateTime.now());
-    return isAfter || isSameDay;
-  }
+  bool isEnded() => DateTime.now().isAfter(Time.parse(current.end));
 
   @override
   void dispose() {
