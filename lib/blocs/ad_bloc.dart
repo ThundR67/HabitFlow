@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:habitflow/services/analytics/analytics.dart';
 
-// AdMob values used in release mode only. Else test values are used
+final Random _random = Random();
 const String _appID = 'ca-app-pub-5935597695294717~4847422484';
 const String _interstitialID = 'ca-app-pub-5935597695294717/6275521390';
 const MobileAdTargetingInfo _targetingInfo = MobileAdTargetingInfo(
@@ -24,13 +24,11 @@ class AdBloc {
 
   /// Initializes admob if not web.
   AdBloc() {
-    if (kIsWeb) return;
-    FirebaseAdMob.instance.initialize(
-      appId: kReleaseMode ? _appID : FirebaseAdMob.testAppId,
-    );
+    if (kIsWeb || !kReleaseMode) return;
+    FirebaseAdMob.instance.initialize(appId: _appID);
   }
 
-  /// Marks [_shouldShow] as true for 5 seconds.
+  /// Marks [_shouldShow] as false for 5 seconds, then marks as true.
   Future<void> _isShowing() async {
     _shouldShow = false;
     await Future.delayed(const Duration(seconds: 5));
@@ -38,13 +36,13 @@ class AdBloc {
   }
 
   /// Shows an interstitial ad with probability of [chance]%.
-  void interstitial([double chance = kReleaseMode ? 30 : -1]) {
-    if (kIsWeb || !_shouldShow) return;
+  void interstitial([double chance = 30]) {
+    if (kIsWeb || !kReleaseMode || !_shouldShow) return;
 
-    if (Random().nextInt(100) <= chance) {
+    if (_random.nextInt(100) <= chance) {
       _isShowing();
       InterstitialAd(
-        adUnitId: kReleaseMode ? _interstitialID : InterstitialAd.testAdUnitId,
+        adUnitId: _interstitialID,
         targetingInfo: _targetingInfo,
       )
         ..load()
