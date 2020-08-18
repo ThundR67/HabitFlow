@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/services/reward_points/reward_points.dart';
+import 'package:hive/hive.dart';
+
+const String _dbName = 'reward_points';
 
 /// A bloc to manage and store user's reward points.
 class PointsBloc extends ChangeNotifier {
@@ -9,37 +11,34 @@ class PointsBloc extends ChangeNotifier {
     _update();
   }
 
-  final RewardPointsDAO _dao = RewardPointsDAO();
+  Future<Box<int>> get _db async => Hive.openBox(_dbName);
 
   /// Reward points of user.
   int points;
 
   /// Updates [point].
   Future<void> _update() async {
-    points = await _dao.get();
+    points = (await _db).get(_dbName);
     notifyListeners();
   }
 
-  /// Increments reward points by [value].
-  void increment(int value) {
-    _dao.changeBy(value);
+  /// Changes [points] by [value].
+  Future<void> changeBy(int value) async {
     points += value;
     notifyListeners();
+    (await _db).put(_dbName, points);
   }
 
-  /// Decrement reward points by [value].
-  void decrement(int value) => increment(-value);
-
   /// Resets [points] to 0.
-  void reset() {
-    _dao.changeBy(-points);
+  Future<void> reset() async {
     points = 0;
     notifyListeners();
+    (await _db).put(_dbName, 0);
   }
 
   @override
-  void dispose() {
+  Future<void> dispose() async {
     super.dispose();
-    _dao.close();
+    (await _db).close();
   }
 }
