@@ -1,7 +1,7 @@
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/resources/strings.dart';
 
-/// Class to represent statistic.
+/// Class to represent statistic of [habits] over [days].
 class Statistics {
   /// Returns [Stat]
   Statistics({Map<String, Day> days, List<String> habits}) {

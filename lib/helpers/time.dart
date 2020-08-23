@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 final DateFormat _dateFormatter = DateFormat('yyyy-MM-dd');
@@ -11,9 +12,9 @@ extension EDateTime on DateTime {
 }
 
 /// Extension to allow basic functions used on [TimeOfDay] used app-wide.
-extension ETimeOfDay on DateTime {
-  /// Converts [this] to [String].
-  String str() => _timeFormatter.format(this);
+extension ETimeOfDay on TimeOfDay {
+  /// Converts [this] to [Time].
+  Time notificationTime() => Time(hour, minute);
 }
 
 /// Extension to allow basic functions used on [String] used app-wide.

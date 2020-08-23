@@ -1,6 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/helpers/time.dart';
+
+Random _random = Random();
 
 /// Class to help with notifications.
 class Notifications {
@@ -32,21 +36,17 @@ class Notifications {
     await _plugin.initialize(_settings, onSelectNotification: onSelect);
   }
 
-  /// Schedules notifications at [days].
-  Future<void> schedule(
-    Time time,
-    String title,
-    String body,
-    List<Day> days,
-  ) async {
-    final Random rand = Random();
-    for (final Day day in days) {
+  /// Schedules notifications for a [habit].
+  Future<void> setForHabit(Habit habit) async {
+    if (habit.goal.notificationTimes.isEmpty) return;
+
+    for (final day in habit.goal.activeDays) {
       await _plugin.showWeeklyAtDayAndTime(
-        rand.nextInt(10000),
-        title,
-        body,
-        day,
-        time,
+        _random.nextInt(9999),
+        'Reminder for $habit',
+        'Lets go',
+        Day.values[day - 1],
+        habit.goal.notificationTimes[0].notificationTime(),
         _details,
       );
     }
