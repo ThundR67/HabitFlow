@@ -6,15 +6,14 @@ const String _dbName = 'reward_points';
 
 /// A bloc to manage and store user's reward points.
 class PointsBloc extends ChangeNotifier {
+  /// Reward points of user.
+  int points;
+  Future<Box<int>> get _db async => Hive.openBox(_dbName);
+
   /// Creates a bloc and causes an update.
   PointsBloc() {
     _update();
   }
-
-  Future<Box<int>> get _db async => Hive.openBox(_dbName);
-
-  /// Reward points of user.
-  int points;
 
   /// Updates [point].
   Future<void> _update() async {

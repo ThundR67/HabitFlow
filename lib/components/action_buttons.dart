@@ -41,7 +41,7 @@ ActionButton doneAction(
     onPressed: () {
       play('success');
       bloc.mark(habit.id, Status.done);
-      pointsBloc.increment(habit.points);
+      pointsBloc.changeBy(habit.points);
       Provider.of<AdBloc>(context, listen: false).interstitial();
     },
     icon: doneIcon,
@@ -94,7 +94,7 @@ ActionButton takeAction(
       }
       play('success');
       bloc.take(reward);
-      pointsBloc.decrement(reward.points);
+      pointsBloc.changeBy(-reward.points);
       Provider.of<AdBloc>(context, listen: false).interstitial();
     },
   );
