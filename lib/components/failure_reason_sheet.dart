@@ -7,13 +7,20 @@ import 'package:habitflow/helpers/sounds.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/strings.dart';
 
-/// Allows user to provide reason for failure and then marks [habit] as failed.
+/// Allows user to provide reason for failure and then marks [habit] on [date] as failed.
 class FailureReasonSheet extends StatelessWidget {
   /// Constructs.
-  FailureReasonSheet(this.id);
+  FailureReasonSheet({
+    @required this.id,
+    this.date,
+  });
 
   /// Habit on which user is failing.
   final String id;
+
+  /// Date when habit needs to be marked as failed.
+  final DateTime date;
+
   final TextEditingController _controller = TextEditingController();
 
   /// Marks [habit] as failure.
@@ -22,7 +29,7 @@ class FailureReasonSheet extends StatelessWidget {
       context,
       listen: false,
     );
-    bloc.mark(id, Status.failed, _controller.text);
+    bloc.mark(id, Status.failed, _controller.text, date ?? DateTime.now());
     play('failure');
     Navigator.of(context).pop();
   }

@@ -7,6 +7,7 @@ import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:habitflow/helpers/time.dart';
 
 /// A widget to show all failures of a day.
 class _DaysFailures extends StatelessWidget {
@@ -17,9 +18,12 @@ class _DaysFailures extends StatelessWidget {
   final CurrentBloc _bloc;
 
   /// Shows failure reason sheet.
-  void _showFailureReasonSheet(BuildContext context, String id) {
+  void _showFailureReasonSheet(BuildContext context, String id, String date) {
     Scaffold.of(context).showBottomSheet<FailureReasonSheet>(
-      (BuildContext context) => FailureReasonSheet(id),
+      (BuildContext context) => FailureReasonSheet(
+        id: id,
+        date: Time.parse(date),
+      ),
     );
   }
 
@@ -72,7 +76,7 @@ class _DaysFailures extends StatelessWidget {
                   } else if (value == 1) {
                     _bloc.mark(id, Status.done);
                   } else if (value == 2) {
-                    _showFailureReasonSheet(context, id);
+                    _showFailureReasonSheet(context, id, _day.date);
                   }
                 },
                 itemBuilder: (_) {
