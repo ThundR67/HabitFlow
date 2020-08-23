@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:global_configuration/global_configuration.dart';
 import 'package:habitflow/blocs/ad_bloc.dart';
 import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:hive/hive.dart';
@@ -26,17 +27,24 @@ import 'package:habitflow/models/time_of_day.g.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/routes.dart';
 
-Future<void> main() async {
+/// Initializes Hive.
+Future<void> _hiveInit() async {
   Hive.registerAdapter(RewardAdapter());
   Hive.registerAdapter(CycleAdapter());
   Hive.registerAdapter(HabitAdapter());
   Hive.registerAdapter(GoalAdapter());
   Hive.registerAdapter(DayAdapter());
   Hive.registerAdapter(TimeAdapter());
-  WidgetsFlutterBinding.ensureInitialized();
   final Directory dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
+}
+
+Future<void> main() async {
+  /// Doing all initializations.
+  WidgetsFlutterBinding.ensureInitialized();
   Analytics().init();
+  await _hiveInit();
+  await GlobalConfiguration().loadFromAsset("dev.json");
 
   runApp(
     MultiProvider(

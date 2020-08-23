@@ -11,6 +11,8 @@ import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/habits/habits.dart';
 import 'package:habitflow/helpers/time.dart';
 
+/// TODO clean by updating structure a bit.
+
 /// Bloc to manage current cycle and statuses of habits.
 class CurrentBloc extends ChangeNotifier {
   /// Constructs.

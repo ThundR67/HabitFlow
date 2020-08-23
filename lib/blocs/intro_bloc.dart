@@ -25,6 +25,7 @@ class IntroBloc extends ChangeNotifier {
 
   /// Fills up [intros].
   IntroBloc() {
+    intros = {};
     for (final intro in allIntros) {
       _dao.isShown(intro).then((value) => intros[intro] = value);
     }
