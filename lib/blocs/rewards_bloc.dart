@@ -25,14 +25,14 @@ class RewardsBloc extends ChangeNotifier {
   Future<void> add(Reward reward) async {
     await _dao.add(reward);
     await _update();
-    Analytics().logReward('reward_taken', reward);
+    Analytics().logReward('reward_added', reward);
   }
 
   /// Deletes [reward] from db.
   Future<void> delete(Reward reward) async {
     await _dao.delete(reward);
     await _update();
-    Analytics().logReward('reward_taken', reward);
+    Analytics().logReward('reward_deleted', reward);
   }
 
   /// Increases [amountTaken] of [reward] by 1.
