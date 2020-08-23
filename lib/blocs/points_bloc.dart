@@ -34,10 +34,4 @@ class PointsBloc extends ChangeNotifier {
     notifyListeners();
     (await _db).put(_dbName, 0);
   }
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
-    (await _db).close();
-  }
 }

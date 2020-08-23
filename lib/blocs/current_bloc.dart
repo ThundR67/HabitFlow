@@ -14,7 +14,7 @@ import 'package:habitflow/helpers/time.dart';
 class CurrentBloc extends ChangeNotifier {
   /// Constructs.
   CurrentBloc() {
-    _update();
+    update();
   }
 
   final CurrentCycleDAO _dao = CurrentCycleDAO();
@@ -69,7 +69,7 @@ class CurrentBloc extends ChangeNotifier {
   }
 
   /// Updates [statuses] and [current].
-  Future<void> _update() async {
+  Future<void> update() async {
     current ??= (await _dao.get()) ?? await _create();
     await _fill();
     _updateStatuses();
@@ -84,7 +84,7 @@ class CurrentBloc extends ChangeNotifier {
   Future<void> updateHabits() async {
     final DateTime date = DateTime.now();
     current.days[date.format()].activeHabits = await _habitsDAO.active(date);
-    await _update();
+    await update();
   }
 
   /// Removes history of habit with [id].
@@ -92,7 +92,7 @@ class CurrentBloc extends ChangeNotifier {
     for (final day in current.days.values) {
       day.remove(id);
     }
-    await _update();
+    await update();
   }
 
   /// Marks habit with [id] as [status] on [date] with [reason].
@@ -104,22 +104,14 @@ class CurrentBloc extends ChangeNotifier {
   }) async {
     final String key = (date ?? DateTime.now()).format();
     current.days[key].mark(id, status, reason: reason);
-    await _update();
+    await update();
   }
 
   /// Ends a cycle, puts in previous cycles, then creates new one.
   Future<void> end() async {
+    Analytics().logSimple('cycle_ended');
     await _cyclesDAO.add(current);
     current = null;
-    await _update();
-    Analytics().logSimple('cycle_ended');
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _cyclesDAO.close();
-    _dao.close();
-    _habitsDAO.close();
+    await update();
   }
 }

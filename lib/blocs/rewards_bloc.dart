@@ -51,10 +51,4 @@ class RewardsBloc extends ChangeNotifier {
     }
     await _update();
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _dao.close();
-  }
 }

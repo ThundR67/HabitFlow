@@ -47,8 +47,7 @@ class AdBloc {
       _isShowing();
       _interstitialAd
         ..load()
-        ..show()
-        ..dispose();
+        ..show();
       Analytics().logSimple('interstitial_ad_shown');
     }
   }

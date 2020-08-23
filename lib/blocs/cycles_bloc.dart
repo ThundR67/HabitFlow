@@ -7,22 +7,13 @@ import 'package:habitflow/services/cycles/cycles.dart';
 class CyclesBloc extends ChangeNotifier {
   /// Constructs.
   CyclesBloc() {
-    _update();
+    _dao.all().then((value) {
+      cycles = value;
+      notifyListeners();
+    });
   }
 
   /// All the cycles.
   List<Cycle> cycles;
   final CyclesDAO _dao = CyclesDAO();
-
-  /// Updates [cycles].
-  Future<void> _update() async {
-    cycles = await _dao.all();
-    notifyListeners();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _dao.close();
-  }
 }
