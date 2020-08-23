@@ -15,7 +15,12 @@ const rewardIntro = 'reward';
 const cycleIntro = 'cycle';
 
 /// List of all intros.
-const List<String> allIntros = [mainIntro, habitIntro, rewardIntro, cycleIntro];
+const List<String> allIntros = [
+  mainIntro,
+  habitIntro,
+  rewardIntro,
+  cycleIntro,
+];
 
 /// This bloc will manage if all intros are shown or not.
 class IntroBloc extends ChangeNotifier {
