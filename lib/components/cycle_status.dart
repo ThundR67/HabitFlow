@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitflow/components/percentage_indicator.dart';
-import 'package:habitflow/helpers/date_format.dart';
-import 'package:habitflow/helpers/success_rate.dart';
+import 'package:habitflow/helpers/time.dart';
+import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/strings.dart';
 
@@ -16,9 +16,9 @@ class CycleStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DateTime start = parseDate(cycle.start);
-    final DateTime end = parseDate(cycle.end);
-    final double successRate = calculateSuccessRate(cycle.days.values.toList());
+    final DateTime start = cycle.start.date();
+    final DateTime end = cycle.end.date();
+    final Statistics stats = Statistics(days: cycle.days.values.toList());
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -32,7 +32,7 @@ class CycleStatus extends StatelessWidget {
           style: Theme.of(context).textTheme.headline5,
         ),
         PercentageIndicator(
-          value: successRate,
+          value: stats.successRate,
           style: Theme.of(context).textTheme.headline5,
         )
       ],

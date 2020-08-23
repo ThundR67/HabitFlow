@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitflow/components/neu_card.dart';
+import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// Widget to show successes, skips, failures.
 class Stats extends StatelessWidget {
   /// Constructs.
-  const Stats({
-    this.successesNum = 0,
-    this.skipsNum = 0,
-    this.failuresNum = 0,
-  });
+  const Stats(this.statistics);
 
-  /// Number of successes.
-  final int successesNum;
-
-  /// Number of skips.
-  final int skipsNum;
-
-  /// Number of failures.
-  final int failuresNum;
+  /// Statistics to display.
+  final Statistics statistics;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +19,15 @@ class Stats extends StatelessWidget {
       children: [
         _Stat(
           text: successes,
-          number: successesNum,
+          number: statistics.amountDone,
         ),
         _Stat(
           text: skips,
-          number: skipsNum,
+          number: statistics.amountSkipped,
         ),
         _Stat(
           text: failures,
-          number: failuresNum,
+          number: statistics.amountFailed,
         )
       ],
     );

@@ -1,3 +1,6 @@
+import 'package:habitflow/models/status.dart';
+import 'package:habitflow/resources/strings.dart';
+import 'package:habitflow/helpers/time.dart';
 import 'package:hive/hive.dart';
 
 part 'day.g.dart';
@@ -12,11 +15,14 @@ class Day {
     this.skips,
     this.successes,
     this.failures,
-  }) {
-    activeHabits ??= <String>[];
-    successes ??= <String>[];
-    skips ??= <String>[];
-    failures ??= <String, String>{};
+  });
+
+  /// Creates an empty day.
+  Day.empty({this.date, this.activeHabits, bool addFailures}) {
+    failures = {};
+    if (addFailures) {
+      failures = {for (final id in activeHabits) id: unprovidedReason};
+    }
   }
 
   /// Date of the day formatted.
@@ -25,17 +31,46 @@ class Day {
 
   /// Active habits' ids on the day.
   @HiveField(1)
-  List<String> activeHabits;
+  List<String> activeHabits = [];
 
   /// Ids of habits successful on the day.
   @HiveField(2)
-  List<String> successes;
+  List<String> successes = [];
 
   /// Ids of skips on the day.
   @HiveField(3)
-  List<String> skips;
+  List<String> skips = [];
 
   /// Map of habit id and review of failures.
   @HiveField(4)
-  Map<String, String> failures;
+  Map<String, String> failures = {};
+
+  /// Returns status of [id].
+  Status status(String id) {
+    if (successes.contains(id)) return Status.done;
+    if (skips.contains(id)) return Status.skipped;
+    if (failures.containsKey(id)) return Status.failed;
+    return Status.unmarked;
+  }
+
+  /// Removes history of [id].
+  void remove(String id) {
+    unmark(id);
+    activeHabits.remove(id);
+  }
+
+  /// Unmarks [id] as success, skip, or failure.
+  void unmark(String id) {
+    successes.remove(id);
+    skips.remove(id);
+    failures.remove(id);
+  }
+
+  /// Marks [id] as [status] with [reason].
+  void mark(String id, Status status, {String reason}) {
+    unmark(id);
+    if (status == Status.done) successes.add(id);
+    if (status == Status.skipped) skips.add(id);
+    if (status == Status.failed) failures[id] = reason ?? unprovidedReason;
+  }
 }

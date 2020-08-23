@@ -69,7 +69,7 @@ class _CycleEndedState extends State<CycleEnded> {
                     RaisedButton(
                       color: Colors.white,
                       onPressed: () {
-                        bloc.create();
+                        bloc.update();
                         pointsBloc.reset();
                         rewardsBloc.reset();
                         Navigator.of(context).pushReplacementNamed(homeRoute);

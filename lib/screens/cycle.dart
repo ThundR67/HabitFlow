@@ -8,7 +8,7 @@ import 'package:habitflow/components/cycle_status.dart';
 import 'package:habitflow/components/failures_expansion_tile_.dart';
 import 'package:habitflow/components/habit_success_rates.dart';
 import 'package:habitflow/components/stats.dart';
-import 'package:habitflow/helpers/success_rate.dart';
+import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/behaviour.dart';
@@ -22,11 +22,16 @@ class CycleInfo extends StatelessWidget {
   final Cycle _cycle;
 
   Map<String, double> _successRates(HabitsBloc bloc) {
-    return <String, double>{
-      for (Habit habit in bloc.habits.values)
-        habit.name:
-            calculateHabitSuccessRate(habit.id, _cycle.days.values.toList())
-    };
+    final Map<String, double> successRates = {};
+    final List<String> habitIds = [];
+    for (final day in _cycle.days.values) habitIds.addAll(day.activeHabits);
+    for (final id in habitIds.toSet().toList()) {
+      successRates[id] = Statistics(
+        days: _cycle.days.values.toList(),
+        habits: [id],
+      ).successRate;
+    }
+    return successRates;
   }
 
   Map<String, String> _habits(HabitsBloc bloc) {
@@ -39,7 +44,7 @@ class CycleInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
 
-    final List<int> stats = cycleStats(_cycle.days.values.toList());
+    final Statistics stats = Statistics(days: _cycle.days.values.toList());
 
     return Scaffold(
       appBar: AppBar(
@@ -54,11 +59,7 @@ class CycleInfo extends StatelessWidget {
           children: <Widget>[
             CycleStatus(cycle: _cycle),
             const SizedBox(height: 16.0),
-            Stats(
-              successesNum: stats[0],
-              skipsNum: stats[1],
-              failuresNum: stats[2],
-            ),
+            Stats(stats),
             const SizedBox(height: 16.0),
             HabitSuccessRates(_successRates(bloc)),
             FailuresPanel(

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import 'package:habitflow/helpers/date_format.dart';
+import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/helpers/dates.dart';
-import 'package:habitflow/helpers/success_rate.dart';
+import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/resources/behaviour.dart';
@@ -33,7 +33,7 @@ class _SingleDate extends StatelessWidget {
           ),
           const SizedBox(height: 4.0),
           CircularPercentIndicator(
-            percent: calculateSuccessRate([day]) ?? 0,
+            percent: Statistics(days: [day]).successRate,
             lineWidth: 3,
             radius: 40,
             backgroundColor: Colors.transparent,
@@ -60,8 +60,8 @@ class InlineCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<DateTime> dates = datesList(
-      parseDate(cycle.start),
-      parseDate(cycle.end),
+      cycle.start.date(),
+      cycle.end.date(),
     );
 
     return Container(
@@ -77,7 +77,7 @@ class InlineCalendar extends StatelessWidget {
           final DateTime date = dates[index];
           return _SingleDate(
             date: date,
-            day: cycle.days[formatDate(date)],
+            day: cycle.days[date.format()],
           );
         },
       ),

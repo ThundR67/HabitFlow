@@ -29,7 +29,12 @@ class FailureReasonSheet extends StatelessWidget {
       context,
       listen: false,
     );
-    bloc.mark(id, Status.failed, _controller.text, date ?? DateTime.now());
+    bloc.mark(
+      id,
+      Status.failed,
+      date: date ?? DateTime.now(),
+      reason: _controller.text,
+    );
     play('failure');
     Navigator.of(context).pop();
   }

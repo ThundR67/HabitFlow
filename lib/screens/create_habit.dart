@@ -64,7 +64,7 @@ class _CreateHabitState extends State<CreateHabit> {
               ),
             ),
           )
-          .whenComplete(_currentBloc.updateActiveHabits);
+          .whenComplete(_currentBloc.updateHabits);
 
       Navigator.pop(context);
     }

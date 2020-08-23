@@ -9,7 +9,7 @@ import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/recent_failures.dart';
 import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/colors.dart';
-import 'package:habitflow/helpers/success_rate.dart';
+import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -131,7 +131,7 @@ class HabitInfo extends StatelessWidget {
             ),
             onPressed: () {
               bloc.delete(_habit);
-              currentBloc.deleteHistory(_habit.id);
+              currentBloc.remove(_habit.id);
               Navigator.of(context).pop();
             },
           )
@@ -143,20 +143,7 @@ class HabitInfo extends StatelessWidget {
           children: [
             _Info(_habit),
             const SizedBox(height: 24.0),
-            Stats(
-              successesNum: successesAmount(
-                _habit.id,
-                currentBloc.current.days.values.toList(),
-              ),
-              skipsNum: skipsAmount(
-                _habit.id,
-                currentBloc.current.days.values.toList(),
-              ),
-              failuresNum: failureAmount(
-                _habit.id,
-                currentBloc.current.days.values.toList(),
-              ),
-            ),
+            Stats(Statistics(days: currentBloc.current.days.values.toList())),
             const SizedBox(height: 32.0),
             if (recentFailures.isNotEmpty) RecentFailures(recentFailures),
           ],

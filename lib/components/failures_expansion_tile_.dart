@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
-import 'package:habitflow/helpers/date_format.dart';
+import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:habitflow/helpers/time.dart';
 
 /// A widget to show all failures of a day.
 class _DaysFailures extends StatelessWidget {
@@ -22,7 +21,7 @@ class _DaysFailures extends StatelessWidget {
     Scaffold.of(context).showBottomSheet<FailureReasonSheet>(
       (BuildContext context) => FailureReasonSheet(
         id: id,
-        date: Time.parse(date),
+        date: date.date(),
       ),
     );
   }
@@ -93,7 +92,7 @@ class _DaysFailures extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DateTime date = parseDate(_day.date);
+    final DateTime date = _day.date.date();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(

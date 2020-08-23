@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:hive/hive.dart';
 
-import 'package:habitflow/helpers/date_format.dart';
+import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/models/cycle.dart';
 
 /// Name of db.
@@ -13,7 +13,7 @@ const String _dbName = 'cycles';
 /// Sorts cycle a and b.
 int _sort(Cycle a, Cycle b) {
   if (a.start == b.start) return 0;
-  if (parseDate(a.start).isAfter(parseDate(b.start))) return -1;
+  if (a.start.date().isAfter(b.start.date())) return -1;
   return 1;
 }
 
