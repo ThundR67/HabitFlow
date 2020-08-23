@@ -66,10 +66,3 @@ ThemeData lightTheme() {
     ),
   );
 }
-
-/// Returns the [lightTheme()] or [darkTheme()] based on system.
-ThemeData systemTheme() {
-  final Brightness brightness =
-      SchedulerBinding.instance.window.platformBrightness;
-  return brightness == Brightness.light ? lightTheme() : darkTheme();
-}
