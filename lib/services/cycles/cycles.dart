@@ -10,9 +10,16 @@ import 'package:habitflow/models/cycle.dart';
 /// Name of db.
 const String _dbName = 'cycles';
 
+/// Sorts cycle a and b.
+int _sort(Cycle a, Cycle b) {
+  if (a.start == b.start) return 0;
+  if (parseDate(a.start).isAfter(parseDate(b.start))) return -1;
+  return 1;
+}
+
 /// A DAO to manage user's previous cycles.
 class CyclesDAO {
-  Future<Box<Cycle>> get _db async => Hive.openBox(_dbName);
+  Future<Box<Cycle>> get _db async => Hive.openBox<Cycle>(_dbName);
 
   /// Adds a cycle into db.
   Future<void> add(Cycle cycle) async => (await _db).put(cycle.start, cycle);
@@ -20,11 +27,7 @@ class CyclesDAO {
   /// Returns all cycles reversly sorted by cycle start dates.
   Future<List<Cycle>> all() async {
     final List<Cycle> cycles = (await _db).values.toList();
-    cycles.sort((Cycle a, Cycle b) {
-      if (a.start == b.start) return 0;
-      if (parseDate(a.start).isAfter(parseDate(b.start))) return -1;
-      return 1;
-    });
+    cycles.sort(_sort);
     return cycles;
   }
 

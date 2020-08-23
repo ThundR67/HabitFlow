@@ -11,7 +11,7 @@ const String _dbName = 'rewards';
 
 /// A DAO to manage user's reward points.
 class RewardsDAO {
-  Future<Box<Reward>> get _db async => Hive.openBox(_dbName);
+  Future<Box<Reward>> get _db async => Hive.openBox<Reward>(_dbName);
 
   /// Adds a reward into db.
   Future<void> add(Reward reward) async => (await _db).put(reward.id, reward);

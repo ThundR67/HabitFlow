@@ -9,7 +9,7 @@ const String _dbName = 'theme';
 
 /// A DAO to manage current theme.
 class ThemeDAO {
-  Future<Box<String>> get _db async => Hive.openBox(_dbName);
+  Future<Box<String>> get _db async => Hive.openBox<String>(_dbName);
 
   /// Returns current theme selected by user.
   Future<String> current() async =>

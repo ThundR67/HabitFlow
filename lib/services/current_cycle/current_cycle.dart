@@ -12,13 +12,13 @@ const String _dbName = 'current_cycle';
 /// A DAO to manage user's current cycle .
 class CurrentCycleDAO {
   /// Store of data.
-  Future<Box> get _db async => Hive.openBox(_dbName);
+  Future<Box<Cycle>> get _db async => Hive.openBox<Cycle>(_dbName);
 
-  /// Adds [cycle] int db.
+  /// Adds [cycle] into db.
   Future<void> create(Cycle cycle) async => (await _db).put(_dbName, cycle);
 
   /// Returns current cycle.
-  Future<Cycle> get() async => (await _db).get(_dbName) as Cycle;
+  Future<Cycle> get() async => (await _db).get(_dbName);
 
   /// Updates current cycle.
   Future<void> update(Cycle cycle) async => create(cycle);
