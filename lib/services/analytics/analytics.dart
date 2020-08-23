@@ -8,14 +8,11 @@ class Analytics {
   /// Returns the [_singleton] instance of Analytics.
   factory Analytics() => _singleton;
   static final Analytics _singleton = Analytics._();
+  FirebaseAnalytics _analytics;
   Analytics._();
 
-  FirebaseAnalytics _analytics;
-
   /// Initializes firebase analytics.
-  void init() {
-    _analytics = FirebaseAnalytics();
-  }
+  void init() => _analytics = FirebaseAnalytics();
 
   /// Returns an oberser for firebase analytics.
   FirebaseAnalyticsObserver observer() {
