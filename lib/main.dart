@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:habitflow/blocs/ad_bloc.dart';
+import 'package:habitflow/resources/themes.dart';
 import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -80,8 +81,9 @@ class App extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      theme: bloc.themes[bloc.current],
-      themeMode: ThemeMode.light,
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
+      themeMode: bloc.current,
       initialRoute: loadingRoute,
       routes: routes,
       color: Colors.white,

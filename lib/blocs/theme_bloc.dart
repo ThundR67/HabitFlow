@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/resources/themes.dart';
 import 'package:habitflow/services/theme/theme.dart';
 
 /// Name of light theme.
@@ -12,31 +11,32 @@ const dark = 'dark';
 /// Name of system theme.
 const system = 'system';
 
+/// Converts [name] to [ThemeMode].
+ThemeMode _nameToMode(String name) {
+  ThemeMode mode = ThemeMode.system;
+  if (name == dark) mode = ThemeMode.dark;
+  if (name == light) mode = ThemeMode.light;
+  return mode;
+}
+
 /// A bloc to manage current theme.
 class ThemeBloc extends ChangeNotifier {
   final ThemeDAO _dao = ThemeDAO();
 
-  /// Name of current theme.
-  String current;
+  /// Current ThemeMode.
+  ThemeMode current;
 
-  /// All the themes.
-  Map<String, ThemeData> themes = {
-    light: lightTheme(),
-    dark: darkTheme(),
-    system: systemTheme(),
-  };
-
-  /// Sets [current] to current theme name or defaults to [system].
+  /// Sets [current] to current theme mode.
   ThemeBloc() {
     _dao.current().then((value) {
-      current = value ?? system;
+      current = _nameToMode(value);
       notifyListeners();
     });
   }
 
-  /// Sets [current] theme to [name].
+  /// Sets [current] to ThemeMode of [name].
   void set(String name) {
-    current = name;
+    current = _nameToMode(name);
     notifyListeners();
     _dao.set(name);
   }
