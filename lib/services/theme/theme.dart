@@ -12,8 +12,7 @@ class ThemeDAO {
   Future<Box<String>> get _db async => Hive.openBox<String>(_dbName);
 
   /// Returns current theme selected by user.
-  Future<String> current() async =>
-      (await _db).get(_dbName, defaultValue: null);
+  Future<String> current() async => (await _db).get(_dbName);
 
   /// Sets current theme to [name].
   Future<void> set(String name) async => (await _db).put(_dbName, name);
