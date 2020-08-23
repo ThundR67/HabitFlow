@@ -1,5 +1,9 @@
 include: package:lint/analysis_options.yaml
 
+analyzer:
+  exclude:
+    - lib/resources/configs.dart
+
 linter:
   rules:
     - camel_case_types

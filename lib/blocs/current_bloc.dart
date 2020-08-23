@@ -10,6 +10,7 @@ import 'package:habitflow/services/current_cycle/current_cycle.dart';
 import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/habits/habits.dart';
 import 'package:habitflow/helpers/time.dart';
+import 'package:hive/hive.dart';
 
 /// TODO clean by updating structure a bit.
 

@@ -20,11 +20,16 @@ const MobileAdTargetingInfo _targetingInfo = MobileAdTargetingInfo(
 /// A BLOC to manage ads.
 class AdBloc {
   bool _shouldShow = true;
+  InterstitialAd _interstitialAd;
 
   /// Initializes admob if not web.
   AdBloc() {
     if (kIsWeb) return;
     FirebaseAdMob.instance.initialize(appId: admobAppID);
+    _interstitialAd = InterstitialAd(
+      adUnitId: admobInterstitialID,
+      targetingInfo: _targetingInfo,
+    );
   }
 
   /// Marks [_shouldShow] as false for 5 seconds, then marks as true.
@@ -40,10 +45,7 @@ class AdBloc {
 
     if (_random.nextInt(100) <= (chance ?? admobAdRate)) {
       _isShowing();
-      InterstitialAd(
-        adUnitId: admobInterstitialID,
-        targetingInfo: _targetingInfo,
-      )
+      _interstitialAd
         ..load()
         ..show()
         ..dispose();
