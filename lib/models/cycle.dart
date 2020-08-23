@@ -1,3 +1,4 @@
+import 'package:habitflow/resources/strings.dart';
 import 'package:hive/hive.dart';
 
 import 'package:habitflow/models/day.dart';
@@ -15,7 +16,7 @@ class Cycle {
     this.days,
   }) {
     days ??= <String, Day>{};
-    review ??= 'NOT PROVIDED';
+    review ??= unprovidedReason;
   }
 
   /// Day when cycle started.
