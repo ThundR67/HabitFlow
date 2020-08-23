@@ -33,7 +33,7 @@ class _SingleDate extends StatelessWidget {
           ),
           const SizedBox(height: 4.0),
           CircularPercentIndicator(
-            percent: Statistics(days: [day]).successRate,
+            percent: Statistics(days: {"": day}).successRate,
             lineWidth: 3,
             radius: 40,
             backgroundColor: Colors.transparent,

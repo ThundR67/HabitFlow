@@ -24,10 +24,13 @@ class CycleInfo extends StatelessWidget {
   Map<String, double> _successRates(HabitsBloc bloc) {
     final Map<String, double> successRates = {};
     final List<String> habitIds = [];
-    for (final day in _cycle.days.values) habitIds.addAll(day.activeHabits);
+    for (final day in _cycle.days.values) {
+      habitIds.addAll(day.activeHabits);
+    }
+
     for (final id in habitIds.toSet().toList()) {
       successRates[id] = Statistics(
-        days: _cycle.days.values.toList(),
+        days: _cycle.days,
         habits: [id],
       ).successRate;
     }
@@ -44,7 +47,7 @@ class CycleInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
 
-    final Statistics stats = Statistics(days: _cycle.days.values.toList());
+    final Statistics stats = Statistics(days: _cycle.days);
 
     return Scaffold(
       appBar: AppBar(

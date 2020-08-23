@@ -4,8 +4,8 @@ import 'package:habitflow/resources/strings.dart';
 /// Class to represent statistic.
 class Statistics {
   /// Returns [Stat]
-  Statistics({List<Day> days, List<String> habits}) {
-    for (final Day day in days) {
+  Statistics({Map<String, Day> days, List<String> habits}) {
+    for (final Day day in days.values) {
       total += _amount(day.activeHabits, habits);
       amountDone += _amount(day.successes, habits);
       amountSkipped += _amount(day.skips, habits);

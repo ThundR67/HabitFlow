@@ -143,7 +143,7 @@ class HabitInfo extends StatelessWidget {
           children: [
             _Info(_habit),
             const SizedBox(height: 24.0),
-            Stats(Statistics(days: currentBloc.current.days.values.toList())),
+            Stats(Statistics(days: currentBloc.current.days)),
             const SizedBox(height: 32.0),
             if (recentFailures.isNotEmpty) RecentFailures(recentFailures),
           ],

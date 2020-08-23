@@ -18,7 +18,7 @@ class CycleStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     final DateTime start = cycle.start.date();
     final DateTime end = cycle.end.date();
-    final Statistics stats = Statistics(days: cycle.days.values.toList());
+    final Statistics stats = Statistics(days: cycle.days);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
