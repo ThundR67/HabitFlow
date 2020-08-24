@@ -25,6 +25,7 @@ class ColorPickerButton extends StatefulWidget {
 class _ColorPickerButtonState extends State<ColorPickerButton> {
   Color _color;
 
+  /// Changes [_color] to [color] selected by user and runs [widget.onChange].
   void _onChange(Color color) {
     setState(() {
       _color = color;
@@ -56,10 +57,9 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
 
   @override
   Widget build(BuildContext context) {
-    _color ??= widget.color;
     return ClipOval(
       child: Material(
-        color: _color, // button color
+        color: _color ?? widget.color, // button color
         child: InkWell(
           onTap: () => _showPicker(context),
           child: const SizedBox(
