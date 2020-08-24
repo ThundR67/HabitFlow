@@ -31,7 +31,9 @@ class ActionButton extends StatelessWidget {
       margin: const EdgeInsets.all(4.0),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(16.0),
+        ),
       ),
       child: IconSlideAction(
         caption: text,
