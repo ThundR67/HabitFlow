@@ -23,6 +23,22 @@ class _SingleDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget text = Text(
+      date.day.toString(),
+      style: Theme.of(context).textTheme.subtitle1,
+    );
+
+    if (day.activeHabits != null) {
+      text = CircularPercentIndicator(
+        percent: Statistics(days: {"": day}).successRate,
+        lineWidth: 3,
+        radius: 40,
+        backgroundColor: Colors.transparent,
+        progressColor: Colors.greenAccent,
+        center: text,
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Column(
@@ -32,17 +48,7 @@ class _SingleDate extends StatelessWidget {
             style: Theme.of(context).textTheme.caption,
           ),
           const SizedBox(height: 4.0),
-          CircularPercentIndicator(
-            percent: Statistics(days: {"": day}).successRate,
-            lineWidth: 3,
-            radius: 40,
-            backgroundColor: Colors.transparent,
-            progressColor: Colors.greenAccent,
-            center: Text(
-              date.day.toString(),
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-          ),
+          text,
         ],
       ),
     );

@@ -38,7 +38,7 @@ class Statistics {
   int total = 0;
 
   int _amount(List<String> list, List<String> items) {
-    if (items.isEmpty) return list.length;
+    if (items == null) return list.length;
     int i = 0;
     for (final String item in items) {
       if (list.contains(item)) i++;

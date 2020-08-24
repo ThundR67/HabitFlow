@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-/// Action button with slidable cards.
+/// Action button which is available with slidable cards.
 class ActionButton extends StatelessWidget {
   /// Constructs
   const ActionButton({
@@ -26,20 +26,18 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-        ),
-        child: IconSlideAction(
-          caption: text,
-          color: color,
-          icon: icon,
-          onTap: onPressed,
-        ),
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(4.0),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+      ),
+      child: IconSlideAction(
+        caption: text,
+        color: color,
+        icon: icon,
+        onTap: onPressed,
       ),
     );
   }
