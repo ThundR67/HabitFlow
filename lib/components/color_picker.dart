@@ -59,7 +59,7 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Material(
-        color: _color ?? widget.color, // button color
+        color: _color ?? widget.color,
         child: InkWell(
           onTap: () => _showPicker(context),
           child: const SizedBox(
