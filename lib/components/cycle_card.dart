@@ -10,7 +10,7 @@ import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/screens/cycle.dart';
 import 'package:provider/provider.dart';
 
-/// A card to show cycle data.
+/// A card to show [cycle] data in Cycles page.
 class CycleCard extends StatelessWidget {
   /// Constructs.
   const CycleCard({@required this.cycle});
@@ -20,7 +20,7 @@ class CycleCard extends StatelessWidget {
 
   /// Redirects to [CycleInfo] page.
   void _openCycleInfo(BuildContext context) {
-    Provider.of<AdBloc>(context).interstitial();
+    Provider.of<AdBloc>(context, listen: false).interstitial();
     redirect(context, cycleInfoRoute, CycleInfo(cycle));
   }
 
@@ -40,7 +40,7 @@ class CycleCard extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 alignment: Alignment.center,
-                child: CycleStatus(cycle: cycle),
+                child: CycleHeader(cycle: cycle),
               ),
             ),
           ),
