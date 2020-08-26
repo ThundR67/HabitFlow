@@ -25,11 +25,7 @@ class FailureReasonSheet extends StatelessWidget {
 
   /// Marks [habit] as failure.
   void _done(BuildContext context) {
-    final CurrentBloc bloc = Provider.of<CurrentBloc>(
-      context,
-      listen: false,
-    );
-    bloc.mark(
+    Provider.of<CurrentBloc>(context, listen: false).mark(
       id,
       Status.failed,
       date: date ?? DateTime.now(),
