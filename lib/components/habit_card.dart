@@ -19,6 +19,8 @@ import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/habit.dart';
 
+// TODO clean after proxy
+
 /// A widget to show a card of [habit].
 class HabitCard extends StatelessWidget {
   /// Constructs
@@ -26,7 +28,7 @@ class HabitCard extends StatelessWidget {
     @required this.habit,
     @required this.status,
     @required this.controller,
-  });
+  }) : _isUnmarked = Status.unmarked == status;
 
   /// Habit to show.
   final Habit habit;
@@ -37,44 +39,31 @@ class HabitCard extends StatelessWidget {
   /// Controller for slidable.
   final SlidableController controller;
 
+  // If status is unmarked.
+  final bool _isUnmarked;
+
   /// Returns all primary actions on habit.
-  List<Widget> _actions(
-      BuildContext context, CurrentBloc bloc, PointsBloc pointsBloc) {
-    final List<Widget> actions = <Widget>[
-      doneAction(context, habit, pointsBloc, bloc),
-    ];
-    return status == Status.unmarked
-        ? actions
-        : [
-            undoAction(
-              context,
-              habit,
-              bloc,
-            ),
-          ];
+  List<Widget> _actions(BuildContext context) {
+    final List<Widget> actions = [doneAction(context, habit)];
+    return _isUnmarked ? actions : [undoAction(context, habit)];
   }
 
   /// Returns all secondary actions on habit.
-  List<Widget> _secondaryActions(BuildContext context, CurrentBloc bloc) {
+  List<Widget> _secondaryActions(BuildContext context) {
     final List<Widget> actions = <Widget>[
-      skipAction(context, habit, bloc),
+      skipAction(context, habit),
       failAction(context, habit),
     ];
-    return status == Status.unmarked
-        ? actions
-        : [undoAction(context, habit, bloc)];
+    return _isUnmarked ? actions : [undoAction(context, habit)];
   }
 
   @override
   Widget build(BuildContext context) {
-    final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
-    final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
-    final bool isUnmarked = status == Status.unmarked;
-
+    final Color textColor = Theme.of(context).textTheme.headline6.color;
     return MainCard(
       intro: habitIntro,
-      actions: _actions(context, currentBloc, pointsBloc),
-      secondaryActions: _secondaryActions(context, currentBloc),
+      actions: _actions(context),
+      secondaryActions: _secondaryActions(context),
       onTap: () => redirect(context, habitInfoRoute, HabitInfo(habit)),
       description: habitSwipeDescription,
       controller: controller,
@@ -82,7 +71,7 @@ class HabitCard extends StatelessWidget {
         children: <Widget>[
           Icon(
             mapToIconData(habit.iconData),
-            color: isUnmarked ? hexToColor(habit.colorHex) : Colors.grey,
+            color: _isUnmarked ? hexToColor(habit.colorHex) : Colors.grey,
           ),
           const SizedBox(width: 16.0),
           Expanded(
@@ -93,11 +82,13 @@ class HabitCard extends StatelessWidget {
                   opacity: status == Status.unmarked ? 1 : 0.5,
                   child: Text(
                     habit.name,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headline6.copyWith(
+                          color: _isUnmarked ? textColor : Colors.grey,
+                        ),
                   ),
                 ),
                 const SizedBox(height: 4),
-                if (!isUnmarked)
+                if (!_isUnmarked)
                   StatusView(status: status)
                 else
                   RewardPoints(points: habit.points)

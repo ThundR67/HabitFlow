@@ -14,8 +14,11 @@ import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
+/// TODO Clean probably after proxy architecture.
+
 /// Returns action button to undo marking [habit].
-ActionButton undoAction(BuildContext context, Habit habit, CurrentBloc bloc) {
+ActionButton undoAction(BuildContext context, Habit habit) {
+  final CurrentBloc bloc = Provider.of<CurrentBloc>(context, listen: false);
   return ActionButton(
     color: Colors.orangeAccent[700],
     text: undo,
@@ -29,12 +32,9 @@ ActionButton undoAction(BuildContext context, Habit habit, CurrentBloc bloc) {
 }
 
 /// Returns action button to mark [habit] as done.
-ActionButton doneAction(
-  BuildContext context,
-  Habit habit,
-  PointsBloc pointsBloc,
-  CurrentBloc bloc,
-) {
+ActionButton doneAction(BuildContext context, Habit habit) {
+  final CurrentBloc bloc = Provider.of<CurrentBloc>(context, listen: false);
+  final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
   return ActionButton(
     color: Colors.green,
     text: done,
@@ -49,7 +49,8 @@ ActionButton doneAction(
 }
 
 /// Returns action button to mark [habit] as skipped.
-ActionButton skipAction(BuildContext context, Habit habit, CurrentBloc bloc) {
+ActionButton skipAction(BuildContext context, Habit habit) {
+  final CurrentBloc bloc = Provider.of<CurrentBloc>(context, listen: false);
   return ActionButton(
     color: Colors.blueAccent,
     text: skip,
@@ -75,12 +76,9 @@ ActionButton failAction(BuildContext context, Habit habit) {
 }
 
 /// Returns action button take [reward].
-ActionButton takeAction(
-  BuildContext context,
-  Reward reward,
-  RewardsBloc bloc,
-  PointsBloc pointsBloc,
-) {
+ActionButton takeAction(BuildContext context, Reward reward) {
+  final PointsBloc pointsBloc = Provider.of<PointsBloc>(context);
+  final RewardsBloc bloc = Provider.of<RewardsBloc>(context);
   return ActionButton(
     icon: takeIcon,
     text: take,
@@ -101,17 +99,13 @@ ActionButton takeAction(
 }
 
 /// Returns action button delete [reward].
-ActionButton deleteAction(
-  BuildContext context,
-  Reward reward,
-  RewardsBloc bloc,
-) {
+ActionButton deleteAction(BuildContext context, Reward reward) {
   return ActionButton(
     icon: deleteIcon,
     text: delete,
     color: Colors.redAccent,
     onPressed: () {
-      bloc.delete(reward);
+      Provider.of<RewardsBloc>(context).delete(reward);
       Provider.of<AdBloc>(context, listen: false).interstitial();
     },
   );
