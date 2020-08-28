@@ -6,10 +6,10 @@ import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/strings.dart';
 
-/// A widget to display status of cycle.
-class CycleStatus extends StatelessWidget {
+/// A widget to display basic info about cycle.
+class CycleHeader extends StatelessWidget {
   /// Constructs.
-  const CycleStatus({@required this.cycle});
+  const CycleHeader({@required this.cycle});
 
   /// Cycle to show data of.
   final Cycle cycle;

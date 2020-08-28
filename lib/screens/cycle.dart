@@ -60,7 +60,7 @@ class CycleInfo extends StatelessWidget {
         child: ListView(
           physics: scrollPhysics,
           children: <Widget>[
-            CycleStatus(cycle: _cycle),
+            CycleHeader(cycle: _cycle),
             const SizedBox(height: 16.0),
             Stats(stats),
             const SizedBox(height: 16.0),

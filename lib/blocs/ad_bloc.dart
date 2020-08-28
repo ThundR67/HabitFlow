@@ -42,7 +42,6 @@ class AdBloc {
   /// Shows an interstitial ad with probability of [chance]%.
   void interstitial([double chance]) {
     if (kIsWeb || !_shouldShow) return;
-
     if (_random.nextInt(100) <= (chance ?? admobAdRate)) {
       _isShowing();
       _interstitialAd

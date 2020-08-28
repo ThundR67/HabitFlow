@@ -8,4 +8,5 @@ final String admobInterstitialID =
     GlobalConfiguration().getString('admob_interstitial_id');
 
 ///
-final int admobAdRate = GlobalConfiguration().getInt('admob_ad_rate');
+final int admobAdRate =
+    GlobalConfiguration().getInt('admob_interstitial_ad_rate');

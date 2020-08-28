@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/habits_bloc.dart';
 
 import 'package:habitflow/components/percentage_indicator.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:provider/provider.dart';
 
 /// A expansion tile to show success rates of all habis.
 class HabitSuccessRates extends StatelessWidget {
@@ -12,12 +14,13 @@ class HabitSuccessRates extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
     return ExpansionTile(
       title: Text(habits),
       children: [
         for (String id in _successRates.keys)
           _HabitAndRate(
-            name: id,
+            name: bloc.habits[id].name,
             rate: _successRates[id],
           )
       ],

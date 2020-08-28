@@ -8,6 +8,8 @@ import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
+/// TODO Rewrite
+
 /// A widget to show all failures of a day.
 class _DaysFailures extends StatelessWidget {
   const _DaysFailures(this._day, this._idToName, this._bloc);
@@ -71,9 +73,9 @@ class _DaysFailures extends StatelessWidget {
                 elevation: 8,
                 onSelected: (dynamic value) {
                   if (value == 0) {
-                    _bloc.mark(id, Status.skipped);
+                    _bloc.mark(id, Status.skipped, date: _day.date.date());
                   } else if (value == 1) {
-                    _bloc.mark(id, Status.done);
+                    _bloc.mark(id, Status.done, date: _day.date.date());
                   } else if (value == 2) {
                     _showFailureReasonSheet(context, id, _day.date);
                   }
