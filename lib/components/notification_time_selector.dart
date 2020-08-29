@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:day_night_time_picker/day_night_time_picker.dart';
-
 import 'package:habitflow/resources/strings.dart';
 
-/// Button to allow user to select notification time.
+/// A notification time selector button.
+///
+/// Allows user to select a time.
+/// Displays current selected time.
+/// If no time selected, displays a prompt.
 class NotificationTimeSelector extends StatefulWidget {
   /// Constructs.
   const NotificationTimeSelector({
@@ -15,7 +17,7 @@ class NotificationTimeSelector extends StatefulWidget {
   /// Color of button.
   final Color color;
 
-  /// Function to run onChange.
+  /// Function to run when time is selected.
   final Function(TimeOfDay) onChange;
 
   @override
@@ -26,30 +28,17 @@ class NotificationTimeSelector extends StatefulWidget {
 class _NotificationTimeSelectorState extends State<NotificationTimeSelector> {
   TimeOfDay _time;
 
-  void _onChange(TimeOfDay time) {
-    setState(() {
-      _time = time;
-      widget.onChange(time);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: RaisedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            showPicker(
-              context: context,
-              value: _time ??
-                  const TimeOfDay(
-                    hour: 12,
-                    minute: 0,
-                  ),
-              onChange: _onChange,
-            ),
+        onPressed: () async {
+          _time = await showTimePicker(
+            context: context,
+            initialTime: _time ?? TimeOfDay.now(),
           );
+          setState(() => widget.onChange(_time));
         },
         color: widget.color,
         child: _time == null

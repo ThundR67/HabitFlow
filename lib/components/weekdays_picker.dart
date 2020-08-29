@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:weekday_selector/weekday_selector.dart';
 
+/// TODO change package.
+
 /// A widget to allow user to pick weekdays.
 class WeekdaysPicker extends StatefulWidget {
   /// Constructs.
