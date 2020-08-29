@@ -89,7 +89,7 @@ class HabitCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 if (!_isUnmarked)
-                  StatusView(status: status)
+                  HabitStatus(status: status)
                 else
                   RewardPoints(points: habit.points)
               ],

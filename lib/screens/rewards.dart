@@ -21,10 +21,15 @@ class Rewards extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: RewardPoints(
-          points: pointsBloc.points,
-          style: Theme.of(context).textTheme.headline5,
-          isTitle: true,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RewardPoints(
+              points: pointsBloc.points,
+              style: Theme.of(context).textTheme.headline5,
+              isCenter: true,
+            ),
+          ],
         ),
         automaticallyImplyLeading: false,
       ),

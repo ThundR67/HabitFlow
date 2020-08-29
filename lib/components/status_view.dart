@@ -4,10 +4,10 @@ import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
-/// A widget to indicate the status of the habit.
-class StatusView extends StatelessWidget {
+/// A widget to show [status] of a habit such as done or skipped.
+class HabitStatus extends StatelessWidget {
   //// Constructs.
-  const StatusView({@required this.status});
+  const HabitStatus({@required this.status});
 
   /// Status of habit.
   final Status status;
@@ -56,19 +56,21 @@ class StatusView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double fontSize = Theme.of(context).textTheme.subtitle1.fontSize;
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(
           _icon(),
           color: _color(),
-          size: Theme.of(context).textTheme.subtitle1.fontSize,
+          size: fontSize,
         ),
         const SizedBox(width: 4.0),
         Text(
           _text().toLowerCase(),
           style: TextStyle(
             color: _color(),
-            fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
+            fontSize: fontSize,
           ),
         ),
       ],
