@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-/// Action button which is available with slidable cards.
+/// Button which is shown in slidable cards.
 class ActionButton extends StatelessWidget {
   /// Constructs
   const ActionButton({
