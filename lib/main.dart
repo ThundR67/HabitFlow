@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:habitflow/blocs/ad_bloc.dart';
@@ -46,6 +47,11 @@ Future<void> main() async {
   Analytics().init();
   await _hiveInit();
   await GlobalConfiguration().loadFromAsset("dev.json");
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ),
+  );
 
   runApp(
     MultiProvider(
