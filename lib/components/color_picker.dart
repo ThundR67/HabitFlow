@@ -4,10 +4,10 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import 'package:habitflow/resources/strings.dart';
 
-/// A widget which allows user to pick colors.
-class ColorPickerButton extends StatefulWidget {
+/// A button to allow user to pick a color.
+class ColorPicker extends StatefulWidget {
   /// Constructs.
-  const ColorPickerButton({
+  const ColorPicker({
     @required this.color,
     @required this.onChange,
   });
@@ -15,35 +15,31 @@ class ColorPickerButton extends StatefulWidget {
   /// Initial color.
   final Color color;
 
-  /// Function to run when [color] is changed.
+  /// Function to run when user selects a color.
   final Function(Color) onChange;
 
   @override
-  _ColorPickerButtonState createState() => _ColorPickerButtonState();
+  _ColorPickerState createState() => _ColorPickerState();
 }
 
-class _ColorPickerButtonState extends State<ColorPickerButton> {
+class _ColorPickerState extends State<ColorPicker> {
   Color _color;
 
   /// Changes [_color] to [color] selected by user and runs [widget.onChange].
   void _onChange(Color color) {
-    setState(() {
-      _color = color;
-      widget.onChange(color);
-    });
+    setState(() => _color = color);
+    widget.onChange(color);
   }
 
-  /// Displays color picker.
+  /// Displays a color picker dialog.
   void _showPicker(BuildContext context) {
     showDialog<AlertDialog>(
       context: context,
       child: AlertDialog(
         title: Text(pickColor),
-        content: SingleChildScrollView(
-          child: MaterialPicker(
-            pickerColor: _color,
-            onColorChanged: _onChange,
-          ),
+        content: BlockPicker(
+          pickerColor: _color,
+          onColorChanged: _onChange,
         ),
         actions: <Widget>[
           FlatButton(
@@ -57,9 +53,10 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
 
   @override
   Widget build(BuildContext context) {
+    _color ??= widget.color;
     return ClipOval(
       child: Material(
-        color: _color ?? widget.color,
+        color: _color,
         child: InkWell(
           onTap: () => _showPicker(context),
           child: const SizedBox(

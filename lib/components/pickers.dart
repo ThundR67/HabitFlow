@@ -91,7 +91,7 @@ class _PickersState extends State<Pickers> {
               radius: 100.0,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: ColorPickerButton(
+                child: ColorPicker(
                   onChange: _onColorChange,
                   color: _color,
                 ),
