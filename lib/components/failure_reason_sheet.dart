@@ -18,7 +18,7 @@ class FailureReasonSheet extends StatelessWidget {
   /// Habit on which user is failing.
   final String id;
 
-  /// Date when habit needs to be marked as failed.
+  /// Date when habit needs to be marked as failed. Defaults current day.
   final DateTime date;
 
   final TextEditingController _controller = TextEditingController();
