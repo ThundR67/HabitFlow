@@ -7,7 +7,7 @@ import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
-/// A widget which allows user pick icon and color.
+/// A row to show display color and icon picker.
 class Pickers extends StatefulWidget {
   /// Constructs
   const Pickers({
@@ -39,14 +39,13 @@ class _PickersState extends State<Pickers> {
     widget.onChange(_color, _icon);
   }
 
-  /// Allows to pick an icon and changes [_icon].
+  /// Displays dialog which allows to pick an icon and changes [_icon].
   Future<void> _pickIcon() async {
     final IconData icon = await FlutterIconPicker.showIconPicker(
       context,
       iconPackMode: IconPack.materialOutline,
     );
-    _icon = icon ?? emptyIcon;
-    setState(() {});
+    setState(() => _icon = icon ?? emptyIcon);
     widget.onChange(_color, icon);
   }
 
