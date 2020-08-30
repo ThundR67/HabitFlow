@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:habitflow/resources/icons.dart';
 
-/// Widget to indicate something to user such as no habits, rewards, or active habits.
+/// TODO: think about this time
+
+/// Widget to indicate to user of lack of something.
+///
+/// Such as no habits, rewards, or active habits.
 class NoPossesion extends StatelessWidget {
   /// Constructs.
   const NoPossesion({
