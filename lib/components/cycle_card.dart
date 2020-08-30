@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/ad_bloc.dart';
 
-import 'package:habitflow/components/cycle_status.dart';
+import 'package:habitflow/components/cycle_header.dart';
 import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/redirect.dart';
 

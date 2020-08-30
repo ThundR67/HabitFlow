@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:habitflow/helpers/dates.dart';
 
@@ -47,7 +49,7 @@ class CurrentBloc extends ChangeNotifier {
     /// Creating a cycle.
     return Cycle(
       start: date.format(),
-      end: date.add(const Duration(days: 15)).format(),
+      end: date.add(const Duration(days: 14)).format(),
       days: {day.date: day},
     );
   }
@@ -71,14 +73,19 @@ class CurrentBloc extends ChangeNotifier {
   /// Updates [statuses] and [current].
   Future<void> update() async {
     current ??= (await _dao.get()) ?? await _create();
+    if (isEnded()) current = await _create();
     await _fill();
     _updateStatuses();
     notifyListeners();
     await _dao.update(current);
   }
 
-  /// Returns if [current] ended.
-  bool isEnded() => DateTime.now().isAfter(current.end.date());
+  /// Returns if [current] has ended and current day is over.
+  bool isEnded() {
+    final bool isAfter = DateTime.now().isAfter(current.end.date());
+    final bool isDayOver = DateTime.now().day > current.end.date().day;
+    return isAfter && isDayOver;
+  }
 
   /// Updates current day's active habits.
   Future<void> updateHabits() async {

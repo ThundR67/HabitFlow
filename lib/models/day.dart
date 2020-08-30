@@ -15,7 +15,11 @@ class Day {
     this.skips,
     this.successes,
     this.failures,
-  });
+  }) {
+    skips ??= [];
+    successes ??= [];
+    failures ??= {};
+  }
 
   /// Creates an empty day.
   Day.empty({this.date, this.activeHabits, bool addFailures}) {
