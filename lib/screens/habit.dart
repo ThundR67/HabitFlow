@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/neu_card.dart';
-import 'package:habitflow/components/recent_failures.dart';
+import 'package:habitflow/components/failure_list.dart';
 import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/statistics.dart';
@@ -145,7 +145,8 @@ class HabitInfo extends StatelessWidget {
             const SizedBox(height: 24.0),
             Stats(Statistics(days: currentBloc.current.days)),
             const SizedBox(height: 32.0),
-            if (recentFailures.isNotEmpty) RecentFailures(recentFailures),
+            if (recentFailures.isNotEmpty)
+              FailureList(failures: recentFailures),
           ],
         ),
       ),

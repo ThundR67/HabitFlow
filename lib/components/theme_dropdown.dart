@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:habitflow/blocs/theme_bloc.dart';
 import 'package:habitflow/resources/strings.dart' as strings;
 
-/// Dropdown widget to allow user to change themes.
+/// Dropdown to allow user to change themes.
 class ThemeDropDown extends StatefulWidget {
   /// Constructs.
   const ThemeDropDown();
@@ -18,31 +18,43 @@ class ThemeDropDown extends StatefulWidget {
 class _ThemeDropDownState extends State<ThemeDropDown> {
   String _value;
 
-  final Map<String, String> themeNames = {
+  final Map<String, String> _themes = {
     strings.light: light,
     strings.dark: dark,
     strings.system: system,
   };
 
-  /// Changes states when user selects a value.
+  final Map<String, ThemeMode> _themeModes = {
+    strings.light: ThemeMode.light,
+    strings.dark: ThemeMode.dark,
+    strings.system: ThemeMode.system,
+  };
+
+  /// Changes [_value] to [value] and saves the theme if [save].
   void _onChange(String value, [bool save = true]) {
-    Provider.of<AdBloc>(context).interstitial();
-    final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
+    Provider.of<AdBloc>(context, listen: false).interstitial();
     setState(() => _value = value);
     if (save) {
-      bloc.set(themeNames[value]);
+      final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
+      bloc.set(_themes[value]);
     }
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
-    themeNames.forEach((key, value) {
-      if (value == bloc.current) _value = key;
-    });
 
+    /// Sets [_value] to current theme.
+    _themes.forEach((key, value) {
+      if (_themeModes[value] == bloc.current) _value = key;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return DropdownButton<String>(
-      items: themeNames.keys.map(
+      items: _themes.keys.map(
         (String value) {
           return DropdownMenuItem<String>(
             value: value,

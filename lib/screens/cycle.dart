@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
-import 'package:habitflow/components/cycle_status.dart';
+import 'package:habitflow/components/cycle_header.dart';
 import 'package:habitflow/components/failures_expansion_tile_.dart';
 import 'package:habitflow/components/habit_success_rates.dart';
 import 'package:habitflow/components/stats.dart';
