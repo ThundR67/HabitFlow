@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:habitflow/resources/strings.dart';
 
-/// Shows [failures] as recent failures.
-class RecentFailures extends StatelessWidget {
+/// Shows list of [failures].
+class FailureList extends StatelessWidget {
   /// Constructs.
-  const RecentFailures(this._failures);
+  const FailureList({@required this.failures});
 
-  final List<String> _failures;
+  /// List of failures to display.
+  final List<String> failures;
 
   @override
   Widget build(BuildContext context) {
-    _failures.remove(unprovidedReason);
+    failures.remove(unprovidedReason);
 
     return Center(
       child: Column(
@@ -23,13 +24,13 @@ class RecentFailures extends StatelessWidget {
           ),
           ListView.builder(
             shrinkWrap: true,
-            itemCount: _failures.length,
+            itemCount: failures.length,
             itemBuilder: (_, index) {
               return Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(_failures[index]),
+                    child: Text(failures[index]),
                   ),
                   const Divider(),
                 ],
