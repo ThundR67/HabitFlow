@@ -211,6 +211,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.0"
+  day_selector:
+    dependency: "direct main"
+    description:
+      name: day_selector
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   easy_localization:
     dependency: "direct main"
     description:
@@ -859,13 +866,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.22+1"
-  weekday_selector:
-    dependency: "direct main"
-    description:
-      name: weekday_selector
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0"
   xdg_directories:
     dependency: transitive
     description:
