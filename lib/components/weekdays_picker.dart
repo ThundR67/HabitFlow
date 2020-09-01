@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// A picker to allow user to pick weekdays.
+///
+/// [onChange] will run when user does certain selection.
+/// [onChange] will be provided with list of days index selected by user.
+/// Index of monday starts with 1 (Same as of [DateTime]).
 class WeekdaysPicker extends StatefulWidget {
   /// Constructs.
   const WeekdaysPicker({@required this.onChange, @required this.color});
