@@ -10,7 +10,6 @@ import 'package:habitflow/components/main_drawer.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:habitflow/resources/widgets.dart';
 
 /// A screen to show user about todays information.
 class Today extends StatelessWidget {
@@ -26,7 +25,6 @@ class Today extends StatelessWidget {
       drawer: const MainDrawer(),
       appBar: AppBar(
         title: const _Title(),
-        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: SizedBox.expand(

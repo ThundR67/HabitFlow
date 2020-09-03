@@ -22,7 +22,8 @@ class TappableCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NeuCard(
+    return Card(
+      elevation: 4,
       child: Material(
         color: Colors.transparent,
         child: InkWell(

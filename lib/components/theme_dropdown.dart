@@ -18,25 +18,24 @@ class ThemeDropDown extends StatefulWidget {
 class _ThemeDropDownState extends State<ThemeDropDown> {
   String _value;
 
-  final Map<String, String> _themes = {
+  final Map<String, String> _themeNames = {
     strings.light: light,
     strings.dark: dark,
     strings.system: system,
   };
 
   final Map<String, ThemeMode> _themeModes = {
-    strings.light: ThemeMode.light,
-    strings.dark: ThemeMode.dark,
-    strings.system: ThemeMode.system,
+    light: ThemeMode.light,
+    dark: ThemeMode.dark,
+    system: ThemeMode.system,
   };
 
   /// Changes [_value] to [value] and saves the theme if [save].
   void _onChange(String value, [bool save = true]) {
-    Provider.of<AdBloc>(context, listen: false).interstitial();
     setState(() => _value = value);
     if (save) {
       final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
-      bloc.set(_themes[value]);
+      bloc.set(_themeNames[value]);
     }
   }
 
@@ -44,16 +43,16 @@ class _ThemeDropDownState extends State<ThemeDropDown> {
   Widget build(BuildContext context) {
     /// Loads [_value] with current theme if its null.
     if (_value == null) {
-      /// Sets [_value] to current theme.
-      final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
-      _themes.forEach((key, value) {
-        if (_themeModes[value] == bloc.current) _value = key;
-        setState(() {});
-      });
+      for (final String key in _themeNames.keys) {
+        final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
+        if (_themeModes[_themeNames[key]] == bloc.current) {
+          _onChange(key, false);
+        }
+      }
     }
 
     return DropdownButton<String>(
-      items: _themes.keys.map(
+      items: _themeNames.keys.map(
         (String value) {
           return DropdownMenuItem<String>(
             value: value,

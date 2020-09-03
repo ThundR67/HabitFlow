@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/intro_bloc.dart';
-import 'package:habitflow/components/tappable_neu_card.dart';
+import 'package:habitflow/components/tappable_card.dart';
 
 /// A slidable, tappable and showcasable card.
 class MainCard extends StatefulWidget {
