@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/resources/strings.dart';
 
@@ -48,7 +47,7 @@ class _Stat extends StatelessWidget {
     return SizedBox(
       height: 96,
       width: 96,
-      child: NeuCard(
+      child: Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

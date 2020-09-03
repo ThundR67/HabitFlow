@@ -80,18 +80,12 @@ class _MainCardState extends State<MainCard> {
               _showIntro(context, bloc);
             }
           });
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 12.0,
-              horizontal: 16.0,
-            ),
-            child: TappableCard(
-              onTap: widget.onTap,
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                alignment: Alignment.center,
-                child: widget.child,
-              ),
+          return TappableCard(
+            onTap: widget.onTap,
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              alignment: Alignment.center,
+              child: widget.child,
             ),
           );
         },

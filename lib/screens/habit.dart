@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
-import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/failure_list.dart';
 import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/colors.dart';
@@ -64,7 +63,7 @@ class _Info extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: NeuCard(
+      child: Card(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

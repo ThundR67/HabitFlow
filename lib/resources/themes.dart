@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 /// Returns default dark mode.
 ThemeData darkTheme() {
   final Color primary = Colors.grey[900];
   const Brightness brightness = Brightness.dark;
   return ThemeData(
+    cardTheme: const CardTheme(
+      elevation: 8.0,
+      margin: EdgeInsets.all(8.0),
+    ),
     brightness: brightness,
     scaffoldBackgroundColor: primary,
     accentColor: Colors.blueAccent,
@@ -36,6 +39,10 @@ ThemeData lightTheme() {
   const Color primary = Color(0xFFEFEEEE);
   const Brightness brightness = Brightness.light;
   return ThemeData(
+    cardTheme: const CardTheme(
+      elevation: 8.0,
+      margin: EdgeInsets.all(8.0),
+    ),
     brightness: brightness,
     scaffoldBackgroundColor: primary,
     accentColor: Colors.blueAccent,

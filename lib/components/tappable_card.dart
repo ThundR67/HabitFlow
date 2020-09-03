@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitflow/components/neu_card.dart';
-
 /// A widget to show tappable neu card.
 class TappableCard extends StatelessWidget {
   /// Constructs.
@@ -23,7 +21,6 @@ class TappableCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4,
       child: Material(
         color: Colors.transparent,
         child: InkWell(

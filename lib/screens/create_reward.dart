@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
-import 'package:habitflow/components/neu_text_field.dart';
 import 'package:habitflow/components/pickers.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/validators.dart';
@@ -87,16 +85,16 @@ class _CreateRewardState extends State<CreateReward> {
                         padding: EdgeInsets.all(16.0),
                         child: Divider(),
                       ),
-                      NeuInputTextField(
+                      TextFormField(
                         controller: _nameController,
-                        text: rewardName,
-                        validate: validateStr,
+                        decoration: InputDecoration(labelText: rewardName),
+                        validator: validateStr,
                       ),
                       const SizedBox(height: 24.0),
-                      NeuInputTextField(
+                      TextFormField(
                         controller: _pointsController,
-                        text: rewardCost,
-                        validate: validatePosInt,
+                        decoration: InputDecoration(labelText: rewardCost),
+                        validator: validatePosInt,
                       ),
                       const SizedBox(height: 16.0),
                       RaisedButton(

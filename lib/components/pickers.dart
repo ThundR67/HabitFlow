@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/components/color_picker.dart';
-import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
@@ -65,9 +64,12 @@ class _PickersState extends State<Pickers> {
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
-            NeuCard(
-              depth: 1.5,
-              radius: 100.0,
+            Card(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
               child: IconButton(
                 onPressed: _pickIcon,
                 color: _color,
@@ -85,9 +87,12 @@ class _PickersState extends State<Pickers> {
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
-            NeuCard(
-              depth: 1.5,
-              radius: 100.0,
+            Card(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ColorPicker(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/ad_bloc.dart';
 
 import 'package:habitflow/components/cycle_header.dart';
-import 'package:habitflow/components/neu_card.dart';
 import 'package:habitflow/components/redirect.dart';
 
 import 'package:habitflow/models/cycle.dart';
@@ -26,22 +25,16 @@ class CycleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 12.0,
-        horizontal: 16.0,
-      ),
-      child: NeuCard(
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: () => _openCycleInfo(context),
-            child: Ink(
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-                alignment: Alignment.center,
-                child: CycleHeader(cycle: cycle),
-              ),
+    return Card(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => _openCycleInfo(context),
+          child: Ink(
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: CycleHeader(cycle: cycle),
             ),
           ),
         ),

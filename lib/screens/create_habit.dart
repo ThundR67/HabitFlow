@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
-import 'package:habitflow/components/neu_text_field.dart';
 import 'package:habitflow/components/notification_time_selector.dart';
 import 'package:habitflow/components/pickers.dart';
 import 'package:habitflow/components/weekdays_picker.dart';
@@ -104,16 +102,16 @@ class _CreateHabitState extends State<CreateHabit> {
                         padding: EdgeInsets.all(16.0),
                         child: Divider(),
                       ),
-                      NeuInputTextField(
+                      TextFormField(
                         controller: _nameController,
-                        text: habitName,
-                        validate: validateStr,
+                        decoration: InputDecoration(labelText: habitName),
+                        validator: validateStr,
                       ),
                       const SizedBox(height: 24.0),
-                      NeuInputTextField(
+                      TextFormField(
                         controller: _pointsController,
-                        text: rewardPoints,
-                        validate: validatePosInt,
+                        decoration: InputDecoration(labelText: rewardPoints),
+                        validator: validatePosInt,
                       ),
                       const SizedBox(height: 16.0),
                       WeekdaysPicker(
