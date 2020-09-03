@@ -41,18 +41,17 @@ class _ThemeDropDownState extends State<ThemeDropDown> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
-
-    /// Sets [_value] to current theme.
-    _themes.forEach((key, value) {
-      if (_themeModes[value] == bloc.current) _value = key;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    /// Loads [_value] with current theme if its null.
+    if (_value == null) {
+      /// Sets [_value] to current theme.
+      final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
+      _themes.forEach((key, value) {
+        if (_themeModes[value] == bloc.current) _value = key;
+        setState(() {});
+      });
+    }
+
     return DropdownButton<String>(
       items: _themes.keys.map(
         (String value) {
