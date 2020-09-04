@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/components/tappable_card.dart';
 
-/// A slidable, tappable and showcasable card.
+/// A slidable, tappable and showcasable card. used for habit and reward card.
 class MainCard extends StatefulWidget {
   /// Constructs.
   const MainCard({
@@ -47,20 +47,18 @@ class MainCard extends StatefulWidget {
 class _MainCardState extends State<MainCard> {
   bool _isBeingShown = false;
 
-  /// Shows an intro and marks it as shown.
-  void _showIntro(BuildContext context, IntroBloc bloc) {
+  /// Shows an intro and marks it as shown and [_isBeingShown] as true.
+  Future<void> _showIntro(BuildContext context, IntroBloc bloc) async {
     setState(() => _isBeingShown = true);
     const Duration duration = Duration(seconds: 2);
     final SlidableState state = Slidable.of(context);
 
     state.open();
-    Future.delayed(duration).whenComplete(() {
-      state.close();
-      state.open(actionType: SlideActionType.secondary);
-      Future.delayed(duration).whenComplete(() {
-        state.close();
-      });
-    });
+    await Future.delayed(duration);
+    state.close();
+    state.open(actionType: SlideActionType.secondary);
+    await Future.delayed(duration);
+    state.close();
 
     bloc.shown(widget.intro);
   }
