@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/components/history_expansion_tile.dart';
 
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/cycle_header.dart';
-import 'package:habitflow/components/failures_expansion_tile_.dart';
+import 'package:habitflow/components/failures_expansion_tile_1.dart';
 import 'package:habitflow/components/habit_success_rates.dart';
 import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/statistics.dart';
@@ -65,11 +66,12 @@ class CycleInfo extends StatelessWidget {
             Stats(stats),
             const SizedBox(height: 16.0),
             HabitSuccessRates(_successRates(bloc)),
-            FailuresPanel(
-              _cycle.days.values.toList(),
-              _habits(bloc),
-              Provider.of<CurrentBloc>(context),
-            ),
+            //FailuresPanel(
+            //_cycle.days.values.toList(),
+            //_habits(bloc),
+            //Provider.of<CurrentBloc>(context),
+            //),
+            HistoryExpansionTile(),
           ],
         ),
       ),
