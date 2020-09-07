@@ -6,7 +6,6 @@ import 'package:habitflow/components/habit_card.dart';
 import 'package:habitflow/components/no_possesion.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
-import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
@@ -45,7 +44,6 @@ class HabitsList extends StatelessWidget {
     final int currentWeekday = DateTime.now().weekday;
 
     return ListView.builder(
-      physics: scrollPhysics,
       itemCount: habits.values.length,
       itemBuilder: (context, index) {
         final Habit habit = habits.values.toList()[index];

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:habitflow/components/action_buttons.dart';
-import 'package:habitflow/components/main_card.dart';
+import 'package:habitflow/components/slidable_card.dart';
 import 'package:habitflow/components/redirect.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/components/status_view.dart';

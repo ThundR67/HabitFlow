@@ -7,7 +7,6 @@ import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/components/cycle_card.dart';
 import 'package:habitflow/models/cycle.dart';
-import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/widgets.dart';
 
 /// A screen to show current and previous cycles.
@@ -31,7 +30,6 @@ class Cycles extends StatelessWidget {
 
     return SafeArea(
       child: ListView.builder(
-        physics: scrollPhysics,
         itemCount: cycles.length,
         itemBuilder: (context, index) => CycleCard(cycle: cycles[index]),
       ),

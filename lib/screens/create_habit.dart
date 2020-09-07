@@ -12,7 +12,6 @@ import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/validators.dart';
 import 'package:habitflow/models/goal.dart';
 import 'package:habitflow/models/habit.dart';
-import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
@@ -85,7 +84,6 @@ class _CreateHabitState extends State<CreateHabit> {
       body: SafeArea(
         child: Center(
           child: ListView(
-            physics: scrollPhysics,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),

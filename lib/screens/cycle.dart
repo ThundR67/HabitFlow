@@ -12,7 +12,6 @@ import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/habit.dart';
-import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// Screen to show data about [cycle].
@@ -59,7 +58,6 @@ class CycleInfo extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          physics: scrollPhysics,
           children: <Widget>[
             CycleHeader(cycle: _cycle),
             const SizedBox(height: 16.0),

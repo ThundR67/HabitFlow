@@ -8,7 +8,6 @@ import 'package:habitflow/components/pickers.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/validators.dart';
 import 'package:habitflow/models/reward.dart';
-import 'package:habitflow/resources/behaviour.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 
@@ -68,7 +67,6 @@ class _CreateRewardState extends State<CreateReward> {
       body: SafeArea(
         child: Center(
           child: ListView(
-            physics: scrollPhysics,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(24.0),
