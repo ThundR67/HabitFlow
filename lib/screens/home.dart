@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';

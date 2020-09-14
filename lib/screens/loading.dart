@@ -5,7 +5,6 @@ import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
-import 'package:habitflow/blocs/theme_bloc.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/widgets.dart';
 import 'package:provider/provider.dart';

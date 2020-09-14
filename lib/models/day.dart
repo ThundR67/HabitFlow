@@ -1,6 +1,5 @@
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:habitflow/helpers/time.dart';
 import 'package:hive/hive.dart';
 
 part 'day.g.dart';
