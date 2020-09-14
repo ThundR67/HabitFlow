@@ -80,7 +80,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
     return MaterialApp(
       //TODO navigatorObservers: [observer],
       localizationsDelegates: context.localizationDelegates,
@@ -88,7 +87,7 @@ class App extends StatelessWidget {
       locale: context.locale,
       theme: lightTheme(),
       darkTheme: darkTheme(),
-      themeMode: bloc.current,
+      themeMode: Provider.of<ThemeBloc>(context).current,
       initialRoute: loadingRoute,
       routes: routes,
       color: Colors.white,

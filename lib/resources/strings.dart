@@ -101,6 +101,9 @@ String undo = tr('undo');
 /// Refers to failure in translations.
 String failure = tr('failure');
 
+/// Refers to habitDeleted in translations.
+String habitDeleted = tr('habitDeleted');
+
 /// Refers to failures in translations.
 String failures = tr('failures');
 
