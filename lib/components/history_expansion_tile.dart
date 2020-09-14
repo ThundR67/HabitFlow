@@ -63,16 +63,10 @@ class _DayHistory extends StatelessWidget {
           value: 1,
           child: Text(markDone),
         ),
-      if (!_isFailure)
-        PopupMenuItem<int>(
-          value: 2,
-          child: Text(markFail),
-        ),
-      if (_isFailure)
-        PopupMenuItem<int>(
-          value: 3,
-          child: Text(updateReason),
-        ),
+      PopupMenuItem<int>(
+        value: 2,
+        child: Text(_isFailure ? updateReason : markFail),
+      ),
     ];
   }
 
@@ -119,6 +113,7 @@ class _DayHistory extends StatelessWidget {
         ),
         ListView.builder(
           shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: habits.length,
           itemBuilder: (context, index) {
             /// Getting the habit name.
@@ -129,6 +124,7 @@ class _DayHistory extends StatelessWidget {
 
             return ListTile(
               title: Text(habitName),
+              subtitle: _isFailure ? Text(day.failures[habits[index]]) : null,
               trailing: PopupMenuButton<dynamic>(
                 elevation: 8,
                 onSelected: (dynamic value) {
@@ -136,7 +132,7 @@ class _DayHistory extends StatelessWidget {
                     currentBloc.mark(habits[index], Status.skipped, date: date);
                   } else if (value == 1) {
                     currentBloc.mark(habits[index], Status.done, date: date);
-                  } else if (value == 2 || value == 3) {
+                  } else if (value == 2) {
                     _showFailureReasonSheet(context, habits[index]);
                   }
                 },

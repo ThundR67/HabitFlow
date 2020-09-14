@@ -64,6 +64,10 @@ class CycleInfo extends StatelessWidget {
               status: Status.skipped,
               days: _cycle.days.values.toList(),
             ),
+            HistoryExpansionTile(
+              status: Status.failed,
+              days: _cycle.days.values.toList(),
+            ),
           ],
         ),
       ),
