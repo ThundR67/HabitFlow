@@ -28,13 +28,11 @@ class _ThemeDropDownState extends State<ThemeDropDown> {
     system: ThemeMode.system,
   };
 
-  /// Changes [_value] to [value] and saves the theme if [save].
-  void _onChange(String value, [bool save = true]) {
+  /// Changes [_value] to [value] and saves the theme.
+  void _onChange(String value) {
     setState(() => _value = value);
-    if (save) {
-      final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
-      bloc.set(_themeNames[value]);
-    }
+    final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
+    bloc.set(_themeNames[value]);
   }
 
   @override
@@ -44,7 +42,7 @@ class _ThemeDropDownState extends State<ThemeDropDown> {
       for (final String key in _themeNames.keys) {
         final ThemeBloc bloc = Provider.of<ThemeBloc>(context, listen: false);
         if (_themeModes[_themeNames[key]] == bloc.current) {
-          _onChange(key, false);
+          setState(() => _value = key);
         }
       }
     }
