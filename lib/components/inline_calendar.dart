@@ -53,24 +53,6 @@ class _SingleDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// Text showing the date of [day].
-    Widget text = Text(
-      day.date.date().day.toString(),
-      style: Theme.of(context).textTheme.subtitle1,
-    );
-
-    if (day.activeHabits.isNotEmpty) {
-      /// Wrapping [text] with percentage indicator if day is not empty.
-      text = CircularPercentIndicator(
-        percent: Statistics(days: {"": day}).successRate,
-        lineWidth: 3,
-        radius: 40,
-        backgroundColor: Colors.transparent,
-        progressColor: Colors.greenAccent,
-        center: text,
-      );
-    }
-
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Column(
@@ -80,7 +62,17 @@ class _SingleDate extends StatelessWidget {
             style: Theme.of(context).textTheme.caption,
           ),
           const SizedBox(height: 4.0),
-          text,
+          CircularPercentIndicator(
+            percent: Statistics(days: {"": day}).successRate,
+            lineWidth: 3,
+            radius: 40,
+            backgroundColor: Colors.transparent,
+            progressColor: Colors.greenAccent,
+            center: Text(
+              day.date.date().day.toString(),
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+          ),
         ],
       ),
     );

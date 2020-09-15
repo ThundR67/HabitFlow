@@ -224,14 +224,23 @@ String saturday = tr('saturday');
 /// Refers to sunday in translations.
 String sunday = tr('sunday');
 
-/// Refers to noHabits in translations.
-String noHabits = tr('noHabits');
+/// Refers to noHabitsTitle in translations.
+String noHabitsTitle = tr('noHabitsTitle');
 
-/// Refers to noRewards in translations.
-String noRewards = tr('noRewards');
+/// Refers to noHabitsSubTitle in translations.
+String noHabitsSubtitle = tr('noHabitsSubtitle');
 
-/// Refers to noActiveHabits in translations.
-String noActiveHabits = tr('noActiveHabits');
+/// Refers to noRewardsSubtitle in translations.
+String noRewardsSubtitle = tr('noRewardsSubtitle');
+
+/// Refers to noRewardsTitle in translations.
+String noRewardsTitle = tr('noRewardsTitle');
+
+/// Refers to noActiveHabitsTitle in translations.
+String noActiveHabitsTitle = tr('noActiveHabitsTitle');
+
+/// Refers to noActiveHabitsSubtitle in translations.
+String noActiveHabitsSubtitle = tr('noActiveHabitsSubtitle');
 
 /// Refers to light in translations.
 String light = tr('light');

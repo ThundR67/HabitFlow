@@ -79,9 +79,12 @@
     "saturday": "Saturday",
     "sunday": "Sunday",
 
-    "noHabits": "You don't have any habit currently. Press on the button below to create a habit.",
-    "noRewards": "You don't have any rewards currently. Press on the button below to create a reward. Eg :- Watch TV for 30 mins",
-    "noActiveHabits": "You don't have any active habit today. Enjoy!!!",
+    "noHabitsTitle": "No Habits",
+    "noHabitsSubtitle": "Press on the button below to create a habit.",
+    "noRewardsTitle": "No Rewards",
+    "noRewardsSubtitle": "Press on the button below to create a reward. Eg :- Watch TV for 30 mins",
+    "noActiveHabitsTitle": "No Active Habits",
+    "noActiveHabitsSubtitle": "Enjoy Your Day",
 
     "light": "Light",
     "dark": "Dark",

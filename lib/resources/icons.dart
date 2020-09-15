@@ -37,6 +37,9 @@ const IconData emptyIcon = OMIcons.accessibility;
 /// Icon to show user of no active habits on current day.
 const IconData noActiveHabitsIcon = OMIcons.airlineSeatIndividualSuite;
 
+/// Icon to show empty state such as mo habits or rewards.
+const IconData emptyStateIcon = OMIcons.create;
+
 /// Icon to take a reward.
 const IconData takeIcon = OMIcons.cardGiftcard;
 

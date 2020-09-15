@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habitflow/components/quick_sup.dart';
 
-import 'package:habitflow/components/no_possesion.dart';
 import 'package:habitflow/components/reward_card.dart';
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -22,7 +22,12 @@ class RewardsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (_rewards == null) return circularIndicator;
-    if (_rewards.isEmpty) return NoPossesion(text: noRewards);
+    if (_rewards.isEmpty) {
+      return QuickSup(
+        title: noRewardsTitle,
+        subtitle: noRewardsSubtitle,
+      );
+    }
 
     return ListView.builder(
       itemCount: _rewards.length,

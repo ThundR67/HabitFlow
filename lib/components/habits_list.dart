@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:habitflow/components/habit_card.dart';
-import 'package:habitflow/components/no_possesion.dart';
+import 'package:habitflow/components/quick_sup.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
@@ -33,10 +33,17 @@ class HabitsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (habits.isEmpty) return NoPossesion(text: noHabits);
+    if (habits.isEmpty) {
+      return QuickSup(
+        title: noRewardsTitle,
+        subtitle: noRewardsSubtitle,
+      );
+    }
+
     if (!_isActiveToday()) {
-      return NoPossesion(
-        text: noActiveHabits,
+      return QuickSup(
+        title: noActiveHabitsTitle,
+        subtitle: noActiveHabitsSubtitle,
         icon: noActiveHabitsIcon,
       );
     }

@@ -105,7 +105,7 @@ ActionButton deleteAction(BuildContext context, Reward reward) {
     text: delete,
     color: Colors.redAccent,
     onPressed: () {
-      Provider.of<RewardsBloc>(context).delete(reward);
+      Provider.of<RewardsBloc>(context, listen: false).delete(reward);
       Provider.of<AdBloc>(context, listen: false).interstitial();
     },
   );
