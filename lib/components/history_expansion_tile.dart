@@ -81,8 +81,6 @@ class _DayHistory extends StatelessWidget {
         return day.failures.keys.toList();
       default:
         return [];
-
-      /// TODO
     }
   }
 
