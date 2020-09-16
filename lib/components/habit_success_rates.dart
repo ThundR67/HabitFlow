@@ -20,7 +20,7 @@ class HabitSuccessRates extends StatelessWidget {
       children: [
         for (String id in _successRates.keys)
           _HabitAndRate(
-            name: bloc.habits[id].name,
+            name: bloc.habits[id]?.name ?? habitDeleted,
             rate: _successRates[id],
           )
       ],

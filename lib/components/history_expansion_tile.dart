@@ -114,24 +114,20 @@ class _DayHistory extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: habits.length,
           itemBuilder: (context, index) {
-            /// Getting the habit name.
-            String habitName = habitDeleted;
-            if (bloc.habits.containsKey(habits[index])) {
-              habitName = bloc.habits[habits[index]].name;
-            }
+            final String id = habits[index];
 
             return ListTile(
-              title: Text(habitName),
-              subtitle: _isFailure ? Text(day.failures[habits[index]]) : null,
+              title: Text(bloc.habits[id]?.name ?? habitDeleted),
+              subtitle: _isFailure ? Text(day.failures[id]) : null,
               trailing: PopupMenuButton<dynamic>(
                 elevation: 8,
                 onSelected: (dynamic value) {
                   if (value == 0) {
-                    currentBloc.mark(habits[index], Status.skipped, date: date);
+                    currentBloc.mark(id, Status.skipped, date: date);
                   } else if (value == 1) {
-                    currentBloc.mark(habits[index], Status.done, date: date);
+                    currentBloc.mark(id, Status.done, date: date);
                   } else if (value == 2) {
-                    _showFailureReasonSheet(context, habits[index]);
+                    _showFailureReasonSheet(context, id);
                   }
                 },
                 itemBuilder: (_) {
