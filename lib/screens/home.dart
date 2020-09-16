@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/cycles.dart';
@@ -52,25 +50,21 @@ class _BottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavyBar(
-      selectedIndex: currentIndex,
-      backgroundColor:
-          Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-      onItemSelected: onChange,
-      items: <BottomNavyBarItem>[
-        BottomNavyBarItem(
+    return BottomNavigationBar(
+      currentIndex: currentIndex,
+      onTap: onChange,
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
           icon: const Icon(cycleIcon),
           title: Text(cyclesPage),
         ),
-        BottomNavyBarItem(
+        BottomNavigationBarItem(
           icon: const Icon(todayIcon),
           title: Text(todaysPage),
-          activeColor: Colors.red,
         ),
-        BottomNavyBarItem(
+        BottomNavigationBarItem(
           icon: const Icon(rewardIcon),
           title: Text(rewardsPage),
-          activeColor: Colors.orange,
         ),
       ],
     );

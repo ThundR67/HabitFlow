@@ -15,6 +15,13 @@ ThemeData darkTheme() {
     buttonColor: Colors.blueAccent,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey[850],
+      elevation: 24.0,
+      selectedLabelStyle: const TextStyle(
+        fontWeight: FontWeight.w700,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontWeight: FontWeight.w500,
+      ),
     ),
     appBarTheme: AppBarTheme(
       brightness: brightness,
@@ -49,6 +56,13 @@ ThemeData lightTheme() {
     buttonColor: Colors.blueAccent,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
+      elevation: 24.0,
+      selectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.w700,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.w500,
+      ),
     ),
     appBarTheme: const AppBarTheme(
       brightness: brightness,
