@@ -43,7 +43,7 @@ ThemeData darkTheme() {
 
 /// Returns default light mode.
 ThemeData lightTheme() {
-  const Color primary = Color(0xFFEFEEEE);
+  const Color primary = Colors.white;
   const Brightness brightness = Brightness.light;
   return ThemeData(
     cardTheme: const CardTheme(
@@ -56,7 +56,8 @@ ThemeData lightTheme() {
     buttonColor: Colors.blueAccent,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
-      elevation: 24.0,
+      showUnselectedLabels: false,
+      elevation: 240.0,
       selectedLabelStyle: TextStyle(
         fontWeight: FontWeight.w700,
       ),

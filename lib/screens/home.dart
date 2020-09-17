@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
@@ -26,6 +27,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO Indexed stack
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -39,6 +41,7 @@ class _HomeState extends State<Home> {
   }
 }
 
+/// A circular bottom bar.
 class _BottomNavigationBar extends StatelessWidget {
   const _BottomNavigationBar({
     @required this.currentIndex,
@@ -50,23 +53,33 @@ class _BottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: onChange,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: const Icon(cycleIcon),
-          title: Text(cyclesPage),
+    return Container(
+      decoration: const BoxDecoration(
+        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
+      ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(10.0),
         ),
-        BottomNavigationBarItem(
-          icon: const Icon(todayIcon),
-          title: Text(todaysPage),
+        child: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: onChange,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: const Icon(cycleIcon),
+              title: Text(cyclesPage),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(todayIcon),
+              title: Text(todaysPage),
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(rewardIcon),
+              title: Text(rewardsPage),
+            ),
+          ],
         ),
-        BottomNavigationBarItem(
-          icon: const Icon(rewardIcon),
-          title: Text(rewardsPage),
-        ),
-      ],
+      ),
     );
   }
 }
