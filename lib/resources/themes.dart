@@ -114,5 +114,10 @@ ThemeData lightTheme() {
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
     ),
+    buttonTheme: const ButtonThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(500.0)),
+      ),
+    ),
   );
 }
