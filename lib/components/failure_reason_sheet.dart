@@ -37,22 +37,26 @@ class FailureReasonSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 160,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(24.0),
-      child: Column(
-        children: <Widget>[
-          TextField(
-            controller: _controller,
-            decoration: InputDecoration(labelText: failureReason),
-          ),
-          RaisedButton(
-            color: Theme.of(context).accentColor,
-            onPressed: () => _done(context),
-            child: Text(done),
-          ),
-        ],
+    return AnimatedPadding(
+      padding: MediaQuery.of(context).viewInsets,
+      duration: const Duration(milliseconds: 100),
+      child: Container(
+        height: 160,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: <Widget>[
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(labelText: failureReason),
+            ),
+            RaisedButton(
+              color: Theme.of(context).accentColor,
+              onPressed: () => _done(context),
+              child: Text(done),
+            ),
+          ],
+        ),
       ),
     );
   }
