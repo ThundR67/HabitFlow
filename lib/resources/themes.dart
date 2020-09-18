@@ -94,5 +94,15 @@ ThemeData lightTheme() {
         ),
       ),
     ),
+    dialogTheme: const DialogTheme(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16.0)),
+      ),
+    ),
+    timePickerTheme: const TimePickerThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16.0)),
+      ),
+    ),
   );
 }
