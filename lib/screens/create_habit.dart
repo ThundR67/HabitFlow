@@ -123,15 +123,9 @@ class _CreateHabitState extends State<CreateHabit> {
                       ),
                       const SizedBox(height: 16.0),
                       RaisedButton(
-                        color:
-                            Theme.of(context).buttonTheme.colorScheme.surface,
                         onPressed: _create,
-                        elevation: 4,
                         child: Text(
                           submit,
-                          style: Theme.of(context).textTheme.subtitle2.copyWith(
-                                color: _color,
-                              ),
                         ),
                       ),
                     ],

@@ -57,7 +57,7 @@ ThemeData lightTheme() {
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
       showUnselectedLabels: false,
-      elevation: 240.0,
+      elevation: 8,
       selectedLabelStyle: TextStyle(
         fontWeight: FontWeight.w700,
       ),
@@ -69,13 +69,13 @@ ThemeData lightTheme() {
       brightness: brightness,
       color: primary,
       centerTitle: true,
+      elevation: 0,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: Colors.black,
           fontSize: 24.0,
         ),
       ),
-      elevation: 0,
       iconTheme: IconThemeData(
         color: Colors.black,
       ),
@@ -84,6 +84,14 @@ ThemeData lightTheme() {
       headline5: TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.w800,
+      ),
+    ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      modalBackgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(8.0),
+        ),
       ),
     ),
   );

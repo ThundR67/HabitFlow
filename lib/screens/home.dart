@@ -54,8 +54,13 @@ class _BottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: Theme.of(context).bottomNavigationBarTheme.elevation,
+          ),
+        ],
       ),
       child: ClipRRect(
         borderRadius: const BorderRadius.vertical(

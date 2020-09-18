@@ -15,7 +15,7 @@ class FailureReasonSheet extends StatelessWidget {
     this.date,
   });
 
-  /// Habit on which user is failing.
+  /// Id of habit which user is failing.
   final String id;
 
   /// Date when habit needs to be marked as failed. Defaults current day.

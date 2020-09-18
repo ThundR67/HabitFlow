@@ -6,6 +6,7 @@ import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/action_button.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
+import 'package:habitflow/helpers/scaffold.dart';
 import 'package:habitflow/helpers/sounds.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/reward.dart';
@@ -68,9 +69,7 @@ ActionButton failAction(BuildContext context, Habit habit) {
   return ActionButton(
     color: Colors.redAccent,
     text: fail,
-    onPressed: () => Scaffold.of(context).showBottomSheet<FailureReasonSheet>(
-      (BuildContext context) => FailureReasonSheet(id: habit.id),
-    ),
+    onPressed: () => bottomsheet(context, FailureReasonSheet(id: habit.id)),
     icon: failedIcon,
   );
 }
@@ -85,9 +84,7 @@ ActionButton takeAction(BuildContext context, Reward reward) {
     color: Colors.blueAccent,
     onPressed: () {
       if (pointsBloc.points < reward.points) {
-        Scaffold.of(context).showSnackBar(
-          SnackBar(content: Text(notEnoughPoints)),
-        );
+        snackbar(context, notEnoughPoints);
         return;
       }
       play('success');

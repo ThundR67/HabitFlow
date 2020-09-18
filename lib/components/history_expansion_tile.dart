@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
+import 'package:habitflow/helpers/scaffold.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
@@ -86,8 +87,9 @@ class _DayHistory extends StatelessWidget {
 
   /// Shows failure reason sheet.
   void _showFailureReasonSheet(BuildContext context, String id) {
-    Scaffold.of(context).showBottomSheet<FailureReasonSheet>(
-      (BuildContext context) => FailureReasonSheet(
+    bottomsheet(
+      context,
+      FailureReasonSheet(
         id: id,
         date: day.date.date(),
       ),
