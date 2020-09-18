@@ -109,5 +109,10 @@ ThemeData lightTheme() {
         TargetPlatform.android: ZoomPageTransitionsBuilder(),
       },
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      ),
+    ),
   );
 }
