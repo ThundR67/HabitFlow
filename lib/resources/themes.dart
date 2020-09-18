@@ -104,5 +104,10 @@ ThemeData lightTheme() {
         borderRadius: BorderRadius.all(Radius.circular(16.0)),
       ),
     ),
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: ZoomPageTransitionsBuilder(),
+      },
+    ),
   );
 }

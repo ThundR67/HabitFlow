@@ -40,6 +40,7 @@ class _PickersState extends State<Pickers> {
 
   /// Displays dialog which allows to pick an icon and changes [_icon].
   Future<void> _pickIcon() async {
+    /// TODO theme this icon picker.
     final IconData icon = await FlutterIconPicker.showIconPicker(
       context,
       iconPackMode: IconPack.materialOutline,
