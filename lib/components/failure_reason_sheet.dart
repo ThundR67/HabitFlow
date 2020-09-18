@@ -55,10 +55,10 @@ class FailureReasonSheet extends StatelessWidget {
                 suffixIcon: const Icon(reasonIcon),
               ),
             ),
-            RaisedButton(
-              color: Theme.of(context).accentColor,
+            RaisedButton.icon(
               onPressed: () => _done(context),
-              child: Text(done),
+              icon: const Icon(doneIcon),
+              label: Text(done),
             ),
           ],
         ),

@@ -101,16 +101,11 @@ class _CreateRewardState extends State<CreateReward> {
                         validator: validatePosInt,
                       ),
                       const SizedBox(height: 16.0),
-                      RaisedButton(
+                      RaisedButton.icon(
                         color: _color,
                         onPressed: _create,
-                        elevation: 4,
-                        child: Text(
-                          submit,
-                          style: Theme.of(context).textTheme.subtitle2.copyWith(
-                                color: Colors.white,
-                              ),
-                        ),
+                        icon: const Icon(addIcon),
+                        label: Text(submit),
                       ),
                     ],
                   ),
