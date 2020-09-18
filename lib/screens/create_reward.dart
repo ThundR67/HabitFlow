@@ -85,13 +85,19 @@ class _CreateRewardState extends State<CreateReward> {
                       ),
                       TextFormField(
                         controller: _nameController,
-                        decoration: InputDecoration(labelText: rewardName),
+                        decoration: InputDecoration(
+                          labelText: rewardName,
+                          suffixIcon: const Icon(nameIcon),
+                        ),
                         validator: validateStr,
                       ),
                       const SizedBox(height: 24.0),
                       TextFormField(
                         controller: _pointsController,
-                        decoration: InputDecoration(labelText: rewardCost),
+                        decoration: InputDecoration(
+                          labelText: rewardCost,
+                          suffixIcon: const Icon(rewardIcon),
+                        ),
                         validator: validatePosInt,
                       ),
                       const SizedBox(height: 16.0),

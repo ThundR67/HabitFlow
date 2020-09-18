@@ -102,13 +102,19 @@ class _CreateHabitState extends State<CreateHabit> {
                       ),
                       TextFormField(
                         controller: _nameController,
-                        decoration: InputDecoration(labelText: habitName),
+                        decoration: InputDecoration(
+                          labelText: habitName,
+                          suffixIcon: const Icon(nameIcon),
+                        ),
                         validator: validateStr,
                       ),
                       const SizedBox(height: 24.0),
                       TextFormField(
                         controller: _pointsController,
-                        decoration: InputDecoration(labelText: rewardPoints),
+                        decoration: InputDecoration(
+                          labelText: rewardPoints,
+                          suffixIcon: const Icon(rewardIcon),
+                        ),
                         validator: validatePosInt,
                       ),
                       const SizedBox(height: 16.0),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/resources/icons.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 import 'package:provider/provider.dart';
 
@@ -48,7 +50,10 @@ class FailureReasonSheet extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: _controller,
-              decoration: InputDecoration(labelText: failureReason),
+              decoration: InputDecoration(
+                labelText: failureReason,
+                suffixIcon: const Icon(reasonIcon),
+              ),
             ),
             RaisedButton(
               color: Theme.of(context).accentColor,

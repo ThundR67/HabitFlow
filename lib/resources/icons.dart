@@ -54,3 +54,9 @@ const IconData faqIcon = OMIcons.questionAnswer;
 
 /// Icon for sharing.
 const IconData shareIcon = OMIcons.share;
+
+/// Icon for name.
+const IconData nameIcon = OMIcons.textFields;
+
+/// Icon for failure reason.
+const IconData reasonIcon = OMIcons.description;
