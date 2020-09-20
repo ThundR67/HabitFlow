@@ -80,7 +80,7 @@ class App extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: lightTheme,
-      darkTheme: lightTheme,
+      darkTheme: darkTheme,
       themeMode: Provider.of<ThemeBloc>(context).current,
       initialRoute: loadingRoute,
       routes: routes,
