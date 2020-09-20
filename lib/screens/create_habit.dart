@@ -129,6 +129,7 @@ class _CreateHabitState extends State<CreateHabit> {
                       ),
                       const SizedBox(height: 16.0),
                       RaisedButton.icon(
+                        color: _color,
                         onPressed: _create,
                         icon: const Icon(addIcon),
                         label: Text(submit),

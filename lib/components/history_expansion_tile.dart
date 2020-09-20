@@ -122,7 +122,6 @@ class _DayHistory extends StatelessWidget {
               title: Text(bloc.habits[id]?.name ?? habitDeleted),
               subtitle: _isFailure ? Text(day.failures[id]) : null,
               trailing: PopupMenuButton<dynamic>(
-                elevation: 8,
                 onSelected: (dynamic value) {
                   if (value == 0) {
                     currentBloc.mark(id, Status.skipped, date: date);
