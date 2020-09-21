@@ -43,7 +43,7 @@ class FailureReasonSheet extends StatelessWidget {
       padding: MediaQuery.of(context).viewInsets,
       duration: const Duration(milliseconds: 100),
       child: Container(
-        height: 160,
+        height: 176,
         alignment: Alignment.center,
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -55,6 +55,7 @@ class FailureReasonSheet extends StatelessWidget {
                 suffixIcon: const Icon(reasonIcon),
               ),
             ),
+            const SizedBox(height: 16.0),
             RaisedButton.icon(
               onPressed: () => _done(context),
               icon: const Icon(doneIcon),

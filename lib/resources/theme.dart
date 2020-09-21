@@ -78,8 +78,17 @@ ThemeData _theme(ColorScheme scheme) {
     /// Card theming.
     cardTheme: CardTheme(
       elevation: 6.0,
-      shape: _roundedRec(12.0),
-      margin: const EdgeInsets.all(8.0),
+      shape: _roundedRec(16.0),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 8.0,
+      ),
+    ),
+
+    /// Floating action bar theming.
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: scheme.background,
+      foregroundColor: scheme.primary,
     ),
 
     /// Button theming.
