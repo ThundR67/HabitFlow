@@ -17,7 +17,7 @@ class PointsBloc extends ChangeNotifier {
 
   /// Updates [point].
   Future<void> _update() async {
-    points = (await _db).get(_dbName);
+    points = (await _db).get(_dbName) ?? 0;
     notifyListeners();
   }
 

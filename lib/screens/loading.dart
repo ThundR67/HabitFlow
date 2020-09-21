@@ -25,7 +25,7 @@ class Loading extends StatelessWidget {
     return (currentBloc.current != null) &&
         (introBloc.intros != null) &&
         (habitsBloc.habits != null) &&
-        (cyclesBloc.cycles) != null &&
+        (cyclesBloc.cycles != null) &&
         (rewardsBloc.rewards != null) &&
         (pointsBloc.points != null);
   }
