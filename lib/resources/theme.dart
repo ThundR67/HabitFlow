@@ -59,6 +59,7 @@ ThemeData _theme(ColorScheme scheme) {
     primaryColor: scheme.primary,
     accentColor: scheme.primary,
     colorScheme: scheme,
+    fontFamily: 'Rubik',
 
     /// Bottom Bar theming.
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

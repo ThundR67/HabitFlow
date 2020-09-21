@@ -75,11 +75,7 @@ class _CreateHabitState extends State<CreateHabit> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          createHabitTitle,
-          style: Theme.of(context).textTheme.headline5,
-        ),
-        backgroundColor: _color,
+        title: Text(createHabitTitle),
       ),
       body: SafeArea(
         child: Center(
