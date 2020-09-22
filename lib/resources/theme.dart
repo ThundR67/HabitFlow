@@ -26,12 +26,12 @@ const _lightColorScheme = ColorScheme(
   brightness: Brightness.light,
 );
 
-const _darkColorScheme = ColorScheme(
+ColorScheme _darkColorScheme = ColorScheme(
   primary: _habitflowPrimary,
   primaryVariant: _habitflowPrimary,
   secondary: _habitflowPrimary,
   secondaryVariant: _habitflowPrimary,
-  surface: _darkBackground,
+  surface: Colors.grey[900],
   background: _darkBackground,
   error: _redAccent400,
   onPrimary: Colors.white,
@@ -63,10 +63,11 @@ ThemeData _theme(ColorScheme scheme) {
     fontFamily: 'Rubik',
 
     /// Bottom Bar theming.
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       showUnselectedLabels: false,
       elevation: 8.0,
-      selectedLabelStyle: TextStyle(fontWeight: FontWeight.w700),
+      backgroundColor: scheme.surface,
+      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w700),
     ),
 
     /// App bar theming.
@@ -81,6 +82,7 @@ ThemeData _theme(ColorScheme scheme) {
     cardTheme: CardTheme(
       elevation: 6.0,
       shape: _roundedRec(16.0),
+      color: scheme.surface,
       margin: const EdgeInsets.symmetric(
         horizontal: 16.0,
         vertical: 8.0,
@@ -89,8 +91,9 @@ ThemeData _theme(ColorScheme scheme) {
 
     /// Floating action bar theming.
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: scheme.background,
+      backgroundColor: scheme.surface,
       foregroundColor: scheme.primary,
+      splashColor: scheme.primary.withOpacity(0.3),
     ),
 
     /// Button theming.
