@@ -57,6 +57,7 @@ ThemeData _theme(ColorScheme scheme) {
     backgroundColor: scheme.background,
     scaffoldBackgroundColor: scheme.background,
     primaryColor: scheme.primary,
+    primaryColorBrightness: scheme.brightness,
     accentColor: scheme.primary,
     colorScheme: scheme,
     fontFamily: 'Rubik',
