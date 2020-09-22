@@ -3,7 +3,6 @@ import 'package:habitflow/blocs/ad_bloc.dart';
 
 import 'package:habitflow/components/cycle_header.dart';
 import 'package:habitflow/components/redirect.dart';
-import 'package:habitflow/components/tappable_card.dart';
 
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/routes.dart';
@@ -26,12 +25,15 @@ class CycleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TappableCard(
-      onTap: () => _openCycleInfo(context),
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        alignment: Alignment.center,
-        child: CycleHeader(cycle: cycle),
+    return Card(
+      child: InkWell(
+        customBorder: Theme.of(context).cardTheme.shape,
+        onTap: () => _openCycleInfo(context),
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          alignment: Alignment.center,
+          child: CycleHeader(cycle: cycle),
+        ),
       ),
     );
   }

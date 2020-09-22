@@ -59,25 +59,28 @@ class HabitCard extends StatelessWidget {
       controller: controller,
       actions: _actions(context),
       secondaryActions: _secondaryActions(context),
-      child: ListTile(
+      child: InkWell(
+        customBorder: Theme.of(context).cardTheme.shape,
         onTap: () => redirect(context, habitInfoRoute, HabitInfo(habit)),
-        leading: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          child: Icon(
-            mapToIconData(habit.iconData),
-            color: _isUnmarked ? hexToColor(habit.colorHex) : Colors.grey,
-            size: 24,
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            child: Icon(
+              mapToIconData(habit.iconData),
+              color: _isUnmarked ? hexToColor(habit.colorHex) : Colors.grey,
+              size: 24,
+            ),
           ),
+          title: Text(
+            habit.name,
+            style: Theme.of(context).textTheme.headline6.copyWith(
+                  color: _isUnmarked ? textColor : Colors.grey,
+                ),
+          ),
+          subtitle: !_isUnmarked
+              ? HabitStatus(status: status)
+              : RewardPoints(points: habit.points),
         ),
-        title: Text(
-          habit.name,
-          style: Theme.of(context).textTheme.headline6.copyWith(
-                color: _isUnmarked ? textColor : Colors.grey,
-              ),
-        ),
-        subtitle: !_isUnmarked
-            ? HabitStatus(status: status)
-            : RewardPoints(points: habit.points),
       ),
     );
   }
