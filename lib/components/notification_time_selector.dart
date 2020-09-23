@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitflow/resources/strings.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 /// A notification time selector button.
 ///
@@ -41,20 +42,11 @@ class _NotificationTimeSelectorState extends State<NotificationTimeSelector> {
           setState(() => widget.onChange(_time));
         },
         color: widget.color,
-        child: _time == null
-            ? Text(
-                selectTime,
-                style: Theme.of(context)
-                    .textTheme
-                    .button
-                    .copyWith(color: Colors.white),
-              )
-            : Text(
-                _time.format(context),
-                style: Theme.of(context).textTheme.headline6.copyWith(
-                      color: Colors.white,
-                    ),
-              ),
+        textColor:
+            TinyColor(widget.color).isLight() ? Colors.black : Colors.white,
+        child: Text(
+          _time == null ? selectTime : _time.format(context),
+        ),
       ),
     );
   }

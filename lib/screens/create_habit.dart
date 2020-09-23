@@ -14,6 +14,7 @@ import 'package:habitflow/models/goal.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 /// A screen which allows user to create a habit.
 class CreateHabit extends StatefulWidget {
@@ -77,65 +78,66 @@ class _CreateHabitState extends State<CreateHabit> {
       appBar: AppBar(
         title: Text(createHabitTitle),
       ),
-      body: SafeArea(
-        child: Center(
-          child: ListView(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      Pickers(
-                        color: _color,
-                        icon: _icon,
-                        onChange: _onChange,
+      body: Center(
+        child: ListView(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    Pickers(
+                      color: _color,
+                      icon: _icon,
+                      onChange: _onChange,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Divider(),
+                    ),
+                    TextFormField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        labelText: habitName,
+                        suffixIcon: const Icon(nameIcon),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Divider(),
+                      validator: validateStr,
+                    ),
+                    const SizedBox(height: 24.0),
+                    TextFormField(
+                      controller: _pointsController,
+                      decoration: InputDecoration(
+                        labelText: rewardPoints,
+                        suffixIcon: const Icon(rewardIcon),
                       ),
-                      TextFormField(
-                        controller: _nameController,
-                        decoration: InputDecoration(
-                          labelText: habitName,
-                          suffixIcon: const Icon(nameIcon),
-                        ),
-                        validator: validateStr,
-                      ),
-                      const SizedBox(height: 24.0),
-                      TextFormField(
-                        controller: _pointsController,
-                        decoration: InputDecoration(
-                          labelText: rewardPoints,
-                          suffixIcon: const Icon(rewardIcon),
-                        ),
-                        validator: validatePosInt,
-                      ),
-                      const SizedBox(height: 16.0),
-                      WeekdaysPicker(
-                        onChange: (List<int> days) => _activeDays = days,
-                        color: _color,
-                      ),
-                      const SizedBox(height: 16.0),
-                      NotificationTimeSelector(
-                        onChange: (TimeOfDay time) => _time = time,
-                        color: _color,
-                      ),
-                      const SizedBox(height: 16.0),
-                      RaisedButton.icon(
-                        color: _color,
-                        onPressed: _create,
-                        icon: const Icon(addIcon),
-                        label: Text(submit),
-                      ),
-                    ],
-                  ),
+                      validator: validatePosInt,
+                    ),
+                    const SizedBox(height: 16.0),
+                    WeekdaysPicker(
+                      onChange: (List<int> days) => _activeDays = days,
+                      color: _color,
+                    ),
+                    const SizedBox(height: 16.0),
+                    NotificationTimeSelector(
+                      onChange: (TimeOfDay time) => _time = time,
+                      color: _color,
+                    ),
+                    const SizedBox(height: 16.0),
+                    RaisedButton.icon(
+                      onPressed: _create,
+                      icon: const Icon(addIcon),
+                      color: _color,
+                      label: Text(submit),
+                      textColor: TinyColor(_color).isLight()
+                          ? Colors.black
+                          : Colors.white,
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
