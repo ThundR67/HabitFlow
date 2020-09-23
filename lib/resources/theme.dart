@@ -96,6 +96,14 @@ ThemeData _theme(ColorScheme scheme) {
       splashColor: scheme.primary.withOpacity(0.3),
     ),
 
+    /// Tooltip theming.
+    tooltipTheme: TooltipThemeData(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16.0),
+        color: scheme.onSurface,
+      ),
+    ),
+
     /// Button theming.
     buttonTheme: ButtonThemeData(
       shape: _roundedRec(100),
