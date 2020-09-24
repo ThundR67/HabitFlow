@@ -29,7 +29,7 @@ class _CreateHabitState extends State<CreateHabit> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _pointsController = TextEditingController();
-  List<int> _activeDays = <int>[];
+  List<int> _activeDays = [];
   IconData _icon = emptyIcon;
   Color _color;
   HabitsBloc _bloc;
@@ -115,7 +115,7 @@ class _CreateHabitState extends State<CreateHabit> {
                     ),
                     const SizedBox(height: 16.0),
                     WeekdaysPicker(
-                      onChange: (List<int> days) => _activeDays = days,
+                      onChange: (days) => _activeDays = days,
                       color: _color,
                     ),
                     const SizedBox(height: 16.0),

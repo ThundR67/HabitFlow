@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 /// A picker to allow user to pick weekdays.
 ///
@@ -37,7 +38,8 @@ class _WeekdaysPickerState extends State<WeekdaysPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      alignment: Alignment.center,
+      height: 48,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -76,21 +78,18 @@ class _Day extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const BorderRadius _radius = BorderRadius.all(Radius.circular(100));
-    return CircleAvatar(
-      backgroundColor: Colors.transparent,
-      radius: 20,
-      child: InkWell(
-        onTap: () => onSelect(index),
-        borderRadius: _radius,
-        child: Card(
-          elevation: isSelected ? 8 : 2,
-          margin: const EdgeInsets.all(8.0),
-          color: isSelected ? activeColor : Theme.of(context).cardColor,
-          shape: const RoundedRectangleBorder(borderRadius: _radius),
-          child: Center(
-            child: Text(weekdays[index - 1][0]),
-          ),
+    final Color color = isSelected ? activeColor : Theme.of(context).cardColor;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: ButtonTheme(
+        minWidth: 0,
+        child: RaisedButton(
+          elevation: isSelected ? 4 : 2,
+          onPressed: () => onSelect(index),
+          textColor: TinyColor(color).isLight() ? Colors.black : Colors.white,
+          color: isSelected ? color : Theme.of(context).cardTheme.color,
+          shape: const CircleBorder(),
+          child: Text(weekdays[index - 1][0]),
         ),
       ),
     );
