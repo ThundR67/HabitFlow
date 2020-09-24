@@ -5,9 +5,6 @@ import 'package:habitflow/models/day.dart';
 
 part 'cycle.g.dart';
 
-/// TODO add a map of habits in each cycle class. so if habit gets deleted
-/// its name is still preserved for past cycles.
-
 /// A type to store cycle's information.
 @HiveType(typeId: 4)
 class Cycle {

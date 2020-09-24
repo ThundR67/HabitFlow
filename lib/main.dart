@@ -75,7 +75,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //TODO navigatorObservers: [observer],
+      navigatorObservers: [Analytics().observer()],
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

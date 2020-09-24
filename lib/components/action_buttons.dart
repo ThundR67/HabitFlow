@@ -15,8 +15,6 @@ import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:provider/provider.dart';
 
-/// TODO Clean probably after proxy architecture.
-
 /// Returns action button to undo marking [habit].
 ActionButton undoAction(BuildContext context, Habit habit) {
   final CurrentBloc bloc = Provider.of<CurrentBloc>(context, listen: false);

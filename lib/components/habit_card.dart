@@ -13,8 +13,6 @@ import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/screens/habit.dart';
 
-// TODO clean after proxy
-
 /// A widget to show a card of [habit].
 class HabitCard extends StatelessWidget {
   /// Constructs
