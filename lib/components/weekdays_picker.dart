@@ -37,7 +37,7 @@ class _WeekdaysPickerState extends State<WeekdaysPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 60,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -76,19 +76,18 @@ class _Day extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      width: 40,
+    const BorderRadius _radius = BorderRadius.all(Radius.circular(100));
+    return CircleAvatar(
+      backgroundColor: Colors.transparent,
+      radius: 20,
       child: InkWell(
         onTap: () => onSelect(index),
+        borderRadius: _radius,
         child: Card(
           elevation: isSelected ? 8 : 2,
+          margin: const EdgeInsets.all(8.0),
           color: isSelected ? activeColor : Theme.of(context).cardColor,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(100),
-            ),
-          ),
+          shape: const RoundedRectangleBorder(borderRadius: _radius),
           child: Center(
             child: Text(weekdays[index - 1][0]),
           ),
