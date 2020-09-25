@@ -62,7 +62,6 @@ ThemeData _theme(ColorScheme scheme) {
     colorScheme: scheme,
     fontFamily: 'Rubik',
 
-    /// Bottom Bar theming.
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       showUnselectedLabels: false,
       elevation: 8.0,

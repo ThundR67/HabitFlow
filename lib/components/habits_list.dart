@@ -35,8 +35,8 @@ class HabitsList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (habits.isEmpty) {
       return QuickSup(
-        title: noRewardsTitle,
-        subtitle: noRewardsSubtitle,
+        title: noHabitsTitle,
+        subtitle: noHabitsSubtitle,
       );
     }
 

@@ -35,7 +35,8 @@ class InlineCalendar extends StatelessWidget {
         itemBuilder: (context, index) {
           final DateTime date = dates[index];
           return _SingleDate(
-            day: cycle.days[date.format()] ?? Day(date: date.format()),
+            date: date,
+            day: cycle.days[date.format()],
           );
         },
       ),
@@ -46,30 +47,35 @@ class InlineCalendar extends StatelessWidget {
 /// A widget to show info about a single date of [InlineCalendar].
 class _SingleDate extends StatelessWidget {
   /// Constructs.
-  const _SingleDate({@required this.day});
+  const _SingleDate({@required this.date, this.day});
+
+  /// Date.
+  final DateTime date;
 
   /// Info about the day.
   final Day day;
 
   @override
   Widget build(BuildContext context) {
+    final double rate =
+        day == null ? 0 : Statistics(days: {"": day}).successRate;
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Column(
         children: <Widget>[
           Text(
-            weekdays[day.date.date().weekday - 1][0],
+            weekdays[date.weekday - 1][0],
             style: Theme.of(context).textTheme.caption,
           ),
           const SizedBox(height: 4.0),
           CircularPercentIndicator(
-            percent: Statistics(days: {"": day}).successRate,
+            percent: rate,
             lineWidth: 3,
             radius: 40,
             backgroundColor: Colors.transparent,
             progressColor: Colors.greenAccent,
             center: Text(
-              day.date.date().day.toString(),
+              date.day.toString(),
               style: Theme.of(context).textTheme.subtitle1,
             ),
           ),

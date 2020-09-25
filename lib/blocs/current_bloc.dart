@@ -56,7 +56,7 @@ class CurrentBloc extends ChangeNotifier {
   Future<void> _fill() async {
     final List<DateTime> dates = datesList(
       current.start.date(),
-      current.end.date(),
+      DateTime.now(),
     );
 
     for (final DateTime date in dates) {

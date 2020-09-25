@@ -32,11 +32,6 @@ class _PickersState extends State<Pickers> {
   Color _color;
   IconData _icon;
 
-  /// Changes [_color] to one selected by user.
-  void _onColorChange(Color color) {
-    setState(() => _color = color);
-    widget.onChange(_color, _icon);
-  }
 
   /// Displays dialog which allows to pick an icon and changes [_icon].
   Future<void> _pickIcon() async {

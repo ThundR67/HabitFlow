@@ -53,38 +53,23 @@ class _BottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: Theme.of(context).bottomNavigationBarTheme.elevation,
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(16.0),
+    return BottomNavigationBar(
+      currentIndex: currentIndex,
+      onTap: onChange,
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: const Icon(cycleIcon),
+          title: Text(cyclesPage),
         ),
-        child: BottomNavigationBar(
-          currentIndex: currentIndex,
-          onTap: onChange,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: const Icon(cycleIcon),
-              title: Text(cyclesPage),
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(todayIcon),
-              title: Text(todaysPage),
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(rewardIcon),
-              title: Text(rewardsPage),
-            ),
-          ],
+        BottomNavigationBarItem(
+          icon: const Icon(todayIcon),
+          title: Text(todaysPage),
         ),
-      ),
+        BottomNavigationBarItem(
+          icon: const Icon(rewardIcon),
+          title: Text(rewardsPage),
+        ),
+      ],
     );
   }
 }
