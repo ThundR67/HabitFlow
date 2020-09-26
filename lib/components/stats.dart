@@ -45,21 +45,25 @@ class _Stat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 96,
-      width: 96,
+      height: 112,
+      width: 112,
       child: Card(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              text,
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            Text(
-              number.toString(),
-              style: Theme.of(context).textTheme.headline5,
-            ),
-          ],
+        margin: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                text,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              Text(
+                number.toString(),
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ],
+          ),
         ),
       ),
     );
