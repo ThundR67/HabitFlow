@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
           setState(() => _currentIndex = index);
           _pageController.animateToPage(
             index,
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 400),
             curve: Curves.ease,
           );
         },
