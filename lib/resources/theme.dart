@@ -118,7 +118,7 @@ ThemeData _theme(ColorScheme scheme) {
     /// SnackBar theming.
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
-      shape: _roundedRec(16.0),
+      shape: _roundedRec(100.0),
     ),
 
     /// Dialog theming.
