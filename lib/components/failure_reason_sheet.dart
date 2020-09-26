@@ -59,6 +59,7 @@ class FailureReasonSheet extends StatelessWidget {
               onPressed: () => _done(context),
               icon: const Icon(doneIcon),
               label: Text(done),
+              textColor: Colors.white,
             ),
           ],
         ),
