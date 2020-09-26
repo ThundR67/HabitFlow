@@ -18,24 +18,47 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 1;
+  PageController _pageController;
 
-  final List<Widget> _pages = const [
-    Cycles(),
-    Today(),
-    Rewards(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _currentIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // TODO Indexed stack
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages,
+      body: SizedBox.expand(
+        child: PageView(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          onPageChanged: (index) {
+            setState(() => _currentIndex = index);
+          },
+          children: const [
+            Cycles(),
+            Today(),
+            Rewards(),
+          ],
+        ),
       ),
       bottomNavigationBar: _BottomNavigationBar(
         currentIndex: _currentIndex,
-        onChange: (index) => setState(() => _currentIndex = index),
+        onChange: (index) {
+          setState(() => _currentIndex = index);
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.ease,
+          );
+        },
       ),
     );
   }
