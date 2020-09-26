@@ -12,6 +12,7 @@ import 'package:habitflow/helpers/statistics.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 /// Widget to show info in key and value.
 class _KeyValue extends StatelessWidget {
@@ -96,31 +97,18 @@ class HabitInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
     final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
     final List<String> recentFailures = getRecentFailures(
       _habit.id,
       currentBloc.current.days.values.toList(),
     );
 
-    final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
-
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              mapToIconData(_habit.iconData),
-              color: hexToColor(_habit.colorHex),
-              size: Theme.of(context).textTheme.headline5.fontSize,
-            ),
-            const SizedBox(width: 8.0),
-            Text(
-              _habit.name,
-              style: Theme.of(context).textTheme.headline5,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
+        title: Text(
+          _habit.name,
+          overflow: TextOverflow.ellipsis,
         ),
         actions: [
           IconButton(

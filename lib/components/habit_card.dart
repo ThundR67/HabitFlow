@@ -52,6 +52,7 @@ class HabitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color textColor = Theme.of(context).textTheme.headline6.color;
+    final Color color = hexToColor(habit.colorHex);
 
     return SlidableCard(
       controller: controller,
@@ -65,7 +66,7 @@ class HabitCard extends StatelessWidget {
             backgroundColor: Colors.transparent,
             child: Icon(
               mapToIconData(habit.iconData),
-              color: _isUnmarked ? hexToColor(habit.colorHex) : Colors.grey,
+              color: _isUnmarked ? color : Colors.grey,
               size: 24,
             ),
           ),
@@ -77,7 +78,7 @@ class HabitCard extends StatelessWidget {
           ),
           subtitle: !_isUnmarked
               ? HabitStatus(status: status)
-              : RewardPoints(points: habit.points),
+              : RewardPoints(points: habit.points, color: color),
         ),
       ),
     );
