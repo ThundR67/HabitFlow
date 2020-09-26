@@ -134,12 +134,8 @@ ThemeData _theme(ColorScheme scheme) {
     ),
 
     /// Bottom sheet theming.
-    bottomSheetTheme: const BottomSheetThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(8.0),
-        ),
-      ),
+    bottomSheetTheme: BottomSheetThemeData(
+      shape: _roundedRec(16.0),
     ),
 
     /// Popup menu theming.
