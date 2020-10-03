@@ -34,4 +34,13 @@ class Cycle {
   /// Information of each day.
   @HiveField(3)
   Map<String, Day> days;
+
+  /// Returns a loggable map.
+  Map<String, dynamic> toLog() {
+    return {
+      'start': start,
+      'end': end,
+      'days': [for (final day in days.values) day.toLog()],
+    };
+  }
 }

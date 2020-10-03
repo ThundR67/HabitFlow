@@ -20,10 +20,11 @@ class HabitsBloc extends ChangeNotifier {
   /// Updates [habits] and sets up notifications.
   Future<void> _update() async {
     habits = await _dao.all();
-    _log.i('Loaded all habits');
     for (final habit in habits.values) {
-      _log.d('${habit.id} : ${habit.name} : ${habit.points}');
+      _log.d(habit.toLog());
     }
+
+    _log.i('Loaded all habits');
     notifyListeners();
   }
 
@@ -31,15 +32,17 @@ class HabitsBloc extends ChangeNotifier {
   Future<void> add(Habit habit) async {
     await _dao.add(habit);
     await _update();
+
     Analytics().logHabit('habit_added', habit);
-    _log.i('Added habit ${habit.id} : ${habit.name} : ${habit.points}');
+    _log.i('Added habit: ${habit.toLog()}');
   }
 
   /// Deletes [habit]t from db.
   Future<void> delete(Habit habit) async {
     await _dao.delete(habit);
     await _update();
+
     Analytics().logHabit('habit_deleted', habit);
-    _log.i('Deleted habit ${habit.id} : ${habit.name} : ${habit.points}');
+    _log.i('Deleted habit: ${habit.toLog()}');
   }
 }

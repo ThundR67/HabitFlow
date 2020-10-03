@@ -23,14 +23,14 @@ class RewardsBloc extends ChangeNotifier {
     rewards = await _dao.all();
     _log.i('Updated Rewards');
     for (final reward in rewards) {
-      _log.d(reward.toString());
+      _log.d(reward.toLog());
     }
     notifyListeners();
   }
 
   /// Adds [reward] into db.
   Future<void> add(Reward reward) async {
-    _log.i('Added reward: ${reward.toString()}');
+    _log.i('Added reward: ${reward.toLog()}');
     await _dao.add(reward);
     await _update();
     Analytics().logReward('reward_added', reward);
@@ -38,7 +38,7 @@ class RewardsBloc extends ChangeNotifier {
 
   /// Deletes [reward] from db.
   Future<void> delete(Reward reward) async {
-    _log.i('Deleted reward: ${reward.toString()}');
+    _log.i('Deleted reward: ${reward.toLog()}');
     await _dao.delete(reward);
     await _update();
     Analytics().logReward('reward_deleted', reward);
@@ -46,7 +46,7 @@ class RewardsBloc extends ChangeNotifier {
 
   /// Increases [amountTaken] of [reward] by 1.
   Future<void> take(Reward reward) async {
-    _log.i('Took reward: ${reward.toString()}');
+    _log.i('Took reward: ${reward.toLog()}');
     reward.amountTaken++;
     await _dao.update(reward);
     await _update();

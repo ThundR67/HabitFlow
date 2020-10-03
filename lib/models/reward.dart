@@ -41,4 +41,13 @@ class Reward {
   /// Icon of this reward.
   @HiveField(5)
   Map<String, dynamic> iconData;
+
+  /// Returns a loggable map format.
+  Map<String, dynamic> toLog() {
+    return {
+      'id': id,
+      'name': name,
+      'points': points,
+    };
+  }
 }

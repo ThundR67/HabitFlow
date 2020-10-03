@@ -28,10 +28,7 @@ class Analytics {
   void logHabit(String name, Habit habit) {
     _analytics.logEvent(
       name: name,
-      parameters: {
-        'name': habit.name,
-        'points': habit.points,
-      },
+      parameters: habit.toLog(),
     );
   }
 
@@ -39,11 +36,7 @@ class Analytics {
   void logReward(String name, Reward reward) {
     _analytics.logEvent(
       name: name,
-      parameters: {
-        'name': reward.name,
-        'points': reward.points,
-        'amount_taken': reward.amountTaken,
-      },
+      parameters: reward.toLog(),
     );
   }
 }

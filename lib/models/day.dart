@@ -76,4 +76,15 @@ class Day {
     if (status == Status.skipped) skips.add(id);
     if (status == Status.failed) failures[id] = reason ?? unprovidedReason;
   }
+
+  /// Returns a loggable map.
+  Map<String, dynamic> toLog() {
+    return {
+      'date': date,
+      'active': activeHabits,
+      'skips': skips,
+      'successes': successes,
+      'failures': failures,
+    };
+  }
 }

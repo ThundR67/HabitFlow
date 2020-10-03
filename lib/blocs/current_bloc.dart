@@ -87,7 +87,7 @@ class CurrentBloc extends ChangeNotifier {
     notifyListeners();
     await _dao.update(current);
     _log.i('Updated statuses and current cycle');
-    _log.d('${current.start} : ${current.end}');
+    _log.d(current.toLog());
     _log.d(statuses);
   }
 
