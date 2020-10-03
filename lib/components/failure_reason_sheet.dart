@@ -41,6 +41,7 @@ class FailureReasonSheet extends StatelessWidget {
     return AnimatedPadding(
       padding: MediaQuery.of(context).viewInsets,
       duration: const Duration(milliseconds: 100),
+      curve: Curves.ease,
       child: Container(
         height: 176,
         alignment: Alignment.center,

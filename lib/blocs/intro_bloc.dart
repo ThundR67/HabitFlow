@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/helpers/logger.dart';
 
 import 'package:habitflow/services/intro/intro.dart';
+import 'package:logger/logger.dart';
 
 /// Main app intro.
 const mainIntro = 'main';
@@ -27,6 +29,7 @@ class IntroBloc extends ChangeNotifier {
   /// Value of all intros.
   Map<String, bool> intros;
   final IntroDAO _dao = IntroDAO();
+  final Logger _log = logger('IntroBloc');
 
   /// Fills up [intros].
   IntroBloc() {
@@ -34,11 +37,13 @@ class IntroBloc extends ChangeNotifier {
     for (final intro in allIntros) {
       _dao.isShown(intro).then((value) => intros[intro] = value);
     }
+    _log.i('Lodaded all intros');
     notifyListeners();
   }
 
   /// Sets [name] as shown.
   Future<void> shown(String name) async {
+    _log.i('Intro shown $name');
     intros[name] = true;
     notifyListeners();
     await _dao.introShown(name);
