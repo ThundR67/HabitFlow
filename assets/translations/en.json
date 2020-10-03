@@ -86,6 +86,10 @@
     "noActiveHabitsTitle": "No Active Habits",
     "noActiveHabitsSubtitle": "Enjoy Your Day",
 
+    "habitNotificationTicker": "It's time to complete your %s habit",
+    "habitNotificationBody": "Complete the habit for %s points",
+    "habitNotificationTitle": "Reminder for %s",
+
     "light": "Light",
     "dark": "Dark",
     "system": "System",
@@ -119,7 +123,7 @@
 
     "share": "Share",
     "shareValue": "https://play.google.com/store/apps/details?id=thundrx.app.habitflow Download this amazing habit tracker called HabitFlow. It works on a completely new concept of cycles to make you build, break, or sustain any habits. It also has rewards system to reward you as you complete your habits.",
-    "remind": "Reminder For",
+
 
     "appName": "HabitFlow",
     "appVersion": "1.0.0",

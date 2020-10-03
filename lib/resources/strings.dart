@@ -242,6 +242,12 @@ String noActiveHabitsTitle = tr('noActiveHabitsTitle');
 /// Refers to noActiveHabitsSubtitle in translations.
 String noActiveHabitsSubtitle = tr('noActiveHabitsSubtitle');
 
+/// Refers to habitNotificationBody in translations.
+String habitNotificationBody = tr('habitNotificationBody');
+
+/// Refers to habitNotificationTitle in translations.
+String habitNotificationTitle = tr('habitNotificationTitle');
+
 /// Refers to light in translations.
 String light = tr('light');
 
@@ -319,9 +325,6 @@ String share = tr('share');
 
 /// Refers to shareValue in translations.
 String shareValue = tr('shareValue');
-
-/// Refers to remind in translations.
-String remind = tr('remind');
 
 /// Refers to appName in translations.
 String appName = tr('appName');

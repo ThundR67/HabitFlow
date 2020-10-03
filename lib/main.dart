@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:habitflow/blocs/ad_bloc.dart';
+import 'package:habitflow/blocs/notification_bloc.dart';
 import 'package:habitflow/resources/theme.dart';
 import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:hive/hive.dart';
@@ -54,6 +55,8 @@ Future<void> main() async {
         ChangeNotifierProvider<HabitsBloc>(create: (_) => HabitsBloc()),
         ChangeNotifierProvider<CyclesBloc>(create: (_) => CyclesBloc()),
         ChangeNotifierProvider<CurrentBloc>(create: (_) => CurrentBloc()),
+        ChangeNotifierProvider<NotificationBloc>(
+            create: (_) => NotificationBloc()),
         ChangeNotifierProvider<IntroBloc>(create: (_) => IntroBloc()),
         ChangeNotifierProvider<ThemeBloc>(create: (_) => ThemeBloc()),
         Provider<AdBloc>(create: (_) => AdBloc()),
@@ -74,6 +77,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// Loading up the notification bloc.
+    Provider.of<NotificationBloc>(context, listen: false);
     return MaterialApp(
       navigatorObservers: [Analytics().observer()],
       localizationsDelegates: context.localizationDelegates,

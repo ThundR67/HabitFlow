@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/notification_bloc.dart';
 
 import 'package:provider/provider.dart';
 
@@ -96,6 +97,9 @@ class HabitInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
     final CurrentBloc currentBloc = Provider.of<CurrentBloc>(context);
+    final NotificationBloc notificationBloc =
+        Provider.of<NotificationBloc>(context);
+
     final List<String> recentFailures = getRecentFailures(
       _habit.id,
       currentBloc.current.days.values.toList(),
@@ -116,6 +120,7 @@ class HabitInfo extends StatelessWidget {
             onPressed: () {
               bloc.delete(_habit);
               currentBloc.remove(_habit.id);
+              notificationBloc.update();
               Navigator.of(context).pop();
             },
           )

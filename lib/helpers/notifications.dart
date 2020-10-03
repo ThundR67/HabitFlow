@@ -1,10 +1,26 @@
 import 'dart:math';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/helpers/time.dart';
+import 'package:habitflow/resources/strings.dart';
+import 'package:sprintf/sprintf.dart';
 
 Random _random = Random();
+
+/// Maps int to Day
+Day _intToDay(int day) {
+  return {
+    DateTime.monday: Day.Monday,
+    DateTime.tuesday: Day.Tuesday,
+    DateTime.wednesday: Day.Wednesday,
+    DateTime.thursday: Day.Thursday,
+    DateTime.friday: Day.Friday,
+    DateTime.saturday: Day.Saturday,
+    DateTime.sunday: Day.Sunday,
+  }[day];
+}
 
 /// Class to help with notifications.
 class Notifications {
@@ -12,7 +28,6 @@ class Notifications {
   AndroidInitializationSettings _android;
   IOSInitializationSettings _ios;
   InitializationSettings _settings;
-  NotificationDetails _details;
 
   /// Initializes notifications.
   Notifications() {
@@ -20,15 +35,6 @@ class Notifications {
     _android = const AndroidInitializationSettings('ic_icon');
     _ios = const IOSInitializationSettings();
     _settings = InitializationSettings(_android, _ios);
-    const AndroidNotificationDetails andDetails = AndroidNotificationDetails(
-      '1234',
-      'habitflow',
-      'test',
-      importance: Importance.Max,
-      priority: Priority.High,
-      ticker: 'ticker',
-    );
-    _details = const NotificationDetails(andDetails, null);
   }
 
   /// Initializes notifications.
@@ -36,18 +42,28 @@ class Notifications {
     await _plugin.initialize(_settings, onSelectNotification: onSelect);
   }
 
-  /// Schedules notifications for a [habit].
+  /// Schedules reminder notification for a [habit].
   Future<void> setForHabit(Habit habit) async {
     if (habit.goal.notificationTimes.isEmpty) return;
+
+    final androidDetails = AndroidNotificationDetails(
+      '6767',
+      'habitflow',
+      'notifications for habitflow',
+      color: hexToColor(habit.colorHex),
+      importance: Importance.Max,
+      priority: Priority.High,
+      ticker: 'notifications for habitflow',
+    );
 
     for (final day in habit.goal.activeDays) {
       await _plugin.showWeeklyAtDayAndTime(
         _random.nextInt(9999),
-        'Reminder for $habit',
-        'Lets go',
-        Day.values[day - 1],
+        sprintf(habitNotificationTitle, [habit.name]),
+        sprintf(habitNotificationBody, [habit.points]),
+        _intToDay(day),
         habit.goal.notificationTimes[0].notificationTime(),
-        _details,
+        NotificationDetails(androidDetails, null),
       );
     }
   }

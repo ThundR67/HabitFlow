@@ -88,6 +88,7 @@ class CurrentBloc extends ChangeNotifier {
   /// Updates current day's active habits.
   Future<void> updateHabits() async {
     final DateTime date = DateTime.now();
+    await _fill();
     current.days[date.format()].activeHabits = await _habitsDAO.active(date);
     await update();
   }
@@ -107,6 +108,7 @@ class CurrentBloc extends ChangeNotifier {
     String reason,
     DateTime date,
   }) async {
+    await _fill();
     final String key = (date ?? DateTime.now()).format();
     current.days[key].mark(id, status, reason: reason);
     await update();

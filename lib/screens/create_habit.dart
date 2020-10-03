@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+import 'package:habitflow/blocs/notification_bloc.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
@@ -34,6 +35,7 @@ class _CreateHabitState extends State<CreateHabit> {
   Color _color;
   HabitsBloc _bloc;
   CurrentBloc _currentBloc;
+  NotificationBloc _notificationBloc;
   TimeOfDay _time;
 
   /// Changes [_color] and [_icon] to what user selected.
@@ -49,20 +51,23 @@ class _CreateHabitState extends State<CreateHabit> {
     if (_formKey.currentState.validate()) {
       _bloc
           .add(
-            Habit(
-              name: _nameController.text,
-              points: int.parse(_pointsController.text),
-              colorHex: colorToHex(_color),
-              iconData: iconDataToMap(_icon),
-              goal: Goal(
-                activeDays: _activeDays,
-                times: 1,
-                unit: 'default',
-                notificationTimes: _time != null ? [_time] : [],
-              ),
-            ),
-          )
-          .whenComplete(_currentBloc.updateHabits);
+        Habit(
+          name: _nameController.text,
+          points: int.parse(_pointsController.text),
+          colorHex: colorToHex(_color),
+          iconData: iconDataToMap(_icon),
+          goal: Goal(
+            activeDays: _activeDays,
+            times: 1,
+            unit: 'default',
+            notificationTimes: _time != null ? [_time] : [],
+          ),
+        ),
+      )
+          .whenComplete(() {
+        _currentBloc.updateHabits();
+        _notificationBloc.update();
+      });
 
       Navigator.pop(context);
     }
@@ -71,7 +76,8 @@ class _CreateHabitState extends State<CreateHabit> {
   @override
   Widget build(BuildContext context) {
     _bloc = Provider.of<HabitsBloc>(context);
-    _currentBloc = Provider.of<CurrentBloc>(context);
+    _currentBloc = Provider.of<CurrentBloc>(context, listen: false);
+    _notificationBloc = Provider.of<NotificationBloc>(context, listen: false);
     _color ??= Theme.of(context).accentColor;
 
     return Scaffold(
