@@ -1,7 +1,7 @@
 name: habitflow
 description: Build, Break, And Sustain Habits
 publish_to: 'none'
-version: 1.0.0+3
+version: 1.0.1+4
 
 environment:
   sdk: ">=2.9.0 <3.0.0"

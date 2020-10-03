@@ -5,5 +5,5 @@ import 'package:flutter/foundation.dart';
 Future<void> play(String source) async {
   if (kIsWeb) return;
   final AudioCache cache = AudioCache();
-  await cache.play("sounds/$source.mpeg");
+  await cache.play("sounds/$source.mp3");
 }
