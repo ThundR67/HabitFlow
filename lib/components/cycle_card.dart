@@ -17,18 +17,12 @@ class CycleCard extends StatelessWidget {
   /// Cycle to show data of.
   final Cycle cycle;
 
-  /// Redirects to [CycleInfo] page.
-  void _openCycleInfo(BuildContext context) {
-    Provider.of<AdBloc>(context, listen: false).interstitial();
-    redirect(context, cycleInfoRoute, CycleInfo(cycle));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
         customBorder: Theme.of(context).cardTheme.shape,
-        onTap: () => _openCycleInfo(context),
+        onTap: () => redirect(context, cycleInfoRoute, CycleInfo(cycle)),
         child: Container(
           padding: const EdgeInsets.all(8.0),
           alignment: Alignment.center,
