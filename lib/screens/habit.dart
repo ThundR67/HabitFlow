@@ -53,33 +53,30 @@ class _Info extends StatelessWidget {
   List<String> _days() {
     final List<String> output = [];
     for (final int day in _habit.goal.activeDays) {
-      output.add(weekdays[day - 1][0]);
+      output.add(weekdays[day - 1].substring(0, 2));
     }
     return output;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Text(
-                habitInfo,
-                style: Theme.of(context).textTheme.headline5,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: Column(
+          children: [
+            Text(
+              habitInfo,
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            const SizedBox(height: 8.0),
+            if (_habit.goal.notificationTimes.isNotEmpty)
+              _KeyValue(
+                keyText: notificationTime,
+                valueText: _habit.goal.notificationTimes[0].format(context),
               ),
-              const SizedBox(height: 8.0),
-              if (_habit.goal.notificationTimes.isNotEmpty)
-                _KeyValue(
-                  keyText: notificationTime,
-                  valueText: _habit.goal.notificationTimes[0].format(context),
-                ),
-              _KeyValue(keyText: activeDays, valueText: _days().join(', ')),
-            ],
-          ),
+            _KeyValue(keyText: activeDays, valueText: _days().join(', ')),
+          ],
         ),
       ),
     );
@@ -131,7 +128,7 @@ class HabitInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _Info(_habit),
-            const SizedBox(height: 24.0),
+            const SizedBox(height: 16.0),
             Stats(
               Statistics(
                 days: currentBloc.current.days,
