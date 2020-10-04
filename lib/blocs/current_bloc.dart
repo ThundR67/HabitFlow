@@ -71,7 +71,7 @@ class CurrentBloc extends ChangeNotifier {
       current.days[date.format()] ??= Day.empty(
         date: date.format(),
         activeHabits: await _habitsDAO.active(date),
-        addFailures: true,
+        addFailures: date.format() != DateTime.now().format(),
       );
     }
 

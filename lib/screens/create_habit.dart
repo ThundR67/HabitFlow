@@ -98,10 +98,6 @@ class _CreateHabitState extends State<CreateHabit> {
                       icon: _icon,
                       onChange: _onChange,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Divider(),
-                    ),
                     TextFormField(
                       controller: _nameController,
                       decoration: InputDecoration(

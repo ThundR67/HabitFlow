@@ -132,7 +132,12 @@ class HabitInfo extends StatelessWidget {
           children: [
             _Info(_habit),
             const SizedBox(height: 24.0),
-            Stats(Statistics(days: currentBloc.current.days)),
+            Stats(
+              Statistics(
+                days: currentBloc.current.days,
+                habits: [_habit.id],
+              ),
+            ),
             const SizedBox(height: 32.0),
             if (recentFailures.isNotEmpty)
               FailureList(failures: recentFailures),
