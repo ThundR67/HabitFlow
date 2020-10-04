@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/components/elevating_app_bar.dart';
 import 'package:habitflow/components/history_expansion_tile.dart';
 import 'package:habitflow/models/status.dart';
 
@@ -40,16 +41,16 @@ class CycleInfo extends StatelessWidget {
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
 
     final Statistics stats = Statistics(days: _cycle.days);
+    final ScrollController scrollController = ScrollController();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          cycleInfo,
-          style: Theme.of(context).textTheme.headline5,
-        ),
+      appBar: ElevatingAppBar(
+        scrollController: scrollController,
+        title: Text(cycleInfo),
       ),
       body: SafeArea(
         child: ListView(
+          controller: scrollController,
           children: <Widget>[
             CycleHeader(cycle: _cycle),
             const SizedBox(height: 16.0),
