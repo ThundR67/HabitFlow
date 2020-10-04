@@ -53,6 +53,7 @@ class Statistics {
     skipRate = _rate(amountSkipped);
     failureRate = _rate(amountFailed);
     totalRate = successRate + skipRate;
+    totalRate = totalRate > 1 ? 1 : totalRate;
   }
 }
 
