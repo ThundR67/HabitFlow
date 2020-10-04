@@ -37,7 +37,7 @@ class Statistics {
   }
 
   double _rate(int amount) {
-    if (total == 0) return 1;
+    if (total == 0) return 0;
     return amount / total;
   }
 
@@ -49,11 +49,10 @@ class Statistics {
       amountSkipped += _amount(day.skips, habits);
       amountFailed += _amount(day.failures.keys.toList(), habits);
     }
-    successRate = _rate(amountDone);
+    successRate = total == 0 ? 1 : _rate(amountDone);
     skipRate = _rate(amountSkipped);
     failureRate = _rate(amountFailed);
     totalRate = successRate + skipRate;
-    totalRate = totalRate > 1 ? 1 : totalRate;
   }
 }
 
