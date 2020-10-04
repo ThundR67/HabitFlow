@@ -57,8 +57,7 @@ class _SingleDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double rate =
-        day == null ? 0 : Statistics(days: {"": day}).successRate;
+    final double rate = day == null ? 0 : Statistics(days: {"": day}).totalRate;
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Column(

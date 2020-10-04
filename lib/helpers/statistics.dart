@@ -3,19 +3,6 @@ import 'package:habitflow/resources/strings.dart';
 
 /// Class to represent statistic of [habits] over [days].
 class Statistics {
-  /// Returns [Stat]
-  Statistics({Map<String, Day> days, List<String> habits}) {
-    for (final Day day in days.values) {
-      total += _amount(day.activeHabits, habits);
-      amountDone += _amount(day.successes, habits);
-      amountSkipped += _amount(day.skips, habits);
-      amountFailed += _amount(day.failures.keys.toList(), habits);
-    }
-    successRate = _rate(amountDone);
-    skipRate = _rate(amountSkipped);
-    failureRate = _rate(amountFailed);
-  }
-
   /// Amount of successes.
   int amountDone = 0;
 
@@ -30,6 +17,9 @@ class Statistics {
 
   /// Skip rate.
   double skipRate = 0;
+
+  /// Success + Skip rate;
+  double totalRate = 0;
 
   /// Failure rate.
   double failureRate = 0;
@@ -49,6 +39,20 @@ class Statistics {
   double _rate(int amount) {
     if (total == 0) return 1;
     return amount / total;
+  }
+
+  /// Returns [Stat]
+  Statistics({Map<String, Day> days, List<String> habits}) {
+    for (final Day day in days.values) {
+      total += _amount(day.activeHabits, habits);
+      amountDone += _amount(day.successes, habits);
+      amountSkipped += _amount(day.skips, habits);
+      amountFailed += _amount(day.failures.keys.toList(), habits);
+    }
+    successRate = _rate(amountDone);
+    skipRate = _rate(amountSkipped);
+    failureRate = _rate(amountFailed);
+    totalRate = successRate + skipRate;
   }
 }
 

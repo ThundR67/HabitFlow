@@ -32,7 +32,7 @@ class CycleHeader extends StatelessWidget {
           style: Theme.of(context).textTheme.headline5,
         ),
         PercentageIndicator(
-          value: stats.successRate,
+          value: stats.totalRate,
           style: Theme.of(context).textTheme.headline5,
         )
       ],
