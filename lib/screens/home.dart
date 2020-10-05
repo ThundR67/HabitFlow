@@ -38,9 +38,7 @@ class _HomeState extends State<Home> {
         child: PageView(
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
-          onPageChanged: (index) {
-            setState(() => _currentIndex = index);
-          },
+          onPageChanged: (index) => setState(() => _currentIndex = index),
           children: const [
             Cycles(),
             Today(),
@@ -52,11 +50,7 @@ class _HomeState extends State<Home> {
         currentIndex: _currentIndex,
         onChange: (index) {
           setState(() => _currentIndex = index);
-          _pageController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.ease,
-          );
+          _pageController.jumpToPage(index);
         },
       ),
     );
