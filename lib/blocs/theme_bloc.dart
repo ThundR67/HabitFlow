@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:habitflow/helpers/logger.dart';
+import 'package:habitflow/resources/theme.dart';
 
 import 'package:habitflow/services/theme/theme.dart';
 import 'package:logger/logger.dart';
@@ -21,6 +24,24 @@ ThemeMode _nameToMode(String name) {
   return mode;
 }
 
+/// Sets status bar color according to [mode].
+Future _setStatusBar(ThemeMode mode) async {
+  final brightness = SchedulerBinding.instance.window.platformBrightness;
+  final isLight = brightness == Brightness.light;
+
+  final Map<ThemeMode, ThemeData> themes = {
+    ThemeMode.light: lightTheme,
+    ThemeMode.dark: darkTheme,
+    ThemeMode.system: isLight ? lightTheme : darkTheme,
+  };
+
+  final ThemeData theme = themes[mode];
+  await FlutterStatusbarcolor.setStatusBarColor(theme.colorScheme.background);
+  await FlutterStatusbarcolor.setNavigationBarColor(theme.colorScheme.surface);
+  await FlutterStatusbarcolor.setNavigationBarWhiteForeground(!isLight);
+  await FlutterStatusbarcolor.setStatusBarWhiteForeground(!isLight);
+}
+
 /// A bloc to manage current theme.
 class ThemeBloc extends ChangeNotifier {
   final ThemeDAO _dao = ThemeDAO();
@@ -33,6 +54,7 @@ class ThemeBloc extends ChangeNotifier {
   ThemeBloc() {
     _dao.current().then((value) {
       current = _nameToMode(value);
+      _setStatusBar(current);
       _log.i('Current theme loded: $value');
       notifyListeners();
     });
@@ -42,6 +64,7 @@ class ThemeBloc extends ChangeNotifier {
   void set(String name) {
     _log.i('Current theme changed to: $name');
     current = _nameToMode(name);
+    _setStatusBar(current);
     notifyListeners();
     _dao.set(name);
   }

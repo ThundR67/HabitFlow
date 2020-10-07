@@ -98,6 +98,7 @@ class _CreateHabitState extends State<CreateHabit> {
                       icon: _icon,
                       onChange: _onChange,
                     ),
+                    const SizedBox(height: 24.0),
                     TextFormField(
                       controller: _nameController,
                       decoration: InputDecoration(
