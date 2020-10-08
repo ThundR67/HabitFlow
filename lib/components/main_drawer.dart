@@ -67,18 +67,6 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
               FlatButton(
-                onPressed: () => Navigator.of(context).pushNamed(faqRoute),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(faqIcon),
-                    const SizedBox(width: 8.0),
-                    Text(faqPage),
-                  ],
-                ),
-              ),
-              FlatButton(
                 onPressed: () => Share.share(shareValue),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
