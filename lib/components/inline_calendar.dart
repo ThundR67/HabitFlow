@@ -14,10 +14,12 @@ import 'package:habitflow/resources/strings.dart';
 /// It displays each date and its success rate of [cycle].
 class InlineCalendar extends StatelessWidget {
   /// Constructs.
-  const InlineCalendar({@required this.cycle});
+  InlineCalendar({@required this.cycle});
 
-  /// Cyclof which calendar is shown.
+  /// Cycl of which calendar is shown.
   final Cycle cycle;
+
+  final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +28,21 @@ class InlineCalendar extends StatelessWidget {
       cycle.end.date(),
     );
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _controller.animateTo(
+        240,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.ease,
+      );
+    });
+
     return Container(
       height: 72,
       alignment: Alignment.center,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
+        controller: _controller,
         itemBuilder: (context, index) {
           final DateTime date = dates[index];
           return _SingleDate(
@@ -58,27 +69,30 @@ class _SingleDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double rate = day == null ? 0 : Statistics(days: {"": day}).totalRate;
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Column(
-        children: <Widget>[
-          Text(
-            weekdays[date.weekday - 1][0],
-            style: Theme.of(context).textTheme.caption,
-          ),
-          const SizedBox(height: 4.0),
-          CircularPercentIndicator(
-            percent: rate,
-            lineWidth: 3,
-            radius: 40,
-            backgroundColor: Colors.transparent,
-            progressColor: Colors.greenAccent,
-            center: Text(
-              date.day.toString(),
-              style: Theme.of(context).textTheme.subtitle1,
+    return SizedBox(
+      width: 48,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              weekdays[date.weekday - 1][0],
+              style: Theme.of(context).textTheme.caption,
             ),
-          ),
-        ],
+            const SizedBox(height: 4.0),
+            CircularPercentIndicator(
+              percent: rate,
+              lineWidth: 3,
+              radius: 40,
+              backgroundColor: Colors.transparent,
+              progressColor: Colors.greenAccent,
+              center: Text(
+                date.day.toString(),
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
