@@ -36,7 +36,7 @@ Future _setStatusBar(ThemeMode mode) async {
   };
 
   final ThemeData theme = themes[mode];
-  await FlutterStatusbarcolor.setStatusBarColor(theme.colorScheme.background);
+
   await FlutterStatusbarcolor.setNavigationBarColor(theme.colorScheme.surface);
   await FlutterStatusbarcolor.setNavigationBarWhiteForeground(!isLight);
   await FlutterStatusbarcolor.setStatusBarWhiteForeground(!isLight);
@@ -52,7 +52,8 @@ class ThemeBloc extends ChangeNotifier {
 
   /// Sets [current] to current theme mode.
   ThemeBloc() {
-    _dao.current().then((value) {
+    _dao.current().then((value) async {
+      await FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
       current = _nameToMode(value);
       _setStatusBar(current);
       _log.i('Current theme loded: $value');
