@@ -68,11 +68,13 @@ class CurrentBloc extends ChangeNotifier {
     );
 
     for (final DateTime date in dates) {
-      current.days[date.format()] ??= Day.empty(
-        date: date.format(),
-        activeHabits: await _habitsDAO.active(date),
-        addFailures: date.format() != DateTime.now().format(),
-      );
+      if (!current.days.containsKey(date.format())) {
+        current.days[date.format()] = Day.empty(
+          date: date.format(),
+          activeHabits: await _habitsDAO.active(date),
+          addFailures: date.format() != DateTime.now().format(),
+        );
+      }
     }
 
     _log.i('Filled all the days');
