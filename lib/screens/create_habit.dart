@@ -109,6 +109,7 @@ class _CreateHabitState extends State<CreateHabit> {
                     ),
                     const SizedBox(height: 24.0),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: _pointsController,
                       decoration: InputDecoration(
                         labelText: rewardPoints,

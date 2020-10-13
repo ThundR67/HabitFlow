@@ -88,6 +88,7 @@ class _CreateRewardState extends State<CreateReward> {
                     ),
                     const SizedBox(height: 24.0),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: _pointsController,
                       decoration: InputDecoration(
                         labelText: rewardCost,

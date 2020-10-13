@@ -50,6 +50,7 @@ class FailureReasonSheet extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: _controller,
+              autofocus: true,
               decoration: InputDecoration(
                 labelText: failureReason,
                 suffixIcon: const Icon(reasonIcon),
