@@ -28,6 +28,7 @@ dependencies:
   hive_flutter: ^0.3.1
   audioplayers: ^0.15.1
   intro_slider: ^2.3.1
+  animated_bottom_navigation_bar: ^0.1.2+2
   sprintf: "^4.0.0"
   logger: ^0.9.4
   firebase_core: ^0.4.5

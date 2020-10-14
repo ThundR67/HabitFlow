@@ -4,7 +4,6 @@ import 'package:share/share.dart';
 
 import 'package:habitflow/components/theme_dropdown.dart';
 import 'package:habitflow/resources/icons.dart';
-import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// Main app drawer.
