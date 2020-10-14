@@ -62,6 +62,9 @@ ThemeData _theme(ColorScheme scheme) {
     colorScheme: scheme,
     fontFamily: 'Rubik',
 
+    splashFactory: InkRipple.splashFactory,
+    highlightColor: Colors.transparent,
+
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       showUnselectedLabels: false,
       elevation: 8.0,
