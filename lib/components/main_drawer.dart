@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 import 'package:share/share.dart';
 
@@ -74,6 +75,18 @@ class MainDrawer extends StatelessWidget {
                     const Icon(shareIcon),
                     const SizedBox(width: 8.0),
                     Text(share),
+                  ],
+                ),
+              ),
+              FlatButton(
+                onPressed: () => InAppReview.instance.openStoreListing(),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(reviewIcon),
+                    const SizedBox(width: 8.0),
+                    Text(review),
                   ],
                 ),
               ),

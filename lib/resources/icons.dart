@@ -60,3 +60,6 @@ const IconData nameIcon = OMIcons.textFields;
 
 /// Icon for failure reason.
 const IconData reasonIcon = OMIcons.description;
+
+/// Icon for review.
+const IconData reviewIcon = OMIcons.rateReview;

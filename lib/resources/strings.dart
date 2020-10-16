@@ -242,6 +242,9 @@ String noActiveHabitsTitle = tr('noActiveHabitsTitle');
 /// Refers to noActiveHabitsSubtitle in translations.
 String noActiveHabitsSubtitle = tr('noActiveHabitsSubtitle');
 
+/// Refers to review in translations.
+String review = tr('review');
+
 /// Refers to habitNotificationBody in translations.
 String habitNotificationBody = tr('habitNotificationBody');
 
