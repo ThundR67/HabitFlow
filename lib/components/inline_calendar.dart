@@ -9,6 +9,12 @@ import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/resources/strings.dart';
 
+/// Width of [_SingleDate]
+const double _singleDateWidth = 48;
+
+/// Days to show before current day in [InlineCalendar]
+const int _daysBefore = 2;
+
 /// A horizontal calendar.
 ///
 /// It displays each date and its success rate of [cycle].
@@ -28,10 +34,15 @@ class InlineCalendar extends StatelessWidget {
       cycle.end.date(),
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    final int deltaDays = DateTime.now().difference(cycle.start.date()).inDays;
+    final int daysToScroll =
+        deltaDays < _daysBefore ? 0 : deltaDays - _daysBefore;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 400));
       _controller.animateTo(
-        240,
-        duration: const Duration(milliseconds: 200),
+        _singleDateWidth * daysToScroll,
+        duration: const Duration(milliseconds: 400),
         curve: Curves.ease,
       );
     });
@@ -70,7 +81,7 @@ class _SingleDate extends StatelessWidget {
   Widget build(BuildContext context) {
     final double rate = day == null ? 0 : Statistics(days: {"": day}).totalRate;
     return SizedBox(
-      width: 48,
+      width: _singleDateWidth,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Column(
