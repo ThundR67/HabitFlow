@@ -39,9 +39,13 @@ class InlineCalendar extends StatelessWidget {
         deltaDays < _daysBefore ? 0 : deltaDays - _daysBefore;
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      double offset = _singleDateWidth * daysToScroll;
+      final double max = _controller.position.maxScrollExtent;
+      offset = offset >= max ? max : offset;
+
       await Future.delayed(const Duration(milliseconds: 400));
       _controller.animateTo(
-        _singleDateWidth * daysToScroll,
+        offset,
         duration: const Duration(milliseconds: 400),
         curve: Curves.ease,
       );
