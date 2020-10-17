@@ -20,8 +20,8 @@ class Analytics {
   }
 
   /// Logs an simple event with [name].
-  void logSimple(String name) {
-    _analytics.logEvent(name: name);
+  void logSimple(String name, [Map<String, dynamic> map]) {
+    _analytics.logEvent(name: name, parameters: map);
   }
 
   /// Logs a reward with event [name].
