@@ -7,6 +7,7 @@ import 'package:habitflow/screens/cycles.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
 import 'package:provider/provider.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
@@ -36,6 +37,18 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Provider.of<AdBloc>(context, listen: false).interstitial();
+
+    final RateMyApp rate = RateMyApp(
+      minDays: 5,
+      minLaunches: 15,
+    );
+
+    rate.init().whenComplete(() {
+      if (rate.shouldOpenDialog) {
+        rate.showRateDialog(context);
+      }
+    });
+
     return Scaffold(
       body: SizedBox.expand(
         child: PageView(
