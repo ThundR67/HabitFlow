@@ -11,6 +11,7 @@ import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/habits/habits.dart';
 import 'package:habitflow/helpers/time.dart';
 import 'package:logger/logger.dart';
+import 'package:habitflow/resources/strings.dart';
 
 /// Bloc to manage current cycle and statuses of habits.
 class CurrentBloc extends ChangeNotifier {
@@ -60,7 +61,25 @@ class CurrentBloc extends ChangeNotifier {
     return cycle;
   }
 
-  /// Fills all the [current.days].
+  /// Fills all the unmarked habits in [current.days].
+  Future<void> _fillUnmarkedHabits() async {
+    final List<DateTime> dates = datesList(
+      current.start.date(),
+      DateTime.now().subtract(const Duration(days: 1)),
+    );
+
+    for (final DateTime date in dates) {
+      final Day day = current.days[date.format()];
+      for (final String id in day.activeHabits) {
+        if (day.status(id) == Status.unmarked) {
+          day.failures[id] = unprovidedReason;
+        }
+      }
+      current.days[date.format()] = day;
+    }
+  }
+
+  /// Fills all the non recorded days in [current.days].
   Future<void> _fill() async {
     final List<DateTime> dates = datesList(
       current.start.date(),
@@ -85,6 +104,7 @@ class CurrentBloc extends ChangeNotifier {
     current ??= (await _dao.get()) ?? await _create();
     if (isEnded()) current = await _create();
     await _fill();
+    await _fillUnmarkedHabits();
     _updateStatuses();
     notifyListeners();
     await _dao.update(current);
