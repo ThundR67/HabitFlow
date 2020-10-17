@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/blocs/ad_bloc.dart';
 
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/cycles.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
+import 'package:provider/provider.dart';
 
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
@@ -33,6 +35,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<AdBloc>(context, listen: false).interstitial();
     return Scaffold(
       body: SizedBox.expand(
         child: PageView(
