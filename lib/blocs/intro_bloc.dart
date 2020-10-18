@@ -35,7 +35,7 @@ class IntroBloc extends ChangeNotifier {
   IntroBloc() {
     intros = {};
     for (final intro in allIntros) {
-      _dao.isShown(intro).then((value) => intros[intro] = false);
+      _dao.isShown(intro).then((value) => intros[intro] = value);
     }
     _log.i('Lodaded all intros');
     notifyListeners();
