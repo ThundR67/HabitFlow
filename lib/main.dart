@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -45,7 +46,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Analytics().init();
   await _hiveInit();
-  await GlobalConfiguration().loadFromAsset("dev.json");
+  final config = kReleaseMode ? 'release' : 'dev';
+  await GlobalConfiguration().loadFromAsset("$config.json");
 
   runApp(
     MultiProvider(
