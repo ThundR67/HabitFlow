@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:in_app_review/in_app_review.dart';
 
 import 'package:share/share.dart';
@@ -67,7 +68,10 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
               FlatButton(
-                onPressed: () => Share.share(shareValue),
+                onPressed: () {
+                  Share.share(shareValue);
+                  Analytics().logSimple('shared');
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.min,
@@ -79,7 +83,10 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
               FlatButton(
-                onPressed: () => InAppReview.instance.openStoreListing(),
+                onPressed: () {
+                  InAppReview.instance.openStoreListing();
+                  Analytics().logSimple('reviewed');
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.min,
