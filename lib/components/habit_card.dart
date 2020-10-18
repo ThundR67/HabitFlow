@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
+import 'package:habitflow/components/showable_widget.dart';
 import 'package:habitflow/components/slidable_card.dart';
 import 'package:habitflow/components/redirect.dart';
 import 'package:habitflow/components/reward_points.dart';
@@ -11,7 +13,9 @@ import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/routes.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/habit.dart';
+import 'package:provider/provider.dart';
 
 /// A widget to show a card of [habit].
 class HabitCard extends StatelessWidget {
@@ -53,32 +57,38 @@ class HabitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color textColor = Theme.of(context).textTheme.headline6.color;
     final Color color = hexToColor(habit.colorHex);
+    final bool shouldShow = !Provider.of<IntroBloc>(context).intros[habitIntro];
 
-    return SlidableCard(
-      controller: controller,
-      actions: _actions(context),
-      secondaryActions: _secondaryActions(context),
-      child: InkWell(
-        customBorder: Theme.of(context).cardTheme.shape,
-        onTap: () => redirect(context, habitInfoRoute, HabitInfo(habit)),
-        child: ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.transparent,
-            child: Icon(
-              mapToIconData(habit.iconData),
-              color: _isUnmarked ? color : Colors.grey,
-              size: 24,
+    return Showable(
+      shouldShowcase: shouldShow,
+      description: habitSwipeDescription,
+      child: SlidableCard(
+        shouldShowIntro: shouldShow,
+        controller: controller,
+        actions: _actions(context),
+        secondaryActions: _secondaryActions(context),
+        child: InkWell(
+          customBorder: Theme.of(context).cardTheme.shape,
+          onTap: () => redirect(context, habitInfoRoute, HabitInfo(habit)),
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.transparent,
+              child: Icon(
+                mapToIconData(habit.iconData),
+                color: _isUnmarked ? color : Colors.grey,
+                size: 24,
+              ),
             ),
+            title: Text(
+              habit.name,
+              style: Theme.of(context).textTheme.headline6.copyWith(
+                    color: _isUnmarked ? textColor : Colors.grey,
+                  ),
+            ),
+            subtitle: !_isUnmarked
+                ? HabitStatus(status: status)
+                : RewardPoints(points: habit.points, color: color),
           ),
-          title: Text(
-            habit.name,
-            style: Theme.of(context).textTheme.headline6.copyWith(
-                  color: _isUnmarked ? textColor : Colors.grey,
-                ),
-          ),
-          subtitle: !_isUnmarked
-              ? HabitStatus(status: status)
-              : RewardPoints(points: habit.points, color: color),
         ),
       ),
     );

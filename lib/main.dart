@@ -79,6 +79,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     /// Loading up the notification bloc.
     Provider.of<NotificationBloc>(context, listen: false);
+
     return MaterialApp(
       navigatorObservers: [Analytics().observer()],
       localizationsDelegates: context.localizationDelegates,

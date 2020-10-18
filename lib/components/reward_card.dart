@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
+import 'package:habitflow/components/showable_widget.dart';
 import 'package:habitflow/components/slidable_card.dart';
 import 'package:habitflow/components/reward_points.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/reward.dart';
+import 'package:habitflow/resources/strings.dart';
+import 'package:provider/provider.dart';
 
 /// A widget to show a reward in a card.
 class RewardCard extends StatelessWidget {
@@ -21,31 +25,38 @@ class RewardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SlidableCard(
-      actions: [takeAction(context, reward)],
-      secondaryActions: [deleteAction(context, reward)],
-      controller: controller,
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          child: Icon(
-            mapToIconData(reward.iconData),
-            color: hexToColor(reward.colorHex),
-            size: 24,
+    final shouldShow = !Provider.of<IntroBloc>(context).intros[rewardIntro];
+
+    return Showable(
+      shouldShowcase: shouldShow,
+      description: rewardSwipeDescription,
+      child: SlidableCard(
+        shouldShowIntro: shouldShow,
+        actions: [takeAction(context, reward)],
+        secondaryActions: [deleteAction(context, reward)],
+        controller: controller,
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            child: Icon(
+              mapToIconData(reward.iconData),
+              color: hexToColor(reward.colorHex),
+              size: 24,
+            ),
           ),
-        ),
-        title: Text(
-          reward.name,
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        subtitle: Text(
-          'X ${reward.amountTaken}',
-          style: Theme.of(context).textTheme.subtitle1,
-        ),
-        trailing: RewardPoints(
-          points: reward.points,
-          color: hexToColor(reward.colorHex),
-          style: Theme.of(context).textTheme.headline6,
+          title: Text(
+            reward.name,
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          subtitle: Text(
+            'X ${reward.amountTaken}',
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
+          trailing: RewardPoints(
+            points: reward.points,
+            color: hexToColor(reward.colorHex),
+            style: Theme.of(context).textTheme.headline6,
+          ),
         ),
       ),
     );
