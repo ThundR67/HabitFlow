@@ -10,7 +10,7 @@
 .svn/
 
 # Custom
-lib/assets/cfg/release.json
+/lib/assets/cfg/release.json
 
 # IntelliJ related
 *.iml
