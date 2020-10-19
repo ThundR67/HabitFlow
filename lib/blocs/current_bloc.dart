@@ -69,13 +69,15 @@ class CurrentBloc extends ChangeNotifier {
     );
 
     for (final DateTime date in dates) {
-      final Day day = current.days[date.format()];
-      for (final String id in day.activeHabits) {
-        if (day.status(id) == Status.unmarked) {
-          day.failures[id] = unprovidedReason;
+      if (date.format() != DateTime.now().format()) {
+        final Day day = current.days[date.format()];
+        for (final String id in day.activeHabits) {
+          if (day.status(id) == Status.unmarked) {
+            day.failures[id] = unprovidedReason;
+          }
         }
+        current.days[date.format()] = day;
       }
-      current.days[date.format()] = day;
     }
   }
 
