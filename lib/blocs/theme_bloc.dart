@@ -63,12 +63,12 @@ class ThemeBloc extends ChangeNotifier {
   }
 
   /// Sets [current] to ThemeMode of [name].
-  void set(String name) {
+  Future set(String name) async {
     _log.i('Current theme changed to: $name');
     current = _nameToMode(name);
-    _setStatusBar(current);
+    await _setStatusBar(current);
     notifyListeners();
     _dao.set(name);
-    Analytics().logSimple('theme changed', {'name': name});
+    Analytics().logSimple('theme_changed', {'name': name});
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:package_info/package_info.dart';
 
 import 'package:share/share.dart';
 
@@ -14,11 +15,13 @@ class MainDrawer extends StatelessWidget {
   const MainDrawer();
 
   /// Shows about dialog.
-  void _showAboutDialog(BuildContext context) {
+  Future _showAboutDialog(BuildContext context) async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+
     showAboutDialog(
       context: context,
-      applicationVersion: appVersion,
-      applicationName: appName,
+      applicationVersion: info.version,
+      applicationName: info.appName,
       applicationLegalese: appLegalese,
       applicationIcon: Image.asset(
         'assets/images/logo.png',

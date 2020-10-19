@@ -329,12 +329,6 @@ String share = tr('share');
 /// Refers to shareValue in translations.
 String shareValue = tr('shareValue');
 
-/// Refers to appName in translations.
-String appName = tr('appName');
-
-/// Refers to appVersion in translations.
-String appVersion = tr('appVersion');
-
 /// Refers to appLegalese in translations.
 String appLegalese = tr('appLegalese');
 
