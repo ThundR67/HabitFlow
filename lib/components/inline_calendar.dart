@@ -57,6 +57,7 @@ class InlineCalendar extends StatelessWidget {
       height: 72,
       alignment: Alignment.center,
       child: ListView.builder(
+        shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
         controller: _controller,

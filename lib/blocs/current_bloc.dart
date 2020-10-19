@@ -104,7 +104,7 @@ class CurrentBloc extends ChangeNotifier {
   /// Updates [statuses] and [current].
   Future<void> update() async {
     current ??= (await _dao.get()) ?? await _create();
-    if (isEnded()) current = await _create();
+    if (isEnded()) return;
     await _fill();
     await _fillUnmarkedHabits();
     _updateStatuses();
@@ -118,7 +118,7 @@ class CurrentBloc extends ChangeNotifier {
   /// Returns if [current] has ended and current day is over.
   bool isEnded() {
     final bool isAfter = DateTime.now().isAfter(current.end.date());
-    final bool isDayOver = DateTime.now().day > current.end.date().day;
+    final bool isDayOver = DateTime.now().format() != current.end;
     return isAfter && isDayOver;
   }
 
