@@ -32,7 +32,6 @@ class _PickersState extends State<Pickers> {
   Color _color;
   IconData _icon;
 
-
   /// Displays dialog which allows to pick an icon and changes [_icon].
   Future<void> _pickIcon() async {
     final IconData icon = await FlutterIconPicker.showIconPicker(
@@ -51,6 +50,7 @@ class _PickersState extends State<Pickers> {
       child: AlertDialog(
         title: Text(pickColor),
         content: BlockPicker(
+          availableColors: Colors.primaries,
           pickerColor: _color,
           onColorChanged: (Color color) {
             setState(() => _color = color);
