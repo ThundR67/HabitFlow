@@ -44,11 +44,13 @@ class InlineCalendar extends StatelessWidget {
       offset = offset >= max ? max : offset;
 
       await Future.delayed(const Duration(milliseconds: 400));
-      _controller.animateTo(
-        offset,
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.ease,
-      );
+      if (_controller.hasClients) {
+        _controller.animateTo(
+          offset,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.ease,
+        );
+      }
     });
 
     return Container(
