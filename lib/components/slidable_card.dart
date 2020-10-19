@@ -36,7 +36,7 @@ class _SlidableCardState extends State<SlidableCard> {
   bool _showed = false;
 
   Future _showIntro(SlidableState slidable) async {
-    if (widget.shouldShowIntro && !_showed) {
+    if (widget.shouldShowIntro && !_showed && slidable.mounted) {
       const Duration dur = Duration(seconds: 2);
       await Future.delayed(const Duration(milliseconds: 700));
       slidable.open(actionType: SlideActionType.primary);

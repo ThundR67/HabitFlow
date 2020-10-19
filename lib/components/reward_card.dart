@@ -25,9 +25,11 @@ class RewardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final shouldShow = !Provider.of<IntroBloc>(context).intros[rewardIntro];
+    final bloc = Provider.of<IntroBloc>(context);
+    final shouldShow = !bloc.intros[rewardIntro];
 
     return Showable(
+      onComplete: () => bloc.shown(rewardIntro),
       shouldShowcase: shouldShow,
       description: rewardSwipeDescription,
       child: SlidableCard(

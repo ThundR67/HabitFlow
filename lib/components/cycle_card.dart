@@ -21,9 +21,11 @@ class CycleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final shouldShow = !Provider.of<IntroBloc>(context).intros[cycleIntro];
+    final bloc = Provider.of<IntroBloc>(context);
+    final shouldShow = !bloc.intros[cycleIntro];
 
     return Showable(
+      onComplete: () => bloc.shown(cycleIntro),
       shouldShowcase: shouldShow,
       description: strings.cycleIntro,
       child: Card(

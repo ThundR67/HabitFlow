@@ -57,9 +57,11 @@ class HabitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color textColor = Theme.of(context).textTheme.headline6.color;
     final Color color = hexToColor(habit.colorHex);
-    final bool shouldShow = !Provider.of<IntroBloc>(context).intros[habitIntro];
+    final bloc = Provider.of<IntroBloc>(context);
+    final bool shouldShow = !bloc.intros[habitIntro];
 
     return Showable(
+      onComplete: () => bloc.shown(habitIntro),
       shouldShowcase: shouldShow,
       description: habitSwipeDescription,
       child: SlidableCard(
