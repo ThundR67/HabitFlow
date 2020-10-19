@@ -30,7 +30,7 @@ class FailureReasonSheet extends StatelessWidget {
       id,
       Status.failed,
       date: date ?? DateTime.now(),
-      reason: _controller.text,
+      reason: _controller.text ?? unprovidedReason,
     );
     play('failure');
     Navigator.of(context).pop();
