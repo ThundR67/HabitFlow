@@ -33,9 +33,7 @@ class Rewards extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: RewardsList(rewardsBloc.rewards),
-      ),
+      body: RewardsList(rewardsBloc.rewards),
       floatingActionButton: FloatingActionButton(
         heroTag: createRewardRoute,
         onPressed: () => Navigator.of(context).pushNamed(createRewardRoute),
