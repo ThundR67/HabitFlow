@@ -1,106 +1,61 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
-import 'package:habitflow/blocs/notification_bloc.dart';
+import 'package:habitflow/controllers/screens/create_habit_controller.dart';
 import 'package:provider/provider.dart';
 
-import 'package:habitflow/blocs/current_bloc.dart';
-import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/notification_time_selector.dart';
 import 'package:habitflow/components/pickers.dart';
 import 'package:habitflow/components/weekdays_picker.dart';
-import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/validators.dart';
-import 'package:habitflow/models/goal.dart';
-import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:tinycolor/tinycolor.dart';
 
-/// A screen which allows user to create a habit.
-class CreateHabit extends StatefulWidget {
-  /// Constructs
+/// Screen to allow user to create or update an habit.
+class CreateHabit extends StatelessWidget {
+  /// Constructs.
   const CreateHabit();
 
   @override
-  _CreateHabitState createState() => _CreateHabitState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => CreateHabitController(),
+      child: _CreateHabit(),
+    );
+  }
 }
 
-class _CreateHabitState extends State<CreateHabit> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _pointsController = TextEditingController();
-  List<int> _activeDays = [];
-  IconData _icon = emptyIcon;
-  Color _color;
-  HabitsBloc _bloc;
-  CurrentBloc _currentBloc;
-  NotificationBloc _notificationBloc;
-  TimeOfDay _time;
-
-  /// Changes [_color] and [_icon] to what user selected.
-  void _onChange(Color color, IconData icon) {
-    setState(() {
-      _color = color;
-      _icon = icon;
-    });
-  }
-
-  /// Creates the habit.
-  void _create() {
-    if (_formKey.currentState.validate()) {
-      _bloc
-          .add(
-        Habit(
-          name: _nameController.text,
-          points: int.parse(_pointsController.text),
-          colorHex: colorToHex(_color),
-          iconData: iconDataToMap(_icon),
-          goal: Goal(
-            activeDays: _activeDays,
-            times: 1,
-            unit: 'default',
-            notificationTimes: _time != null ? [_time] : [],
-          ),
-        ),
-      )
-          .whenComplete(() {
-        _currentBloc.updateHabits();
-        _notificationBloc.update();
-      });
-
-      Navigator.pop(context);
-    }
+class _CreateHabit extends StatelessWidget {
+  Future _onSubmit(BuildContext context) async {
+    final controller =
+        Provider.of<CreateHabitController>(context, listen: false);
+    await controller.create(context);
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    _bloc = Provider.of<HabitsBloc>(context);
-    _currentBloc = Provider.of<CurrentBloc>(context, listen: false);
-    _notificationBloc = Provider.of<NotificationBloc>(context, listen: false);
-    _color ??= Theme.of(context).accentColor;
+    final controller = Provider.of<CreateHabitController>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(createHabitTitle),
-      ),
+      appBar: AppBar(title: Text(createHabitTitle)),
       body: Center(
         child: ListView(
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Form(
-                key: _formKey,
+                key: controller.formKey,
                 child: Column(
                   children: <Widget>[
                     Pickers(
-                      color: _color,
-                      icon: _icon,
-                      onChange: _onChange,
+                      color: controller.color,
+                      icon: controller.icon,
+                      onChange: controller.onChange,
                     ),
                     const SizedBox(height: 24.0),
                     TextFormField(
-                      controller: _nameController,
+                      controller: controller.nameController,
                       decoration: InputDecoration(
                         labelText: habitName,
                         suffixIcon: const Icon(nameIcon),
@@ -110,7 +65,7 @@ class _CreateHabitState extends State<CreateHabit> {
                     const SizedBox(height: 24.0),
                     TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _pointsController,
+                      controller: controller.pointsController,
                       decoration: InputDecoration(
                         labelText: rewardPoints,
                         suffixIcon: const Icon(rewardIcon),
@@ -119,21 +74,21 @@ class _CreateHabitState extends State<CreateHabit> {
                     ),
                     const SizedBox(height: 16.0),
                     WeekdaysPicker(
-                      onChange: (days) => _activeDays = days,
-                      color: _color,
+                      onChange: (days) => controller.activeDays = days,
+                      color: controller.color,
                     ),
                     const SizedBox(height: 16.0),
                     NotificationTimeSelector(
-                      onChange: (TimeOfDay time) => _time = time,
-                      color: _color,
+                      onChange: (TimeOfDay time) => controller.time = time,
+                      color: controller.color,
                     ),
                     const SizedBox(height: 16.0),
                     RaisedButton.icon(
-                      onPressed: _create,
+                      onPressed: () => _onSubmit(context),
                       icon: const Icon(addIcon),
-                      color: _color,
+                      color: controller.color,
                       label: Text(submit),
-                      textColor: TinyColor(_color).isLight()
+                      textColor: TinyColor(controller.color).isLight()
                           ? Colors.black
                           : Colors.white,
                     ),
