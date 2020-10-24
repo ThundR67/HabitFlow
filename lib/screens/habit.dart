@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitflow/blocs/notification_bloc.dart';
+import 'package:habitflow/components/redirect.dart';
+import 'package:habitflow/screens/create_habit.dart';
 
 import 'package:provider/provider.dart';
 
@@ -110,15 +112,18 @@ class HabitInfo extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(
-              deleteIcon,
-              color: Theme.of(context).iconTheme.color,
-            ),
+            icon: const Icon(deleteIcon),
             onPressed: () {
               bloc.delete(_habit);
               currentBloc.remove(_habit.id);
               notificationBloc.update();
               Navigator.of(context).pop();
+            },
+          ),
+          IconButton(
+            icon: const Icon(updateIcon),
+            onPressed: () {
+              redirect(context, 'update_habit', CreateHabit(habit: _habit));
             },
           )
         ],

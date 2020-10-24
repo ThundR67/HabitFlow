@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 import 'package:habitflow/controllers/screens/create_habit_controller.dart';
+import 'package:habitflow/helpers/colors.dart';
+import 'package:habitflow/models/habit.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/components/notification_time_selector.dart';
@@ -14,12 +17,27 @@ import 'package:tinycolor/tinycolor.dart';
 /// Screen to allow user to create or update an habit.
 class CreateHabit extends StatelessWidget {
   /// Constructs.
-  const CreateHabit();
+  const CreateHabit({this.habit});
+
+  /// Habit data if habit needs to be edited.
+  final Habit habit;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => CreateHabitController(),
+      create: (_) {
+        if (habit == null) return CreateHabitController();
+        final time = habit.goal.notificationTimes;
+        return CreateHabitController(
+          name: habit.name,
+          points: habit.points.toString(),
+          time: time.isEmpty ? null : time[0],
+          color: hexToColor(habit.colorHex),
+          icon: mapToIconData(habit.iconData),
+          activeDays: habit.goal.activeDays,
+          id: habit.id,
+        );
+      },
       child: _CreateHabit(),
     );
   }
@@ -74,6 +92,7 @@ class _CreateHabit extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     WeekdaysPicker(
+                      initial: controller.activeDays,
                       onChange: (days) => controller.activeDays = days,
                       color: controller.color,
                     ),
@@ -81,6 +100,7 @@ class _CreateHabit extends StatelessWidget {
                     NotificationTimeSelector(
                       onChange: (TimeOfDay time) => controller.time = time,
                       color: controller.color,
+                      initial: controller.time,
                     ),
                     const SizedBox(height: 16.0),
                     RaisedButton.icon(

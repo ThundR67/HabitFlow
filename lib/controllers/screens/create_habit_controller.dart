@@ -32,6 +32,9 @@ class CreateHabitController extends ChangeNotifier {
   /// Notification time.
   TimeOfDay time;
 
+  /// Id of habit.
+  String id;
+
   /// SetState function.
   Function(Function()) state;
 
@@ -43,11 +46,11 @@ class CreateHabitController extends ChangeNotifier {
     this.icon = emptyIcon,
     this.color = Colors.blue,
     this.time,
+    this.id,
   }) {
     nameController = TextEditingController(text: name);
     pointsController = TextEditingController(text: points);
-    activeDays = [];
-    time = TimeOfDay.now();
+    activeDays ??= [];
   }
 
   /// Changes [color] and [icon] to what user selected.
@@ -57,7 +60,7 @@ class CreateHabitController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Creates habit.
+  /// Creates or updates habit.
   Future create(BuildContext context) async {
     if (formKey.currentState.validate()) {
       final habitsBloc = Provider.of<HabitsBloc>(context, listen: false);
@@ -65,6 +68,8 @@ class CreateHabitController extends ChangeNotifier {
       final notificationBloc =
           Provider.of<NotificationBloc>(context, listen: false);
       final habit = Habit(
+        id: id,
+        // If id is not provided, new id will be genereted by [Habit].
         name: nameController.text,
         points: int.parse(pointsController.text),
         colorHex: colorToHex(color),
@@ -77,7 +82,9 @@ class CreateHabitController extends ChangeNotifier {
         ),
       );
 
-      await habitsBloc.add(habit);
+      if (id != null) habitsBloc.update(habit);
+      if (id == null) habitsBloc.add(habit);
+
       await currentBloc.updateHabits();
       await notificationBloc.update();
     }

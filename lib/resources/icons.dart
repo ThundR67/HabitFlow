@@ -63,3 +63,6 @@ const IconData reasonIcon = OMIcons.description;
 
 /// Icon for review.
 const IconData reviewIcon = OMIcons.rateReview;
+
+/// Icon for update.
+const IconData updateIcon = OMIcons.create;

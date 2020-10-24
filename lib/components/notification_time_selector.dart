@@ -13,6 +13,7 @@ class NotificationTimeSelector extends StatefulWidget {
   const NotificationTimeSelector({
     @required this.color,
     @required this.onChange,
+    this.initial,
   });
 
   /// Color of button.
@@ -21,6 +22,9 @@ class NotificationTimeSelector extends StatefulWidget {
   /// Function to run when time is selected.
   final Function(TimeOfDay) onChange;
 
+  /// Inital value.
+  final TimeOfDay initial;
+
   @override
   _NotificationTimeSelectorState createState() =>
       _NotificationTimeSelectorState();
@@ -28,6 +32,12 @@ class NotificationTimeSelector extends StatefulWidget {
 
 class _NotificationTimeSelectorState extends State<NotificationTimeSelector> {
   TimeOfDay _time;
+
+  @override
+  void initState() {
+    _time = widget.initial;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,9 @@ class HabitsDAO {
   /// Adds a habit into db.
   Future<void> add(Habit habit) async => (await _db).put(habit.id, habit);
 
+  /// Updates habit into db.
+  Future<void> update(Habit habit) async => (await _db).put(habit.id, habit);
+
   /// Returns all habits sorted by habit points required.
   Future<Map<String, Habit>> all() async {
     final List<Habit> habits = (await _db).values.toList();

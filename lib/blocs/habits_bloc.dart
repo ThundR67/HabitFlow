@@ -37,6 +37,15 @@ class HabitsBloc extends ChangeNotifier {
     _log.i('Added habit: ${habit.toLog()}');
   }
 
+  /// Updates [habit].
+  Future<void> update(Habit habit) async {
+    await _dao.update(habit);
+    await _update();
+
+    Analytics().logHabit('habit_updated', habit);
+    _log.i('Added habit: ${habit.toLog()}');
+  }
+
   /// Deletes [habit]t from db.
   Future<void> delete(Habit habit) async {
     await _dao.delete(habit);

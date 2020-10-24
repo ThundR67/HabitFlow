@@ -9,7 +9,11 @@ import 'package:tinycolor/tinycolor.dart';
 /// Index of monday starts with 1 (Same as of [DateTime]).
 class WeekdaysPicker extends StatefulWidget {
   /// Constructs.
-  const WeekdaysPicker({@required this.onChange, @required this.color});
+  const WeekdaysPicker({
+    @required this.onChange,
+    @required this.color,
+    this.initial,
+  });
 
   /// Function to run when weekdays change.
   final Function(List<int>) onChange;
@@ -17,12 +21,15 @@ class WeekdaysPicker extends StatefulWidget {
   /// Color of the widget.
   final Color color;
 
+  /// Initial value.
+  final List<int> initial;
+
   @override
   _WeekdaysPickerState createState() => _WeekdaysPickerState();
 }
 
 class _WeekdaysPickerState extends State<WeekdaysPicker> {
-  final List<int> _daysSelected = [];
+  List<int> _daysSelected;
 
   /// Adds [day] to [_daysSelected] if not exists, else removes it.
   void _onSelect(int day) {
@@ -33,6 +40,12 @@ class _WeekdaysPickerState extends State<WeekdaysPicker> {
     }
     widget.onChange(_daysSelected);
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    _daysSelected = widget.initial ?? [];
+    super.initState();
   }
 
   @override
