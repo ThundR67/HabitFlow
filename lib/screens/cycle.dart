@@ -32,7 +32,7 @@ class CycleInfo extends StatelessWidget {
       successRates[id] = Statistics(
         days: _cycle.days,
         habits: [id],
-      ).successRate;
+      ).totalRate;
     }
     return successRates;
   }
