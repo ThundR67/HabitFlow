@@ -32,6 +32,13 @@ class AdBloc {
     _interstitialAd = InterstitialAd(
       adUnitId: admobInterstitialID,
       targetingInfo: _targetingInfo,
+      listener: (event) {
+        if (event == MobileAdEvent.impression) {
+          Analytics().logSimple('interstitial_ad_shown');
+        } else if (event == MobileAdEvent.clicked) {
+          Analytics().logSimple('interstitial_ad_clicked');
+        }
+      },
     );
     _log.i('AdBloc Initialized');
   }
@@ -54,7 +61,6 @@ class AdBloc {
       _interstitialAd
         ..load()
         ..show();
-      Analytics().logSimple('interstitial_ad_shown');
       return;
     }
     _log.i('Interstitial Ad trigger but not shown');
