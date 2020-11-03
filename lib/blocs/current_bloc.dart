@@ -160,6 +160,7 @@ class CurrentBloc extends ChangeNotifier {
     Analytics().logSimple('cycle_ended', current.toLog());
     await _cyclesDAO.add(current);
     current = null;
+    await _dao.create(null);
     await update();
     _log.i('Ended cycle');
   }

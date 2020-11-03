@@ -68,8 +68,8 @@ class _CycleEndedState extends State<CycleEnded> {
                     const SizedBox(height: 16.0),
                     RaisedButton(
                       color: Colors.white,
-                      onPressed: () {
-                        bloc.update();
+                      onPressed: () async {
+                        await bloc.end();
                         pointsBloc.reset();
                         rewardsBloc.reset();
                         Navigator.of(context).pushReplacementNamed(homeRoute);
