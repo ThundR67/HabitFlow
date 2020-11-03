@@ -157,7 +157,7 @@ class CurrentBloc extends ChangeNotifier {
 
   /// Ends a cycle, puts in previous cycles, then creates new one.
   Future<void> end() async {
-    Analytics().logSimple('cycle_ended', current.toLog());
+    Analytics().logSimple('cycle_ended');
     await _cyclesDAO.add(current);
     current = null;
     await _dao.create(null);
