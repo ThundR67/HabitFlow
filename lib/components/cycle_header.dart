@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitflow/components/percentage_indicator.dart';
-import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/helpers/statistics.dart';
+import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/strings.dart';
 

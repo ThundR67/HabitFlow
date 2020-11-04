@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+
+import 'package:logger/logger.dart';
+
 import 'package:habitflow/helpers/dates.dart';
 import 'package:habitflow/helpers/logger.dart';
-
+import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
+import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:habitflow/services/current_cycle/current_cycle.dart';
 import 'package:habitflow/services/cycles/cycles.dart';
 import 'package:habitflow/services/habits/habits.dart';
-import 'package:habitflow/helpers/time.dart';
-import 'package:logger/logger.dart';
-import 'package:habitflow/resources/strings.dart';
 
 /// Bloc to manage current cycle and statuses of habits.
 class CurrentBloc extends ChangeNotifier {

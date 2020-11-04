@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
+
+import 'package:logger/logger.dart';
+
 import 'package:habitflow/helpers/logger.dart';
 import 'package:habitflow/helpers/notifications.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/services/habits/habits.dart';
-import 'package:logger/logger.dart';
 
 /// Bloc that will manage all notifications.
 class NotificationBloc extends ChangeNotifier {

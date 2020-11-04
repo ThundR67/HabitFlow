@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/helpers/logger.dart';
 
+import 'package:logger/logger.dart';
+
+import 'package:habitflow/helpers/logger.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/services/cycles/cycles.dart';
-import 'package:logger/logger.dart';
 
 /// Bloc to manage user's previous cycles.
 class CyclesBloc extends ChangeNotifier {

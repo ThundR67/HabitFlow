@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/helpers/dates.dart';
 import 'package:habitflow/helpers/statistics.dart';
+import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/resources/strings.dart';

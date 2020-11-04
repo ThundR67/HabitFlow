@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:habitflow/components/quick_sup.dart';
 
+import 'package:habitflow/components/quick_sup.dart';
 import 'package:habitflow/components/reward_card.dart';
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/resources/strings.dart';

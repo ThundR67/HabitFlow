@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/helpers/logger.dart';
 
-import 'package:habitflow/services/intro/intro.dart';
 import 'package:logger/logger.dart';
+
+import 'package:habitflow/helpers/logger.dart';
+import 'package:habitflow/services/intro/intro.dart';
 
 /// Main app intro.
 const mainIntro = 'main';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:confetti/confetti.dart';
-import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/current_bloc.dart';
+import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/helpers/sounds.dart';
 import 'package:habitflow/resources/routes.dart';

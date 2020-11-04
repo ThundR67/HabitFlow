@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
-import 'package:habitflow/controllers/screens/create_habit_controller.dart';
-import 'package:habitflow/helpers/colors.dart';
-import 'package:habitflow/models/habit.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:provider/provider.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 import 'package:habitflow/components/notification_time_selector.dart';
 import 'package:habitflow/components/pickers.dart';
 import 'package:habitflow/components/weekdays_picker.dart';
+import 'package:habitflow/controllers/screens/create_habit_controller.dart';
+import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/helpers/validators.dart';
+import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:tinycolor/tinycolor.dart';
 
 /// Screen to allow user to create or update an habit.
 class CreateHabit extends StatelessWidget {

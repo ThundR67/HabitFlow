@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/blocs/habits_bloc.dart';
 
+import 'package:provider/provider.dart';
+
+import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/percentage_indicator.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:provider/provider.dart';
 
 /// A expansion tile to show success rates of all habis.
 class HabitSuccessRates extends StatelessWidget {

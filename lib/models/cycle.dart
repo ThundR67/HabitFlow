@@ -1,7 +1,7 @@
-import 'package:habitflow/resources/strings.dart';
 import 'package:hive/hive.dart';
 
 import 'package:habitflow/models/day.dart';
+import 'package:habitflow/resources/strings.dart';
 
 part 'cycle.g.dart';
 

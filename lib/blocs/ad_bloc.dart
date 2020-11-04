@@ -1,12 +1,13 @@
 import 'dart:math';
 
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:firebase_admob/firebase_admob.dart';
+import 'package:logger/logger.dart';
+
 import 'package:habitflow/helpers/logger.dart';
 import 'package:habitflow/resources/configs.dart';
-
 import 'package:habitflow/services/analytics/analytics.dart';
-import 'package:logger/logger.dart';
 
 final Random _random = Random();
 const MobileAdTargetingInfo _targetingInfo = MobileAdTargetingInfo(

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/blocs/intro_bloc.dart';
 
+import 'package:provider/provider.dart';
+
+import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/components/cycle_header.dart';
 import 'package:habitflow/components/redirect.dart';
 import 'package:habitflow/components/showable_widget.dart';
-
 import 'package:habitflow/models/cycle.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart' as strings;
 import 'package:habitflow/screens/cycle.dart';
-import 'package:provider/provider.dart';
 
 /// A card to show [cycle] data in Cycles page.
 class CycleCard extends StatelessWidget {

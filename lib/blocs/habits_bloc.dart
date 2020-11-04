@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:logger/logger.dart';
+
 import 'package:habitflow/helpers/logger.dart';
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:habitflow/services/habits/habits.dart';
-import 'package:logger/logger.dart';
 
 /// A Bloc which manages user's habits.
 class HabitsBloc extends ChangeNotifier {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:provider/provider.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/components/pickers.dart';
@@ -10,7 +11,6 @@ import 'package:habitflow/helpers/validators.dart';
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:tinycolor/tinycolor.dart';
 
 /// A screen which allows user to create a reward.
 class CreateReward extends StatefulWidget {

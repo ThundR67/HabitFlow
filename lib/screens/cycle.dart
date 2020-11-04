@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/blocs/ad_bloc.dart';
-import 'package:habitflow/components/elevating_app_bar.dart';
-import 'package:habitflow/components/history_expansion_tile.dart';
-import 'package:habitflow/models/status.dart';
-import 'package:habitflow/helpers/time.dart';
+
 import 'package:provider/provider.dart';
 
+import 'package:habitflow/blocs/ad_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/cycle_header.dart';
+import 'package:habitflow/components/elevating_app_bar.dart';
 import 'package:habitflow/components/habit_success_rates.dart';
+import 'package:habitflow/components/history_expansion_tile.dart';
 import 'package:habitflow/components/stats.dart';
 import 'package:habitflow/helpers/statistics.dart';
+import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/models/cycle.dart';
+import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/strings.dart';
 
 /// Screen to show data about [cycle].

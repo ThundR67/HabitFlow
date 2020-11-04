@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/intro_bloc.dart';
 import 'package:habitflow/components/action_buttons.dart';
-import 'package:habitflow/components/showable_widget.dart';
-import 'package:habitflow/components/slidable_card.dart';
 import 'package:habitflow/components/redirect.dart';
 import 'package:habitflow/components/reward_points.dart';
+import 'package:habitflow/components/showable_widget.dart';
+import 'package:habitflow/components/slidable_card.dart';
 import 'package:habitflow/components/status_view.dart';
 import 'package:habitflow/helpers/colors.dart';
 import 'package:habitflow/models/habit.dart';
@@ -15,7 +17,6 @@ import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/habit.dart';
-import 'package:provider/provider.dart';
 
 /// A widget to show a card of [habit].
 class HabitCard extends StatelessWidget {

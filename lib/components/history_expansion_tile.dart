@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
 import 'package:habitflow/components/failure_reason_sheet.dart';
 import 'package:habitflow/helpers/scaffold.dart';
+import 'package:habitflow/helpers/time.dart';
 import 'package:habitflow/models/day.dart';
 import 'package:habitflow/models/status.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
-import 'package:habitflow/helpers/time.dart';
-import 'package:provider/provider.dart';
 
 /// Shows history of successes, skips, or failures with reason.
 class HistoryExpansionTile extends StatelessWidget {

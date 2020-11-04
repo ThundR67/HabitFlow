@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/helpers/logger.dart';
 
+import 'package:logger/logger.dart';
+
+import 'package:habitflow/helpers/logger.dart';
 import 'package:habitflow/models/reward.dart';
 import 'package:habitflow/services/analytics/analytics.dart';
 import 'package:habitflow/services/rewards/rewards.dart';
-import 'package:logger/logger.dart';
 
 /// A Bloc which manages rewards.
 class RewardsBloc extends ChangeNotifier {

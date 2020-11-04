@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/resources/strings.dart';
+
 import 'package:tinycolor/tinycolor.dart';
+
+import 'package:habitflow/resources/strings.dart';
 
 /// A picker to allow user to pick weekdays.
 ///

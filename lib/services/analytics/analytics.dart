@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
+
 import 'package:habitflow/models/habit.dart';
 import 'package:habitflow/models/reward.dart';
 

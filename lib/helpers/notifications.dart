@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:habitflow/helpers/colors.dart';
-import 'package:habitflow/models/habit.dart';
-import 'package:habitflow/helpers/time.dart';
-import 'package:habitflow/resources/strings.dart';
 import 'package:sprintf/sprintf.dart';
+
+import 'package:habitflow/helpers/colors.dart';
+import 'package:habitflow/helpers/time.dart';
+import 'package:habitflow/models/habit.dart';
+import 'package:habitflow/resources/strings.dart';
 
 Random _random = Random();
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/helpers/logger.dart';
 
 import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
+
+import 'package:habitflow/helpers/logger.dart';
 
 const String _dbName = 'reward_points';
 

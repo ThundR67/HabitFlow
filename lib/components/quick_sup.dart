@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/resources/icons.dart';
+
 import 'package:sup/sup.dart';
+
+import 'package:habitflow/resources/icons.dart';
 
 /// Custom implementation of QuickSup from sup package.
 class QuickSup extends StatelessWidget {

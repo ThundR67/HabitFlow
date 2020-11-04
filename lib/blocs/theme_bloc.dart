@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:logger/logger.dart';
+
 import 'package:habitflow/helpers/logger.dart';
 import 'package:habitflow/resources/theme.dart';
 import 'package:habitflow/services/analytics/analytics.dart';
-
 import 'package:habitflow/services/theme/theme.dart';
-import 'package:logger/logger.dart';
 
 /// Name of light theme.
 const light = 'light';

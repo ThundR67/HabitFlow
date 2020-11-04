@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
 import 'package:habitflow/blocs/current_bloc.dart';
 import 'package:habitflow/blocs/cycles_bloc.dart';
 import 'package:habitflow/blocs/habits_bloc.dart';
@@ -7,7 +10,6 @@ import 'package:habitflow/blocs/points_bloc.dart';
 import 'package:habitflow/blocs/rewards_bloc.dart';
 import 'package:habitflow/resources/routes.dart';
 import 'package:habitflow/resources/widgets.dart';
-import 'package:provider/provider.dart';
 
 /// Shows indicator and does all the loading.
 class Loading extends StatelessWidget {

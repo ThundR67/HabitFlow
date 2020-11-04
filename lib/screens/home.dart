@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:habitflow/blocs/ad_bloc.dart';
 
+import 'package:provider/provider.dart';
+import 'package:rate_my_app/rate_my_app.dart';
+
+import 'package:habitflow/blocs/ad_bloc.dart';
 import 'package:habitflow/resources/icons.dart';
 import 'package:habitflow/resources/strings.dart';
 import 'package:habitflow/screens/cycles.dart';
 import 'package:habitflow/screens/rewards.dart';
 import 'package:habitflow/screens/today.dart';
-import 'package:provider/provider.dart';
-import 'package:rate_my_app/rate_my_app.dart';
 
 /// A page which has bottom navigation bar and shows all main pages.
 class Home extends StatefulWidget {
