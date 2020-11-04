@@ -16,6 +16,7 @@ class HistoryExpansionTile extends StatelessWidget {
   const HistoryExpansionTile({
     @required this.status,
     @required this.days,
+    @required this.isEnded,
   });
 
   /// Status to show list of.
@@ -23,6 +24,9 @@ class HistoryExpansionTile extends StatelessWidget {
 
   /// Days.
   final List<Day> days;
+
+  /// Is The Cycle Ended.
+  final bool isEnded;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +38,7 @@ class HistoryExpansionTile extends StatelessWidget {
           _DayHistory(
             status: status,
             day: day,
+            isEnded: isEnded,
           ),
       ],
     );
@@ -45,11 +50,13 @@ class _DayHistory extends StatelessWidget {
   const _DayHistory({
     @required this.day,
     @required this.status,
+    @required this.isEnded,
   }) : _isFailure = status == Status.failed;
 
   final Day day;
   final Status status;
   final bool _isFailure;
+  final bool isEnded;
 
   /// All more option buttons.
   List<PopupMenuItem<int>> _menuOptions() {
@@ -121,21 +128,23 @@ class _DayHistory extends StatelessWidget {
             return ListTile(
               title: Text(bloc.habits[id]?.name ?? habitDeleted),
               subtitle: _isFailure ? Text(day.failures[id]) : null,
-              trailing: PopupMenuButton<dynamic>(
-                onSelected: (dynamic value) {
-                  if (value == 0) {
-                    currentBloc.mark(id, Status.skipped, date: date);
-                  } else if (value == 1) {
-                    currentBloc.mark(id, Status.done, date: date);
-                  } else if (value == 2) {
-                    _showFailureReasonSheet(context, id);
-                  }
-                },
-                itemBuilder: (_) {
-                  return _menuOptions();
-                },
-                child: const Icon(moreIcon),
-              ),
+              trailing: isEnded
+                  ? null
+                  : PopupMenuButton<dynamic>(
+                      onSelected: (dynamic value) {
+                        if (value == 0) {
+                          currentBloc.mark(id, Status.skipped, date: date);
+                        } else if (value == 1) {
+                          currentBloc.mark(id, Status.done, date: date);
+                        } else if (value == 2) {
+                          _showFailureReasonSheet(context, id);
+                        }
+                      },
+                      itemBuilder: (_) {
+                        return _menuOptions();
+                      },
+                      child: const Icon(moreIcon),
+                    ),
             );
           },
         ),

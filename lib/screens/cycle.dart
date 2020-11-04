@@ -3,7 +3,7 @@ import 'package:habitflow/blocs/ad_bloc.dart';
 import 'package:habitflow/components/elevating_app_bar.dart';
 import 'package:habitflow/components/history_expansion_tile.dart';
 import 'package:habitflow/models/status.dart';
-
+import 'package:habitflow/helpers/time.dart';
 import 'package:provider/provider.dart';
 
 import 'package:habitflow/blocs/habits_bloc.dart';
@@ -41,9 +41,13 @@ class CycleInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<AdBloc>(context, listen: false).interstitial();
     final HabitsBloc bloc = Provider.of<HabitsBloc>(context);
-
     final Statistics stats = Statistics(days: _cycle.days);
     final ScrollController scrollController = ScrollController();
+
+    /// Todo clean this as is duplicate of CurrentBloc.isEnded().
+    final bool isAfter = DateTime.now().isAfter(_cycle.end.date());
+    final bool isDayOver = DateTime.now().format() != _cycle.end;
+    final bool isEnded = isAfter && isDayOver;
 
     return Scaffold(
       appBar: ElevatingAppBar(
@@ -62,14 +66,17 @@ class CycleInfo extends StatelessWidget {
             HistoryExpansionTile(
               status: Status.done,
               days: _cycle.days.values.toList(),
+              isEnded: isEnded,
             ),
             HistoryExpansionTile(
               status: Status.skipped,
               days: _cycle.days.values.toList(),
+              isEnded: isEnded,
             ),
             HistoryExpansionTile(
               status: Status.failed,
               days: _cycle.days.values.toList(),
+              isEnded: isEnded,
             ),
           ],
         ),

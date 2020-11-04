@@ -70,7 +70,7 @@ class _CycleEndedState extends State<CycleEnded> {
                       color: Colors.white,
                       onPressed: () async {
                         await bloc.end();
-                        cyclesBloc.update();
+                        await cyclesBloc.update();
                         rewardsBloc.reset();
                         Navigator.of(context).pushReplacementNamed(homeRoute);
                       },
