@@ -14,13 +14,16 @@ class CyclesBloc extends ChangeNotifier {
 
   /// Constructs.
   CyclesBloc() {
-    _dao.all().then((value) {
-      cycles = value;
-      _log.i('Loaded all previous cycles');
-      for (final cycle in cycles) {
-        _log.d('${cycle.start} : ${cycle.end}');
-      }
-      notifyListeners();
-    });
+    update();
+  }
+
+  /// Updates [cycles].
+  Future update() async {
+    cycles = await _dao.all();
+    _log.i('Loaded all previous cycles');
+    for (final cycle in cycles) {
+      _log.d('${cycle.start} : ${cycle.end}');
+    }
+    notifyListeners();
   }
 }
